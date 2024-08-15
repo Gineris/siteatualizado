@@ -67,7 +67,7 @@
                 </div>
                 <div class="col">
                     <div class="imgPai">
-                        <img src="../img/medium-shot-happy-woman-writing 1.png" alt="foto-mulher-mexendo-no-computador">
+                        <img src="../img/medium-shot-happy-woman-writing.png" alt="foto-mulher-mexendo-no-computador">
                         <div class="imgFilho1">
                             <img src="../img/Vector.png" alt="">
                         </div>
