@@ -229,7 +229,6 @@ nav > ul > li > a{
     left: 13%;
 }
 .BlocosDeEscolha{
-    /* padding-top: -10px; */
     padding-bottom: 70px;
     height: 100vh;
 }
@@ -242,7 +241,7 @@ nav > ul > li > a{
     margin-top: -4%;
 }
 .BlocoPadrao{
-    min-width: 319px;
+    min-width: 250px;
     height: 452px;
     margin: 10% ;
     background-color: #fff;
@@ -260,7 +259,7 @@ nav > ul > li > a{
     color: #0F3D60;
 }
 .BlocoPadrao img{
-    width: 226px;
+    width: 241px;
     display: block;
     margin: 15% 15% ;
 }
