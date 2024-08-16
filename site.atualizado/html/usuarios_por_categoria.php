@@ -50,17 +50,61 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JundTask</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/stylebusca.css">
     <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
     <link rel="shortcut icon" href="../img/logo@2x.png" type="image/x-icon">
 </head>
-<body>
-    <h1>Usuários na Categoria</h1>
+<body><nav class="menuLateral">
+            <div class="IconExpandir">
+                <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
+            </div>
+
+            <ul>
+                <li class="itemMenu ativo">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="txtLink">Inicio</span>
+                    </a>
+                </li>
+                <li class="itemMenu">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                        <span class="txtLink">Perfil</span>
+                    </a>
+                </li>
+                <li class="itemMenu">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
+                        <span class="txtLink">Conversas</span>
+                    </a>
+                </li>
+                <li class="itemMenu">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
+                        <span class="txtLink">Favoritos</span>
+                    </a>
+                </li>
+                <li class="itemMenu">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="txtLink">Configurações</span>
+                    </a>
+                </li>
+                <li class="itemMenu">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
+                        <span class="txtLink">Sair</span>
+                    </a>
+                </li>
+                
+            </ul>
+
+        </nav>
 
     <form action="" method="POST">
-        <label>Cidade:</label>
-        <select name="area_atuação" id="area_atuação">
-            <option value="">Escolha a Cidade</option>
+        <label></label>
+        <select class="category-select" name="area_atuação" id="area_atuação">
+            <option  value="">Escolha a Cidade</option>
             <?php
                 $result_cat = "SELECT * FROM area_atuação ORDER BY cidade";
                 $resultado_cat = mysqli_query($conn, $result_cat);
@@ -76,10 +120,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ?>
         </select><br><br>
 
-        <label>Nome:</label>
-        <input type="text" name="nome_pesquisa" value="<?php echo htmlspecialchars($nome_pesquisa); ?>"><br><br>
+        <div class="search-container">
+            <div class="pesquisarTrabalhos" name="pesquisarTrabalhos">
+            <input type="text" name="nome_pesquisa" placeholder="O que você está buscando?..." value="<?php echo htmlspecialchars($nome_pesquisa); ?>"><br><br>
+        </div>
 
-        <input type="submit" value="Pesquisar">
+        <button class="search-button">BUSCAR</button>
     </form>
 
     <?php
@@ -99,6 +145,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo '<p>Trabalhador não encontrado</p>';
     }
     ?>
+
+
+   
+    <script src="../js/funcaoMenuLateral.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
