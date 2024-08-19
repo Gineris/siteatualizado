@@ -36,16 +36,17 @@
                     <ion-icon name="eye-off-outline"></ion-icon>
                 </div>
 
-                <div class="InputsLogin inputCidade1" id="cidade1">
-                    <input type="text" name="Cidade" id="" placeholder="Cidade">
+                <div class="box">
+                        <select name="" id="" >
+                            <option value="" >Cabreuva</option>
+                            <option value="">Campo Limpo Paulista</option>
+                            <option value="">Itupeva</option>
+                            <option value="">Jarinu</option>
+                            <option value="">Jundiai</option>
+                            <option value="">Limeira</option>
+                            <option value="">Varzea Paulista</option>
+                        </select>
                 </div>
-                <div class="InputsLogin inputCidade" id="cidade2">
-                    <input type="text" name="Cidade" id="" placeholder="Cidade">
-                </div>
-                <div class="InputsLogin inputCidade" id="cidade3">
-                    <input type="text" name="Cidade" id="" placeholder="Cidade">
-                </div>
-        
                 <div class="BotaoLogin"><input type="submit" value="Login"></div>
     
             </div>

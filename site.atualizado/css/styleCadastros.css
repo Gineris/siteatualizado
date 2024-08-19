@@ -43,6 +43,7 @@ body{
     justify-content: center;
     background-image: url(../img/TelaLoginGeral.png);
     background-size: cover;
+    height: 90vh;
 }
 
 .tituloLogin img{
@@ -132,10 +133,6 @@ body{
 #cidade3 input{
     border-radius: 0px 0px 18px 18px;
 }
-.inputCidade input{
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
 .efeito input:hover{
     transform: scale(1.01);
 }
@@ -154,4 +151,44 @@ footer{
 }
 footer p{
     padding: 0px 10px 0px 10px;
+}
+
+.box select {
+    background-color: #050739;
+    color: white;
+    padding: 12px;
+    width: 436px;
+    height: 46px;
+    border: none;
+    font-size: 1rem;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+    border-radius: 16px;
+}
+.box::before {
+    content: "\f13a";
+    font-family: FontAwesome;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10%;
+    height: 10%;
+    text-align: center;
+    font-size: 28px;
+    line-height: 45px;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    
+}
+
+.box:hover::before {
+    color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.box select option {
+    padding: 30px;
 }
