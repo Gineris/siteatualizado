@@ -147,15 +147,17 @@ ul li.itemMenu a .icon > ion-icon{
     margin: 10px 0px;
     padding: 13px;                            
     border-radius: 16px;
-    border: #050739;
-    color: #FFF;
-    background-color: #1c1d4e;
+    border: 1px solid #050739;
+    color: #050739;
+    background-color: transparent;
     outline: none;
     font-family: "Poppins", sans-serif;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.16);
+
 }
 
 .EstiloInputs input::placeholder{
-    color: #FFF;
+    color: #050739;
 }
 textarea {
     width: 410px;
@@ -170,8 +172,8 @@ textarea {
     resize: none;
 }
 .box select {
-    background-color: #1c1d4e;
-    color: white;
+    background-color: transparent;
+    color: #050739;
     padding: 12px;
     width: 410px;
     height: 46px;
@@ -182,6 +184,8 @@ textarea {
     appearance: button;
     outline: none;
     border-radius: 16px;
+    border: 1px solid #050739;
+
     
 }
 .box::before {
@@ -198,7 +202,6 @@ textarea {
     color: rgba(255, 255, 255, 0.5);
     background-color: rgba(255, 255, 255, 0.1);
     pointer-events: none;
-    
 }
 
 .box:hover::before {
@@ -210,6 +213,24 @@ textarea {
     padding: 30px;
 }
 
+.imgServicos img{
+    width: 300px;
+}
+.botaoSalvar{
+    height: 48px;
+}
+.botaoSalvar input{
+    width: 108px;
+    border-radius: 16px;
+    border: 3px solid #1c1d4e;
+    background-color: #1c1d4e;
+    color: white;
+    transition: .4s;
+}
+.botaoSalvar input:hover{
+    background-color: transparent;
+    color: #1c1d4e;
+}
 footer{
     background-color: #FFF;
     padding: 10px;
