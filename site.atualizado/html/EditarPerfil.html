@@ -29,7 +29,7 @@
             </div>
 
             <ul>
-                <li class="itemMenu ativo">
+                <li class="itemMenu">
                     <a href="#">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
@@ -53,7 +53,7 @@
                         <span class="txtLink">Favoritos</span>
                     </a>
                 </li>
-                <li class="itemMenu">
+                <li class="itemMenu ativo">
                     <a href="#">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
                         <span class="txtLink">Configurações</span>
@@ -69,26 +69,63 @@
             </ul>
 
         </nav>
+        
+        <form action="" method="post">
 
-        <div class="row me-0 topoPerfil">
-            <div class="col-1 sucess imgPerfil" >
-                <img src="../img/images=100x100.png" alt="#">
+                <div class="row me-0 mb-5 topoPerfil">
+                    <div class="col-1 sucess imgPerfil" >
+                        <img src="../img/images100x100.png" alt="Foto de perfil">
+                </div>
+                <div class="col txtPerfil d-flex flex-column justify-content-center">
+                    <h3 >Nome</h3>
+                    <p>Descrição</p>
+                </div>
             </div>
-            <div class="col txtPerfil d-flex flex-column justify-content-center">
-                <h3 >Nome</h3>
-                <p>Descrição</p>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col">
-                <input type="text" name="" id="" placeholder="">
-                <input type="email" name="" id="" placeholder="">
-                <input type="password" name="" id="">
-                <input type="tel" name="" id="">
+            <div class="row me-0 ">
+                <div class="col coluna1 ">
+                    <div class="EstiloInputs">
+                        <input type="text" name="" id="" placeholder="Nome Completo">
+                    </div>
+                    <div class="EstiloInputs">
+                        <input type="email" name="" id="" placeholder="Email">
+                    </div class="EstiloInputs">
+                    <div class="EstiloInputs">
+                        <input type="password" name="" id="Senha" placeholder="Senha">
+                    </div>
+                    <div class="EstiloInputs"> 
+                        <input type="tel" name="" id="Telefone" placeholder="Telefone">
+                    </div>
+                    <div class="EstiloInputs mb-5">
+                        <input type="date" name="" id="">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="box">
+                        <select name="" id="" >
+                            <option value="" >cidade</option>
+                            <option value="">cidade</option>
+                            <option value="">cidade</option>
+                        </select>
+                    </div>
+                    <div>
+                        <textarea name="" id=""></textarea>
+                    </div>
+                </div>
+
+                <div class="rol d-flex me-0 ">
+                    <div class="col txtMargin "><img src="../img/images100x100.png" alt="Fotos do serviço"></div>
+                    <div class="col"><img src="../img/images100x100.png" alt="Fotos do serviço"></div>
+                    <div class="col"><img src="../img/images100x100.png" alt="Fotos do serviço"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col txtMargin ">
+                        <input type="submit" value="Salvar">
+                    </div>
+                </div>
             </div>
-            <div class="col"></div>
-        </div>
+        </form>
 
     </main>
 

@@ -131,9 +131,31 @@ ul li.itemMenu a .icon > ion-icon{
 .txtPerfil{
     margin-left: 5%;
 }
+.txtMargin{
+    margin-left: 10%;
+}
 .topoPerfil{
     font: 400 1.1rem "M PLUS 1p", sans-serif ;
     color: #083A50;
+}
+.coluna1{ 
+    margin-left: 15%;
+}
+
+.EstiloInputs input{
+    width: 410px;
+    margin: 10px 0px;
+    padding: 13px;                            
+    border-radius: 16px;
+    border: #050739;
+    color: #FFF;
+    background-color: #1c1d4e;
+    outline: none;
+    font-family: "Poppins", sans-serif;
+}
+
+.EstiloInputs input::placeholder{
+    color: #FFF;
 }
 footer{
     background-color: #FFF;
@@ -144,3 +166,46 @@ footer{
 footer p{
     padding: 0px 10px 0px 10px;
 }
+
+
+.box select {
+    background-color: #1c1d4e;
+    color: white;
+    padding: 12px;
+    width: 410px;
+    height: 46px;
+    border: none;
+    font-size: 20px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+    border-radius: 16px;
+
+  }
+  
+  .box::before {
+    content: "\f13a";
+    font-family: FontAwesome;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10%;
+    height: 100%;
+    text-align: center;
+    font-size: 28px;
+    line-height: 45px;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+    
+  }
+  
+  .box:hover::before {
+    color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .box select option {
+    padding: 30px;
+  }
