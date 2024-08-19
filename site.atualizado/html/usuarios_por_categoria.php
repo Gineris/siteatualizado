@@ -1,5 +1,5 @@
 <?php
-include_once("conexao.php");
+include_once('../backend/php/Conexao.php');
 
 $id_categoria = $_GET['id_categoria'];
 

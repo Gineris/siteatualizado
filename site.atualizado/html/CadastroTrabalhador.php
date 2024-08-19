@@ -34,7 +34,6 @@
 
                 <div class="InputsLogin SenhaGeral1">
                     <input type="password" name="SenhaCliente" id="senha2" placeholder="Confirmar senha">
-                    <!-- <ion-icon name="eye-off-outline"></ion-icon> -->
                     <i class="bi bi-eye-slash" id="olho2" onclick="mostrarSenha2()"></i>  
                 </div>
 

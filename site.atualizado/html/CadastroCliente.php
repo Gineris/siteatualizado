@@ -16,7 +16,8 @@
             <a href="../html/home.php">Sair</a>
         </nav>
     </header>
-    <main class="LoginGeral"> 
+    <main class="LoginGeral">
+    <form method="POST" action="../backend/php/RegisterCliente.php">
         <div class="row me-0 ">
             <div class="col ">
                 <!-- <img class="imgFundoLogin d-flex align-items-end" src="../img/Vector (2).png" alt="vetor1"> -->
@@ -24,8 +25,16 @@
                     <img src="../img/logo@2x.png" alt="Logo JundTask">
                     <h1>Cadastro Cliente</h1>
                 </div>
+
+                <div class="InputsLogin">
+                    <input type="text" id="nome" name="Nome" placeholder="Nome" required><br>
+                    <label for="nome"></label><br>
+                </div>
         
-                <div class="InputsLogin"><input type="text" name="EmailGeral" id="" placeholder="Email"></div>
+                <div class="InputsLogin">
+                    <input type="text" name="EmailGeral" id="email" placeholder="Email">
+                    <label for="email"></label><br>
+                </div>
 
                 <div class="InputsLogin SenhaGeral">
                     <input type="password" name="SenhaCliente" id="senha" placeholder="Senha">
@@ -48,10 +57,12 @@
                             <option value="">Varzea Paulista</option>
                         </select>
                 </div>
-                <div class="BotaoLogin"><input type="submit" value="Login"></div>
+
+                <div class="BotaoCadastro"><input type="submit" value="Cadastrar"></div>
     
             </div>
         </div>
+        </form>
     </main>
     <footer class="d-flex justify-content-center">
         <p>N</p>

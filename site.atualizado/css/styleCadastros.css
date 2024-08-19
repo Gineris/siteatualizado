@@ -110,6 +110,19 @@ body{
     color: #fff;
     transition: .2s;
 }
+
+.BotaoCadastro input{
+    display: block;
+    width: 310px;
+    padding:10px 20px;
+    margin: 20px auto 10px auto;
+    background: #EC5C14;
+    border: 2px solid #EC5C14;
+    border-radius: 18px;
+    font: 1em "Poppins", sans-serif;
+    color: #fff;
+    transition: .2s;
+}
  
 .BotaoCriarConta input{
     display: block;
