@@ -83,16 +83,20 @@
             <img src="../img/Vector (1).png" alt="">
             <div class="row me-0 ">
                 <div class="col">
-                    <div class="BlocoPadrao TrabalheAqui" >
+                <a href="../html/CadastroTrabalhador.php">
+                    <div class="BlocoPadrao TrabalheAqui">
                         <img src="../img/TrabalheConosco.png" alt="pessoa com obejetos de trabalho">
                         <p>trabalhe conosco</p>
                     </div>
+                </a>
                 </div>
                 <div class="col">
+                <a href="CadastroCliente.php">
                     <div  class="BlocoPadrao BusqueServicos">
                         <img src="../img/BusqueServicos.png" alt="varias pessoas juntas">
                         <p>busque por <br>profissionais</p>
                     </div>
+                </a>
                 </div>
                 <div class="col" >
                     <div class="TxtBlocosDeEscolha">
