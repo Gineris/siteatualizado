@@ -6,13 +6,14 @@
     <title>JundTask - Login</title>
     <link rel="stylesheet" href="../css/styleCadastros.css">
     <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="shortcut icon" href="../img/logo@2x.png" type="image/x-icon">
 </head>
 <body>
     <header>
         <nav class="BarraNav">
             <img src="../img/JUNDTASK.png" alt="Logo JundTask">
-            <a href="../html/home.html">Sair</a>
+            <a href="../html/home.php">Sair</a>
         </nav>
     </header>
     <main class="LoginGeral"> 
@@ -27,13 +28,13 @@
                 <div class="InputsLogin"><input type="text" name="EmailGeral" id="" placeholder="Email"></div>
 
                 <div class="InputsLogin SenhaGeral">
-                    <input type="password" name="SenhaCliente" id="" placeholder="Senha">
-                    <ion-icon name="eye-off-outline"></ion-icon>
+                    <input type="password" name="SenhaCliente" id="senha" placeholder="Senha">
+                    <i class="bi bi-eye-slash" id="olho" onclick="mostrarSenha()"></i>
                 </div>   
 
                 <div class="InputsLogin SenhaGeral1">
-                    <input type="password" name="SenhaCliente" id="" placeholder="Confirmar senha">
-                    <ion-icon name="eye-off-outline"></ion-icon>
+                    <input type="password" name="SenhaCliente" id="senha2" placeholder="Confirmar senha">
+                    <i class="bi bi-eye-slash" id="olho2" onclick="mostrarSenha2()"></i>
                 </div>
 
                 <div class="box">
@@ -58,6 +59,9 @@
         <p>Privacy Policy</p>
         <p>@2022yanliudesign</p>
     </footer>
+    
+    <script src="../js/FuncaoSenhaOlho.js"></script>
+
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>

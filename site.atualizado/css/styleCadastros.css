@@ -78,7 +78,7 @@ body{
     display: inline-block;
     position: relative;
 }
-.SenhaGeral ion-icon{
+.SenhaGeral i{
     position: absolute;
     top: 25%;
     right: 3%;
@@ -89,7 +89,7 @@ body{
 .SenhaGeral1{
     position: relative;
 }
-.SenhaGeral1 ion-icon{
+.SenhaGeral1 i{
     position: absolute;
     top: 25%;
     right: 3%;
