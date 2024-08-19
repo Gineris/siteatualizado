@@ -83,7 +83,7 @@
             <img src="../img/Vector (1).png" alt="">
             <div class="row me-0 ">
                 <div class="col">
-                <a href="../html/CadastroTrabalhador.php">
+                <a href="CadastroTrabalhador.php">
                     <div class="BlocoPadrao TrabalheAqui">
                         <img src="../img/TrabalheConosco.png" alt="pessoa com obejetos de trabalho">
                         <p>trabalhe conosco</p>
