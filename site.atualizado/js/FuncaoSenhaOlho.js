@@ -13,7 +13,7 @@ function mostrarSenha(){
 }
 
 function mostrarSenha2(){
-    var inputPass = document.getElementById('senha2')
+    var inputPass = document.getElementById('ConfirmaSenha')
     var bntShowPass = document.getElementById('olho2')
 
     if(inputPass.type === 'password'){

@@ -17,6 +17,7 @@
         </nav>
     </header>
     <main class="LoginGeral"> 
+    <form method="POST" action="../backend/php/RegisterTrabalhador.php">
         <div class="row me-0 ">
             <div class="col ">
                 <div class="tituloLogin">
@@ -24,16 +25,24 @@
                     <h1>Cadastro de Profissionais</h1>
                 </div>
         
-                <div class="InputsLogin"><input type="text" name="Nome" id="" placeholder="Nome completo"></div>
-                <div class="InputsLogin"><input type="text" name="Email" id="" placeholder="Email"></div>
+                <div class="InputsLogin">
+                    <input type="text" name="Nome" id="" placeholder="Nome completo">
+                    <label for="nome"></label><br>
+                </div>
 
-                <div class="InputsLogin SenhaGeral">
-                    <input type="password" name="SenhaCliente" id="senha" placeholder="Senha">
+                <div class="InputsLogin">
+                    <input type="text" name="Email" id="" placeholder="Email">
+                    <label for="email"></label><br>
+                </div>
+
+                <div class="InputsLogin Senha">
+                    <input type="password" name="senha" id="senha" placeholder="Senha">
+                    <label for="senha"></label><br>
                     <i class="bi bi-eye-slash" id="olho" onclick="mostrarSenha()"></i>
                 </div>   
 
-                <div class="InputsLogin SenhaGeral1">
-                    <input type="password" name="SenhaCliente" id="senha2" placeholder="Confirmar senha">
+                <div class="InputsLogin ConfirmaSenha">
+                    <input type="password" name="ConfirmaSenha" id="ConfirmaSenha" placeholder="Confirmar senha">
                     <i class="bi bi-eye-slash" id="olho2" onclick="mostrarSenha2()"></i>  
                 </div>
 
@@ -51,6 +60,7 @@
     
             </div>
         </div>
+        </form>
     </main>
     <footer class="d-flex justify-content-center ">
         <p>N</p>

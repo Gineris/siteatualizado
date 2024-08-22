@@ -27,22 +27,22 @@
                 </div>
 
                 <div class="InputsLogin">
-                    <input type="text" id="nome" name="Nome" placeholder="Nome" required><br>
+                    <input type="text" id="nome" name="nome" placeholder="Nome" required><br>
                     <label for="nome"></label><br>
                 </div>
         
                 <div class="InputsLogin">
-                    <input type="text" name="EmailGeral" id="email" placeholder="Email">
+                    <input type="text" name="email" id="email" placeholder="Email">
                     <label for="email"></label><br>
                 </div>
 
-                <div class="InputsLogin SenhaGeral">
-                    <input type="password" name="SenhaCliente" id="senha" placeholder="Senha">
+                <div class="InputsLogin Senha">
+                    <input type="password" name="senha" id="senha" placeholder="Senha">
                     <i class="bi bi-eye-slash" id="olho" onclick="mostrarSenha()"></i>
                 </div>   
 
-                <div class="InputsLogin SenhaGeral1">
-                    <input type="password" name="SenhaCliente" id="senha2" placeholder="Confirmar senha">
+                <div class="InputsLogin ConfirmaSenha">
+                    <input type="password" name="ConfirmaSenha" id="ConfirmaSenha" placeholder="Confirmar senha">
                     <i class="bi bi-eye-slash" id="olho2" onclick="mostrarSenha2()"></i>
                 </div>
 
