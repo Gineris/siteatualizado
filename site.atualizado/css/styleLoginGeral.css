@@ -75,11 +75,11 @@ body{
     color: #FFF;
 }
 
-.SenhaGeral{
+.Senha{
     display: inline-block;
     position: relative;
 }
-.SenhaGeral ion-icon{
+.Senha ion-icon{
     position: absolute;
     top: 25%;
     right: 3%;

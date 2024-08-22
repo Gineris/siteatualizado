@@ -6,6 +6,7 @@
     <title>JundTask - Login</title>
     <link rel="stylesheet" href="../css/styleLoginGeral.css">
     <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="shortcut icon" href="../img/logo@2x.png" type="image/x-icon">
 </head>
 <body>
@@ -24,11 +25,14 @@
                     <h1>Login</h1>
                 </div>
         
-                <div class="InputsLogin"><input type="text" name="EmailGeral" id="" placeholder="Email"></div>
+                <div class="InputsLogin">
+                    <input type="text" name="email" id="email" placeholder="Email">
+                    <label for="email"></label><br>
+                </div>
 
-                <div class="InputsLogin SenhaGeral">
-                    <input type="password" name="SenhaGeral" id="" placeholder="Senha">
-                    <ion-icon name="eye-off-outline"></ion-icon>
+                <div class="InputsLogin Senha">
+                    <input type="password" name="senha" id="senha" placeholder="Senha">
+                    <i class="bi bi-eye-slash" id="olho" onclick="mostrarSenha()"></i>
                 </div>
                
                 <div class="InputsCheck">
@@ -37,14 +41,13 @@
                 </div>
               
                 <div class="InputsCheck">
-                    
                     <input type="radio" name="radio" id="Cliente" class="radio-field">
                     <label for="Cliente" id="Cliente" class="radio-label">Cliente</label>
                 </div>
         
                 <div class="BotaoLogin"><input type="submit" value="Login"></div>
                 
-                <div class="BotaoLogin"><input type="submit" value="CriarConta"></div>
+                <div class="BotaoLogin"><input type="submit" value="Criar Conta"></div>
             </div>
         </div>
     </main>

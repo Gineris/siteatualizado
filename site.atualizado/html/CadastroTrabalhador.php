@@ -26,32 +26,32 @@
                 </div>
         
                 <div class="InputsLogin">
-                    <input type="text" name="Nome" id="" placeholder="Nome completo">
+                    <input type="text" name="Nome" id="Nome" placeholder="Nome completo" required>
                     <label for="nome"></label><br>
                 </div>
 
                 <div class="InputsLogin">
-                    <input type="text" name="Email" id="" placeholder="Email">
+                    <input type="text" name="Email" id="" placeholder="Email" required>
                     <label for="email"></label><br>
                 </div>
 
                 <div class="InputsLogin Senha">
-                    <input type="password" name="senha" id="senha" placeholder="Senha">
+                    <input type="password" name="senha" id="senha" placeholder="Senha" required>
                     <label for="senha"></label><br>
                     <i class="bi bi-eye-slash" id="olho" onclick="mostrarSenha()"></i>
                 </div>   
 
                 <div class="InputsLogin ConfirmaSenha">
-                    <input type="password" name="ConfirmaSenha" id="ConfirmaSenha" placeholder="Confirmar senha">
+                    <input type="password" name="ConfirmaSenha" id="ConfirmaSenha" placeholder="Confirmar senha" required>
                     <i class="bi bi-eye-slash" id="olho2" onclick="mostrarSenha2()"></i>  
                 </div>
 
                 <div class="InputsLogin">
-                    <input type="text" name="AreaAtuacao" id="" placeholder="Area de atuação">
+                    <input type="text" name="AreaAtuacao" id="" placeholder="Area de atuação" required> 
                 </div>
                 
                 <div class="InputsLogin">
-                    <input type="text" name="CategoriaDeServicos" id="" placeholder="Categoria de servicos">
+                    <input type="text" name="CategoriaDeServicos" id="" placeholder="Categoria de servicos" required>
                 </div>
 
                 

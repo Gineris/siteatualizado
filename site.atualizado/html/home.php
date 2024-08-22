@@ -27,7 +27,7 @@
             <div class="menuPerfil">
                 <ul>
                     <li>
-                        <a href="./loginGeral.html">
+                        <a href="./loginGeral.php">
                             <ion-icon name="person-outline"></ion-icon>
                             Perfil                    
                         </a>
