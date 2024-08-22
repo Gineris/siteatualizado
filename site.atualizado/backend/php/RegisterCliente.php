@@ -1,6 +1,6 @@
 <?php
 
-include_once('Conexão.php');
+include_once('Conexao.php');
 
 $nome = $_POST['nome'];
 $email = $_POST['email'];
@@ -13,3 +13,5 @@ $senha = $_POST['senha'];
 
 $resultado = mysqli_query($conn, "INSERT INTO cliente(nome, email, senha) 
 VALUES ('$nome','$email','$senha')");
+
+header('Location: ../../html/loginGeral.php');

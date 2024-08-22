@@ -74,11 +74,11 @@ body{
     color: #FFF;
 }
 
-.SenhaGeral{
+.Senha{
     display: inline-block;
     position: relative;
 }
-.SenhaGeral i{
+.ConfirmaSenha i{
     position: absolute;
     top: 25%;
     right: 3%;
@@ -86,10 +86,22 @@ body{
     cursor: pointer;
     color: #FFF;
 }
-.SenhaGeral1{
+.Senha{
     position: relative;
 }
-.SenhaGeral1 i{
+.Senha i{
+    position: absolute;
+    top: 25%;
+    right: 3%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #FFF;
+}
+
+.ConfirmaSenha{
+    position: relative;
+}
+.ConfirmaSenha i{
     position: absolute;
     top: 25%;
     right: 3%;
