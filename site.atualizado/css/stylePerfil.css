@@ -133,20 +133,46 @@ ul li.itemMenu a .icon > ion-icon{
 .BlocoPerfilPrincipal{
     position: absolute;
     width: 319px;
-    height: 431px;
-    background: #8d8d8d;
+    height: 461px;
+    background: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 15px;
+    border-radius: 100px 100px 0px 0px;
+    font-family: "M PLUS 1p", sans-serif;
+    font-size: 1.1rem;
+    box-shadow: 2px 2px 2px 0px #00000073;
 }
 .LocaleLikes{
     flex-direction: row;
     display: flex;
 }
-/* .FotoPerfil{
+.FotoPerfil img{
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    /* border: 1px solid black; */
+    background-color: #fff;
+}
+.NomeTrabalhador p{
+    font-weight: bolder;
+}
+.Avaliacao ion-icon{
+   font-size: 1.4rem;
+   color: #ffcb00;
+}
 
-} */
+.LocaleLikes p{
+    padding: 5px;
+    color: #242760;
+    font-weight: bold;
+}
+.LocaleLikes ion-icon{
+   font-size: 2.3rem;
+    color: #ED5C15;
+}
 
 footer{
     background-color: #FFF;
