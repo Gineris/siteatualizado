@@ -52,6 +52,8 @@ body{
     display: block;
     margin: auto;
     padding-top: 24px;
+    user-select: none; /* Impede a seleção de texto */
+    pointer-events: none;
 }
 .tituloLogin h1{
     color: #FFF;

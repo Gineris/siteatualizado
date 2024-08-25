@@ -13,7 +13,7 @@
     <header>
         <nav class="BarraNav">
             <img src="../img/JUNDTASK.png" alt="Logo JundTask">
-            <a href="../html/home.html">Sair</a>
+            <a href="../html/home.php">Sair</a>
         </nav>
     </header>
     <main class="LoginGeral"> 

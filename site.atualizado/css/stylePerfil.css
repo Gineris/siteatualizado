@@ -65,10 +65,12 @@ nav.menuLateral{
     top: 15%;
     left: 0;
     overflow: hidden; 
+    z-index: 10;
     transition: .3s;
 }
 nav.menuLateral.expandir{
     width: 300px;
+    z-index: 10;
 }
 .IconExpandir{
     width: 100%;
@@ -129,6 +131,7 @@ ul li.itemMenu a .icon > ion-icon{
     background-size: cover;
     width: 89%;
     height: 390px;
+    z-index: 1;
 }
 .BlocoPerfilPrincipal{
     position: absolute;
@@ -146,6 +149,7 @@ ul li.itemMenu a .icon > ion-icon{
     box-shadow: 2px 2px 2px 0px #00000073;
     top: 60%;
     left: 7%;
+    z-index: 1;
 }
 .LocaleLikes{
     flex-direction: row;
