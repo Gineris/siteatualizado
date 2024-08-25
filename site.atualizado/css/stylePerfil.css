@@ -127,31 +127,33 @@ ul li.itemMenu a .icon > ion-icon{
     margin: auto;
     background: #fff url(../img/TesteBackPerfil.png) no-repeat center;
     background-size: cover;
-    width: 86%;
-    height: 500px;
+    width: 89%;
+    height: 390px;
 }
 .BlocoPerfilPrincipal{
     position: absolute;
-    width: 319px;
-    height: 461px;
+    width: 353px;
+    height: 510px;
     background: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 15px;
-    border-radius: 100px 100px 0px 0px;
+    border-radius: 130px 130px 0px 0px;
     font-family: "M PLUS 1p", sans-serif;
     font-size: 1.1rem;
     box-shadow: 2px 2px 2px 0px #00000073;
+    top: 60%;
+    left: 7%;
 }
 .LocaleLikes{
     flex-direction: row;
     display: flex;
 }
 .FotoPerfil img{
-    width: 170px;
-    height: 170px;
+    width: 190px;
+    height: 190px;
     border-radius: 50%;
     /* border: 1px solid black; */
     background-color: #fff;
@@ -173,12 +175,21 @@ ul li.itemMenu a .icon > ion-icon{
    font-size: 2.3rem;
     color: #ED5C15;
 }
+.txt{
+    position: absolute;
+    width: 600px;
+    top: 115%;
+    left: 45%;
+
+    font:  1.5rem "M PLUS 1p", sans-serif;
+}
 
 footer{
     background-color: #FFF;
     padding: 10px;
     font: .7rem "Poppins", sans-serif;
     color: #666666;
+    margin-top: 400px;
 }
 footer p{
     padding: 0px 10px 0px 10px;
