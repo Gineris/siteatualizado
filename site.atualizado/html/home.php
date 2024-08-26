@@ -39,7 +39,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="../backend/login/logout.php">
                             <ion-icon name="exit-outline"></ion-icon>
                             Sair
                         </a>

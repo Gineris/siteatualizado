@@ -25,7 +25,7 @@
                     <h1>Login</h1>
                 </div>
         
-                <!-- <div class="InputsLogin">
+                <div class="InputsLogin">
                     <input type="text" name="email" id="email" placeholder="Email">
                     <label for="email"></label><br>
                 </div>
@@ -33,16 +33,8 @@
                 <div class="InputsLogin Senha">
                     <input type="password" name="senha" id="senha" placeholder="Senha">
                     <i class="bi bi-eye-slash" id="olho" onclick="mostrarSenha()"></i>
-                </div> -->
-                
-                <button>
-                    <a href="../html/LoginTrabalhador.php">Login Trabalhador</a>
-                </button>
-
-                <button>
-                    <a href="../html/LoginUsuario.php">Login Usuario</a>
-                </button>
-
+                </div>
+               
                 <div class="InputsCheck">
                     <input type="radio" name="radio" id="Trabalhador" class="radio-field" checked>
                     <label for="Trabalhador" id="Trabalhador" class="radio-label">Trabalhador</label>
@@ -53,7 +45,7 @@
                     <label for="Cliente" id="Cliente" class="radio-label">Cliente</label>
                 </div>
         
-                <!-- <div class="BotaoLogin"><input type="submit" value="Login"></div> -->
+                <div class="BotaoLogin"><input type="submit" value="Login"></div>
                 
                 <div class="BotaoLogin"><input type="submit" value="Criar Conta"></div>
             </div>
