@@ -22,7 +22,7 @@
                 <!-- <img class="imgFundoLogin d-flex align-items-end" src="../img/Vector (2).png" alt="vetor1"> -->
                 <div class="tituloLogin">
                     <img src="../img/logo@2x.png" alt="Logo JundTask">
-                    <h1>Login</h1>
+                    <h1>Login Usuario</h1>
                 </div>
         
                 <div class="InputsLogin">
@@ -34,20 +34,9 @@
                     <input type="password" name="senha" id="senha" placeholder="Senha">
                     <i class="bi bi-eye-slash" id="olho" onclick="mostrarSenha()"></i>
                 </div>
-               
-                <div class="InputsCheck">
-                    <input type="radio" name="radio" id="Trabalhador" class="radio-field" checked>
-                    <label for="Trabalhador" id="Trabalhador" class="radio-label">Trabalhador</label>
-                </div>
-              
-                <div class="InputsCheck">
-                    <input type="radio" name="radio" id="Cliente" class="radio-field">
-                    <label for="Cliente" id="Cliente" class="radio-label">Cliente</label>
-                </div>
         
                 <div class="BotaoLogin"><input type="submit" value="Login"></div>
                 
-                <div class="BotaoLogin"><input type="submit" value="Criar Conta"></div>
             </div>
         </div>
     </main>
