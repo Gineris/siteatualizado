@@ -54,7 +54,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
     <link rel="shortcut icon" href="../img/logo@2x.png" type="image/x-icon">
 </head>
-<body><nav class="menuLateral">
+<body>
+<header>
+        <nav class="BarraNav">
+            <img src="../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
+            
+            <div class="perfil">
+                <a href="#">
+                <ion-icon name="person"></ion-icon>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <nav class="menuLateral">
             <div class="IconExpandir">
                 <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
             </div>
@@ -101,10 +113,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         </nav>
 
-    <form action="" method="POST">
-        <label></label>
+        <div class="search-container">
+    <form action="" method="POST" class="search-form">
         <select class="category-select" name="area_atuação" id="area_atuação">
-            <option  value="">Escolha a Cidade</option>
+            <option value="">Escolha a Cidade</option>
             <?php
                 $result_cat = "SELECT * FROM area_atuação ORDER BY cidade";
                 $resultado_cat = mysqli_query($conn, $result_cat);
@@ -120,13 +132,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ?>
         </select>
 
-        <div class="search-container">
-            <div class="pesquisarTrabalhos" name="pesquisarTrabalhos">
-            <input type="text" name="nome_pesquisa" placeholder="O que você está buscando?..." value="<?php echo htmlspecialchars($nome_pesquisa); ?>"><br><br>
+        <div class="pesquisarTrabalhos">
+            <input type="text" name="nome_pesquisa" placeholder="O que você está buscando?..." value="<?php echo htmlspecialchars($nome_pesquisa); ?>">
         </div>
 
         <button class="search-button">BUSCAR</button>
     </form>
+</div>
     <div class="usuario">
         <?php
         // Verifica se há resultados e exibe os dados ou uma mensagem de erro

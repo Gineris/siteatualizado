@@ -127,35 +127,52 @@ footer{
 footer p{
     padding: 0px 10px 0px 10px;
 }
-.pesquisarTrabalhos{
-    width: 100%; /* Mantém a largura relativa ao contêiner pai */
-    max-width: 400px; /* Ajuste este valor para definir a largura máxima desejada */
+.search-container {
+    display: flex;
+    justify-content: center; /* Centraliza os elementos no eixo horizontal */
+    /* margin-bottom: 100%; */
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.category-select {
+    margin-right: 20px; /* Espaçamento entre o select e o campo de busca */
+    width: 200px;
+    height: 50px;
     padding: 10px;
-    margin-left: 400px;
+    border-radius: 5px;
+    border: 1px solid #e68a00;
+    background-color: white;
+    cursor: pointer;
+}
+
+.pesquisarTrabalhos {
+    width: 300px;
+    padding: 10px;
     font-size: 1em;
     border-radius: 27px;
     border: none;
-    background-color: var(--corPrimaria-2);    
+    background-color: var(--corPrimaria-2);
+    margin-right: 20px; /* Espaçamento entre o campo de busca e o botão */
 }
 
-.pesquisarTrabalhos input{
-   
-    background-color:  var(--corPrimaria-2);
+.pesquisarTrabalhos input {
+    width: 100%;
+    background-color: var(--corPrimaria-2);
     border: none;
     font-size: 1em;
-    cursor: pointer;
-
+    color: white;
 }
+
 .pesquisarTrabalhos input:focus-visible {
     outline: none;
 }
 
-.pesquisarTrabalhos ion-icon{
-   
-    font-size: 1.3em;
-    cursor: pointer;
-}
-.pesquisarTrabalhos input::placeholder{
+.pesquisarTrabalhos input::placeholder {
     color: #FFFBFE;
     font-family: "Inter", sans-serif;
     font-style: italic;
@@ -163,31 +180,16 @@ footer p{
 }
 
 .search-button {
-  padding: 10px 20px;
-  border-radius: 20px;
-  border: none;
-  background-color: #1f1f5f;
-  color: white;
-  cursor: pointer;
-  margin-left: 200px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    background-color: #1f1f5f;
+    color: white;
+    cursor: pointer;
 }
-
-.category-select {
-  margin-left: 900px;
-  margin-top: 170px;
-  width: 204px;
-  height: 64px;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #e68a00;
-  background-color: white;
-  cursor: pointer;
-  
-}
-.usuario p{
-    font-size: 2rem;
-}
-.usuario{
+.usuario {
     margin-left: 200px;
-    width: 500px;
+}
+.usuario p {
+    font-size: 2rem;
 }
