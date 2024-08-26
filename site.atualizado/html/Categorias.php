@@ -23,7 +23,7 @@ $categorias = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JundTask</title>
+    <title>JundTask - Pesquisar</title>
     <link rel="stylesheet" href="../css/styleCategoria.css">
     <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
     <link rel="shortcut icon" href="../img/logo@2x.png" type="image/x-icon">
@@ -48,22 +48,22 @@ $categorias = [
             </div>
 
             <ul>
-                <li class="itemMenu ativo">
+                <li class="itemMenu">
                     <a href="#">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="#">
+                    <a href="./Perfil.html">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                         <span class="txtLink">Perfil</span>
                     </a>
                 </li>
-                <li class="itemMenu">
+                <li class="itemMenu ativo">
                     <a href="#">
-                        <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
-                        <span class="txtLink">Conversas</span>
+                        <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
+                        <span class="txtLink">Pesquisar</span>
                     </a>
                 </li>
                 <li class="itemMenu">
@@ -73,7 +73,7 @@ $categorias = [
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="#">
+                    <a href="./EditarPerfil.html">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
                         <span class="txtLink">Configurações</span>
                     </a>

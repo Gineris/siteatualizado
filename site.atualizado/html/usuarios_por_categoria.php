@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JundTask</title>
+    <title>JundTask - Pesquisar</title>
     <link rel="stylesheet" href="../css/stylebusca.css">
     <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
     <link rel="shortcut icon" href="../img/logo@2x.png" type="image/x-icon">
@@ -74,8 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </li>
                 <li class="itemMenu">
                     <a href="#">
-                        <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
-                        <span class="txtLink">Conversas</span>
+                        <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
+                        <span class="txtLink">Pesquisar</span>
                     </a>
                 </li>
                 <li class="itemMenu">
@@ -118,7 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     echo '<option value="'.$row_cat['id'].'" '.$selected.'>'.$row_cat['cidade'].'</option>';
                 }
             ?>
-        </select><br><br>
+        </select>
 
         <div class="search-container">
             <div class="pesquisarTrabalhos" name="pesquisarTrabalhos">
@@ -127,25 +127,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <button class="search-button">BUSCAR</button>
     </form>
-
-    <?php
-    // Verifica se há resultados e exibe os dados ou uma mensagem de erro
-    if (mysqli_num_rows($resultado_pesquisar) > 0) {
-        while ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
-            echo '<div class="usuario">';
-            echo '<p>' . htmlspecialchars($row['nome']) . '</p>';
-            echo '<p>' . htmlspecialchars($row['id_area']) . '</p>';
-            echo '<p>' . htmlspecialchars($row['media_avaliacao']) . '</p>';
-            echo '<p>' . htmlspecialchars($row['id_categoria']) . '</p>';
-            echo '<p>' . htmlspecialchars($row['foto_perfil']) . '</p>';
-            // Adicione mais campos conforme necessário
-            echo '</div>';
+    <div class="usuario">
+        <?php
+        // Verifica se há resultados e exibe os dados ou uma mensagem de erro
+        if (mysqli_num_rows($resultado_pesquisar) > 0) {
+            while ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
+                echo '<div class="usuario">';
+                echo '<p>' . htmlspecialchars($row['nome']) . '</p>';
+                echo '<p>' . htmlspecialchars($row['id_area']) . '</p>';
+                echo '<p>' . htmlspecialchars($row['media_avaliacao']) . '</p>';
+                echo '<p>' . htmlspecialchars($row['id_categoria']) . '</p>';
+                echo '<p>' . htmlspecialchars($row['foto_perfil']) . '</p>';
+                // Adicione mais campos conforme necessário
+                echo '</div>';
+            }
+        } else {
+            echo '<p>Trabalhador não encontrado</p>';
         }
-    } else {
-        echo '<p>Trabalhador não encontrado</p>';
-    }
-    ?>
-
+        ?>
+    </div>
 
    
     <script src="../js/funcaoMenuLateral.js"></script>
