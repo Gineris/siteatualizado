@@ -12,14 +12,14 @@ $senha = $_POST['senha'];
 
 // $contato = $_POST['contato'];
 // $data_nasc = $_POST['data_nasc'];
-$area_atuacao = $_POST['area_atuacao'];
+// $area_atuacao = $_POST['area_atuacao'];
 // $media_avaliacao = $_POST['media_avaliacao'];
 
 
 // $resultado = mysqli_query($conn, "INSERT INTO trabalhador(nome, email, senha, foto_perfil, desc, id_categoria, contato, data_nasc, area_atuacao, media_avaliacao) 
 // VALUES ($nome,$email,$senha,$foto_perfil,$id_categoria,$contato,$data_nasc,$area_atuacao,$media_avaliacao)");
 
-$resultado = mysqli_query($conn, "INSERT INTO trabalhador(nome, email, senha, area_atuacao) 
-VALUES ('$nome','$email','$senha','$area_atuacao')");
+$resultado = mysqli_query($conn, "INSERT INTO trabalhador(nome, email, senha) 
+VALUES ('$nome','$email','$senha')");
 
 header('Location: ../../html/loginGeral.php');
