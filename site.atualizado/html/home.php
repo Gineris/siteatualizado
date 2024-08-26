@@ -82,6 +82,7 @@
         <section class="BlocosDeEscolha" id="cadastro">
             <img src="../img/Vector (1).png" alt="">
             <div class="row me-0 ">
+                <h1>Cadastro</h1>
                 <div class="col">
                 <a href="CadastroTrabalhador.php">
                     <div class="BlocoPadrao TrabalheAqui">
