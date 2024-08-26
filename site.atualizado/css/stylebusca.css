@@ -169,6 +169,7 @@ footer p{
   background-color: #1f1f5f;
   color: white;
   cursor: pointer;
+  margin-left: 200px;
 }
 
 .category-select {
@@ -182,4 +183,11 @@ footer p{
   background-color: white;
   cursor: pointer;
   
+}
+.usuario p{
+    font-size: 2rem;
+}
+.usuario{
+    margin-left: 200px;
+    width: 500px;
 }
