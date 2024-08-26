@@ -16,7 +16,8 @@
             <a href="../html/home.php">Sair</a>
         </nav>
     </header>
-    <main class="LoginGeral"> 
+    <main class="LoginGeral">
+    <form method="POST" action="../backend/login/verificaLogin.php"> 
         <div class="row me-0 ">
             <div class="col ">
                 <!-- <img class="imgFundoLogin d-flex align-items-end" src="../img/Vector (2).png" alt="vetor1"> -->
@@ -39,6 +40,7 @@
                 
             </div>
         </div>
+        </form>
     </main>
     <footer class="d-flex justify-content-center">
         <p>N</p>

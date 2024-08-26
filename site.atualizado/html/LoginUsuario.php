@@ -16,10 +16,10 @@
             <a href="../html/home.php">Sair</a>
         </nav>
     </header>
-    <main class="LoginGeral"> 
+    <main class="LoginGeral">
+    <form method="POST" action="../backend/login/verificaLogin.php">
         <div class="row me-0 ">
-            <div class="col ">
-                <!-- <img class="imgFundoLogin d-flex align-items-end" src="../img/Vector (2).png" alt="vetor1"> -->
+            <div class="col">
                 <div class="tituloLogin">
                     <img src="../img/logo@2x.png" alt="Logo JundTask">
                     <h1>Login Usuario</h1>
@@ -39,6 +39,7 @@
                 
             </div>
         </div>
+        </form>
     </main>
     <footer class="d-flex justify-content-center">
         <p>N</p>
