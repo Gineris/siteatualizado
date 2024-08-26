@@ -38,12 +38,14 @@
                 <button>
                     <a href="../html/LoginTrabalhador.php">Login Trabalhador</a>
                 </button>
+                    
+                <br></br>
 
                 <button>
                     <a href="../html/LoginUsuario.php">Login Usuario</a>
                 </button>
 
-                <div class="InputsCheck">
+                <!-- <div class="InputsCheck">
                     <input type="radio" name="radio" id="Trabalhador" class="radio-field" checked>
                     <label for="Trabalhador" id="Trabalhador" class="radio-label">Trabalhador</label>
                 </div>
@@ -51,11 +53,15 @@
                 <div class="InputsCheck">
                     <input type="radio" name="radio" id="Cliente" class="radio-field">
                     <label for="Cliente" id="Cliente" class="radio-label">Cliente</label>
-                </div>
+                </div> -->
         
                 <!-- <div class="BotaoLogin"><input type="submit" value="Login"></div> -->
                 
-                <div class="BotaoLogin"><input type="submit" value="Criar Conta"></div>
+                <div class="BotaoLogin">
+                <a href="../html/home.php#cadastro">
+                    <input type="submit" value="Criar Conta">
+                </a>
+                </div>
             </div>
         </div>
     </main>

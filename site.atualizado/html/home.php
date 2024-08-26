@@ -14,7 +14,7 @@
             <img src="../img/logo@2x.png" alt="logo-jundtask" >
             <img src="../img/JUNDTASK.png" alt="logo-jundtask"  class="logoJundtask">
             <ul class="menu">
-                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#cadastro">Cadastro</a></li>
                 <li><a href="#comoFunciona">Como funciona </a></li>
                 <li><a href="#secaoJundiai">Sobre nós</a></li>
             </ul>
@@ -79,7 +79,7 @@
             </div>
         </section>
 
-        <section class="BlocosDeEscolha" id="servicos">
+        <section class="BlocosDeEscolha" id="cadastro">
             <img src="../img/Vector (1).png" alt="">
             <div class="row me-0 ">
                 <div class="col">
