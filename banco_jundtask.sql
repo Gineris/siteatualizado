@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 14, 2024 at 09:34 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- Tempo de geração: 28/08/2024 às 16:05
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `banco_jundtask`
+-- Banco de dados: `banco_jundtask`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Estrutura para tabela `admin`
 --
 
 CREATE TABLE `admin` (
@@ -39,7 +39,7 @@ CREATE TABLE `admin` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `area_atuação`
+-- Estrutura para tabela `area_atuação`
 --
 
 CREATE TABLE `area_atuação` (
@@ -49,7 +49,7 @@ CREATE TABLE `area_atuação` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `area_atuação`
+-- Despejando dados para a tabela `area_atuação`
 --
 
 INSERT INTO `area_atuação` (`id`, `cidade`, `id_categoria`) VALUES
@@ -64,7 +64,7 @@ INSERT INTO `area_atuação` (`id`, `cidade`, `id_categoria`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categorias`
+-- Estrutura para tabela `categorias`
 --
 
 CREATE TABLE `categorias` (
@@ -73,7 +73,7 @@ CREATE TABLE `categorias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `categorias`
+-- Despejando dados para a tabela `categorias`
 --
 
 INSERT INTO `categorias` (`id`, `nome`) VALUES
@@ -92,7 +92,7 @@ INSERT INTO `categorias` (`id`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cliente`
+-- Estrutura para tabela `cliente`
 --
 
 CREATE TABLE `cliente` (
@@ -106,7 +106,7 @@ CREATE TABLE `cliente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `cliente`
+-- Despejando dados para a tabela `cliente`
 --
 
 INSERT INTO `cliente` (`id_cliente`, `nome`, `email`, `senha`, `foto_perfil`, `tipo`, `status`) VALUES
@@ -117,7 +117,7 @@ INSERT INTO `cliente` (`id_cliente`, `nome`, `email`, `senha`, `foto_perfil`, `t
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comentarios`
+-- Estrutura para tabela `comentarios`
 --
 
 CREATE TABLE `comentarios` (
@@ -131,7 +131,7 @@ CREATE TABLE `comentarios` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `conversas`
+-- Estrutura para tabela `conversas`
 --
 
 CREATE TABLE `conversas` (
@@ -144,7 +144,20 @@ CREATE TABLE `conversas` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mensagens`
+-- Estrutura para tabela `curtidas`
+--
+
+CREATE TABLE `curtidas` (
+  `id_curtida` int(11) NOT NULL,
+  `data_curtida` int(11) NOT NULL,
+  `id_cliente` int(11) NOT NULL,
+  `id_trabalhador` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `mensagens`
 --
 
 CREATE TABLE `mensagens` (
@@ -159,22 +172,7 @@ CREATE TABLE `mensagens` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `publicacoes`
---
-
-CREATE TABLE `publicacoes` (
-  `id_publicacao` int(11) NOT NULL,
-  `id_trabalhador` int(11) NOT NULL,
-  `descricao` text NOT NULL,
-  `imagem` text NOT NULL,
-  `data_publicacao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `likes` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `trabalhador`
+-- Estrutura para tabela `trabalhador`
 --
 
 CREATE TABLE `trabalhador` (
@@ -194,43 +192,44 @@ CREATE TABLE `trabalhador` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `trabalhador`
+-- Despejando dados para a tabela `trabalhador`
 --
 
 INSERT INTO `trabalhador` (`id_trabalhador`, `nome`, `email`, `senha`, `foto_perfil`, `desc`, `contato`, `data_nasc`, `media_avaliacao`, `tipo`, `status`, `id_categoria`, `id_area`) VALUES
-(4, 'giovana', 'giovana@gmail.com', '123', '', 'faço serviço domestico a mais de 5 anos', '123123123', '0000-00-00', 5.00, '', '', 1, 2);
+(4, 'giovana', 'giovana@gmail.com', '123', '', 'faço serviço domestico a mais de 5 anos', '123123123', '0000-00-00', 5.00, '', '', 1, 2),
+(6, 'Guilherme', 'gui@gmail.com', '123456', '', 'blakfjbgalfkjblfkbjaofibh', '21321321321321', '0000-00-00', 9.99, '', '', 1, 2);
 
 --
--- Indexes for dumped tables
+-- Índices para tabelas despejadas
 --
 
 --
--- Indexes for table `admin`
+-- Índices de tabela `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
--- Indexes for table `area_atuação`
+-- Índices de tabela `area_atuação`
 --
 ALTER TABLE `area_atuação`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_categoria` (`id_categoria`);
 
 --
--- Indexes for table `categorias`
+-- Índices de tabela `categorias`
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `cliente`
+-- Índices de tabela `cliente`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id_cliente`);
 
 --
--- Indexes for table `comentarios`
+-- Índices de tabela `comentarios`
 --
 ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`id_comentario`),
@@ -238,7 +237,7 @@ ALTER TABLE `comentarios`
   ADD KEY `id_cliente` (`id_cliente`);
 
 --
--- Indexes for table `conversas`
+-- Índices de tabela `conversas`
 --
 ALTER TABLE `conversas`
   ADD PRIMARY KEY (`id_conversa`),
@@ -246,7 +245,15 @@ ALTER TABLE `conversas`
   ADD KEY `id_cliente` (`id_cliente`);
 
 --
--- Indexes for table `mensagens`
+-- Índices de tabela `curtidas`
+--
+ALTER TABLE `curtidas`
+  ADD PRIMARY KEY (`id_curtida`),
+  ADD KEY `id_cliente` (`id_cliente`),
+  ADD KEY `id_trabalhador` (`id_trabalhador`);
+
+--
+-- Índices de tabela `mensagens`
 --
 ALTER TABLE `mensagens`
   ADD PRIMARY KEY (`id_mensagem`),
@@ -255,14 +262,7 @@ ALTER TABLE `mensagens`
   ADD KEY `id_destinatario` (`id_destinatario`);
 
 --
--- Indexes for table `publicacoes`
---
-ALTER TABLE `publicacoes`
-  ADD PRIMARY KEY (`id_publicacao`),
-  ADD KEY `id_trabalhador` (`id_trabalhador`);
-
---
--- Indexes for table `trabalhador`
+-- Índices de tabela `trabalhador`
 --
 ALTER TABLE `trabalhador`
   ADD PRIMARY KEY (`id_trabalhador`),
@@ -270,89 +270,96 @@ ALTER TABLE `trabalhador`
   ADD KEY `id_area` (`id_area`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT de tabela `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `area_atuação`
+-- AUTO_INCREMENT de tabela `area_atuação`
 --
 ALTER TABLE `area_atuação`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `categorias`
+-- AUTO_INCREMENT de tabela `categorias`
 --
 ALTER TABLE `categorias`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT for table `cliente`
+-- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
   MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `comentarios`
+-- AUTO_INCREMENT de tabela `comentarios`
 --
 ALTER TABLE `comentarios`
   MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `conversas`
+-- AUTO_INCREMENT de tabela `conversas`
 --
 ALTER TABLE `conversas`
   MODIFY `id_conversa` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `mensagens`
+-- AUTO_INCREMENT de tabela `curtidas`
+--
+ALTER TABLE `curtidas`
+  MODIFY `id_curtida` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `mensagens`
 --
 ALTER TABLE `mensagens`
   MODIFY `id_mensagem` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `publicacoes`
---
-ALTER TABLE `publicacoes`
-  MODIFY `id_publicacao` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `trabalhador`
+-- AUTO_INCREMENT de tabela `trabalhador`
 --
 ALTER TABLE `trabalhador`
-  MODIFY `id_trabalhador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_trabalhador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Constraints for dumped tables
+-- Restrições para tabelas despejadas
 --
 
 --
--- Constraints for table `area_atuação`
+-- Restrições para tabelas `area_atuação`
 --
 ALTER TABLE `area_atuação`
   ADD CONSTRAINT `area_atuação_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id`);
 
 --
--- Constraints for table `comentarios`
+-- Restrições para tabelas `comentarios`
 --
 ALTER TABLE `comentarios`
   ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_publicacao`) REFERENCES `comentarios` (`id_comentario`),
   ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `comentarios` (`id_comentario`);
 
 --
--- Constraints for table `conversas`
+-- Restrições para tabelas `conversas`
 --
 ALTER TABLE `conversas`
   ADD CONSTRAINT `conversas_ibfk_1` FOREIGN KEY (`id_trabalhador`) REFERENCES `conversas` (`id_conversa`),
   ADD CONSTRAINT `conversas_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `conversas` (`id_conversa`);
 
 --
--- Constraints for table `mensagens`
+-- Restrições para tabelas `curtidas`
+--
+ALTER TABLE `curtidas`
+  ADD CONSTRAINT `curtidas_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`),
+  ADD CONSTRAINT `curtidas_ibfk_2` FOREIGN KEY (`id_trabalhador`) REFERENCES `trabalhador` (`id_trabalhador`);
+
+--
+-- Restrições para tabelas `mensagens`
 --
 ALTER TABLE `mensagens`
   ADD CONSTRAINT `mensagens_ibfk_1` FOREIGN KEY (`id_conversa`) REFERENCES `mensagens` (`id_mensagem`),
@@ -360,13 +367,7 @@ ALTER TABLE `mensagens`
   ADD CONSTRAINT `mensagens_ibfk_3` FOREIGN KEY (`id_destinatario`) REFERENCES `mensagens` (`id_mensagem`);
 
 --
--- Constraints for table `publicacoes`
---
-ALTER TABLE `publicacoes`
-  ADD CONSTRAINT `publicacoes_ibfk_1` FOREIGN KEY (`id_trabalhador`) REFERENCES `publicacoes` (`id_publicacao`);
-
---
--- Constraints for table `trabalhador`
+-- Restrições para tabelas `trabalhador`
 --
 ALTER TABLE `trabalhador`
   ADD CONSTRAINT `trabalhador_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id`),
