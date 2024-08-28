@@ -58,6 +58,11 @@
                         </select>
                 </div>
 
+                <div class="InputsLogin FotodePerfil">
+                    <input type="file" name="foto_de_perfil" id="foto_de_perfil" placeholder="Foto de Perfil" required>
+                    <label for="foto_de_perfil"></label><br>
+                </div>
+
                 <div class="BotaoCadastro"><input type="submit" value="Cadastrar"></div>
     
             </div>

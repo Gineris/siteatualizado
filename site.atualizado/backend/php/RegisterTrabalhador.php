@@ -5,7 +5,7 @@ include_once('Conexao.php');
 $nome = $_POST['nome'];
 $email = $_POST['email'];
 $senha = $_POST['senha'];
-// $foto_perfil = $_POST['foto_perfil'];
+$foto_perfil = $_FILES['foto_de_perfil'];
 // $desc = $_POST['desc'];
 
 // $categoria = $_POST['categoria'];

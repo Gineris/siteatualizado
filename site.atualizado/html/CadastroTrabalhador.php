@@ -26,12 +26,12 @@
                 </div>
         
                 <div class="InputsLogin">
-                    <input type="text" name="Nome" id="Nome" placeholder="Nome completo" required>
+                    <input type="text" name="nome" id="nome" placeholder="Nome completo" required>
                     <label for="nome"></label><br>
                 </div>
 
                 <div class="InputsLogin">
-                    <input type="text" name="Email" id="" placeholder="Email" required>
+                    <input type="text" name="email" id="email" placeholder="Email" required>
                     <label for="email"></label><br>
                 </div>
 
@@ -52,6 +52,10 @@
                 
                 <div class="InputsLogin">
                     <input type="text" name="CategoriaDeServicos" id="" placeholder="Categoria de servicos" required>
+                </div>
+
+                <div class="InputsLogin FotoPerfil">
+                    <input type="file" name="foto_de_perfil" id="foto_de_perfil" placeholder="Foto de Perfil" required>
                 </div>
 
                 
