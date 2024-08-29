@@ -36,7 +36,9 @@
                     <label for="senha"></label><br>
                 </div>
         
-                <div class="BotaoLogin"><input type="submit" name="submit" value="Login"></div>
+                <div class="BotaoLogin">
+                    <input type="submit" name="submit" value="Login">
+                </div>
                 
             </div>
         </div>
