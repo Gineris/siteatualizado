@@ -17,7 +17,7 @@
         </nav>
     </header>
     <main class="LoginGeral">
-    <form method="POST" action="../backend/login/verificaLogin.php">
+    <form method="POST" action="../backend/login/verificaLoginUsuario.php">
         <div class="row me-0 ">
             <div class="col">
                 <div class="tituloLogin">
@@ -33,9 +33,10 @@
                 <div class="InputsLogin Senha">
                     <input type="password" name="senha" id="senha" placeholder="Senha">
                     <i class="bi bi-eye-slash" id="olho" onclick="mostrarSenha()"></i>
+                    <label for="senha"></label><br>
                 </div>
         
-                <div class="BotaoLogin"><input type="submit" value="Login"></div>
+                <div class="BotaoLogin"><input type="submit" name="submit" value="Login"></div>
                 
             </div>
         </div>
