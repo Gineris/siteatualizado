@@ -3,6 +3,7 @@ include_once('../backend/php/Conexao.php');
 
 $id_categoria = $_GET['id_categoria'];
 
+
 // Verifique se o id_categoria é um número válido
 if (!is_numeric($id_categoria)) {
     die("ID da categoria inválido.");
@@ -143,15 +144,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php
         // Verifica se há resultados e exibe os dados ou uma mensagem de erro
         if (mysqli_num_rows($resultado_pesquisar) > 0) {
-            while ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
-                echo '<div class="usuario">';
-                echo '<p>' . htmlspecialchars($row['nome']) . '</p>';
-                echo '<p>' . htmlspecialchars($row['id_area']) . '</p>';
-                echo '<p>' . htmlspecialchars($row['media_avaliacao']) . '</p>';
-                echo '<p>' . htmlspecialchars($row['id_categoria']) . '</p>';
-                echo '<p>' . htmlspecialchars($row['foto_perfil']) . '</p>';
+            while ($row = mysqli_fetch_assoc($resultado_pesquisar)) {?> 
+            <a href="perfilteste.php?id_trabalhador=<?php echo $row['id_trabalhador']; ?>">
+                <?php echo '<p>' . htmlspecialchars($row['nome']) . '</p>'; ?>
+            </a>
+                <?php 
+
+                // echo '<p>' . htmlspecialchars($row['nome']) . '</p>';
+                // echo '<p>' . htmlspecialchars($row['id_area']) . '</p>';
+                // echo '<p>' . htmlspecialchars($row['media_avaliacao']) . '</p>';
+                // echo '<p>' . htmlspecialchars($row['id_categoria']) . '</p>';
+                // echo '<p>' . htmlspecialchars($row['foto_perfil']) . '</p>';
                 // Adicione mais campos conforme necessário
-                echo '</div>';
             }
         } else {
             echo '<p>Trabalhador não encontrado</p>';
