@@ -44,11 +44,6 @@
     cursor: pointer;
     color: #0F3D60;
 } 
-
-/* main{
-    height: 100vh;
-} */
-
 nav.menuLateral{
     width: 50px;
     height: 412px;
@@ -130,7 +125,7 @@ footer p{
 .search-container {
     display: flex;
     justify-content: center; /* Centraliza os elementos no eixo horizontal */
-    /* margin-bottom: 100%; */
+    margin-bottom: 10px;
 }
 
 .search-form {
@@ -188,8 +183,42 @@ footer p{
     cursor: pointer;
 }
 .usuario {
-    margin-left: 200px;
+    margin-left: 9%;
 }
 .usuario p {
     font-size: 2rem;
+}
+
+.CampoEscolhaTrabalhador{
+    background-color: #04074B;
+    margin-bottom: 10px;
+    width: 95%;
+    border: 3px solid #ED5C15;
+    border-radius: 10px ;
+    font-family: "M PLUS 1p", sans-serif ;
+}
+.CampoEscolhaTrabalhador a{
+    text-decoration: none;
+    color: #fff;
+
+}
+.CampoEscolhaTrabalhador h3{
+    font-size: 1.8rem;
+}
+
+.CardBox{
+    position: relative;
+    display: flex;
+    padding: 23px;
+}
+.imagem{
+    width: 100px;
+    height: 100px;
+    margin-right: 15px;
+}
+.imagem img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }

@@ -145,9 +145,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Verifica se há resultados e exibe os dados ou uma mensagem de erro
         if (mysqli_num_rows($resultado_pesquisar) > 0) {
             while ($row = mysqli_fetch_assoc($resultado_pesquisar)) {?> 
-            <a href="perfilteste.php?id_trabalhador=<?php echo $row['id_trabalhador']; ?>">
-                <?php echo '<p>' . htmlspecialchars($row['nome']) . '</p>'; ?>
-            </a>
+            <div class="CampoEscolhaTrabalhador">
+                <a href="perfilteste.php?id_trabalhador=<?php echo $row['id_trabalhador']; ?>">
+                    <?php 
+                    echo '<div class="CardBox">'; 
+                        echo '<div class="imagem">
+                                <img src="../img/images100x100.png" alt="">
+                        </div>';
+                        echo '<div class="txtTrabalhador">';
+                            echo '<h3>' . htmlspecialchars($row['nome']) . '</h3>';
+                            echo '<p>' . htmlspecialchars($row['media_avaliacao']) . '</p>';
+                        echo '</div>';
+                    echo '</div>';
+                    ?>
+                </a>
+            </div>
                 <?php 
 
                 // echo '<p>' . htmlspecialchars($row['nome']) . '</p>';
