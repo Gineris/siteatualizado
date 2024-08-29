@@ -1,52 +1,65 @@
 <?php
 
-session_start(); // Iniciar a sessão
-
-// Incluir o arquivo com a conexão com banco de dados
+session_start(); 
 include_once '../backend/php/Conexao.php';
-
-// Definir fuso horário de São Paulo
 date_default_timezone_set('America/Sao_Paulo');
 
-// Acessar o IF quando é selecionado ao menos uma estrela
 if (!empty($_POST['estrela'])) {
 
-    // Receber os dados do formulário
-    $estrela = filter_input(INPUT_POST, 'estrela', FILTER_DEFAULT);
-    $mensagem = filter_input(INPUT_POST, 'mensagem', FILTER_DEFAULT);
+    // Filtra e obtém os dados do formulário
+    $estrela = filter_input(INPUT_POST, 'estrela', FILTER_SANITIZE_NUMBER_INT);
+    $mensagem = filter_input(INPUT_POST, 'mensagem', FILTER_SANITIZE_STRING);
 
-    // Criar a QUERY cadastrar no banco de dados
-    $query_avaliacao = "INSERT INTO avaliacoes (qtd_estrela, mensagem, created) VALUES (:qtd_estrela, :mensagem, :created)";
-
-    // Preparar a QUERY
+    // Insere a avaliação no banco de dados
+    $query_avaliacao = "INSERT INTO avaliacoes (qtd_estrela, mensagem, created) VALUES (?, ?, ?)";
     $cad_avaliacao = $conn->prepare($query_avaliacao);
 
-    // Substituir os links pelo valor
-    $cad_avaliacao->bindParam(':qtd_estrela', $estrela, PDO::PARAM_INT);
-    $cad_avaliacao->bindParam(':mensagem', $mensagem, PDO::PARAM_STR);
-    $cad_avaliacao->bindParam(':created', date("Y-m-d H:i:s"));
+    $created_at = date("Y-m-d H:i:s");
+    $cad_avaliacao->bind_param('iss', $estrela, $mensagem, $created_at);
 
-    // Acessa o IF quando cadastrar corretamente
     if ($cad_avaliacao->execute()) {
 
-        // Criar a mensagem de erro
-        $_SESSION['msg'] = "<p style='color: green;'>Avaliação cadastrar com sucesso.</p>";
+        // ID da avaliação recém inserida
+        $id_avaliacao = $conn->insert_id;
 
-        // Redirecionar o usuário para a página inicial
-        header("Location: PerfilCliente.php");
+        // Aqui você precisa do ID do cliente, não do ID da avaliação.
+        // Por exemplo, suponha que você tenha o ID do cliente armazenado na sessão:
+        $id_cliente = $_SESSION['6']; // Certifique-se de que o ID do cliente esteja corretamente armazenado na sessão.
+
+        // Recupera o nome e email do cliente
+        $query_usuario = "SELECT c.nome, c.email FROM cliente c WHERE c.id_cliente = ?";
+        $stmt = $conn->prepare($query_usuario);
+        $stmt->bind_param('i', $id_cliente);
+        $stmt->execute();
+
+        $resultado = $stmt->get_result();
+        $cliente = $resultado->fetch_assoc();
+
+        if ($cliente) {
+            $nome = $cliente['nome'];
+        } else {
+            $nome = 'Nome não encontrado'; }
+
+        // Exibe os detalhes da avaliação
+        echo "<p>Avaliação: $id_avaliacao</p>";
+
+        for ($i = 1; $i <= 5; $i++) {
+            if ($i <= $estrela) {
+                echo '<i class="estrela-preenchida fa-solid fa-star"></i>';
+            } else {
+                echo '<i class="estrela-vazia fa-solid fa-star"></i>';
+            }
+        }
+
+        echo "<p>Mensagem: $mensagem</p>";
+        echo "<p>Nome do Cliente: $nome</p>";
+       
+
     } else {
-
-        // Criar a mensagem de erro
-        $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Avaliação não cadastrar.</p>";
-
-        // Redirecionar o usuário para a página inicial
-        header("Location: PerfilCliente.php");
+        echo "<p style='color: #f00;'>Erro: Avaliação não cadastrada.</p>";
     }
 } else {
-
-    // Criar a mensagem de erro
-    $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Necessário selecionar pelo menos 1 estrela.</p>";
-
-    // Redirecionar o usuário para a página inicial
-    header("Location: PerfilCliente.php");
+    echo "<p style='color: #f00;'>Erro: Necessário selecionar pelo menos 1 estrela.</p>";
 }
+
+?>

@@ -101,92 +101,28 @@
 
    
 
-    <?php
-    // Imprimir a mensagem de erro ou sucesso salvo na sessão
-    if(isset($_SESSION['msg'])){
-        echo $_SESSION['msg'];
-        unset($_SESSION['msg']);
-    }
-    ?>
+        <form method="POST" action="processacomentario.php">
+    <div class="estrelas">
+        <input type="radio" name="estrela" id="vazio" value="" checked>
+        <label for="estrela_um"><i class="opcao fa"></i></label>
+        <input type="radio" name="estrela" id="estrela_um" value="1">
+        <label for="estrela_dois"><i class="opcao fa"></i></label>
+        <input type="radio" name="estrela" id="estrela_dois" value="2">
+        <label for="estrela_tres"><i class="opcao fa"></i></label>
+        <input type="radio" name="estrela" id="estrela_tres" value="3">
+        <label for="estrela_quatro"><i class="opcao fa"></i></label>
+        <input type="radio" name="estrela" id="estrela_quatro" value="4">
+        <label for="estrela_cinco"><i class="opcao fa"></i></label>
+        <input type="radio" name="estrela" id="estrela_cinco" value="5">
+        <br><br>
+        <textarea name="mensagem" rows="4" cols="30" placeholder="Digite o seu comentário..."></textarea><br><br>
+        <input type="submit" value="Comentar"><br><br>
+    </div>
+</form>
 
-    <!-- Inicio do formulário -->
-    <form method="POST" action="processacomentarios.php">
-
-        <div class="estrelas">
-
-            <!-- Carrega o formulário definindo nenhuma estrela selecionada -->
-            <input type="radio" name="estrela" id="vazio" value="" checked>
-
-            <!-- Opção para selecionar 1 estrela -->
-            <label for="estrela_um"><i class="opcao fa"></i></label>
-            <input type="radio" name="estrela" id="estrela_um" id="vazio" value="1">
-
-            <!-- Opção para selecionar 2 estrela -->
-            <label for="estrela_dois"><i class="opcao fa"></i></label>
-            <input type="radio" name="estrela" id="estrela_dois" id="vazio" value="2">
-
-            <!-- Opção para selecionar 3 estrela -->
-            <label for="estrela_tres"><i class="opcao fa"></i></label>
-            <input type="radio" name="estrela" id="estrela_tres" id="vazio" value="3">
-
-            <!-- Opção para selecionar 4 estrela -->
-            <label for="estrela_quatro"><i class="opcao fa"></i></label>
-            <input type="radio" name="estrela" id="estrela_quatro" id="vazio" value="4">
-
-            <!-- Opção para selecionar 5 estrela -->
-            <label for="estrela_cinco"><i class="opcao fa"></i></label>
-            <input type="radio" name="estrela" id="estrela_cinco" id="vazio" value="5"><br><br>
-
-            <!-- Campo para enviar a mensagem -->
-            <textarea name="mensagem" rows="4" cols="30" placeholder="Digite o seu comentário..."></textarea><br><br>
-
-            <!-- Botão para enviar os dados do formulário -->
-            <input type="submit" value="Comentar"><br><br>
-
-        </div>
-
-    </form>
-    <!-- Fim do formulário -->
-
-
-    <h1>Avaliações dos Usuários</h1>
-
-    <?php
-
-    // Recuperar as avaliações do banco de dados
-    $query_avaliacoes = "SELECT id, qtd_estrela, mensagem 
-                        FROM avaliacoes
-                        ORDER BY id DESC";
-
-    // Preparar a QUERY
-    $result_avaliacoes = $conn->prepare($query_avaliacoes);
-
-    // Executar a QUERY
-    $result_avaliacoes->execute();
-
-    // Percorrer a lista de registros recuperada do banco de dados
-    while ($row_avaliacao = $result_avaliacoes->fetch(PDO::FETCH_ASSOC)) {
-        //var_dump($row_avaliacao);
-
-        // Extrair o array para imprimir pelo nome do elemento do array
-        extract($row_avaliacao);
-
-        echo "<p>Avaliação: $id</p>";
-
-        // Criar o for para percorrer as 5 estrelas
-        for ($i = 1; $i <= 5; $i++) {
-
-            // Acessa o IF quando a quantidade de estrelas selecionadas é menor a quantidade de estrela percorrida e imprime a estrela preenchida
-            if ($i <= $qtd_estrela) {
-                echo '<i class="estrela-preenchida fa-solid fa-star"></i>';
-            } else {
-                echo '<i class="estrela-vazia fa-solid fa-star"></i>';
-            }
-        }
-
-        echo "<p>Mensagem: $mensagem</p><hr>";
-    }
-    ?>
+<div id="comentarios">
+    <!-- Os comentários serão adicionados aqui -->
+</div>
 
     </main>     
 
