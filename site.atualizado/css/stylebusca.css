@@ -190,22 +190,28 @@ footer p{
 }
 
 .CampoEscolhaTrabalhador{
-    background-color: #04074B;
+    background-color: transparent;
     margin-bottom: 10px;
     width: 95%;
     border: 3px solid #ED5C15;
     border-radius: 10px ;
-    font-family: "M PLUS 1p", sans-serif ;
+    font-family: "Inter", sans-serif ;
+    box-shadow: 3px 3px 4px -2px rgba(0,0,0,0.56);
+    transition: .5s;
 }
 .CampoEscolhaTrabalhador a{
     text-decoration: none;
-    color: #fff;
-
+    color: #000;
 }
 .CampoEscolhaTrabalhador h3{
-    font-size: 1.8rem;
+    font-size: 1.5rem;
+    font-weight: normal;
 }
+.CampoEscolhaTrabalhador:hover {
+    transform: scale(1.02);
+    background-color: #f1f0f0;
 
+}
 .CardBox{
     position: relative;
     display: flex;

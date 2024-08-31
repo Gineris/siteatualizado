@@ -136,7 +136,7 @@ ul li.itemMenu a .icon > ion-icon{
 .BlocoPerfilPrincipal{
     position: absolute;
     width: 353px;
-    height: 510px;
+    height: 480px;
     background: #fff;
     display: flex;
     flex-direction: column;
@@ -164,6 +164,10 @@ ul li.itemMenu a .icon > ion-icon{
 }
 .NomeTrabalhador p{
     font-weight: bolder;
+}
+.tel{
+    font-weight: 400;
+
 }
 .Avaliacao ion-icon{
    font-size: 1.4rem;

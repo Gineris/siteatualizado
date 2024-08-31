@@ -1,9 +1,22 @@
+<?php
+include_once('../backend/php/Conexao.php');
+
+$id_trabalhador = $_GET['id_trabalhador'];
+
+$sql = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador'";
+$result = $conn->query($sql);
+
+$resultado_pesquisar = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($resultado_pesquisar); 
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JundTask - Seu perfil</title>
+    <title>JundTask - Perfil</title>
     <link rel="stylesheet" href="../css/stylePerfil.css">
     <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
     <link rel="shortcut icon" href="../img/logo@2x.png" type="image/x-icon">
@@ -12,7 +25,8 @@
     <header>
         <nav class="BarraNav">
             <img src="../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
-            <h1>Seu Perfil</h1>
+            <h1>Perfil</h1>
+
             <div class="perfil">
                 <a href="#">
                 <ion-icon name="person"></ion-icon>
@@ -36,7 +50,7 @@
                     </a>
                 </li>
                 <li class="itemMenu ativo">
-                    <a href="#">
+                    <a href="./Categorias.php">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                         <span class="txtLink">Perfil</span>
                     </a>
@@ -74,8 +88,8 @@
             <!-- foto background -->
             <div class="BlocoPerfilPrincipal">
                 <div class="FotoPerfil"><img src="../img/FotoTesteMuie.png" alt=""></div>
-                <div class="NomeTrabalhador"><p>Gionava Neiers</p></div>
-                <div class="Categoria"><p>Confeiteira</p></div>
+                <div class="NomeTrabalhador"><?php echo '<p>' . htmlspecialchars($row['nome']) . '</p>'?></div>
+                <!-- <div class="Categoria"><p>Confeiteira</p></div> -->
                 <div class="Avaliacao">
                     <ion-icon name="star"></ion-icon>   
                     <ion-icon name="star"></ion-icon>
@@ -83,16 +97,18 @@
                     <ion-icon name="star"></ion-icon>
                     <ion-icon name="star"></ion-icon>
                 </div>
+                <div class="tel">
+                    <?php echo '<p> Tel: ' . htmlspecialchars($row['contato']) . '</p>' ?>
+                </div>
                 <div class="LocaleLikes">
-                    <ion-icon name="location-outline"></ion-icon>
-                    <p>Jundiai</p>
+                    <!-- <ion-icon name="location-outline"></ion-icon> -->
                     <ion-icon name="heart-outline"></ion-icon>
                     <p>37K likes</p>
                 </div>
             </div>
 
             <div class="txt">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur, commodi numquam, iusto in minus eum quibusdam neque deserunt dignissimos veniam assumenda reiciendis explicabo autem veritatis, omnis blanditiis quae molestias obcaecati.</p>
+                <?php echo '<p>' . htmlspecialchars($row['desc']) . '</p>' ?>
             </div>
         </div>
 
