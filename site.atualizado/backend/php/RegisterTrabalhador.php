@@ -8,6 +8,7 @@ $senha = $_POST['senha'];
 $foto_perfil = $_FILES['foto_de_perfil'];
 // $desc = $_POST['desc'];
 
+
 // $categoria = $_POST['categoria'];
 
 // $contato = $_POST['contato'];
@@ -21,5 +22,7 @@ $foto_perfil = $_FILES['foto_de_perfil'];
 
 $resultado = mysqli_query($conn, "INSERT INTO trabalhador(nome, email, senha) 
 VALUES ('$nome','$email','$senha')");
+
+
 
 header('Location: ../../html/loginGeral.php');

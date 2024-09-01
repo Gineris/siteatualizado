@@ -17,7 +17,7 @@
         </nav>
     </header>
     <main class="LoginGeral">
-    <form method="POST" action="../backend/php/RegisterCliente.php">
+    <form method="POST" action="../backend/php/RegisterCliente.php" enctype="multipart/form-data">
         <div class="row me-0 ">
             <div class="col ">
                 <!-- <img class="imgFundoLogin d-flex align-items-end" src="../img/Vector (2).png" alt="vetor1"> -->
