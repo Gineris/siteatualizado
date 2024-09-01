@@ -73,7 +73,7 @@ $categorias = [
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="./EditarPerfil.php">
+                    <a href="./EditarPerfil.html">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
                         <span class="txtLink">Configurações</span>
                     </a>
