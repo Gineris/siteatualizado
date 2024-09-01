@@ -1,5 +1,5 @@
-<<<<<<< HEAD:site.atualizado/html/Perfil.html
-<!-- <?php
+
+<?php
     session_start();
     include_once('../backend/php/Conexao.php');
 
@@ -13,12 +13,9 @@
     $logado = $_SESSION['email'];
 
 
-?> -->
-
-=======
+?>
 
 
->>>>>>> b9f4bbe78d291f7e5493d9c21cccd2d5f6367502:site.atualizado/html/SeuPerfil.html
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

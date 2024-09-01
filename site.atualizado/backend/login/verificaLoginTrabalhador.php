@@ -23,8 +23,7 @@
         {
             $_SESSION['email'] = $email;
             $_SESSION['senha'] = $senha;
-            //mudar o header
-            header('Location: ../../html/PerfilTrabalhador.php');
+            header('Location: ../../html/SeuPerfil.php');
         }
     }
     else
