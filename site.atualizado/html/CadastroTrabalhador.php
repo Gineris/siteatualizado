@@ -17,7 +17,7 @@
         </nav>
     </header>
     <main class="LoginGeral"> 
-    <form method="POST" action="../backend/php/RegisterTrabalhador.php">
+    <form method="POST" action="../backend/php/RegisterTrabalhador.php" enctype="multipart/form-data">
         <div class="row me-0 ">
             <div class="col ">
                 <div class="tituloLogin">

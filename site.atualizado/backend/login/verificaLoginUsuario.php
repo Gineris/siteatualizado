@@ -1,6 +1,7 @@
 <?php 
     
     session_start();
+    
     if(isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['senha']))
     {
         // Acessa
@@ -44,4 +45,4 @@
     //     $_SESSION['mensagem']=$mensagem;
     // }
     
-    ?>
+    
