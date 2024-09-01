@@ -17,7 +17,7 @@
         </nav>
     </header>
     <main class="LoginGeral">
-    <form method="POST" action="../backend/login/verificaLoginTrabalhador.php"> 
+    <form method="POST" action="../backend/login/verificaLoginTrabalhador.php" onsubmit="return verificaSenha()"> 
         <div class="row me-0 ">
             <div class="col ">
                 <!-- <img class="imgFundoLogin d-flex align-items-end" src="../img/Vector (2).png" alt="vetor1"> -->
@@ -35,6 +35,11 @@
                     <input type="password" name="senha" id="senha" placeholder="Senha">
                     <i class="bi bi-eye-slash" id="olho" onclick="mostrarSenha()"></i>
                     <label for="senha"></label><br>
+                </div>
+
+                <div class="InputsLogin ConfirmaSenha">
+                    <input type="password" name="ConfirmaSenha" id="ConfirmaSenha" placeholder="Confirmar senha">
+                    <i class="bi bi-eye-slash" id="olho2" onclick="mostrarSenha2()"></i>
                 </div>
         
                 <div class="BotaoLogin">

@@ -17,7 +17,7 @@
         </nav>
     </header>
     <main class="LoginGeral"> 
-    <form method="POST" action="../backend/php/RegisterTrabalhador.php" enctype="multipart/form-data">
+    <form method="POST" action="../backend/php/RegisterTrabalhador.php" enctype="multipart/form-data" onsubmit="return verificaSenha()">
         <div class="row me-0 ">
             <div class="col ">
                 <div class="tituloLogin">
@@ -58,8 +58,6 @@
                     <input type="file" name="foto_de_perfil" id="foto_de_perfil" placeholder="Foto de Perfil" required>
                 </div>
 
-                
-        
                 <div class="BotaoLogin "><input type="submit" value="Login"></div>
     
             </div>
@@ -74,6 +72,7 @@
     </footer>
 
     <script src="../js/FuncaoSenhaOlho.js"></script>
+    <script src="../js/funcaoVerificaSenha.js"></script>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
