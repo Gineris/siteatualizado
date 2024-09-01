@@ -73,20 +73,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
 
             <ul>
-                <li class="itemMenu ativo">
+                <li class="itemMenu ">
                     <a href="#">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="#">
+                    <a href="./SeuPerfil.html">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                         <span class="txtLink">Perfil</span>
                     </a>
                 </li>
-                <li class="itemMenu">
-                    <a href="#">
+                <li class="itemMenu ativo">
+                    <a href="./Categorias.php">
                         <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>
                     </a>
@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="#">
+                    <a href="./EditarPerfil.html">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
                         <span class="txtLink">Configurações</span>
                     </a>
@@ -146,7 +146,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (mysqli_num_rows($resultado_pesquisar) > 0) {
             while ($row = mysqli_fetch_assoc($resultado_pesquisar)) {?> 
             <div class="CampoEscolhaTrabalhador">
-                <a href="perfilteste.php?id_trabalhador=<?php echo $row['id_trabalhador']; ?>">
+                <a href="Perfil.php?id_trabalhador=<?php echo $row['id_trabalhador']; ?>">
                     <?php 
                     echo '<div class="CardBox">'; 
                         echo '<div class="imagem">
