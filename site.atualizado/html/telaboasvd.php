@@ -1,30 +1,10 @@
-<?php
-include_once('../backend/php/Conexao.php');
-
-// Defina as categorias com IDs e imagens estáticas
-$categorias = [
-    ['id' => 1, 'nome' => 'Serviços Domésticos', 'imagem' => 'servico-de-limpeza.png'],
-    ['id' => 2, 'nome' => 'Reparos e manutenção', 'imagem' => 'manutencao.png'],
-    ['id' => 3, 'nome' => 'Serviços Tecnológicos', 'imagem' => 'servicos-digitais.png'],
-    ['id' => 4, 'nome' => 'Restaurante', 'imagem' => 'restaurante.png'],
-    ['id' => 5, 'nome' => 'Confeitaria', 'imagem' => 'bolo.png'],
-    ['id' => 6, 'nome' => 'Serviços para Eventos e Festa', 'imagem' => 'festa-de-aniversario.png'],
-    ['id' => 7, 'nome' => 'Saúde e Beleza', 'imagem' => 'secador-de-cabelo.png'],
-    ['id' => 8, 'nome' => 'Assessoria Judicial', 'imagem' => 'judicial.png'],
-    ['id' => 9, 'nome' => 'Educação e Aulas particulares', 'imagem' => 'educacao.png'],
-    ['id' => 10, 'nome' => 'Serviços Automotivos', 'imagem' => 'servico-automotivo.png'],
-    ['id' => 11, 'nome' => 'Artesanato', 'imagem' => 'artesanato.png'],
-];
-
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JundTask - Pesquisar</title>
-    <link rel="stylesheet" href="../css/styleCategoria.css">
+    <link rel="stylesheet" href="../css/styletelaboasvd.css">
     <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
     <link rel="shortcut icon" href="../img/logo@2x.png" type="image/x-icon">
 </head>
@@ -89,22 +69,11 @@ $categorias = [
 
         </nav>
 
-        <h1>Categorias de Trabalhos</h1>
-
-        <div class="container">
-    <?php foreach ($categorias as $categoria): ?>
-        <div class="card">
-            <a href="usuarios_por_categoria.php?id_categoria=<?= $categoria['id'] ?>">
-                <img src="../img/<?= $categoria['imagem'] ?>" alt="<?= $categoria['nome'] ?>">
-                <p><?= $categoria['nome'] ?></p>
-            </a>
-        </div>
-    <?php endforeach; ?>
-</div>
-    
-</div>
     </main>
 
+
+
+    
     <footer class="d-flex justify-content-center ">
         <p>N</p>
         <p>Terms of Service</p>

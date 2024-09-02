@@ -112,6 +112,70 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
             </div>
         </div>
 
+
+
+        <h1>Comentários e Avaliações</h1>
+
+    <div id="reviews">
+        <!-- Comentários e avaliações serão carregados aqui -->
+    </div>
+
+    <form id="reviewForm">
+        <div class="star-rating">
+            <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="5 stars">&#9733;</label>
+            <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 stars">&#9733;</label>
+            <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 stars">&#9733;</label>
+            <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 stars">&#9733;</label>
+            <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 star">&#9733;</label>
+        </div>
+        <textarea id="comment" placeholder="Escreva seu comentário"></textarea>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        document.getElementById('reviewForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            const rating = document.querySelector('input[name="rating"]:checked').value;
+            const comment = document.getElementById('comment').value;
+
+            const data = new FormData();
+            data.append('rating', rating);
+            data.append('comment', comment);
+
+            fetch('submit_review.php', {
+                method: 'POST',
+                body: data
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                loadReviews(); // Recarrega os comentários após envio
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+
+        // Função para carregar os comentários
+        function loadReviews() {
+            fetch('get_reviews.php')
+            .then(response => response.json())
+            .then(data => {
+                const reviewsDiv = document.getElementById('reviews');
+                reviewsDiv.innerHTML = '';
+                data.reviews.forEach(review => {
+                    const reviewElement = document.createElement('div');
+                    reviewElement.innerHTML = `<strong>${'★'.repeat(review.rating)}</strong><p>${review.comment}</p>`;
+                    reviewsDiv.appendChild(reviewElement);
+                });
+            });
+        }
+
+        // Carregar os comentários ao iniciar a página
+        document.addEventListener('DOMContentLoaded', loadReviews);
+    </script>
+
     </main>     
 
     
