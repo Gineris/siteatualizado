@@ -32,14 +32,14 @@
                 </div>
 
                 <div class="InputsLogin Senha">
-                    <input type="password" name="senha" id="senha" placeholder="Senha">
-                    <i class="bi bi-eye-slash" id="olho" onclick="mostrarSenha()"></i>
+                    <input type="password" name="senha" id="senha" placeholder="Senha" required>
                     <label for="senha"></label><br>
-                </div>
+                    <i class="bi bi-eye-slash" id="olho" onclick="mostrarSenha()"></i>
+                </div>   
 
                 <div class="InputsLogin ConfirmaSenha">
-                    <input type="password" name="ConfirmaSenha" id="ConfirmaSenha" placeholder="Confirmar senha">
-                    <i class="bi bi-eye-slash" id="olho2" onclick="mostrarSenha2()"></i>
+                    <input type="password" name="ConfirmaSenha" id="ConfirmaSenha" placeholder="Confirmar senha" required>
+                    <i class="bi bi-eye-slash" id="olho2" onclick="mostrarSenha2()"></i>  
                 </div>
         
                 <div class="BotaoLogin">
@@ -56,6 +56,8 @@
         <p>Privacy Policy</p>
         <p>@2022yanliudesign</p>
     </footer>
+
+    <script src="../js/FuncaoSenhaOlho.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>

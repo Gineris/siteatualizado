@@ -3,6 +3,7 @@
     session_start();
     session_destroy();
     header('../../html/loginGeral.php');
-    exit;
 
+    exit;
+    
 ?>

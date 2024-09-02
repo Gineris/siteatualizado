@@ -79,7 +79,7 @@
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="#">
+                    <a href="../backend/login/logout.php">
                         <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
                         <span class="txtLink">Sair</span>
                     </a>

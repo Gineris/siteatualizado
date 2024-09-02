@@ -161,16 +161,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </a>
             </div>
                 <?php 
-
-                // echo '<p>' . htmlspecialchars($row['nome']) . '</p>';
-                // echo '<p>' . htmlspecialchars($row['id_area']) . '</p>';
-                // echo '<p>' . htmlspecialchars($row['media_avaliacao']) . '</p>';
-                // echo '<p>' . htmlspecialchars($row['id_categoria']) . '</p>';
-                // echo '<p>' . htmlspecialchars($row['foto_perfil']) . '</p>';
-                // Adicione mais campos conforme necessário
             }
         } else {
+            echo '<div class="tituloDEnaoEncontrado">';
             echo '<p>Trabalhador não encontrado</p>';
+            echo '<div';
         }
         ?>
     </div>

@@ -228,3 +228,12 @@ footer p{
     object-fit: cover;
     border-radius: 50%;
 }
+.tituloDEnaoEncontrado{
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+}   
+.tituloDEnaoEncontrado p{
+    font: 2rem "Poppins", sans-serif;
+    align-content: center;
+}

@@ -76,12 +76,34 @@ body{
 .InputsLogin input::placeholder{
     color: #FFF;
 }
-
 .Senha{
     display: inline-block;
     position: relative;
 }
-.Senha ion-icon{
+.ConfirmaSenha i{
+    position: absolute;
+    top: 25%;
+    right: 3%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #FFF;
+}
+.Senha{
+    position: relative;
+}
+.Senha i{
+    position: absolute;
+    top: 25%;
+    right: 3%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #FFF;
+}
+
+.ConfirmaSenha{
+    position: relative;
+}
+.ConfirmaSenha i{
     position: absolute;
     top: 25%;
     right: 3%;
