@@ -1,5 +1,5 @@
 <?php
-include_once('../backend/php/Conexao.php');
+include_once('../backend/Conexao.php');
 
 $id_trabalhador = $_GET['id_trabalhador'];
 

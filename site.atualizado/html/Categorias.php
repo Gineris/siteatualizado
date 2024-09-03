@@ -1,5 +1,5 @@
 <?php
-include_once('../backend/php/Conexao.php');
+include_once ('../backend/Conexao.php');
 
 // Defina as categorias com IDs e imagens estáticas
 $categorias = [

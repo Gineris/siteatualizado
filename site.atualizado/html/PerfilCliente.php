@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include_once('../backend/php/Conexao.php');
+    include_once('../backend/Conexao.php');
 
     if((!isset($_SESSION['email']) == true) and (!isset($_SESSION['senha']) == true))
     {
