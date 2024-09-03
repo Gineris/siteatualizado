@@ -1,28 +1,6 @@
-<?php
-
-include_once('../backend/php/Conexao.php');
-header('Content-Type: application/json');
-
-
-try {
-    $pdo = new PDO($dsn, $username, $password, $options);
-} catch (PDOException $e) {
-    echo json_encode(['success' => false, 'message' => $e->getMessage()]);
-    exit();
+bal);
+    // When Trusted Types support in Function constructors is widely available,
+    // the implementation of this function can be simplified to:
+    // return new Function(...args.map(a => trustedScriptFromString(a)));
 }
-
-// Obter dados do formulário
-$rating = isset($_POST['rating']) ? intval($_POST['rating']) : 0;
-$comment = isset($_POST['comment']) ? $_POST['comment'] : '';
-
-if ($rating > 0 && $rating <= 5 && !empty($comment)) {
-    // Inserir no banco de dados
-    $sql = 'INSERT INTO reviews (rating, comment) VALUES (:rating, :comment)';
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(['rating' => $rating, 'comment' => $comment]);
-
-    echo json_encode(['success' => true]);
-} else {
-    echo json_encode(['success' => false, 'message' => 'Dados inválidos']);
-}
-?>
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoib3V0cHV0X2ppdF90cnVzdGVkX3R5cGVzLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vLi4vcGFja2FnZXMvY29tcGlsZXIvc3JjL291dHB1dC9vdXRwdXRfaml0X3RydXN0ZWRfdHlwZXMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7OztHQU1HO0FBRUg7Ozs7Ozs7O0dBUUc7QUFFSCxPQUFPLEVBQUMsTUFBTSxFQUFDLE1BQU0sU0FBUyxDQUFDO0FBbUMvQjs7O0dBR0c7QUFDSCxJQUFJLE1BQXdDLENBQUM7QUFFN0M7OztHQUdHO0FBQ0gsU0FBUyxTQUFTO0lBQ2hCLElBQUksTUFBTSxLQUFLLFNBQVMsRUFBRSxDQUFDO1FBQ3pCLE1BQU0sWUFBWSxHQUFHLE1BQU0sQ0FBQyxjQUFjLENBQXlDLENBQUM7UUFDcEYsTUFBTSxHQUFHLElBQUksQ0FBQztRQUVkLElBQUksWUFBWS
