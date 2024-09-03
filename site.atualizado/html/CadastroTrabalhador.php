@@ -51,6 +51,22 @@
                 </div>
                 
                 <div class="InputsLogin">
+                <select class="category-select" name="area_atuação" id="area_atuação">
+                <option value="">Escolha a Cidade</option>
+                <?php
+                $result_cat = "SELECT * FROM area_atuação ORDER BY cidade";
+                $resultado_cat = mysqli_query($conn, $result_cat);
+
+                if (!$resultado_cat) {
+                    die("Erro na consulta: " . mysqli_error($conn));
+                }
+
+                while ($row_cat = mysqli_fetch_assoc($resultado_cat)) {
+                    $selected = ($row_cat['id'] == $area_atuação) ? 'selected' : '';
+                    echo '<option value="'.$row_cat['id'].'" '.$selected.'>'.$row_cat['cidade'].'</option>';
+                }
+                ?>
+                </select>
                     <input type="text" name="CategoriaDeServicos" id="" placeholder="Categoria de servicos" required>
                 </div>
 
