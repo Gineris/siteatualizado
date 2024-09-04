@@ -70,14 +70,15 @@
         </nav> 
 
         <div class="row me-0 inicioPage d-flex justify-content-center">
-            <div class="col d-flex justify-content-center  flex-column">
+            <div class="col d-flex justify-content-center flex-column ">
                 <h1>Seja Bem-vindo(a)! <br> Nome</h1>
                 <p>Espero que este seja o lugar onde você encontre os melhores profissionais da sua região.</p>
             </div>
-            <div class="col">
+            <div class="col teste">
+                <img src="../img/homemTec.png" alt="" class="imgHomem" >
+                <img src="../img/BG.png" alt="" class="imgfundo">
             </div>
-            <img src="../img/homemTec.png" alt="" >
-            <img src="../img/BG.png" alt="" class="imgfundo">
+
  
         </div>
     </main>

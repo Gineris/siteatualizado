@@ -54,6 +54,7 @@ nav.menuLateral{
     padding: 30px 0 40px 1%;
     box-shadow: 3px 0 0 #ED5C15;
     border-radius: 0 20px 20px 0;
+    z-index: 100;
 
     position: fixed;
     top: 15%;
@@ -121,22 +122,42 @@ ul li.itemMenu a .icon > ion-icon{
 }
 .inicioPage h1{
     margin-left: 100px;
+    z-index: 5;
     font-size: 3.5rem;
 }
 .inicioPage p{
+    z-index: 5;
     margin-left: 100px;
 }
-.inicioPage img{
+/* .inicioPage img{
     display: block;
     margin: auto;
     width: 420px;
-    z-index: 10;
+    z-index: 100;
 
+} */
+.teste{
+    margin-left: -400px;
+}
+.imgHomem{
+    display: block;
+    margin: auto auto auto auto;
+    width: 475px;
+    height: 504px;
+    z-index: 11;
+    position: relative;
 }
 .imgfundo{
+    display: block;
     position: absolute;
-    z-index: -10;
+    z-index: 1;
+    top: 0;
+    left: 53.5%;
+
+    width: 750px;
+
 }
+
 
 footer{
     background-color: #FFF;
