@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28/08/2024 às 16:05
+-- Tempo de geração: 04/09/2024 às 16:05
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -43,7 +43,7 @@ CREATE TABLE `admin` (
 --
 
 CREATE TABLE `area_atuação` (
-  `id` int(11) NOT NULL,
+  `id_area` int(11) NOT NULL,
   `cidade` varchar(50) NOT NULL,
   `id_categoria` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -52,7 +52,7 @@ CREATE TABLE `area_atuação` (
 -- Despejando dados para a tabela `area_atuação`
 --
 
-INSERT INTO `area_atuação` (`id`, `cidade`, `id_categoria`) VALUES
+INSERT INTO `area_atuação` (`id_area`, `cidade`, `id_categoria`) VALUES
 (1, 'Cabreuva', NULL),
 (2, 'Campo Limpo Paulista', NULL),
 (3, 'Itupeva', NULL),
@@ -102,17 +102,34 @@ CREATE TABLE `cliente` (
   `senha` varchar(128) NOT NULL,
   `foto_perfil` text NOT NULL,
   `tipo` varchar(1) NOT NULL,
-  `status` varchar(1) NOT NULL
+  `status` varchar(1) NOT NULL,
+  `id_area` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `cliente`
 --
 
-INSERT INTO `cliente` (`id_cliente`, `nome`, `email`, `senha`, `foto_perfil`, `tipo`, `status`) VALUES
-(5, '', '', '', '', '', ''),
-(6, 'Mateus', '1234', 'camelo@etec.sp.gov.br', '', '', ''),
-(7, 'fernando', 'fernandomalvado@gmail.com', '777', '', '', '');
+INSERT INTO `cliente` (`id_cliente`, `nome`, `email`, `senha`, `foto_perfil`, `tipo`, `status`, `id_area`) VALUES
+(5, '', '', '', '', '', '', 0),
+(6, 'Mateus', '1234', 'camelo@etec.sp.gov.br', '', '', '', 0),
+(7, 'fernando', 'fernandomalvado@gmail.com', '777', '', '', '', 0),
+(8, 'giovana', 'giovana@gmail.com', '$2y$10$Pc5kcoujZ56k4WLYqVybvuv77gvKg/INahEt9CsuehUTqw5P5KjJi', '../uploads/Captura de tela 2024-02-29 151819.png', '', '', 2),
+(9, 'giovana', 'giovana@gmail.com', '$2y$10$SPXvFh0GWg5MQFiUziQWVexJQEEMZTb0xZsrGWDg5ugrlNSy/a9wa', '../uploads/download.jpg', '', '', 7),
+(10, 'giovana', 'giovana@gmail.com', '$2y$10$/kzE4loXRIa.hT60FbIEtODpNAQMbejyQ5lUkDoPVLVSR3b78n/OW', '../uploads/download.jpg', '', '', 7),
+(11, 'giovana', 'giovana@gmail.com', '$2y$10$CwytAyTThjtS.1Edm4ynr.tti5C9kVPuUWudkqWa6ImZg.xjhANTy', '../uploads/download.jpg', '', '', 7),
+(12, 'giovana', 'giovana@gmail.com', '$2y$10$dCqrzSvVTk8PTwCjwBadaeO.pVSo3koQHJ4T0V58JH54fkAyQJkoO', '../uploads/download.jpg', '', '', 7),
+(13, 'giovana', 'giovana@gmail.com', '$2y$10$jl/kJC9xEwF5GhN9s2jp/uRVQOdXylOWuzr99g542P/5T9L9a0tUy', '../uploads/download.jpg', '', '', 7),
+(14, 'giovana', 'giovana@gmail.com', '$2y$10$ScIqSSSTsqwYtlq3l6g2j.MJ1RJnfI0ufoJeQCbX28YcSfJMtGTkq', '../uploads/download.jpg', '', '', 7),
+(15, 'giovana', 'giovana@gmail.com', '$2y$10$yxJ.d/LNWjtGrRiq7HM1AeydimO..jC.YLo2.n5C3bblSGueGgYSS', '../uploads/download.jpg', '', '', 7),
+(16, 'giovana', 'giovana@gmail.com', '$2y$10$/6PL69P43LoC0GgEnYt7KufdYSuXWJMAj6PiRU2a3n3Vyu1ItNNGS', '../uploads/download.jpg', '', '', 7),
+(17, 'giovana', 'giovana@gmail.com', '$2y$10$76M.sgceAkt1O2gvvw6mi.WA65e3JfwtsbPTwkU7EozI/Zri1PadS', '../uploads/download.jpg', '', '', 7),
+(18, 'giovana', 'giovana@gmail.com', '$2y$10$sK7WnFJ/Zn7.hIRrS3RBSOPNXJG/rSOTw3Ugn8bjOtJc4kOrYv6GG', '../uploads/download.jpg', '', '', 1),
+(19, 'giovana', 'giovana@gmail.com', '$2y$10$9f/dW30p8G9pcleXkv/zpub/ZmlR0eAH5TspUXKJxyS5ZzutNzis2', '../uploads/download.jpg', '', '', 1),
+(20, 'giovana', 'giovana@gmail.com', '$2y$10$doHRO9QLMjYQmWOWkSJwBuzXf0N7gKUJ.ZwHiAvpRaWCbAU6.r/DK', '../uploads/download.jpg', '', '', 1),
+(21, 'giovana', 'giovana@gmail.com', '$2y$10$XAx.eva5d5iB4w8pGhUzGueg2karYr0F0gx3.N47ZtWGkFU.XClGi', '../uploads/download.jpg', '', '', 1),
+(22, 'mamama', 'mamama@gmail.com', '$2y$10$8UQzy64EeGfxzCeVAoH/WOpgYcsKhCMoNTcgnweRs.2WpLlxo55gK', '../uploads/download.jpg', '', '', 2),
+(23, 'lucas', 'giovana@gmail.com', '$2y$10$30UI6V0QbF6d9x3Za2h/EepwTAzxH8lC.sT41hwzQAqNXtTbqwMKi', '../uploads/download.jpg', '', '', 6);
 
 -- --------------------------------------------------------
 
@@ -213,7 +230,7 @@ ALTER TABLE `admin`
 -- Índices de tabela `area_atuação`
 --
 ALTER TABLE `area_atuação`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`id_area`),
   ADD KEY `id_categoria` (`id_categoria`);
 
 --
@@ -283,7 +300,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT de tabela `area_atuação`
 --
 ALTER TABLE `area_atuação`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_area` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `categorias`
@@ -295,7 +312,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de tabela `comentarios`
@@ -371,7 +388,7 @@ ALTER TABLE `mensagens`
 --
 ALTER TABLE `trabalhador`
   ADD CONSTRAINT `trabalhador_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id`),
-  ADD CONSTRAINT `trabalhador_ibfk_2` FOREIGN KEY (`id_area`) REFERENCES `area_atuação` (`id`);
+  ADD CONSTRAINT `trabalhador_ibfk_2` FOREIGN KEY (`id_area`) REFERENCES `area_atuação` (`id_area`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

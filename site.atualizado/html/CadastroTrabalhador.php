@@ -45,29 +45,17 @@
                     <input type="password" name="ConfirmaSenha" id="ConfirmaSenha" placeholder="Confirmar senha" required>
                     <i class="bi bi-eye-slash" id="olho2" onclick="mostrarSenha2()"></i>  
                 </div>
-
-                <div class="InputsLogin">
-                    <input type="text" name="AreaAtuacao" id="" placeholder="Area de atuação" required> 
+              
+                <div class="box">
+                        <select name="id_area" id="id_area"> 
+                            <option value="">Selecione sua cidade</option>
+                         </select>
                 </div>
-                
-                <div class="InputsLogin">
-                <select class="category-select" name="area_atuação" id="area_atuação">
-                <option value="">Escolha a Cidade</option>
-                <?php
-                $result_cat = "SELECT * FROM area_atuação ORDER BY cidade";
-                $resultado_cat = mysqli_query($conn, $result_cat);
 
-                if (!$resultado_cat) {
-                    die("Erro na consulta: " . mysqli_error($conn));
-                }
-
-                while ($row_cat = mysqli_fetch_assoc($resultado_cat)) {
-                    $selected = ($row_cat['id'] == $area_atuação) ? 'selected' : '';
-                    echo '<option value="'.$row_cat['id'].'" '.$selected.'>'.$row_cat['cidade'].'</option>';
-                }
-                ?>
-                </select>
-                    <input type="text" name="CategoriaDeServicos" id="" placeholder="Categoria de servicos" required>
+                <div class="box marginteste">
+                        <select name="id_categoria" id="id_categoria"> 
+                            <option value="">Selecione sua categoria de trabalho</option>
+                         </select>
                 </div>
 
                 <div class="InputsLogin FotoPerfil">
