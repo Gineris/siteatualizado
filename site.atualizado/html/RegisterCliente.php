@@ -11,13 +11,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     
     if (empty($nome) || empty($email) || empty($senha) || empty($confirmaSenha) || empty($id_area)) {
+        
         echo "Todos os campos são obrigatórios.";
         exit;
     }
 
     
-    if ($senha !== $confirmaSenha) {
-        echo "As senhas não coincidem.";
+    if ($senha !== $confirmaSenha) {    
+        echo  "erro";  
         exit;
     }
 
