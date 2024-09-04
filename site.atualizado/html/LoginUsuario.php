@@ -17,47 +17,75 @@
         </nav>
     </header>
     <main class="LoginGeral">
-    <form method="POST" action="../backend/login/verificaLoginUsuario.php" onsubmit="return verificaSenha()">
-        <div class="row me-0 ">
-            <div class="col">
-                <div class="tituloLogin">
-                    <img src="../img/logo@2x.png" alt="Logo JundTask">
-                    <h1>Login Usuario</h1>
-                </div>
-        
-                <div class="InputsLogin">
-                    <input type="text" name="email" id="email" placeholder="Email">
-                    <label for="email"></label><br>
-                </div>
+        <form method="POST" action="./verificaLoginUsuario.php" onsubmit="return verificaSenha()">
+            <div class="row me-0">
+                <div class="col">
+                    <div class="tituloLogin">
+                        <img src="../img/logo@2x.png" alt="Logo JundTask">
+                        <h1>Login Usuario</h1>
+                    </div>
+            
+                    <div class="InputsLogin">
+                        <input type="text" name="email" id="email" placeholder="Email" required>
+                        <label for="email"></label><br>
+                    </div>
 
-                <div class="InputsLogin Senha">
-                    <input type="password" name="senha" id="senha" placeholder="Senha">
-                    <i class="bi bi-eye-slash" id="olho" onclick="mostrarSenha()"></i>
-                    <label for="senha"></label><br>
-                </div>
+                    <div class="InputsLogin Senha">
+                        <input type="password" name="senha" id="senha" placeholder="Senha" required>
+                        <i class="bi bi-eye-slash" id="olho" onclick="mostrarSenha()"></i>
+                        <label for="senha"></label><br>
+                    </div>
 
-                <div class="InputsLogin ConfirmaSenha">
-                    <input type="password" name="ConfirmaSenha" id="ConfirmaSenha" placeholder="Confirmar senha">
-                    <i class="bi bi-eye-slash" id="olho2" onclick="mostrarSenha2()"></i>
+                    <div class="InputsLogin ConfirmaSenha">
+                        <input type="password" name="ConfirmaSenha" id="ConfirmaSenha" placeholder="Confirmar senha" required>
+                        <i class="bi bi-eye-slash" id="olho2" onclick="mostrarSenha2()"></i>
+                    </div>
+            
+                    <div class="BotaoLogin">
+                        <input type="submit" name="submit" value="Login">
+                    </div>
+                    
                 </div>
-        
-                <div class="BotaoLogin">
-                    <input type="submit" name="submit" value="Login">
-                </div>
-                
             </div>
-        </div>
         </form>
     </main>
     <footer class="d-flex justify-content-center">
-        <p>N</p>
         <p>Terms of Service</p>
         <p>Privacy Policy</p>
         <p>@2022yanliudesign</p>
     </footer>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="../js/FuncaoSenhaOlho.js"></script>
     <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 
+    <script>
+        // Função para mostrar/ocultar senha
+        function mostrarSenha() {
+            var senhaInput = document.getElementById('senha');
+            var olhoIcon = document.getElementById('olho');
+            if (senhaInput.type === 'password') {
+                senhaInput.type = 'text';
+                olhoIcon.classList.remove('bi-eye-slash');
+                olhoIcon.classList.add('bi-eye');
+            } else {
+                senhaInput.type = 'password';
+                olhoIcon.classList.remove('bi-eye');
+                olhoIcon.classList.add('bi-eye-slash');
+            }
+        }
+
+        function mostrarSenha2() {
+            var confirmaSenhaInput = document.getElementById('ConfirmaSenha');
+            var olhoIcon2 = document.getElementById('olho2');
+            if (confirmaSenhaInput.type === 'password') {
+                confirmaSenhaInput.type = 'text';
+                olhoIcon2.classList.remove('bi-eye-slash');
+                olhoIcon2.classList.add('bi-eye');
+            } else {
+                confirmaSenhaInput.type = 'password';
+                olhoIcon2.classList.remove('bi-eye');
+                olhoIcon2.classList.add('bi-eye-slash');
+            }
+        }
+    </script>
 </body>
 </html>
