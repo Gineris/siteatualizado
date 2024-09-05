@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05/09/2024 às 13:31
+-- Tempo de geração: 05/09/2024 às 14:10
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -171,6 +171,7 @@ CREATE TABLE `trabalhador` (
   `senha` varchar(128) NOT NULL,
   `foto_perfil` text NOT NULL,
   `desc` text NOT NULL,
+  `curtidas` int(11) NOT NULL,
   `contato` varchar(255) NOT NULL,
   `data_nasc` date NOT NULL,
   `media_avaliacao` decimal(3,2) NOT NULL,
@@ -184,9 +185,9 @@ CREATE TABLE `trabalhador` (
 -- Despejando dados para a tabela `trabalhador`
 --
 
-INSERT INTO `trabalhador` (`id_trabalhador`, `nome`, `email`, `senha`, `foto_perfil`, `desc`, `contato`, `data_nasc`, `media_avaliacao`, `tipo`, `status`, `id_categoria`, `id_area`) VALUES
-(4, 'giovana', 'giovana@gmail.com', '123', '', 'faço serviço domestico a mais de 5 anos', '123123123', '0000-00-00', 5.00, '', '', 1, 2),
-(6, 'Guilherme', 'gui@gmail.com', '123456', '', 'blakfjbgalfkjblfkbjaofibh', '21321321321321', '0000-00-00', 9.99, '', '', 1, 2);
+INSERT INTO `trabalhador` (`id_trabalhador`, `nome`, `email`, `senha`, `foto_perfil`, `desc`, `curtidas`, `contato`, `data_nasc`, `media_avaliacao`, `tipo`, `status`, `id_categoria`, `id_area`) VALUES
+(4, 'giovana', 'giovana@gmail.com', '123', '', 'faço serviço domestico a mais de 5 anos', 0, '123123123', '0000-00-00', 5.00, '', '', 1, 2),
+(6, 'Guilherme', 'gui@gmail.com', '123456', '', 'blakfjbgalfkjblfkbjaofibh', 0, '21321321321321', '0000-00-00', 9.99, '', '', 1, 2);
 
 --
 -- Índices para tabelas despejadas
