@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04/09/2024 às 16:05
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Tempo de geração: 05/09/2024 às 13:31
+-- Versão do servidor: 10.4.28-MariaDB
+-- Versão do PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -139,23 +139,10 @@ INSERT INTO `cliente` (`id_cliente`, `nome`, `email`, `senha`, `foto_perfil`, `t
 
 CREATE TABLE `comentarios` (
   `id_comentario` int(11) NOT NULL,
-  `id_publicacao` int(11) NOT NULL,
-  `id_cliente` int(11) NOT NULL,
   `comentario` text NOT NULL,
-  `data_comentario` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `conversas`
---
-
-CREATE TABLE `conversas` (
-  `id_conversa` int(11) NOT NULL,
+  `data` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `id_trabalhador` int(11) NOT NULL,
-  `id_cliente` int(11) NOT NULL,
-  `data_inicio` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `id_cliente` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -169,21 +156,6 @@ CREATE TABLE `curtidas` (
   `data_curtida` int(11) NOT NULL,
   `id_cliente` int(11) NOT NULL,
   `id_trabalhador` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `mensagens`
---
-
-CREATE TABLE `mensagens` (
-  `id_mensagem` int(11) NOT NULL,
-  `id_conversa` int(11) NOT NULL,
-  `id_remetende` int(11) NOT NULL,
-  `id_destinatario` int(11) NOT NULL,
-  `data_inicio` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `mensagem` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -250,14 +222,6 @@ ALTER TABLE `cliente`
 --
 ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`id_comentario`),
-  ADD KEY `id_publicacao` (`id_publicacao`),
-  ADD KEY `id_cliente` (`id_cliente`);
-
---
--- Índices de tabela `conversas`
---
-ALTER TABLE `conversas`
-  ADD PRIMARY KEY (`id_conversa`),
   ADD KEY `id_trabalhador` (`id_trabalhador`),
   ADD KEY `id_cliente` (`id_cliente`);
 
@@ -268,15 +232,6 @@ ALTER TABLE `curtidas`
   ADD PRIMARY KEY (`id_curtida`),
   ADD KEY `id_cliente` (`id_cliente`),
   ADD KEY `id_trabalhador` (`id_trabalhador`);
-
---
--- Índices de tabela `mensagens`
---
-ALTER TABLE `mensagens`
-  ADD PRIMARY KEY (`id_mensagem`),
-  ADD KEY `id_conversa` (`id_conversa`),
-  ADD KEY `id_remetende` (`id_remetende`),
-  ADD KEY `id_destinatario` (`id_destinatario`);
 
 --
 -- Índices de tabela `trabalhador`
@@ -321,22 +276,10 @@ ALTER TABLE `comentarios`
   MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de tabela `conversas`
---
-ALTER TABLE `conversas`
-  MODIFY `id_conversa` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de tabela `curtidas`
 --
 ALTER TABLE `curtidas`
   MODIFY `id_curtida` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de tabela `mensagens`
---
-ALTER TABLE `mensagens`
-  MODIFY `id_mensagem` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `trabalhador`
@@ -358,15 +301,8 @@ ALTER TABLE `area_atuação`
 -- Restrições para tabelas `comentarios`
 --
 ALTER TABLE `comentarios`
-  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_publicacao`) REFERENCES `comentarios` (`id_comentario`),
-  ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `comentarios` (`id_comentario`);
-
---
--- Restrições para tabelas `conversas`
---
-ALTER TABLE `conversas`
-  ADD CONSTRAINT `conversas_ibfk_1` FOREIGN KEY (`id_trabalhador`) REFERENCES `conversas` (`id_conversa`),
-  ADD CONSTRAINT `conversas_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `conversas` (`id_conversa`);
+  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_trabalhador`) REFERENCES `trabalhador` (`id_trabalhador`),
+  ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`);
 
 --
 -- Restrições para tabelas `curtidas`
@@ -374,14 +310,6 @@ ALTER TABLE `conversas`
 ALTER TABLE `curtidas`
   ADD CONSTRAINT `curtidas_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`),
   ADD CONSTRAINT `curtidas_ibfk_2` FOREIGN KEY (`id_trabalhador`) REFERENCES `trabalhador` (`id_trabalhador`);
-
---
--- Restrições para tabelas `mensagens`
---
-ALTER TABLE `mensagens`
-  ADD CONSTRAINT `mensagens_ibfk_1` FOREIGN KEY (`id_conversa`) REFERENCES `mensagens` (`id_mensagem`),
-  ADD CONSTRAINT `mensagens_ibfk_2` FOREIGN KEY (`id_remetende`) REFERENCES `mensagens` (`id_mensagem`),
-  ADD CONSTRAINT `mensagens_ibfk_3` FOREIGN KEY (`id_destinatario`) REFERENCES `mensagens` (`id_mensagem`);
 
 --
 -- Restrições para tabelas `trabalhador`
