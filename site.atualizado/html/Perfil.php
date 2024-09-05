@@ -1,5 +1,6 @@
 <?php
 include_once('../backend/Conexao.php');
+// include_once('../html/registerTrabalhador.php');
 
 $id_trabalhador = $_GET['id_trabalhador'];
 
@@ -19,6 +20,7 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
     <title>JundTask - Perfil</title>
     <link rel="stylesheet" href="../css/stylePerfil.css">
     <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="shortcut icon" href="../img/logo@2x.png" type="image/x-icon">
 </head>
 <body>
@@ -102,8 +104,11 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
                 </div>
                 <div class="LocaleLikes">
                     <!-- <ion-icon name="location-outline"></ion-icon> -->
-                    <ion-icon name="heart-outline"></ion-icon>
-                    <p>37K likes</p>
+                    <i class="bi bi-heart" id="curtida" onclick="Curtir()"></i>
+                    <?php
+                        echo "<p>Curtidas: <span id='curtidas'>{$trabalhador['curtidas']}</span></p>";
+                        echo "<button onclick='curtirPerfil({$trabalhador['id']})'>Curtir</button>";
+                    ?>
                 </div>
             </div>
 
@@ -192,6 +197,8 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../js/FuncaoCurtirPerfil.js"></script>
 
 </body>
 </html>
