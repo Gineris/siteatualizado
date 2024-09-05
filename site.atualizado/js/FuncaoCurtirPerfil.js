@@ -12,16 +12,13 @@ function curtirPerfil(trabalhadorId) {
     xhr.send("id=" + trabalhadorId);
 }
 
-function Curtir() {
-    const senhaInput = document.getElementById('senha');
-    const olhoIcon = document.getElementById('olho');
-    if (senhaInput.type === 'password') {
-        senhaInput.type = 'text';
-        olhoIcon.classList.remove('bi-eye-slash');
-        olhoIcon.classList.add('bi-eye');
+function curtir() {
+    const curtidas = document.getElementById('curtida');
+    if (curtidas.type === 'int') {
+        olhoIcon.classList.remove('bi bi-heart');
+        olhoIcon.classList.add('bi bi-heart-fill');
     } else {
-        senhaInput.type = 'password';
-        olhoIcon.classList.remove('bi-eye');
-        olhoIcon.classList.add('bi-eye-slash');
+        olhoIcon.classList.remove('bi bi-heart-fill');
+        olhoIcon.classList.add('bi bi-heart');
     }
 }
