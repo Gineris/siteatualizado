@@ -136,26 +136,25 @@ ul li.itemMenu a .icon > ion-icon{
     z-index: 100;
 
 } */
-.teste{
-    margin-left: -400px;
+.BGblob{
+    /* margin-left: -400px; */
+    background-image: url(../img/FundoHomeLogado.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    /* width: 100%; */
 }
-.imgHomem{
-    display: block;
-    margin: auto auto auto auto;
-    width: 475px;
-    height: 504px;
-    z-index: 11;
-    position: relative;
-}
+
 .imgfundo{
-    display: block;
-    position: absolute;
     z-index: 1;
-    top: 0;
-    left: 53.5%;
-
     width: 750px;
-
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.imgfundo img{
+    width: 780px;
 }
 
 

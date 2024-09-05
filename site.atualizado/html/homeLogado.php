@@ -69,14 +69,13 @@
 
         </nav> 
 
-        <div class="row me-0 inicioPage d-flex justify-content-center">
+        <div class="row me-0 inicioPage d-flex justify-content-center BGblob">
             <div class="col d-flex justify-content-center flex-column ">
                 <h1>Seja Bem-vindo(a)! <br> Nome</h1>
                 <p>Espero que este seja o lugar onde você encontre os melhores profissionais da sua região.</p>
             </div>
-            <div class="col teste">
-                <img src="../img/homemTec.png" alt="" class="imgHomem" >
-                <img src="../img/BG.png" alt="" class="imgfundo">
+            <div class="col me-0 pe-0 imgfundo">
+                <img src="../img/boasvindastrabalhador-removebg-preview.png" alt="" >
             </div>
 
  
