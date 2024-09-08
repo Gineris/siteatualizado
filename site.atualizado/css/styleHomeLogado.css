@@ -18,10 +18,10 @@
     --corPrimaria-5: #FFFBFE;
     --fonte-primaria: 'Belleza', 'calibri';
 }
-body{
-    background-color: #F6F6F6; /*fonte: belleza*/
-    /* font-family: var(--fonte-primaria); */
+body, main{
+    background-color: #F2F3F3; 
 }
+
 .BarraNav{
     background-color: #FFF;
     padding:15px 35px 5px 15px;
@@ -147,7 +147,7 @@ ul li.itemMenu a .icon > ion-icon{
     align-items: center;
 }
 .imgfundo img{
-    width: 780px;
+    width: 590px;
 }
 .carousel {
     width: 900px; 
@@ -164,6 +164,66 @@ ul li.itemMenu a .icon > ion-icon{
     background-color: #050739;
     margin-top: 500px;
 }
+.fundocarrossel h2{
+    color: #F6F6F6;
+    text-align: center;
+    font-family: "Space Grotesk", sans-serif;
+    padding-top: 10px;
+}
+
+.ContateNos, .TituloContateNos {
+    background-color: #F2F3F3;
+}
+.TituloContateNos h2{
+    margin-left: 100px;
+    background-color: #EC5C14;
+    color: #e7e6e6;
+    width: 200px;
+    padding: 3px;
+    margin-top: 30px;
+    border-radius: 5px;
+}
+.elementosContateNos{
+    margin-left: 160px;
+
+}
+label{
+    font-weight: bold;
+}
+textarea {
+    width: 410px;
+    height: 150px;
+    padding: 12px 20px;
+    margin-top: 35px;
+    box-sizing: border-box;
+    border: 1px solid #000;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+}
+.botaoMensagem input{
+    width: 410px;
+    height: 43px;
+    color: #FFF;
+    background-color: #050739;
+    border: 3px solid #050739;
+    border-radius: 10px;
+    transition: .4s;
+}
+.botaoMensagem input:hover{
+    color: #050739;
+    background-color: transparent;
+    border: 3px solid #050739;
+}
+.ImgHomeContate img{
+    display: block;
+    margin: auto;
+    width: 500px;
+}
+/* .ContateNos{
+    margin-top: 30px;
+} */
 footer{
     background-color: #FFF;
     padding: 10px;
@@ -171,5 +231,5 @@ footer{
     color: #666666;
 }
 footer p{
-    padding: 0px 5px 0px 5px;
+    padding: 0px 5px 0px 0px;
 }

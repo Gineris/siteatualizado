@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JundTask - home</title>
+    <title>JundTask - Home</title>
     <link rel="stylesheet" href="../css/styleHomeLogado.css">
     <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
 
@@ -76,11 +76,12 @@
                 <p>Espero que este seja o lugar onde você encontre os melhores profissionais da sua região.</p>
             </div>
             <div class="col me-0 pe-0 imgfundo">
-                <img src="../img/boasvindastrabalhador-removebg-preview.png" alt="" >
+                <img src="../img/boasvindasCliente.png" alt="" >
             </div>
        </div>
     
                 <div class="row me-0 d-flex justify-content-center fundocarrossel">
+                    <h2>Olhe algumas de nossas avaliações!</h2>
                     <div class="col">
                         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
@@ -105,16 +106,35 @@
                         </div>
                     </div>
                 </div>
-       
+
+                <div class="row me-0 mt-5 pb-5 d-flex ContateNos">
+                    <div class="col flex-column elementosContateNos align-content-center">
+                        <div class="TituloContateNos mb-3">
+                            <h2>Contate-nos</h2>
+                        </div>
+                        <div>
+                            <label for="ContateNos">Mensagem*</label>
+                        </div>
+                        <div>
+                            <textarea name="ContateNos" id="" placeholder="Mande sua mensagem..."></textarea>
+                        </div>
+                        <div class="mt-3 botaoMensagem">
+                            <input type="submit" value="Enviar mensagem">
+                        </div>
+                    </div>
+                    <div class="col ImgHomeContate">
+                        <img src="../img/ElementoHomeLogado.png" alt="#">
+                    </div>
+                </div>
 
 
     </main>
 
-    <footer class="d-flex justify-content-center ">
-        <p>N</p>
-        <p>Terms of Service</p>
-        <p>Privacy Policy</p>
-        <p>@2022yanliudesign</p>
+    <footer class="d-flex justify-content-center " >
+        <p style="margin-bottom: 0rem;">N</p>
+        <p style="margin-bottom: 0rem;">Terms of Service</p>
+        <p style="margin-bottom: 0rem;">Privacy Policy</p>
+        <p style="margin-bottom: 0rem;">@2022yanliudesign</p>
     </footer>
     
 
