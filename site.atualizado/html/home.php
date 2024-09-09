@@ -69,7 +69,7 @@
                     <div class="imgPai">
                         <img src="../img/medium-shot-happy-woman-writing.png" alt="foto-mulher-mexendo-no-computador">
                         <div class="imgFilho1">
-                            <img src="../img/Vector.png" alt="">
+                            <img src="../img/Vector02.png" alt="">
                         </div>
                         <div class="imgFilho2">
                             <img src="../img/Rectangle.png" alt="">
@@ -80,7 +80,7 @@
         </section>
 
         <section class="BlocosDeEscolha" id="cadastro">
-            <img src="../img/Vector (1).png" alt="">
+            <img src="../img/Vector01.png" alt="">
             <div class="row me-0 ">
                 <!-- <h1>Cadastro</h1> -->
                 <div class="col">
