@@ -17,7 +17,7 @@
         </nav>
     </header>
     <main class="LoginGeral">
-    <form method="POST" action="../backend/login/verificaLoginTrabalhador.php" onsubmit="return verificaSenha()"> 
+    <form method="POST" action="./validatrabalhador.php" onsubmit="return verificaSenha()"> 
         <div class="row me-0 ">
             <div class="col ">
                 <!-- <img class="imgFundoLogin d-flex align-items-end" src="../img/Vector (2).png" alt="vetor1"> -->
@@ -45,10 +45,16 @@
                 <div class="BotaoLogin">
                     <input type="submit" name="submit" value="Login">
                 </div>
-                
             </div>
         </div>
         </form>
+        <p class="text-danger">
+            <?php 
+            if (isset($_SESSION['mensagem'])) {
+                echo $_SESSION['mensagem'];
+                unset($_SESSION['mensagem']); // Limpa a mensagem após exibição
+            }
+            ?>
     </main>
     <footer class="d-flex justify-content-center">
         <p>N</p>

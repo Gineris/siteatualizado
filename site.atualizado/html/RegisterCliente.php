@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt->execute()) {
             // Redireciona para a página de verificação de login
-            header("Location: ./verificaLoginUsuario.php");
+            header("Location: ./LoginUsuario.php");
             exit;
         } else {
             echo "Erro ao realizar o cadastro: " . $stmt->error;

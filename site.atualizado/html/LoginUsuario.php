@@ -17,7 +17,7 @@
         </nav>
     </header>
     <main class="LoginGeral">
-        <form method="POST" action="./verificaLoginUsuario.php" onsubmit="return verificaSenha()">
+        <form method="POST" action="./validaCliente.php" onsubmit="return verificaSenha()">
             <div class="row me-0">
                 <div class="col">
                     <div class="tituloLogin">

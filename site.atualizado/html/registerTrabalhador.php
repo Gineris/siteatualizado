@@ -61,7 +61,7 @@ $stmt->bind_param("ssssss", $nome, $email, $senhaHash, $id_area, $id_categoria, 
 
 if ($stmt->execute()) {
             
-    header("Location: LoginUsuario.php");
+    header("Location: LoginTrabalhador.php");
     exit;
 } else {
     echo "Erro ao realizar o cadastro: " . $stmt->error;
