@@ -101,15 +101,11 @@
                 </div>
                 <div class="col">
                     <div class="box">
-                        <select name="" id="" >
-                            <option value="" >Cabreuva</option>
-                            <option value="">Campo Limpo Paulista</option>
-                            <option value="">Itupeva</option>
-                            <option value="">Jarinu</option>
-                            <option value="">Jundiai</option>
-                            <option value="">Limeira</option>
-                            <option value="">Varzea Paulista</option>
-                        </select>
+                        
+                            <select name="id_area" id="id_area"> 
+                                <option value="">Altere a cidade</option>
+                             </select>
+                        </div>
                     </div>
                     <div>
                         <textarea name="" id="" placeholder="Fale sobre você..."></textarea>
