@@ -1,5 +1,6 @@
 <?php
 include_once('../backend/Conexao.php');
+
 // include_once('../html/registerTrabalhador.php');
 
 $id_trabalhador = $_GET['id_trabalhador'];
@@ -8,7 +9,33 @@ $sql = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador'";
 $result = $conn->query($sql);
 
 $resultado_pesquisar = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($resultado_pesquisar); 
+$row = mysqli_fetch_assoc($resultado_pesquisar);
+
+
+//verifica se o trabalhador esta logado para fazer o comentario
+// session_start();
+// require '../backend/Conexao.php';
+
+// if (!isset($_SESSION['id_trabalhador'])) {
+//     header('Location: login.php');
+//     exit();
+// }
+
+// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//     $comentario = $_POST['comentario'];
+//     $id_trabalhador = $_SESSION['id_trabalhador'];
+// }
+
+// //cliente
+// if (!isset($_SESSION['id_cliente'])) {
+//     header('Location: login.php');
+//     exit();
+// }
+
+// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//     $comentario = $_POST['comentario'];
+//     $id_cliente = $_SESSION['id_cliente'];
+// }
 ?>
 
 
@@ -133,53 +160,15 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
             <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 stars">&#9733;</label>
             <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 star">&#9733;</label>
         </div>
-        <textarea id="comment" placeholder="Escreva seu comentário"></textarea>
-        <button type="submit">Enviar</button>
     </form>
 
-    <script>
-        document.getElementById('reviewForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Impede o envio padrão do formulário
+    <form id="comentario" method="POST" action="post_comentario.php">
 
-            const rating = document.querySelector('input[name="rating"]:checked').value;
-            const comment = document.getElementById('comment').value;
+        <textarea name="comment" id="comment" placeholder="Escreva seu comentário" required></textarea>
+        <label for="comment"></label>
 
-            const data = new FormData();
-            data.append('rating', rating);
-            data.append('comment', comment);
-
-            fetch('submit_review.php', {
-                method: 'POST',
-                body: data
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                loadReviews(); // Recarrega os comentários após envio
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-        });
-
-        // Função para carregar os comentários
-        function loadReviews() {
-            fetch('get_reviews.php')
-            .then(response => response.json())
-            .then(data => {
-                const reviewsDiv = document.getElementById('reviews');
-                reviewsDiv.innerHTML = '';
-                data.reviews.forEach(review => {
-                    const reviewElement = document.createElement('div');
-                    reviewElement.innerHTML = `<strong>${'★'.repeat(review.rating)}</strong><p>${review.comment}</p>`;
-                    reviewsDiv.appendChild(reviewElement);
-                });
-            });
-        }
-
-        // Carregar os comentários ao iniciar a página
-        document.addEventListener('DOMContentLoaded', loadReviews);
-    </script>
+        <input type="submit" form="comentario" class="." value="Enviar Comentário"/><br><br>
+    </form>
 
     </main>     
 
