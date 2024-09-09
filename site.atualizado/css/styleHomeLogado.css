@@ -85,6 +85,7 @@ ul{
 ul li.itemMenu a:hover{
     background: #ED5C15;
     color: #FFF;
+    border-radius: 9px 0px 0px 9px;
 }
 
 ul li.itemMenu a{
@@ -170,7 +171,9 @@ ul li.itemMenu a .icon > ion-icon{
     font-family: "Space Grotesk", sans-serif;
     padding-top: 10px;
 }
-
+.ContateNos{
+    height: 70vh;
+}
 .ContateNos, .TituloContateNos {
     background-color: #F2F3F3;
 }
@@ -184,7 +187,7 @@ ul li.itemMenu a .icon > ion-icon{
     border-radius: 5px;
 }
 .elementosContateNos{
-    margin-left: 160px;
+    margin-left: 340px;
 
 }
 label{
