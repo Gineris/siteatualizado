@@ -1,15 +1,15 @@
 <?php
     session_start();
-    include_once('../backend/php/Conexao.php');
+    include_once ('../backend/Conexao.php');
 
-    if((!isset($_SESSION['email']) == true) and (!isset($_SESSION['senha']) == true))
-    {
-        unset($_SESSION['email']);
-        unset($_SESSION['senha']);
-        header('Location: login.php');
-    }
+    // if((!isset($_SESSION['email']) == true) and (!isset($_SESSION['senha']) == true))
+    // {
+    //     unset($_SESSION['email']);
+    //     unset($_SESSION['senha']);
+    //     header('Location: login.php');
+    // }
     
-    $logado = $_SESSION['email'];
+    // $logado = $_SESSION['email'];
 
 
 ?>
