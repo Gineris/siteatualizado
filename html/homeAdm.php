@@ -79,8 +79,27 @@
                 <img src="../img/boasvindasCliente.png" alt="" >
             </div>
        </div>
-    
-            
+    <div class="container">
+       <div class="card">
+       <a href="./sistemacrudCliente.php" class="card-button"></a>
+        <img src="" alt="Imagem do Card" class="card-image">
+        <div class="card-content">
+            <h2 class="card-title">Usuario cliente</h2>
+        </div>
+    </div>
+    <div class="card" href="./sistemacrudCliente.php" class="card-button">
+        <img src="" alt="Imagem do Card" class="card-image">
+        <div class="card-content">
+            <h2 class="card-title">Usuario Trabalhador</h2>
+        </div>
+    </div>
+    <div class="card" href="./sistemacrudCliente.php" class="card-button">
+        <img src="" alt="Imagem do Card" class="card-image">
+        <div class="card-content">
+            <h2 class="card-title">Categorias</h2>
+        </div>
+    </div>
+    </div>
     </main>
 
     <footer class="d-flex justify-content-center " >

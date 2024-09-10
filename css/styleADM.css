@@ -160,3 +160,63 @@ footer{
 footer p{
     padding: 0px 5px 0px 0px;
 }
+.card {
+    width: 354px;
+    height: 331px;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    background-color: #f0f0f0;
+    margin-left: 20px;
+    transition: transform 0.3s, box-shadow 0.3s; /* Adiciona transição suave */
+  }
+  
+  h1 {
+    text-align: center;
+    font-weight: 500; /* Ajusta o peso da fonte */
+    font-family: "M PLUS 1p", sans-serif;
+    color: #04074B;
+    margin-bottom: 30px;
+  }
+  .container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Cria três colunas de tamanhos iguais */
+    gap: 20px; /* Espaço entre os cartões */
+  }
+  .card img {
+    width: 284px;
+    height: auto;
+  }
+  
+  .card p {
+    margin: 10px 0 0;
+    font-size: 24px;
+    font-weight: 500; 
+    font-family: "M PLUS 1p", sans-serif;
+    color: #04074B;
+  }
+  
+  .card a {
+    text-decoration: none;
+  
+  }
+  
+  .card:hover {
+    transform: scale(0.9);
+    box-shadow: 5px 5px 30px rgba(4, 7, 75, 0.349), -5px -5px 30px rgba(4, 7, 75, 0.575);
+  }
+  
+  .title-white {
+    color: rgb(255, 255, 255);
+  }
+  
+  .title-black {
+    color: rgb(255, 255, 255);
+  }
+    
+    @media all and (max-width: 500px) {
+      .card-list {
+        flex-direction: column;
+      }
+    }
