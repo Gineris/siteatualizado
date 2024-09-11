@@ -162,8 +162,12 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
         </div>
     </form>
 
-    <form id="comentario" method="POST" action="post_comentario.php">
+    <!-- <form method="POST" action="post_comment.php">
+    <textarea name="conteudo" placeholder="Escreva seu comentário..." required></textarea><br>
+    <button type="submit">Comentar</button>
+    </form> -->
 
+    <form id="comentario" method="POST" action="post_comentario.php">
         <textarea name="comment" id="comment" placeholder="Escreva seu comentário" required></textarea>
         <label for="comment"></label>
 
