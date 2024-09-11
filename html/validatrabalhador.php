@@ -27,13 +27,14 @@ if ($stmt) {
         if (password_verify($senha, $registroUsuario->senha)) {
 
             $_SESSION['mensagem'] = "Usuário Logado com sucesso!!!!";
+            $_SESSION['id_trabalhador'] = $registroUsuario->id_trabalhador;  // tirar em caso de duvida
             $_SESSION['nome'] = $registroUsuario->nome;
             $_SESSION['email'] = $registroUsuario->email;
             $_SESSION['senha'] = $registroUsuario->senha;
             $_SESSION['status'] = $registroUsuario->status;
             $_SESSION['logado'] = true;
 
-
+            
             header('Location: ./homeLogado.php');
             exit();
         } else {

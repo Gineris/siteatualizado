@@ -1,18 +1,46 @@
-<?php
+<?php 
     session_start();
     include_once ('../backend/Conexao.php');
-
-    // if((!isset($_SESSION['email']) == true) and (!isset($_SESSION['senha']) == true))
-    // {
-    //     unset($_SESSION['email']);
-    //     unset($_SESSION['senha']);
-    //     header('Location: login.php');
-    // }
     
-    // $logado = $_SESSION['email'];
-
-
+    
+    if (isset($_SESSION['id_trabalhador'])) {
+        $idTrabalhador = $_SESSION['id_trabalhador']; // Pega o ID do trabalhador logado
+        
+        // Verificar se há erros na conexão
+        if ($conn->connect_error) {
+            die("Falha na conexão: " . $conn->connect_error);
+        }
+    
+        // Preparar a consulta SQL
+        $sql = "SELECT * FROM trabalhador WHERE id_trabalhador = ?";
+        $stmt = $conn->prepare($sql); // Preparar a consulta
+        if ($stmt === false) {
+            die("Erro ao preparar a consulta: " . $conn->error);
+        }
+    
+        // Vincular o parâmetro (i significa integer)
+        $stmt->bind_param("i", $idTrabalhador); // "i" indica que o parâmetro é um inteiro
+        $stmt->execute(); // Executar a consulta
+    
+        // Obter o resultado
+        $resultado_pesquisar = $stmt->get_result();
+    
+        // Verificar se encontrou o trabalhador
+        if ($resultado_pesquisar->num_rows > 0) {
+            $row = $resultado_pesquisar->fetch_assoc();
+        } else {
+            echo "Trabalhador não encontrado.";
+        }
+    
+        // Fechar o statement
+        $stmt->close();
+    } else {
+        echo "Nenhum trabalhador está logado.";
+    }
+    
+    // Fechar a conexão
 ?>
+
 
 
 <!DOCTYPE html>
@@ -72,7 +100,7 @@
                     </a>
                 </li>
                 <li class="itemMenu ">
-                    <a href="./EditarPerfil.html">
+                    <a href="./EditarPerfil.php">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
                         <span class="txtLink">Configurações</span>
                     </a>
@@ -92,7 +120,7 @@
             <!-- foto background -->
             <div class="BlocoPerfilPrincipal">
                 <div class="FotoPerfil"><img src="../img/FotoTesteMuie.png" alt=""></div>
-                <div class="NomeTrabalhador"> seu nome</div>
+                <div class="NomeTrabalhador"> <?php echo $row['nome']; ?></div>
                 <!-- <div class="Categoria"><p>Confeiteira</p></div> -->
                 <div class="Avaliacao">
                     <ion-icon name="star"></ion-icon>   
@@ -102,7 +130,7 @@
                     <ion-icon name="star"></ion-icon>
                 </div>
                 <div class="tel">
-                    <p>seu tel</p>
+                    <p><?php echo $row['contato'];?></p>
                 </div>
                 <div class="LocaleLikes">
                     <!-- <ion-icon name="location-outline"></ion-icon> -->
@@ -112,7 +140,7 @@
             </div>
 
             <div class="txt">
-                <p>sua desc</p>
+                <p><?php echo $row['desc'];?></p>
             </div>
         </div>
 
