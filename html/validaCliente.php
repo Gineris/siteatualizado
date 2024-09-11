@@ -28,6 +28,7 @@ if ($stmt) {
         if (password_verify($senha, $registroUsuario->senha)) {
             // Senha correta
             $_SESSION['mensagem'] = "Usuário Logado com sucesso!!!!";
+            $_SESSION['user_id'] = $registroUsuario->id_cliente;
             $_SESSION['nome'] = $registroUsuario->nome;
             $_SESSION['email'] = $registroUsuario->email;
             $_SESSION['senha'] = $registroUsuario->senha;
