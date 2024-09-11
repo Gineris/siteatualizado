@@ -28,7 +28,6 @@ session_start();
     </header>
 
     <main class=""> 
-        
         <nav class="menuLateral">
             <div class="IconExpandir">
                 <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
@@ -83,13 +82,13 @@ session_start();
                 </div>
                 <div class="col txtPerfil d-flex flex-column justify-content-center">
                     <h3><?php echo $_SESSION['nome']; ?></h3>
-                    <p>Descrição</p>
+                    <p><?php echo !empty($_SESSION['descricao']) ? $_SESSION['descricao'] : 'Sua descrição...' ?></p>
                 </div>
             </div>
 
         <form method="POST" action="../backend/AtualizaDados.php">
             <div class="row me-0 ">
-                <div class="col coluna1 ">
+                <div class="col coluna1">
                     <div class="EstiloInputs">
                         <input type="text" name="nome" id="nome" placeholder="<?php echo $_SESSION['nome']; ?>">
                     </div>
@@ -97,13 +96,13 @@ session_start();
                         <input type="email" name="email" id="" placeholder="<?php echo $_SESSION['email']; ?>">
                     </div class="EstiloInputs">
                     <div class="EstiloInputs">
-                        <input type="password" name="senha" id="Senha" placeholder="<?php echo $_SESSION['senha']; ?>">
+                        <input type="password" name="senha" id="Senha" placeholder="Nova senha">
                     </div>
                     <div class="EstiloInputs"> 
-                        <input type="tel" name="telefone" id="Telefone" placeholder="<?php echo $_SESSION['telefone']; ?>">
+                        <input type="tel" name="telefone" id="Telefone" placeholder="<?php echo !empty($_SESSION['telefone']) ? $_SESSION['telefone'] : 'Atulize seu Telefone'  ?>">
                     </div>
                     <div class="EstiloInputs mb-5">
-                        <input type="date" name="datanasc" id="" value="<?php echo $_SESSION['datanasc']; ?>">
+                        <input type="date" name="datanasc" id="" value="<?php echo !empty($_SESSION['datanasc']) ? $_SESSION['datanasc'] : '' ?>">
                     </div>
                 </div>
                 <div class="col">
@@ -113,7 +112,7 @@ session_start();
                              </select>
                     </div>
                     <div>
-                        <textarea name="" id="" placeholder="Fale sobre você..."></textarea>
+                        <textarea name="" id="" placeholder="<?php echo !empty($_SESSION['descricao']) ? $_SESSION['descricao'] : 'Fale sobre você...' ?>"></textarea>
                     </div>
                 </div>
 
@@ -154,7 +153,7 @@ session_start();
                 console.log(areas); 
                 areaSelect.innerHTML = '<option value="">Altere a Cidade</option>'; 
                 areas.forEach(area => {
-                    const option = document.createElement('option');
+                    const option = document.createElement('option'); 
                     option.value = area.id_area; 
                     option.textContent = area.cidade; 
                     areaSelect.appendChild(option);

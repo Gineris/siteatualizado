@@ -19,9 +19,9 @@ $novoCidade = $_POST['cidade'] ?? '';
 $novoDescricao = $_POST['descricao'] ?? '';
 
 // Validar os dados
-if (empty($novoNome) || empty($novoEmail) || empty($novoSenha)) || empty($novoDescricao)) || empty($novoTelefone)) || empty($novoDataNasc)) || empty($novoCidade))) {
+if (empty($novoNome) || empty($novoEmail) || empty($novoSenha) || empty($novoDescricao) || empty($novoTelefone) || empty($novoDataNasc)) {
     $_SESSION['mensagem'] = "Preencha todos os campos.";
-    header('Location: ./editarPerfil.php');
+    header('Location: ../html/EditarPerfil.php');
     exit();
 }
 
@@ -29,7 +29,7 @@ if (empty($novoNome) || empty($novoEmail) || empty($novoSenha)) || empty($novoDe
 $idTrabalhador = $_SESSION['id_trabalhador'];
 
 // Preparar a consulta SQL para atualizar as informações
-$sql = "UPDATE trabalhador SET nome = ?, email = ?, senha = ?, telefone = ?, datanasc = ?, cidade = ?, descricao = ? WHERE id_trabalhador = ?";
+$sql = "UPDATE trabalhador SET nome = ?, email = ?, senha = ?, contato = ?, data_nasc = ?, id_area = ?, desc = ? WHERE id_trabalhador = ?";
 $stmt = $conn->prepare($sql);
 
 if ($stmt) {
