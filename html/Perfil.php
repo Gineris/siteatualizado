@@ -73,7 +73,7 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
 
             <ul>
                 <li class="itemMenu">
-                    <a href="#">
+                    <a href="./homeLogado.php">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
                     </a>
