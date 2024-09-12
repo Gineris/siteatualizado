@@ -231,3 +231,8 @@ footer p{
 .star-rating label:hover ~ label {
     color: #f39c12;
 }
+
+.campo_comentario{
+    display: block;
+    margin: auto;
+}

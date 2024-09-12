@@ -166,14 +166,14 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
     <textarea name="conteudo" placeholder="Escreva seu comentário..." required></textarea><br>
     <button type="submit">Comentar</button>
     </form> -->
-
+    
     <form id="comentario" method="POST" action="post_comentario.php">
-        <textarea name="comment" id="comment" placeholder="Escreva seu comentário" required></textarea>
-        <label for="comment"></label>
+        <textarea name="comentario" id="comentario" placeholder="Escreva seu comentário" required></textarea>
+        <label for="comentario"></label>
 
         <input type="submit" form="comentario" class="." value="Enviar Comentário"/><br><br>
     </form>
-
+    
     </main>     
 
     

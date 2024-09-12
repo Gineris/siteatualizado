@@ -26,11 +26,15 @@
                 </div>
                 <div class="BotaoLogin">
                 <a href="./LoginTrabalhador.php">
-                    <input type="submit" name="submit" value="Login Trablhador">
+                    <input type="submit" name="submit" value="Login Trabalhador">
                 </div>
                 <div class="BotaoLogin">
                 <a href="./LoginUsuario.php">
                     <input type="submit" name="submit" value="Login Cliente">
+                </div>
+                <div class="BotaoLogin">
+                <a href="./home.php#cadastro">
+                    <input type="submit" name="submit" value="Fazer Cadastro">
                 </div>
             </div>
     </main>
