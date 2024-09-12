@@ -18,6 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id_cliente = isset($_SESSION['id_cliente']) ? $_SESSION['user_id'] : null;
         $id_trabalhador = isset($_SESSION['trabalhador']) ? $_SESSION['user_id'] : null;
 
+        echo "<pre>";
+        echo "ID Cliente: " . ($id_cliente !== null ? $id_cliente : 'Não definido') . "<br>";
+        echo "ID Trabalhador: " . ($id_trabalhador !== null ? $id_trabalhador : 'Não definido') . "<br>";
+        echo "</pre>";
+
+        if ($id_cliente !== null || $id_trabalhador !== null) {
         // Inserir o comentário no banco de dados
         $stmt = $conn->prepare('INSERT INTO comentarios (id_cliente, id_trabalhador, comentario) VALUES (?, ?, ?)');
         $stmt->execute([$id_cliente, $id_trabalhador, $comentario]);
@@ -25,6 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Redirecionar para a página principal após o comentário
         header('Location: ./Perfil.php');
         exit();
+    } else {
+        echo "Erro: Nenhum cliente ou trabalhador identificado.";
+    }
+    
     } else {
         // Mensagem de erro se o conteúdo do comentário estiver vazio
         $error = 'O comentário não pode estar vazio.';
