@@ -140,7 +140,7 @@
             </div>
 
             <div class="txt">
-                <p><?php echo $row['desc'];?></p>
+                <p><?php echo $row['descricao'];?></p>
             </div>
         </div>
 

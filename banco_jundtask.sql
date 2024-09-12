@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05/09/2024 às 14:10
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- Tempo de geração: 12-Set-2024 às 03:52
+-- Versão do servidor: 10.4.25-MariaDB
+-- versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `admin`
+-- Estrutura da tabela `admin`
 --
 
 CREATE TABLE `admin` (
@@ -34,22 +34,22 @@ CREATE TABLE `admin` (
   `senha` varchar(128) NOT NULL,
   `foto_perfil` text NOT NULL,
   `tipo` varchar(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `area_atuação`
+-- Estrutura da tabela `area_atuação`
 --
 
 CREATE TABLE `area_atuação` (
   `id_area` int(11) NOT NULL,
   `cidade` varchar(50) NOT NULL,
   `id_categoria` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Despejando dados para a tabela `area_atuação`
+-- Extraindo dados da tabela `area_atuação`
 --
 
 INSERT INTO `area_atuação` (`id_area`, `cidade`, `id_categoria`) VALUES
@@ -64,19 +64,19 @@ INSERT INTO `area_atuação` (`id_area`, `cidade`, `id_categoria`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `categorias`
+-- Estrutura da tabela `categorias`
 --
 
 CREATE TABLE `categorias` (
-  `id` int(11) NOT NULL,
+  `id_categoria` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Despejando dados para a tabela `categorias`
+-- Extraindo dados da tabela `categorias`
 --
 
-INSERT INTO `categorias` (`id`, `nome`) VALUES
+INSERT INTO `categorias` (`id_categoria`, `nome`) VALUES
 (1, 'Serviços Doméstico'),
 (2, 'Reparos e Manutenção'),
 (3, 'Serviços Tecnologicos'),
@@ -92,7 +92,7 @@ INSERT INTO `categorias` (`id`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `cliente`
+-- Estrutura da tabela `cliente`
 --
 
 CREATE TABLE `cliente` (
@@ -102,53 +102,49 @@ CREATE TABLE `cliente` (
   `senha` varchar(128) NOT NULL,
   `foto_perfil` text NOT NULL,
   `tipo` varchar(1) NOT NULL,
-  `status` varchar(1) NOT NULL,
-  `id_area` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `status` varchar(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Despejando dados para a tabela `cliente`
+-- Extraindo dados da tabela `cliente`
 --
 
-INSERT INTO `cliente` (`id_cliente`, `nome`, `email`, `senha`, `foto_perfil`, `tipo`, `status`, `id_area`) VALUES
-(5, '', '', '', '', '', '', 0),
-(6, 'Mateus', '1234', 'camelo@etec.sp.gov.br', '', '', '', 0),
-(7, 'fernando', 'fernandomalvado@gmail.com', '777', '', '', '', 0),
-(8, 'giovana', 'giovana@gmail.com', '$2y$10$Pc5kcoujZ56k4WLYqVybvuv77gvKg/INahEt9CsuehUTqw5P5KjJi', '../uploads/Captura de tela 2024-02-29 151819.png', '', '', 2),
-(9, 'giovana', 'giovana@gmail.com', '$2y$10$SPXvFh0GWg5MQFiUziQWVexJQEEMZTb0xZsrGWDg5ugrlNSy/a9wa', '../uploads/download.jpg', '', '', 7),
-(10, 'giovana', 'giovana@gmail.com', '$2y$10$/kzE4loXRIa.hT60FbIEtODpNAQMbejyQ5lUkDoPVLVSR3b78n/OW', '../uploads/download.jpg', '', '', 7),
-(11, 'giovana', 'giovana@gmail.com', '$2y$10$CwytAyTThjtS.1Edm4ynr.tti5C9kVPuUWudkqWa6ImZg.xjhANTy', '../uploads/download.jpg', '', '', 7),
-(12, 'giovana', 'giovana@gmail.com', '$2y$10$dCqrzSvVTk8PTwCjwBadaeO.pVSo3koQHJ4T0V58JH54fkAyQJkoO', '../uploads/download.jpg', '', '', 7),
-(13, 'giovana', 'giovana@gmail.com', '$2y$10$jl/kJC9xEwF5GhN9s2jp/uRVQOdXylOWuzr99g542P/5T9L9a0tUy', '../uploads/download.jpg', '', '', 7),
-(14, 'giovana', 'giovana@gmail.com', '$2y$10$ScIqSSSTsqwYtlq3l6g2j.MJ1RJnfI0ufoJeQCbX28YcSfJMtGTkq', '../uploads/download.jpg', '', '', 7),
-(15, 'giovana', 'giovana@gmail.com', '$2y$10$yxJ.d/LNWjtGrRiq7HM1AeydimO..jC.YLo2.n5C3bblSGueGgYSS', '../uploads/download.jpg', '', '', 7),
-(16, 'giovana', 'giovana@gmail.com', '$2y$10$/6PL69P43LoC0GgEnYt7KufdYSuXWJMAj6PiRU2a3n3Vyu1ItNNGS', '../uploads/download.jpg', '', '', 7),
-(17, 'giovana', 'giovana@gmail.com', '$2y$10$76M.sgceAkt1O2gvvw6mi.WA65e3JfwtsbPTwkU7EozI/Zri1PadS', '../uploads/download.jpg', '', '', 7),
-(18, 'giovana', 'giovana@gmail.com', '$2y$10$sK7WnFJ/Zn7.hIRrS3RBSOPNXJG/rSOTw3Ugn8bjOtJc4kOrYv6GG', '../uploads/download.jpg', '', '', 1),
-(19, 'giovana', 'giovana@gmail.com', '$2y$10$9f/dW30p8G9pcleXkv/zpub/ZmlR0eAH5TspUXKJxyS5ZzutNzis2', '../uploads/download.jpg', '', '', 1),
-(20, 'giovana', 'giovana@gmail.com', '$2y$10$doHRO9QLMjYQmWOWkSJwBuzXf0N7gKUJ.ZwHiAvpRaWCbAU6.r/DK', '../uploads/download.jpg', '', '', 1),
-(21, 'giovana', 'giovana@gmail.com', '$2y$10$XAx.eva5d5iB4w8pGhUzGueg2karYr0F0gx3.N47ZtWGkFU.XClGi', '../uploads/download.jpg', '', '', 1),
-(22, 'mamama', 'mamama@gmail.com', '$2y$10$8UQzy64EeGfxzCeVAoH/WOpgYcsKhCMoNTcgnweRs.2WpLlxo55gK', '../uploads/download.jpg', '', '', 2),
-(23, 'lucas', 'giovana@gmail.com', '$2y$10$30UI6V0QbF6d9x3Za2h/EepwTAzxH8lC.sT41hwzQAqNXtTbqwMKi', '../uploads/download.jpg', '', '', 6);
+INSERT INTO `cliente` (`id_cliente`, `nome`, `email`, `senha`, `foto_perfil`, `tipo`, `status`) VALUES
+(5, '', '', '', '', '', ''),
+(6, 'Mateus', '1234', 'camelo@etec.sp.gov.br', '', '', ''),
+(7, 'fernando', 'fernandomalvado@gmail.com', '777', '', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `comentarios`
+-- Estrutura da tabela `comentarios`
 --
 
 CREATE TABLE `comentarios` (
   `id_comentario` int(11) NOT NULL,
+  `id_publicacao` int(11) NOT NULL,
+  `id_cliente` int(11) NOT NULL,
   `comentario` text NOT NULL,
-  `data` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `id_trabalhador` int(11) NOT NULL,
-  `id_cliente` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `data_comentario` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `curtidas`
+-- Estrutura da tabela `conversas`
+--
+
+CREATE TABLE `conversas` (
+  `id_conversa` int(11) NOT NULL,
+  `id_trabalhador` int(11) NOT NULL,
+  `id_cliente` int(11) NOT NULL,
+  `data_inicio` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `curtidas`
 --
 
 CREATE TABLE `curtidas` (
@@ -156,12 +152,27 @@ CREATE TABLE `curtidas` (
   `data_curtida` int(11) NOT NULL,
   `id_cliente` int(11) NOT NULL,
   `id_trabalhador` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `trabalhador`
+-- Estrutura da tabela `mensagens`
+--
+
+CREATE TABLE `mensagens` (
+  `id_mensagem` int(11) NOT NULL,
+  `id_conversa` int(11) NOT NULL,
+  `id_remetende` int(11) NOT NULL,
+  `id_destinatario` int(11) NOT NULL,
+  `data_inicio` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `mensagem` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `trabalhador`
 --
 
 CREATE TABLE `trabalhador` (
@@ -170,8 +181,7 @@ CREATE TABLE `trabalhador` (
   `email` varchar(255) NOT NULL,
   `senha` varchar(128) NOT NULL,
   `foto_perfil` text NOT NULL,
-  `desc` text NOT NULL,
-  `curtidas` int(11) NOT NULL,
+  `descricao` text NOT NULL,
   `contato` varchar(255) NOT NULL,
   `data_nasc` date NOT NULL,
   `media_avaliacao` decimal(3,2) NOT NULL,
@@ -179,55 +189,65 @@ CREATE TABLE `trabalhador` (
   `status` varchar(1) NOT NULL,
   `id_categoria` int(11) NOT NULL,
   `id_area` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Despejando dados para a tabela `trabalhador`
+-- Extraindo dados da tabela `trabalhador`
 --
 
-INSERT INTO `trabalhador` (`id_trabalhador`, `nome`, `email`, `senha`, `foto_perfil`, `desc`, `curtidas`, `contato`, `data_nasc`, `media_avaliacao`, `tipo`, `status`, `id_categoria`, `id_area`) VALUES
-(4, 'giovana', 'giovana@gmail.com', '123', '', 'faço serviço domestico a mais de 5 anos', 0, '123123123', '0000-00-00', 5.00, '', '', 1, 2),
-(6, 'Guilherme', 'gui@gmail.com', '123456', '', 'blakfjbgalfkjblfkbjaofibh', 0, '21321321321321', '0000-00-00', 9.99, '', '', 1, 2);
+INSERT INTO `trabalhador` (`id_trabalhador`, `nome`, `email`, `senha`, `foto_perfil`, `descricao`, `contato`, `data_nasc`, `media_avaliacao`, `tipo`, `status`, `id_categoria`, `id_area`) VALUES
+(4, 'Giovana', 'giovana@gmail.com', '123', '', 'faço serviço domestico a mais de 5 anos', '123123123', '0000-00-00', 5.00, '', '', 1, 2),
+(6, 'Guilherme', 'gui@gmail.com', '123456', '', 'blakfjbgalfkjblfkbjaofibh', '21321321321321', '0000-00-00', 9.99, '', '', 1, 2),
+(7, 'Pablo', 'pablo@gmail.vom', '123', '', 'fasso koizas', '11 999999 8888', '2004-08-03', 1.00, '', '', 1, 2),
+(15, 'Pato Rogério Silva', 'Patinho1@gmail.com', '$2y$10$oC/se63OOw90jIe01MpN/OtiZG5vUyU/2HJqQdLzfLNgudLfR0.5C', '../uploads/boasvindastrabalhador.png', '', '119999998888', '1020-10-10', 0.00, '', '', 11, 3);
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices de tabela `admin`
+-- Índices para tabela `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
--- Índices de tabela `area_atuação`
+-- Índices para tabela `area_atuação`
 --
 ALTER TABLE `area_atuação`
   ADD PRIMARY KEY (`id_area`),
   ADD KEY `id_categoria` (`id_categoria`);
 
 --
--- Índices de tabela `categorias`
+-- Índices para tabela `categorias`
 --
 ALTER TABLE `categorias`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_categoria`);
 
 --
--- Índices de tabela `cliente`
+-- Índices para tabela `cliente`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id_cliente`);
 
 --
--- Índices de tabela `comentarios`
+-- Índices para tabela `comentarios`
 --
 ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`id_comentario`),
+  ADD KEY `id_publicacao` (`id_publicacao`),
+  ADD KEY `id_cliente` (`id_cliente`);
+
+--
+-- Índices para tabela `conversas`
+--
+ALTER TABLE `conversas`
+  ADD PRIMARY KEY (`id_conversa`),
   ADD KEY `id_trabalhador` (`id_trabalhador`),
   ADD KEY `id_cliente` (`id_cliente`);
 
 --
--- Índices de tabela `curtidas`
+-- Índices para tabela `curtidas`
 --
 ALTER TABLE `curtidas`
   ADD PRIMARY KEY (`id_curtida`),
@@ -235,7 +255,16 @@ ALTER TABLE `curtidas`
   ADD KEY `id_trabalhador` (`id_trabalhador`);
 
 --
--- Índices de tabela `trabalhador`
+-- Índices para tabela `mensagens`
+--
+ALTER TABLE `mensagens`
+  ADD PRIMARY KEY (`id_mensagem`),
+  ADD KEY `id_conversa` (`id_conversa`),
+  ADD KEY `id_remetende` (`id_remetende`),
+  ADD KEY `id_destinatario` (`id_destinatario`);
+
+--
+-- Índices para tabela `trabalhador`
 --
 ALTER TABLE `trabalhador`
   ADD PRIMARY KEY (`id_trabalhador`),
@@ -243,7 +272,7 @@ ALTER TABLE `trabalhador`
   ADD KEY `id_area` (`id_area`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
@@ -262,13 +291,13 @@ ALTER TABLE `area_atuação`
 -- AUTO_INCREMENT de tabela `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `comentarios`
@@ -277,46 +306,73 @@ ALTER TABLE `comentarios`
   MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de tabela `conversas`
+--
+ALTER TABLE `conversas`
+  MODIFY `id_conversa` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `curtidas`
 --
 ALTER TABLE `curtidas`
   MODIFY `id_curtida` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de tabela `mensagens`
+--
+ALTER TABLE `mensagens`
+  MODIFY `id_mensagem` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de tabela `trabalhador`
 --
 ALTER TABLE `trabalhador`
-  MODIFY `id_trabalhador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_trabalhador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- Restrições para tabelas despejadas
+-- Restrições para despejos de tabelas
 --
 
 --
--- Restrições para tabelas `area_atuação`
+-- Limitadores para a tabela `area_atuação`
 --
 ALTER TABLE `area_atuação`
-  ADD CONSTRAINT `area_atuação_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id`);
+  ADD CONSTRAINT `area_atuação_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`);
 
 --
--- Restrições para tabelas `comentarios`
+-- Limitadores para a tabela `comentarios`
 --
 ALTER TABLE `comentarios`
-  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_trabalhador`) REFERENCES `trabalhador` (`id_trabalhador`),
-  ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`);
+  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_publicacao`) REFERENCES `comentarios` (`id_comentario`),
+  ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `comentarios` (`id_comentario`);
 
 --
--- Restrições para tabelas `curtidas`
+-- Limitadores para a tabela `conversas`
+--
+ALTER TABLE `conversas`
+  ADD CONSTRAINT `conversas_ibfk_1` FOREIGN KEY (`id_trabalhador`) REFERENCES `conversas` (`id_conversa`),
+  ADD CONSTRAINT `conversas_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `conversas` (`id_conversa`);
+
+--
+-- Limitadores para a tabela `curtidas`
 --
 ALTER TABLE `curtidas`
   ADD CONSTRAINT `curtidas_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`),
   ADD CONSTRAINT `curtidas_ibfk_2` FOREIGN KEY (`id_trabalhador`) REFERENCES `trabalhador` (`id_trabalhador`);
 
 --
--- Restrições para tabelas `trabalhador`
+-- Limitadores para a tabela `mensagens`
+--
+ALTER TABLE `mensagens`
+  ADD CONSTRAINT `mensagens_ibfk_1` FOREIGN KEY (`id_conversa`) REFERENCES `mensagens` (`id_mensagem`),
+  ADD CONSTRAINT `mensagens_ibfk_2` FOREIGN KEY (`id_remetende`) REFERENCES `mensagens` (`id_mensagem`),
+  ADD CONSTRAINT `mensagens_ibfk_3` FOREIGN KEY (`id_destinatario`) REFERENCES `mensagens` (`id_mensagem`);
+
+--
+-- Limitadores para a tabela `trabalhador`
 --
 ALTER TABLE `trabalhador`
-  ADD CONSTRAINT `trabalhador_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id`),
+  ADD CONSTRAINT `trabalhador_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`),
   ADD CONSTRAINT `trabalhador_ibfk_2` FOREIGN KEY (`id_area`) REFERENCES `area_atuação` (`id_area`);
 COMMIT;
 

@@ -41,7 +41,7 @@ session_start();
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="./SeuPerfil.html">
+                    <a href="./SeuPerfil.php">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                         <span class="txtLink">Perfil</span>
                     </a>
@@ -99,10 +99,10 @@ session_start();
                         <input type="password" name="senha" id="Senha" placeholder="Nova senha">
                     </div>
                     <div class="EstiloInputs"> 
-                        <input type="tel" name="telefone" id="Telefone" placeholder="<?php echo !empty($_SESSION['telefone']) ? $_SESSION['telefone'] : 'Atulize seu Telefone'  ?>">
+                        <input type="text" name="contato" id="contato" placeholder="<?php echo !empty($_SESSION['contato']) ? $_SESSION['contato'] : 'Atulize seu Telefone'  ?>">
                     </div>
                     <div class="EstiloInputs mb-5">
-                        <input type="date" name="datanasc" id="" value="<?php echo !empty($_SESSION['datanasc']) ? $_SESSION['datanasc'] : '' ?>">
+                        <input type="date" name="data_nasc" id="data_nasc" value="<?php echo !empty($_SESSION['data_nasc']) ? $_SESSION['data_nasc'] : '' ?>">
                     </div>
                 </div>
                 <div class="col">
@@ -112,7 +112,7 @@ session_start();
                              </select>
                     </div>
                     <div>
-                        <textarea name="" id="" placeholder="<?php echo !empty($_SESSION['descricao']) ? $_SESSION['descricao'] : 'Fale sobre você...' ?>"></textarea>
+                        <textarea name="descricao" id="" placeholder="<?php echo !empty($_SESSION['descricao']) ? $_SESSION['descricao'] : 'Fale sobre você...' ?>"></textarea>
                     </div>
                 </div>
 

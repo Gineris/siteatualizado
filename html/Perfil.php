@@ -140,7 +140,7 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
             </div>
 
             <div class="txt">
-                <?php echo '<p>' . htmlspecialchars($row['desc']) . '</p>' ?>
+                <?php echo '<p>' . htmlspecialchars($row['descricao']) . '</p>' ?>
             </div>
         </div>
 
