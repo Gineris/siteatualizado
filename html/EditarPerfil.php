@@ -90,16 +90,16 @@ session_start();
             <div class="row me-0 ">
                 <div class="col coluna1">
                     <div class="EstiloInputs">
-                        <input type="text" name="nome" id="nome" placeholder="<?php echo $_SESSION['nome']; ?>">
+                        <input type="text" name="nome" id="nome" value="<?php echo $_SESSION['nome']; ?>">
                     </div>
                     <div class="EstiloInputs">
-                        <input type="email" name="email" id="" placeholder="<?php echo $_SESSION['email']; ?>">
+                        <input type="email" name="email" id="" value="<?php echo $_SESSION['email']; ?>">
                     </div class="EstiloInputs">
                     <div class="EstiloInputs">
                         <input type="password" name="senha" id="Senha" placeholder="Nova senha">
                     </div>
                     <div class="EstiloInputs"> 
-                        <input type="text" name="contato" id="contato" placeholder="<?php echo !empty($_SESSION['contato']) ? $_SESSION['contato'] : 'Atulize seu Telefone'  ?>">
+                        <input type="text" name="contato" id="contato" value="<?php echo !empty($_SESSION['contato']) ? $_SESSION['contato'] : 'Atulize seu Telefone'  ?>">
                     </div>
                     <div class="EstiloInputs mb-5">
                         <input type="date" name="data_nasc" id="data_nasc" value="<?php echo !empty($_SESSION['data_nasc']) ? $_SESSION['data_nasc'] : '' ?>">
@@ -111,8 +111,13 @@ session_start();
                                 <option value="">Altere a cidade</option>
                              </select>
                     </div>
+                    <div class="box marginteste">
+                        <select name="id_categoria" id="id_categoria"> 
+                            <option value="">Selecione uma categoria</option>
+                        </select>
+                    </div>
                     <div>
-                        <textarea name="descricao" id="" placeholder="<?php echo !empty($_SESSION['descricao']) ? $_SESSION['descricao'] : 'Fale sobre você...' ?>"></textarea>
+                        <textarea name="descricao" id="" placeholder="<?php echo !empty($_SESSION['descricao']) ? $_SESSION['descricao'] : 'Fale sobre você...' ?>"> <?php echo !empty($_SESSION['descricao']) ? $_SESSION['descricao'] : 'Fale sobre você...' ?></textarea>
                     </div>
                 </div>
 
