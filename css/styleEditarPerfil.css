@@ -234,6 +234,9 @@ textarea {
     background-color: transparent;
     color: #1c1d4e;
 }
+.marginteste{
+    margin-top: 20px;
+}
 footer{
     background-color: #FFF;
     padding: 10px;
