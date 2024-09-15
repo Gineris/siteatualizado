@@ -119,7 +119,7 @@
         <div class="FotoFundo">
             <!-- foto background -->
             <div class="BlocoPerfilPrincipal">
-                <div class="FotoPerfil"><img src="../uploads/<?php echo $row['foto_perfil']; ?>" alt=""></div>
+                <div class="FotoPerfil"><img src="../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/images100x100.png' ?>" alt=""></div>
                 <div class="NomeTrabalhador"> <?php echo $row['nome']; ?></div>
                 <!-- <div class="Categoria"><p>Confeiteira</p></div> -->
                 <div class="Avaliacao">

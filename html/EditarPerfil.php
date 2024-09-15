@@ -78,7 +78,7 @@ session_start();
 
                 <div class="row me-0 mb-5 topoPerfil">
                     <div class="col-1 sucess imgPerfil" >
-                        <img src="../img/images100x100.png" alt="Foto de perfil">
+                        <img src="../uploads/<?php echo !empty($_SESSION['foto_perfil']) ? $_SESSION['foto_perfil'] : '../img/images100x100.png' ?>" alt="Foto de perfil">
                 </div>
                 <div class="col txtPerfil d-flex flex-column justify-content-center">
                     <h3><?php echo $_SESSION['nome']; ?></h3>
@@ -120,7 +120,9 @@ session_start();
                         <textarea name="descricao" id="" placeholder="<?php echo !empty($_SESSION['descricao']) ? $_SESSION['descricao'] : 'Fale sobre você...' ?>"> <?php echo !empty($_SESSION['descricao']) ? $_SESSION['descricao'] : 'Fale sobre você...' ?></textarea>
                     </div>
                 </div>
-
+                <div class="rol d-flex me-0">
+                    <input type="file" name="foto_perfil" id="foto_perfil">
+                </div>
                 <div class="rol d-flex me-0 imgServicos">
                     <div class="col txtMargin "><img src="../img/images100x100.png" alt="Fotos do serviço"></div>
                     <div class="col"><img src="../img/images100x100.png" alt="Fotos do serviço"></div>
