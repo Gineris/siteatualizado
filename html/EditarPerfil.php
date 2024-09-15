@@ -125,15 +125,18 @@ session_start();
                         <div class="rol d-flex me-0">
                             <input type="file" name="foto_perfil" id="foto_perfil">
                         </div>
-                        <div class="rol d-flex me-0 imgServicos">
-                            <div class="col txtMargin ">
-                                <img src="../img/images100x100.png" alt="Fotos do serviço">
+                        <div class="rol d-flex mt-0">
+                            <div class="col txtMargin mt-5 ">
+                                <label for="foto_trabalho1">foto trabalho 1</label>
+                                <input type="file" name="foto_trabalho1" id="foto_trabalho1">
                             </div>
-                            <div class="col">
-                                <img src="../img/images100x100.png" alt="Fotos do serviço">
+                            <div class="col mt-5">
+                                <label for="foto_trabalho2">foto trabalho 2</label>
+                                <input type="file" name="foto_trabalho2" id="foto_trabalho2">
                             </div>
-                            <div class="col">
-                                <img src="../img/images100x100.png" alt="Fotos do serviço">
+                            <div class="col mt-5">
+                                <label for="foto_trabalho3">foto trabalho 3</label>
+                                <input type="file" name="foto_trabalho3" id="foto_trabalho3">
                             </div>
                         </div>
                         <div class="row">

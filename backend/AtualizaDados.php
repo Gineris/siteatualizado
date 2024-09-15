@@ -22,6 +22,7 @@ $descricao = $_POST['descricao'] ?? '';
 $id_area = $_POST['id_area'] ?? '';
 $id_categoria = $_POST['id_categoria'] ?? '';
 $foto_perfil = $_POST['foto_perfil'] ?? '';
+$foto_trabalho1 = $_POST['foto_trabalho1'] ?? '';
 
 // Verificar se os campos obrigatórios foram preenchidos
 if (empty($nome) || empty($email) || empty($senha) || empty($id_area) || empty($id_categoria)) {
@@ -70,6 +71,36 @@ if (!empty($foto_perfil)) {
     $sql .= ", foto_perfil = ?";
 }
 
+if (isset($_FILES['foto_trabalho1']) && $_FILES['foto_trabalho1']['error'] == 0) {
+    // Diretório onde as imagens serão salvas
+    $diretorio = '../uploads/';
+    
+    // Nome do arquivo
+    $foto_trabalho1 = basename($_FILES['foto_trabalho1']['name']);
+    
+    // Caminho completo para onde a imagem será movida
+    $caminhoCompleto = $diretorio . $foto_trabalho1;
+
+    // Verifica se o arquivo é uma imagem
+    $tipoArquivo = strtolower(pathinfo($caminhoCompleto, PATHINFO_EXTENSION));
+    $tiposPermitidos = array("jpg", "jpeg", "png");
+    
+    if (in_array($tipoArquivo, $tiposPermitidos)) {
+        // Move o arquivo para o diretório de uploads
+        if (move_uploaded_file($_FILES['foto_trabalho1']['tmp_name'], $caminhoCompleto)) {
+            $_SESSION['mensagem'] = "Foto de trabalho atualizada com sucesso!";
+        } else {
+            $_SESSION['mensagem'] = "Erro ao mover o arquivo de upload.";
+        }
+    } else {
+        $_SESSION['mensagem'] = "Formato de arquivo não suportado. Use JPG, JPEG, ou PNG.";
+    }
+}
+
+// Atualize o campo foto_perfil no banco de dados
+if (!empty($foto_trabalho1)) {
+    $sql .= ", foto_trabalho1 = ?";
+}
 // Finaliza a query
 $sql .= " WHERE id_trabalhador = ?";
 
@@ -84,6 +115,9 @@ if (!empty($senha)) {
 }
 if (!empty($foto_perfil)) {
     $parametros[] = $foto_perfil;
+}
+if (!empty($foto_trabalho1)) {
+    $parametros[] = $foto_trabalho1;
 }
 $parametros[] = $idTrabalhador;
 // Definir os tipos de parâmetros dinamicamente
@@ -105,6 +139,7 @@ if ($stmt->execute()) {
     $_SESSION['id_area'] = $id_area;
     $_SESSION['id_categoria'] = $id_categoria;
     $_SESSION['foto_perfil'] = $foto_perfil;
+    $_SESSION['foto_trabalho1'] = $foto_trabalho1;
 } else {
     $_SESSION['mensagem'] = "Erro ao atualizar o perfil. Tente novamente.";
 }

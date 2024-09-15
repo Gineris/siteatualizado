@@ -149,7 +149,7 @@
                         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="../img/avaliacao1.png" class="d-block w-100" alt="...">
+                                <img src="../uploads/<?php echo !empty($row['foto_trabalho1']) ? $row['foto_trabalho1'] : '../img/avaliacao1.png' ?>" class="d-block w-100" alt="">
                                 </div>
                                 <div class="carousel-item">
                                     <img src="../img/avaliacao2.png" class="d-block w-100" alt="...">
