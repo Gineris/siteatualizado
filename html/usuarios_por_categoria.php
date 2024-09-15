@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="./SeuPerfil.html">
+                    <a href="./SeuPerfil.php">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                         <span class="txtLink">Perfil</span>
                     </a>

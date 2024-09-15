@@ -78,13 +78,13 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
                         <span class="txtLink">Inicio</span>
                     </a>
                 </li>
-                <li class="itemMenu ativo">
-                    <a href="./Categorias.php">
+                <li class="itemMenu ">
+                    <a href="./SeuPerfil.php">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                         <span class="txtLink">Perfil</span>
                     </a>
                 </li>
-                <li class="itemMenu">
+                <li class="itemMenu ativo">
                     <a href="./Categorias.php">
                         <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>
