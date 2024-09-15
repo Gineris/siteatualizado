@@ -76,66 +76,74 @@ session_start();
         </nav>
         
 
-                <div class="row me-0 mb-5 topoPerfil">
-                    <div class="col-1 sucess imgPerfil" >
-                        <img src="../uploads/<?php echo !empty($_SESSION['foto_perfil']) ? $_SESSION['foto_perfil'] : '../img/images100x100.png' ?>" alt="Foto de perfil">
+                <div class="container">
+                    <div class="row me-0 mb-5 topoPerfil">
+                        <div class="col-1 sucess imgPerfil" >
+                            <img src="../uploads/<?php echo !empty($_SESSION['foto_perfil']) ? $_SESSION['foto_perfil'] : '../img/images100x100.png' ?>" alt="Foto de perfil">
+                    </div>
+                    <div class="col txtPerfil d-flex flex-column justify-content-center">
+                        <h3><?php echo $_SESSION['nome']; ?></h3>
+                        <p><?php echo !empty($_SESSION['descricao']) ? $_SESSION['descricao'] : 'Sua descrição...' ?></p>
+                    </div>
+                                </div>
+                    
+                    <form method="POST" action="../backend/AtualizaDados.php" enctype="multipart/form-data">
+                        <div class="row me-0 ">
+                            <div class="col coluna1">
+                                <div class="EstiloInputs">
+                                    <input type="text" name="nome" id="nome" value="<?php echo $_SESSION['nome']; ?>">
+                                </div>
+                                <div class="EstiloInputs">
+                                    <input type="email" name="email" id="" value="<?php echo $_SESSION['email']; ?>">
+                                </div>
+                                <div class="EstiloInputs">
+                                    <input type="password" name="senha" id="Senha" placeholder="Nova senha">
+                                </div>
+                                <div class="EstiloInputs">
+                                    <input type="text" name="contato" id="contato" value="<?php echo !empty($_SESSION['contato']) ? $_SESSION['contato'] : 'Atulize seu Telefone'  ?>">
+                                </div>
+                                <div class="EstiloInputs mb-5">
+                                    <input type="date" name="data_nasc" id="data_nasc" value="<?php echo !empty($_SESSION['data_nasc']) ? $_SESSION['data_nasc'] : '' ?>">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="box">
+                                        <select name="id_area" id="id_area">
+                                            <option value="">Altere a cidade</option>
+                                        </select>
+                                </div>
+                                <div class="box marginteste">
+                                    <select name="id_categoria" id="id_categoria">
+                                        <option value="">Selecione uma categoria</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <textarea name="descricao" id="" placeholder="<?php echo !empty($_SESSION['descricao']) ? $_SESSION['descricao'] : 'Fale sobre você...' ?>"> <?php echo !empty($_SESSION['descricao']) ? $_SESSION['descricao'] : 'Fale sobre você...' ?></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rol d-flex me-0">
+                            <input type="file" name="foto_perfil" id="foto_perfil">
+                        </div>
+                        <div class="rol d-flex me-0 imgServicos">
+                            <div class="col txtMargin ">
+                                <img src="../img/images100x100.png" alt="Fotos do serviço">
+                            </div>
+                            <div class="col">
+                                <img src="../img/images100x100.png" alt="Fotos do serviço">
+                            </div>
+                            <div class="col">
+                                <img src="../img/images100x100.png" alt="Fotos do serviço">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col txtMargin botaoSalvar d-flex justify-content-end mt-5">
+                                <input type="submit" value="Salvar">
+                            </div>
+                        </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="col txtPerfil d-flex flex-column justify-content-center">
-                    <h3><?php echo $_SESSION['nome']; ?></h3>
-                    <p><?php echo !empty($_SESSION['descricao']) ? $_SESSION['descricao'] : 'Sua descrição...' ?></p>
-                </div>
-            </div>
-
-        <form method="POST" action="../backend/AtualizaDados.php" enctype="multipart/form-data">
-            <div class="row me-0 ">
-                <div class="col coluna1">
-                    <div class="EstiloInputs">
-                        <input type="text" name="nome" id="nome" value="<?php echo $_SESSION['nome']; ?>">
-                    </div>
-                    <div class="EstiloInputs">
-                        <input type="email" name="email" id="" value="<?php echo $_SESSION['email']; ?>">
-                    </div class="EstiloInputs">
-                    <div class="EstiloInputs">
-                        <input type="password" name="senha" id="Senha" placeholder="Nova senha">
-                    </div>
-                    <div class="EstiloInputs"> 
-                        <input type="text" name="contato" id="contato" value="<?php echo !empty($_SESSION['contato']) ? $_SESSION['contato'] : 'Atulize seu Telefone'  ?>">
-                    </div>
-                    <div class="EstiloInputs mb-5">
-                        <input type="date" name="data_nasc" id="data_nasc" value="<?php echo !empty($_SESSION['data_nasc']) ? $_SESSION['data_nasc'] : '' ?>">
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="box">
-                            <select name="id_area" id="id_area"> 
-                                <option value="">Altere a cidade</option>
-                             </select>
-                    </div>
-                    <div class="box marginteste">
-                        <select name="id_categoria" id="id_categoria"> 
-                            <option value="">Selecione uma categoria</option>
-                        </select>
-                    </div>
-                    <div>
-                        <textarea name="descricao" id="" placeholder="<?php echo !empty($_SESSION['descricao']) ? $_SESSION['descricao'] : 'Fale sobre você...' ?>"> <?php echo !empty($_SESSION['descricao']) ? $_SESSION['descricao'] : 'Fale sobre você...' ?></textarea>
-                    </div>
-                </div>
-                <div class="rol d-flex me-0">
-                    <input type="file" name="foto_perfil" id="foto_perfil">
-                </div>
-                <div class="rol d-flex me-0 imgServicos">
-                    <div class="col txtMargin "><img src="../img/images100x100.png" alt="Fotos do serviço"></div>
-                    <div class="col"><img src="../img/images100x100.png" alt="Fotos do serviço"></div>
-                    <div class="col"><img src="../img/images100x100.png" alt="Fotos do serviço"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col txtMargin botaoSalvar d-flex justify-content-end mt-5">
-                        <input type="submit" value="Salvar">
-                    </div>
-                </div>
-            </div>
-        </form>
 
     </main>
 
