@@ -228,11 +228,14 @@ textarea {
     border: 3px solid #1c1d4e;
     background-color: #1c1d4e;
     color: white;
+    cursor: pointer;
+
     transition: .4s;
 }
 .botaoSalvar input:hover{
     background-color: transparent;
     color: #1c1d4e;
+    cursor: pointer;
 }
 .marginteste{
     margin-top: 20px;

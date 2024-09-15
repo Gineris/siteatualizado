@@ -77,15 +77,18 @@ $sql .= " WHERE id_trabalhador = ?";
 $stmt = $conn->prepare($sql);
 
 // Verifica se a senha foi atualizada ou não
-if (!empty($senha) && !empty($foto_perfil)) {
-    $stmt->bind_param("sssssssssi", $nome, $email, $contato, $data_nasc, $descricao, $id_categoria, $id_area, $senhaHasheada, $foto_perfil, $idTrabalhador);
-} elseif (!empty($foto_perfil)) {
-    $stmt->bind_param("ssssssssi", $nome, $email, $contato, $data_nasc, $descricao, $id_categoria, $id_area, $foto_perfil, $idTrabalhador);
-} elseif (!empty($senha)) {
-    $stmt->bind_param("ssssssssi", $nome, $email, $contato, $data_nasc, $descricao, $id_categoria, $id_area, $senhaHasheada, $idTrabalhador);
-} else {
-    $stmt->bind_param("sssssssi", $nome, $email, $contato, $data_nasc, $descricao, $id_categoria, $id_area, $idTrabalhador);
+$parametros = [$nome, $email, $contato, $data_nasc, $descricao, $id_area, $id_categoria];
+
+if (!empty($senha)) {
+    $parametros[] = $senhaHasheada;
 }
+if (!empty($foto_perfil)) {
+    $parametros[] = $foto_perfil;
+}
+$parametros[] = $idTrabalhador;
+// Definir os tipos de parâmetros dinamicamente
+$tipos = str_repeat('s', count($parametros) - 1) . 'i';
+$stmt->bind_param($tipos, ...$parametros);
 
 // Executa a query
 if ($stmt->execute()) {
