@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16-Set-2024 às 00:37
+-- Tempo de geração: 12-Set-2024 às 03:52
 -- Versão do servidor: 10.4.25-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -181,8 +181,6 @@ CREATE TABLE `trabalhador` (
   `email` varchar(255) NOT NULL,
   `senha` varchar(128) NOT NULL,
   `foto_perfil` text NOT NULL,
-  `foto_trabalho1` text NOT NULL,
-  `foto_banner` text NOT NULL,
   `descricao` text NOT NULL,
   `contato` varchar(255) NOT NULL,
   `data_nasc` date NOT NULL,
@@ -197,11 +195,11 @@ CREATE TABLE `trabalhador` (
 -- Extraindo dados da tabela `trabalhador`
 --
 
-INSERT INTO `trabalhador` (`id_trabalhador`, `nome`, `email`, `senha`, `foto_perfil`, `foto_trabalho1`, `foto_banner`, `descricao`, `contato`, `data_nasc`, `media_avaliacao`, `tipo`, `status`, `id_categoria`, `id_area`) VALUES
-(4, 'Giovana', 'giovana@gmail.com', '123', '', '', '0', 'faço serviço domestico a mais de 5 anos', '123123123', '0000-00-00', 5.00, '', '', 1, 2),
-(6, 'Guilherme', 'gui@gmail.com', '123456', '', '', '0', 'blakfjbgalfkjblfkbjaofibh', '21321321321321', '0000-00-00', 9.99, '', '', 1, 2),
-(7, 'Pablo', 'pablo@gmail.vom', '123', '', '', '0', 'fasso koizas', '11 999999 8888', '2004-08-03', 1.00, '', '', 1, 2),
-(15, 'Pato Rogério da Silva Junior', 'Patinho123@gmail.com', '$2y$10$7AG65/3pYHjQJatr0c.yM.ZkpUKYEf.X07V67sg8lUaKWkxc6kLLC', 'teste.jpeg', 'testeFundo.jpeg', 'testeFundo.jpeg', '   Eu sou um pato', '119999998888', '2010-10-10', 0.00, '', '', 5, 3);
+INSERT INTO `trabalhador` (`id_trabalhador`, `nome`, `email`, `senha`, `foto_perfil`, `descricao`, `contato`, `data_nasc`, `media_avaliacao`, `tipo`, `status`, `id_categoria`, `id_area`) VALUES
+(4, 'Giovana', 'giovana@gmail.com', '123', '', 'faço serviço domestico a mais de 5 anos', '123123123', '0000-00-00', 5.00, '', '', 1, 2),
+(6, 'Guilherme', 'gui@gmail.com', '123456', '', 'blakfjbgalfkjblfkbjaofibh', '21321321321321', '0000-00-00', 9.99, '', '', 1, 2),
+(7, 'Pablo', 'pablo@gmail.vom', '123', '', 'fasso koizas', '11 999999 8888', '2004-08-03', 1.00, '', '', 1, 2),
+(15, 'Pato Rogério Silva', 'Patinho1@gmail.com', '$2y$10$oC/se63OOw90jIe01MpN/OtiZG5vUyU/2HJqQdLzfLNgudLfR0.5C', '../uploads/boasvindastrabalhador.png', '', '119999998888', '1020-10-10', 0.00, '', '', 11, 3);
 
 --
 -- Índices para tabelas despejadas
