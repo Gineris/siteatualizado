@@ -58,7 +58,7 @@ if (isset($_SESSION['id_trabalhador'])) {
             <img src="../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
             <div class="perfil">
                 <a href="#">
-                <ion-icon name="person"></ion-icon>
+                <img class="FotoPerfil" src="../img/FotoPerfilGeral.png" alt="">
                 </a>
             </div>
         </nav>

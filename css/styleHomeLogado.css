@@ -28,7 +28,7 @@ body, main{
     display: flex;
     justify-content: space-between ;
 }
-.BarraNav img{
+.BarraNav >img{
     width: 210px;
     margin-top: -10px;
 }
@@ -38,15 +38,23 @@ body, main{
     color: #EC5C14;
     font: 400 1.1rem "M PLUS 1p", sans-serif ;
 }
+.FotoPerfil{
+    width: 50px;
+    height: 50px;
+    border: solid 3px var(--corPrimaria-2);
+    border-radius: 50%;
+    padding: 1px;
 
-.perfil ion-icon{
+}
+/* .perfil ion-icon{
     font-size: 2em;
     border: solid 3px var(--corPrimaria-2);
     border-radius: 50%;
     padding: 3px;
     cursor: pointer;
     color: #0F3D60;
-} 
+}  */
+
 nav.menuLateral{
     width: 65px;
     height: 468px;
