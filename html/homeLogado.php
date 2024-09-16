@@ -58,7 +58,7 @@ if (isset($_SESSION['id_trabalhador'])) {
             <img src="../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
             <div class="perfil">
                 <a href="#">
-                <img class="FotoPerfil" src="../img/FotoPerfilGeral.png" alt="">
+                <img class="FotoPerfil" src="../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/FotoPerfilGeral.png' ?>" alt="">
                 </a>
             </div>
         </nav>
