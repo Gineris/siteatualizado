@@ -153,7 +153,7 @@
                                 <img src="../uploads/<?php echo !empty($row['foto_trabalho1']) ? $row['foto_trabalho1'] : '../img/avaliacao1.png' ?>" class="d-block w-100" alt="">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="../img/avaliacao2.png" class="d-block w-100" alt="...">
+                                    <img src="../uploads/<?php echo !empty($row['foto_trabalho2']) ? $row['foto_trabalho2'] : '../img/avaliacao1.png' ?>" class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item">
                                     <img src="../img/avaliacao3.png" class="d-block w-100" alt="...">
