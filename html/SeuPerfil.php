@@ -118,7 +118,7 @@
         
         <div class="FotoFundo">
             <!-- foto background -->
-            <img src="../img/TesteBackPerfil.png" alt="">
+            <img src="../uploads/<?php echo !empty($row['foto_banner']) ? $row['foto_banner'] : '../img/TesteBackPerfil.png' ?>" alt="">
             <div class="BlocoPerfilPrincipal">
                 <div class="FotoPerfil"><img src="../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/images100x100.png' ?>" alt=""></div>
                 <div class="NomeTrabalhador"> <?php echo $row['nome']; ?></div>

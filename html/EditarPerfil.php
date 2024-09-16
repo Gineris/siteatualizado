@@ -125,6 +125,9 @@ session_start();
                         <div class="rol d-flex me-0">
                             <label for="foto_perfil">Foto de perfil</label>
                             <input type="file" name="foto_perfil" id="foto_perfil">
+                            
+                            <label for="foto_perfil">Foto do banner</label>
+                            <input type="file" name="foto_banner" id="foto_banner">
                         </div>
                         <div class="rol d-flex mt-0">
                             <div class="col txtMargin mt-5 ">
