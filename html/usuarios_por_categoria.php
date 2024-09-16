@@ -149,9 +149,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <a href="Perfil.php?id_trabalhador=<?php echo $row['id_trabalhador']; ?>">
                     <?php 
                     echo '<div class="CardBox">'; 
-                        echo '<div class="imagem">
-                                <img src="../img/images100x100.png" alt="">
-                        </div>';
+                        echo '<div class="imagem">';
+                                echo '<img src="../uploads/'.$row['foto_perfil'].'" alt="">';
+                        echo '</div>';
                         echo '<div class="txtTrabalhador">';
                             echo '<h3>' . htmlspecialchars($row['nome']) . '</h3>';
                             echo '<p>' . htmlspecialchars($row['media_avaliacao']) . '</p>';
