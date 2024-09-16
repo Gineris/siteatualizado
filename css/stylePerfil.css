@@ -127,13 +127,13 @@ ul li.itemMenu a .icon > ion-icon{
 
 .FotoFundo{
     position: relative;
+    z-index: 1;
+}
+.FotoFundo img{
     display: block;
     margin: auto;
-    background: #fff url(../img/TesteBackPerfil.png) no-repeat center;
-    background-size: cover;
-    width: 89%;
-    height: 390px;
-    z-index: 1;
+    width: 90%;
+    height: 420px;
 }
 .BlocoPerfilPrincipal{
     position: absolute;
@@ -151,7 +151,7 @@ ul li.itemMenu a .icon > ion-icon{
     box-shadow: 2px 2px 2px 0px #00000073;
     top: 60%;
     left: 7%;
-    z-index: 1;
+    z-index: 2;
 }
 .LocaleLikes{
     flex-direction: row;
