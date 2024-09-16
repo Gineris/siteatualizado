@@ -21,13 +21,11 @@ $cidade = $_POST['cidade'] ?? '';
 $descricao = $_POST['descricao'] ?? '';
 $id_area = $_POST['id_area'] ?? '';
 $id_categoria = $_POST['id_categoria'] ?? '';
-// $foto_perfil = $_POST['foto_perfil'] ?? '';
-// $foto_trabalho1 = $_POST['foto_trabalho1'] ?? '';
-// $foto_trabalho2 = $_POST['foto_trabalho2'] ?? '';
 
 $foto_perfil = '';
 $foto_trabalho1 = '';
 $foto_trabalho2 = '';
+$foto_trabalho3 = '';
 
 function uploadArquivo($campoNome) {
     global $conn;
@@ -55,6 +53,7 @@ function uploadArquivo($campoNome) {
 $foto_perfil = uploadArquivo('foto_perfil');
 $foto_trabalho1 = uploadArquivo('foto_trabalho1');
 $foto_trabalho2 = uploadArquivo('foto_trabalho2');
+$foto_trabalho3 = uploadArquivo('foto_trabalho3');
 
 
 // Verificar se os campos obrigatórios foram preenchidos
@@ -82,6 +81,9 @@ if (!empty($foto_trabalho1)) {
 if (!empty($foto_trabalho2)) {
     $sql .= ", foto_trabalho2 = ?";
 }
+if (!empty($foto_trabalho3)) {
+    $sql .= ", foto_trabalho3 = ?";
+}
 // Finaliza a query
 $sql .= " WHERE id_trabalhador = ?";
 
@@ -102,6 +104,9 @@ if (!empty($foto_trabalho1)) {
 }
 if (!empty($foto_trabalho2)) {
     $parametros[] = $foto_trabalho2;
+}
+if (!empty($foto_trabalho3)) {
+    $parametros[] = $foto_trabalho3;
 }
 $parametros[] = $idTrabalhador;
 
@@ -126,6 +131,7 @@ if ($stmt->execute()) {
     $_SESSION['foto_perfil'] = $foto_perfil;
     $_SESSION['foto_trabalho1'] = $foto_trabalho1;
     $_SESSION['foto_trabalho2'] = $foto_trabalho2;
+    $_SESSION['foto_trabalho3'] = $foto_trabalho3;
 } else {
     $_SESSION['mensagem'] = "Erro ao atualizar o perfil. Tente novamente.";
 }

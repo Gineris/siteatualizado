@@ -118,7 +118,7 @@ session_start();
                                     </select>
                                 </div>
                                 <div>
-                                    <textarea name="descricao" id="" placeholder="<?php echo !empty($_SESSION['descricao']) ? $_SESSION['descricao'] : 'Fale sobre você...' ?>" placeholder="Fale sobre você..."></textarea>
+                                    <textarea name="descricao" id="descricao"><?php echo !empty($_SESSION['descricao']) ? $_SESSION['descricao'] : 'Fale sobre você...' ?></textarea>
                                 </div>
                             </div>
                         </div>
