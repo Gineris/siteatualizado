@@ -46,7 +46,7 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JundTask - Perfil</title>
     <link rel="stylesheet" href="../css/stylePerfil.css">
-    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="shortcut icon" href="../img/logo@2x.png" type="image/x-icon">
 </head>
@@ -71,7 +71,7 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
                 <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
             </div>
 
-            <ul>
+            <ul style="padding-left: 0rem;">
                 <li class="itemMenu">
                     <a href="./homeLogado.php">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
@@ -115,10 +115,10 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
         
         <div class="FotoFundo">
             <!-- foto background -->
+            <img src="../uploads/<?php echo !empty($row['foto_banner']) ? $row['foto_banner'] : '../img/TesteBackPerfil.png' ?>" alt="">
             <div class="BlocoPerfilPrincipal">
-                <div class="FotoPerfil"><img src="../img/FotoTesteMuie.png" alt=""></div>
+                <div class="FotoPerfil"><img src="../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/images100x100.png' ?>" alt=""></div>
                 <div class="NomeTrabalhador"><?php echo '<p>' . htmlspecialchars($row['nome']) . '</p>'?></div>
-                <!-- <div class="Categoria"><p>Confeiteira</p></div> -->
                 <div class="Avaliacao">
                     <ion-icon name="star"></ion-icon>   
                     <ion-icon name="star"></ion-icon>
@@ -143,7 +143,33 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
                 <?php echo '<p>' . htmlspecialchars($row['descricao']) . '</p>' ?>
             </div>
         </div>
-
+        <div class="trabalhos">
+                <div class="carrousel">
+                <div class="col">
+                        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active ">
+                                <img src="../uploads/<?php echo !empty($row['foto_trabalho1']) ? $row['foto_trabalho1'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../uploads/<?php echo !empty($row['foto_trabalho2']) ? $row['foto_trabalho2'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../uploads//<?php echo !empty($row['foto_trabalho3']) ? $row['foto_trabalho3'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="...">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+        </div>
 
 
         <h1>Comentários e Avaliações</h1>
