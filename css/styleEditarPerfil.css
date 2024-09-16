@@ -127,6 +127,7 @@ ul li.itemMenu a .icon > ion-icon{
 }
 .imgPerfil img{
     width: 150px;
+    height: 150px;
     border-radius: 100px;
     border: 5px solid #282A2E  ;
 }
@@ -230,7 +231,7 @@ textarea {
     color: white;
     cursor: pointer;
 
-    transition: .4s;
+    transition: .3s;
 }
 .botaoSalvar input:hover{
     background-color: transparent;
@@ -250,4 +251,3 @@ footer p{
     padding: 0px 10px 0px 10px;
 }
 
-  

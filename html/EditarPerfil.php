@@ -100,7 +100,7 @@ session_start();
                                     <input type="password" name="senha" id="Senha" placeholder="Nova senha">
                                 </div>
                                 <div class="EstiloInputs">
-                                    <input type="text" name="contato" id="contato" value="<?php echo !empty($_SESSION['contato']) ? $_SESSION['contato'] : 'Atulize seu Telefone'  ?>">
+                                    <input type="text" name="contato" id="contato" value="<?php echo !empty($_SESSION['contato']) ? $_SESSION['contato'] :  ''  ?>" placeholder="Atualize seu telefone">
                                 </div>
                                 <div class="EstiloInputs mb-5">
                                     <input type="date" name="data_nasc" id="data_nasc" value="<?php echo !empty($_SESSION['data_nasc']) ? $_SESSION['data_nasc'] : '' ?>">
@@ -118,11 +118,12 @@ session_start();
                                     </select>
                                 </div>
                                 <div>
-                                    <textarea name="descricao" id="" placeholder="<?php echo !empty($_SESSION['descricao']) ? $_SESSION['descricao'] : 'Fale sobre você...' ?>"> <?php echo !empty($_SESSION['descricao']) ? $_SESSION['descricao'] : 'Fale sobre você...' ?></textarea>
+                                    <textarea name="descricao" id="" placeholder="<?php echo !empty($_SESSION['descricao']) ? $_SESSION['descricao'] : 'Fale sobre você...' ?>" placeholder="Fale sobre você..."></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="rol d-flex me-0">
+                            <label for="foto_perfil">Foto de perfil</label>
                             <input type="file" name="foto_perfil" id="foto_perfil">
                         </div>
                         <div class="rol d-flex mt-0">
