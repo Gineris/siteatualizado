@@ -1,25 +1,50 @@
 <?php
 include_once('../backend/Conexao.php');
 
+header('Content-Type: application/json');
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = trim($_POST['nome']);
     $email = trim($_POST['email']);
+    $contato = trim($_POST['contato']);
+    $data_nascimento = $_POST['data_nascimento'];
     $senha = trim($_POST['senha']);
     $confirmaSenha = trim($_POST['ConfirmaSenha']);
     $id_area = intval($_POST['id_area']); 
     $fotoDePerfil = $_FILES['foto_de_perfil'];
 
-    // Verifica se todos os campos obrigatórios foram preenchidos
-    if (empty($nome) || empty($email) || empty($senha) || empty($confirmaSenha) || empty($id_area)) {
-        echo "Todos os campos são obrigatórios.";
+    $dataAtual = new DateTime();
+    $dataNascimento = new DateTime($data_nascimento);
+    $idade = $dataAtual->diff($dataNascimento)->y;
+
+    // Validações
+    if (empty($nome) || empty($email) || empty($senha) || empty($confirmaSenha) || empty($id_area) || empty($contato) || empty($data_nascimento)) {
+        echo json_encode(['sucesso' => false, 'mensagem' => 'Todos os campos são obrigatórios.']);
         exit;
     }
 
-    // Verifica se as senhas coincidem
     if ($senha !== $confirmaSenha) {    
-        echo "As senhas não coincidem.";  
+        echo json_encode(['sucesso' => false, 'mensagem' => 'As senhas não coincidem.']);
         exit;
     }
+
+    if ($idade < 15) {
+        echo json_encode(['sucesso' => false, 'mensagem' => 'Você deve ter pelo menos 15 anos para se cadastrar.']);
+        exit;
+    }
+  // Verifica se o e-mail já está registrado
+  $sql = "SELECT COUNT(*) FROM cliente WHERE email = ?";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("s", $email);
+  $stmt->execute();
+  $stmt->bind_result($count);
+  $stmt->fetch();
+  $stmt->close();
+
+  if ($count > 0) {
+      echo json_encode(['sucesso' => false, 'mensagem' => 'O e-mail já está registrado.']);
+      exit;
+  }
 
     // Processa o upload da foto de perfil
     $diretorio = '../uploads/'; 
@@ -32,13 +57,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif'];
     if (!in_array($fotoDePerfil['type'], $tiposPermitidos)) {
-        echo "Tipo de arquivo não permitido.";
+        echo json_encode(['sucesso' => false, 'mensagem' => 'Tipo de arquivo não permitido.']);
         exit;
     }
 
     if (!move_uploaded_file($fotoDePerfil['tmp_name'], $caminhoCompleto)) {
         $erro = error_get_last();
-        echo "Erro ao enviar a foto de perfil: " . $erro['message'];
+        echo json_encode(['sucesso' => false, 'mensagem' => 'Erro ao enviar a foto de perfil: ' . $erro['message']]);
         exit;
     }
 
@@ -47,29 +72,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Insere o novo cliente na base de dados
     try {
-        $sql = "INSERT INTO cliente (nome, email, senha, id_area, foto_perfil) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO cliente (nome, email, contato, data_nasc, senha, id_area, foto_perfil) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        
+
         if (!$stmt) {
-            die("Erro na preparação da consulta: " . $conn->error);
+            echo json_encode(['sucesso' => false, 'mensagem' => 'Erro na preparação da consulta: ' . $conn->error]);
+            exit;
         }
 
-        $stmt->bind_param("sssis", $nome, $email, $senhaCriptografada, $id_area, $caminhoCompleto);
+        $stmt->bind_param("sssssis", $nome, $email, $contato, $data_nascimento, $senhaCriptografada, $id_area, $caminhoCompleto);
 
         if ($stmt->execute()) {
-            // Redireciona para a página de verificação de login
-            header("Location: ./LoginUsuario.php");
-            exit;
+            echo json_encode(['sucesso' => true, 'mensagem' => 'Cadastro realizado com sucesso!', 'mostrarBotaoLogin' => true]);
         } else {
-            echo "Erro ao realizar o cadastro: " . $stmt->error;
+            echo json_encode(['sucesso' => false, 'mensagem' => 'Erro ao realizar o cadastro: ' . $stmt->error]);
         }
     } catch (Exception $e) {
-        echo "Erro: " . $e->getMessage();
+        echo json_encode(['sucesso' => false, 'mensagem' => 'Erro: ' . $e->getMessage()]);
     } finally {
         $stmt->close();
         $conn->close();
     }
 } else {
-    echo "Método de requisição inválido.";
+    echo json_encode(['sucesso' => false, 'mensagem' => 'Método de requisição inválido.']);
 }
 ?>

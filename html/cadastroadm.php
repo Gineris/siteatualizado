@@ -43,10 +43,6 @@
                     </div>
 
                     <div class="InputsLogin">
-                        <input type="tel" name="contato" id="contato" placeholder="Número de Contato" required>
-                    </div>
-
-                    <div class="InputsLogin">
                         <input type="date" name="data_nascimento" id="data_nascimento" required>
                     </div>
 

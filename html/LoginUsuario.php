@@ -24,68 +24,75 @@
                         <img src="../img/logo@2x.png" alt="Logo JundTask">
                         <h1>Login Usuario</h1>
                     </div>
-            
-                    <div class="InputsLogin">
-                        <input type="text" name="email" id="email" placeholder="Email" required>
-                        <label for="email"></label><br>
-                    </div>
 
-                    <div class="InputsLogin Senha">
-                        <input type="password" name="senha" id="senha" placeholder="Senha" required>
-                        <i class="bi bi-eye-slash" id="olho" onclick="mostrarSenha()"></i>
-                        <label for="senha"></label><br>
-                    </div>
 
-                    <div class="InputsLogin ConfirmaSenha">
-                        <input type="password" name="ConfirmaSenha" id="ConfirmaSenha" placeholder="Confirmar senha" required>
-                        <i class="bi bi-eye-slash" id="olho2" onclick="mostrarSenha2()"></i>
-                    </div>
-            
-                    <div class="BotaoLogin">
-                        <input type="submit" name="submit" value="Login">
-                    </div>
-                    
-                </div>
+                    <div class="login-container">
+        <form id="formLogin" method="POST">
+            <div id="mensagemErro" class="alert alert-danger" style="display: none;">
+                <span class="close" onclick="this.parentElement.style.display='none'">&times;</span>
+            </div>
+
+            <div id="mensagemSucesso" class="alert alert-success" style="display: none;">
+                <span class="close" onclick="this.parentElement.style.display='none'">&times;</span>
+            </div>
+
+            <div class="InputsLogin">
+                <input type="text" name="email" id="email" placeholder="Email" required>
+            </div>
+
+            <div class="InputsLogin Senha">
+                <input type="password" name="senha" id="senha" placeholder="Senha" required>
+                <i class="bi bi-eye-slash" id="olho" onclick="mostrarSenha()"></i>
+            </div>
+
+            <div class="BotaoLogin">
+                <input type="submit" value="Login">
             </div>
         </form>
-    </main>
-    <footer class="d-flex justify-content-center">
-        <p>Terms of Service</p>
-        <p>Privacy Policy</p>
-        <p>@2022yanliudesign</p>
-    </footer>
-    <script src="../js/FuncaoSenhaOlho.js"></script>
-    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-        // Função para mostrar/ocultar senha
-        function mostrarSenha() {
-            var senhaInput = document.getElementById('senha');
-            var olhoIcon = document.getElementById('olho');
-            if (senhaInput.type === 'password') {
-                senhaInput.type = 'text';
-                olhoIcon.classList.remove('bi-eye-slash');
-                olhoIcon.classList.add('bi-eye');
-            } else {
-                senhaInput.type = 'password';
-                olhoIcon.classList.remove('bi-eye');
-                olhoIcon.classList.add('bi-eye-slash');
-            }
-        }
+        <script>
+            document.getElementById('formLogin').addEventListener('submit', function(event) {
+                event.preventDefault();
 
-        function mostrarSenha2() {
-            var confirmaSenhaInput = document.getElementById('ConfirmaSenha');
-            var olhoIcon2 = document.getElementById('olho2');
-            if (confirmaSenhaInput.type === 'password') {
-                confirmaSenhaInput.type = 'text';
-                olhoIcon2.classList.remove('bi-eye-slash');
-                olhoIcon2.classList.add('bi-eye');
-            } else {
-                confirmaSenhaInput.type = 'password';
-                olhoIcon2.classList.remove('bi-eye');
-                olhoIcon2.classList.add('bi-eye-slash');
+                var formData = new FormData(this);
+
+                fetch('../html/LoginUsuario.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    var mensagemSucesso = document.getElementById('mensagemSucesso');
+                    var mensagemErro = document.getElementById('mensagemErro');
+
+                    if (data.sucesso) {
+                        mensagemSucesso.innerText = 'Login realizado com sucesso!';
+                        mensagemSucesso.style.display = 'block'; // Garante que a mensagem de sucesso seja exibida
+                        mensagemErro.style.display = 'none'; // Oculta a mensagem de erro
+
+                        // Redireciona para a página apropriada
+                        window.location.href = data.redirect;
+                    } else {
+                        mensagemErro.innerText = data.mensagem;
+                        mensagemErro.style.display = 'block'; // Garante que a mensagem de erro seja exibida
+                        mensagemSucesso.style.display = 'none'; // Oculta a mensagem de sucesso
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao enviar o formulário:', error);
+                    var mensagemErro = document.getElementById('mensagemErro');
+                    mensagemErro.innerText = 'Erro ao enviar o formulário. Tente novamente.';
+                    mensagemErro.style.display = 'block'; // Garante que a mensagem de erro seja exibida
+                });
+            });
+
+            function mostrarSenha() {
+                var senhaInput = document.getElementById('senha');
+                senhaInput.type = senhaInput.type === 'password' ? 'text' : 'password';
+                var olhoIcon = document.getElementById('olho');
+                olhoIcon.classList.toggle('bi-eye');
+                olhoIcon.classList.toggle('bi-eye-slash');
             }
-        }
-    </script>
+        </script>
 </body>
 </html>

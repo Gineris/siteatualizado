@@ -2,63 +2,90 @@
 session_start();
 include_once('../backend/Conexao.php');
 
+header('Content-Type: application/json');
 
 $email = $_POST['email'] ?? '';
 $senha = $_POST['senha'] ?? '';
 
-
 if (empty($email) || empty($senha)) {
-    $_SESSION['mensagem'] = "Preencha todos os campos.";
-    header('Location: ./LoginTrabalhador.php');
+    echo json_encode(['sucesso' => false, 'mensagem' => 'Preencha todos os campos.']);
     exit();
 }
 
+// Verifica se o email é o do admin
+if ($email === 'Admin@gmail.com') {
+    $sql = "SELECT * FROM adm WHERE email = ?";
+    $stmt = $conn->prepare($sql);
 
-$sql = "SELECT * FROM cliente WHERE email = ?";
-$stmt = $conn->prepare($sql);
+    if ($stmt) {
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $registroAdmin = $result->fetch_object();
 
-if ($stmt) {
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $registroUsuario = $result->fetch_object();
+        if ($registroAdmin) {
+            if (password_verify($senha, $registroAdmin->senha)) {
+                // Senha correta
+                $_SESSION['mensagem'] = "Administrador Logado com sucesso!";
+                $_SESSION['user_id'] = $registroAdmin->id_adm;
+                $_SESSION['nome'] = $registroAdmin->nome;
+                $_SESSION['email'] = $registroAdmin->email;
+                $_SESSION['senha'] = $registroAdmin->senha;
+                $_SESSION['logado'] = true;
 
-    if ($registroUsuario) {
-
-        if (password_verify($senha, $registroUsuario->senha)) {
-            // Senha correta
-            $_SESSION['mensagem'] = "Usuário Logado com sucesso!!!!";
-            $_SESSION['user_id'] = $registroUsuario->id_cliente;
-            $_SESSION['nome'] = $registroUsuario->nome;
-            $_SESSION['email'] = $registroUsuario->email;
-            $_SESSION['senha'] = $registroUsuario->senha;
-            $_SESSION['status'] = $registroUsuario->status;
-            $_SESSION['logado'] = true;
-
-
-            header('Location: ./homeLogado.php');
-            exit();
+                echo json_encode(['sucesso' => true, 'redirect' => 'homeAdm.php']);
+                exit();
+            } else {
+                echo json_encode(['sucesso' => false, 'mensagem' => 'Senha incorreta!']);
+                exit();
+            }
         } else {
-
-            $_SESSION['mensagem'] = "Senha incorreta!!!!!";
-            $_SESSION['logado'] = false;
-            header('Location: ./LoginUsuario.php');
+            echo json_encode(['sucesso' => false, 'mensagem' => 'Administrador não encontrado!']);
             exit();
         }
+
+        $stmt->close();
     } else {
-    
-        $_SESSION['mensagem'] = "Usuário não encontrado!!!!!";
-        $_SESSION['logado'] = false;
-        header('Location: ./LoginUsuario.php');
+        echo json_encode(['sucesso' => false, 'mensagem' => 'Erro na preparação da consulta.']);
         exit();
     }
-
-    $stmt->close();
 } else {
-    
-    $_SESSION['mensagem'] = "Erro na preparação da consulta.";
-    header('Location: ./LoginTrabalhador.php');
-    exit();
+    // Verifica na tabela de clientes
+    $sql = "SELECT * FROM cliente WHERE email = ?";
+    $stmt = $conn->prepare($sql);
+
+    if ($stmt) {
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $registroCliente = $result->fetch_object();
+
+        if ($registroCliente) {
+            if (password_verify($senha, $registroCliente->senha)) {
+                // Senha correta
+                $_SESSION['mensagem'] = "Cliente Logado com sucesso!";
+                $_SESSION['user_id'] = $registroCliente->id_cliente;
+                $_SESSION['nome'] = $registroCliente->nome;
+                $_SESSION['email'] = $registroCliente->email;
+                $_SESSION['senha'] = $registroCliente->senha;
+                $_SESSION['logado'] = true;
+
+                echo json_encode(['sucesso' => true, 'redirect' => 'homeCliente.php']);
+                exit();
+            } else {
+                echo json_encode(['sucesso' => false, 'mensagem' => 'Senha incorreta!']);
+                exit();
+            }
+        } else {
+            echo json_encode(['sucesso' => false, 'mensagem' => 'Cliente não encontrado!']);
+            exit();
+        }
+
+        $stmt->close();
+    } else {
+        echo json_encode(['sucesso' => false, 'mensagem' => 'Erro na preparação da consulta.']);
+        exit();
+    }
 }
 
 $conn->close();
