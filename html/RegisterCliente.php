@@ -49,7 +49,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         $sql = "INSERT INTO cliente (nome, email, senha, id_area, foto_perfil) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssds", $nome, $email, $senhaCriptografada, $id_area, $caminhoCompleto);
+        
+        if (!$stmt) {
+            die("Erro na preparação da consulta: " . $conn->error);
+        }
+
+        $stmt->bind_param("sssis", $nome, $email, $senhaCriptografada, $id_area, $caminhoCompleto);
 
         if ($stmt->execute()) {
             // Redireciona para a página de verificação de login
