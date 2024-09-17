@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data_nascimento = $_POST['data_nascimento'];
     $senha = trim($_POST['senha']);
     $confirmaSenha = trim($_POST['ConfirmaSenha']);
-    $id_area = intval($_POST['id_area']); 
+    $id_area = $_POST['id_area']; 
     $fotoDePerfil = $_FILES['foto_de_perfil'];
 
     $dataAtual = new DateTime();

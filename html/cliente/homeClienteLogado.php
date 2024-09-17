@@ -1,10 +1,10 @@
 <?php
 session_start();
-include_once ('../backend/Conexao.php');
+include_once ('../../backend/Conexao.php');
 
 
-if (isset($_SESSION['id_trabalhador'])) {
-    $idTrabalhador = $_SESSION['id_trabalhador']; // Pega o ID do trabalhador logado
+if (isset($_SESSION['id_cliente'])) {
+    $id_cliente = $_SESSION['id_cliente']; // Pega o ID do trabalhador logado
     
     // Verificar se há erros na conexão
     if ($conn->connect_error) {
@@ -12,14 +12,14 @@ if (isset($_SESSION['id_trabalhador'])) {
     }
 
     // Preparar a consulta SQL
-    $sql = "SELECT * FROM trabalhador WHERE id_trabalhador = ?";
+    $sql = "SELECT * FROM cliente WHERE id_cliente = ?";
     $stmt = $conn->prepare($sql); // Preparar a consulta
     if ($stmt === false) {
         die("Erro ao preparar a consulta: " . $conn->error);
     }
 
     // Vincular o parâmetro (i significa integer)
-    $stmt->bind_param("i", $idTrabalhador); // "i" indica que o parâmetro é um inteiro
+    $stmt->bind_param("i", $id_cliente); // "i" indica que o parâmetro é um inteiro
     $stmt->execute(); // Executar a consulta
 
     // Obter o resultado
@@ -29,13 +29,13 @@ if (isset($_SESSION['id_trabalhador'])) {
     if ($resultado_pesquisar->num_rows > 0) {
         $row = $resultado_pesquisar->fetch_assoc();
     } else {
-        echo "Trabalhador não encontrado.";
+        echo "Cliente não encontrado.";
     }
 
     // Fechar o statement
     $stmt->close();
 } else {
-    echo "Nenhum trabalhador está logado.";
+    echo "Nenhum cliente está logado.";
 }
 
 
@@ -47,18 +47,18 @@ if (isset($_SESSION['id_trabalhador'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JundTask - Home</title>
-    <link rel="stylesheet" href="../css/styleHomeLogado.css">
-    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/styleHomeLogado.css">
+    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.min.css">
 
-    <link rel="shortcut icon" href="../img/logo@2x.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
 </head>
 <body>
     <header>
         <nav class="BarraNav">
-            <img src="../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
+            <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
             <div class="perfil">
                 <a href="#">
-                <img class="FotoPerfil" src="../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/FotoPerfilGeral.png' ?>" alt="">
+                <img class="FotoPerfil" src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../../img/FotoPerfilGeral.png' ?>" alt="">
                 </a>
             </div>
         </nav>
@@ -119,7 +119,7 @@ if (isset($_SESSION['id_trabalhador'])) {
                 <p>Espero que este seja o lugar onde você encontre os melhores profissionais da sua região.</p>
             </div>
             <div class="col me-0 pe-0 imgfundo">
-                <img src="../img/boasvindasTrabalhador.png" alt="" >
+                <img src="../../img/boasvindasCliente.png" alt="" >
             </div>
        </div>
     
@@ -129,13 +129,13 @@ if (isset($_SESSION['id_trabalhador'])) {
                         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="../img/avaliacao1.png" class="d-block w-100" alt="...">
+                                    <img src="../../img/avaliacao1.png" class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="../img/avaliacao2.png" class="d-block w-100" alt="...">
+                                    <img src="../../img/avaliacao2.png" class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="../img/avaliacao3.png" class="d-block w-100" alt="...">
+                                    <img src="../../img/avaliacao3.png" class="d-block w-100" alt="...">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -166,7 +166,7 @@ if (isset($_SESSION['id_trabalhador'])) {
                         </div>
                     </div>
                     <div class="col ImgHomeContate">
-                        <img src="../img/ElementoHomeLogado.png" alt="#">
+                        <img src="../../img/ElementoHomeLogado.png" alt="#">
                     </div>
                 </div>
 
@@ -181,10 +181,10 @@ if (isset($_SESSION['id_trabalhador'])) {
     </footer>
     
 
-    <script src="../js/funcaoMenuLateral.js"></script>
+    <script src="../../js/funcaoMenuLateral.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

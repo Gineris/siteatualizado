@@ -43,7 +43,7 @@ body{
     justify-content: center;
     background-image: url(../img/TelaLoginGeral.png);
     background-size: cover;
-    height: 95vh;
+    height: 100vh;
 }
 
 .tituloLogin img{
