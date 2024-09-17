@@ -28,7 +28,7 @@ if ($stmt) {
         if (password_verify($senha, $registroUsuario->senha)) {
             // Senha correta
             $_SESSION['mensagem'] = "Usuário Logado com sucesso!!!!";
-            $_SESSION['user_id'] = $registroUsuario->id_cliente;
+            $_SESSION['id_cliente'] = $registroUsuario->id_cliente;
             $_SESSION['nome'] = $registroUsuario->nome;
             $_SESSION['email'] = $registroUsuario->email;
             $_SESSION['senha'] = $registroUsuario->senha;
@@ -36,7 +36,7 @@ if ($stmt) {
             $_SESSION['logado'] = true;
 
 
-            header('Location: ./homeLogado.php');
+            header('Location: ./cliente/homeClienteLogado.php');
             exit();
         } else {
 
