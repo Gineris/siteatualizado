@@ -1,42 +1,40 @@
 <?php
 include_once('../backend/Conexao.php'); 
 
-
-if (!$conn || !($conn instanceof mysqli)) {
-    die("Erro: Conexão com o banco de dados não estabelecida ou não é uma instância de mysqli.");
-}
-
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  
+   
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $senha = $_POST['senha'];
-    $tipo = $_POST['tipo'];
-    $status = $_POST['status'];
+    $descricao = $_POST['descricao'];
+    $contato = $_POST['contato'];
+    $data_nasc = $_POST['data_nasc'];
+    $id_categoria = $_POST['id_categoria'];
     $id_area = $_POST['id_area'];
     $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
 
     
-    if (empty($nome) || empty($email)) {
-        echo "Os campos de nome e email são obrigatórios.";
+    if (empty($nome) || empty($email) || empty($descricao) || empty($contato) || empty($data_nasc) || empty($id_categoria) || empty($id_area)) {
+        echo "Todos os campos são obrigatórios.";
         exit;
     }
 
     $fotoPerfil = ''; 
+
     if (isset($_FILES['foto_perfil']) && $_FILES['foto_perfil']['error'] === UPLOAD_ERR_OK) {
         $uploadDir = 'uploads/';
         $fileName = basename($_FILES['foto_perfil']['name']);
         $uploadFile = $uploadDir . $fileName;
 
-       
+      
         if (!is_dir($uploadDir)) {
             mkdir($uploadDir, 0777, true);
         }
 
-
+       
         if (move_uploaded_file($_FILES['foto_perfil']['tmp_name'], $uploadFile)) {
             $fotoPerfil = $fileName;  
         } else {
@@ -47,46 +45,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($action === 'update' && $id) {
         
-        $sql = "UPDATE cliente SET nome = ?, email = ?, senha = ?, tipo = ?, status = ?, id_area = ?, foto_perfil = ? WHERE id_cliente = ?";
+        $sql = "UPDATE trabalhador SET nome = ?, email = ?, senha = ?, descricao = ?, contato = ?, data_nasc = ?, id_categoria = ?, id_area = ?, foto_perfil = ? WHERE id_trabalhador = ?";
         $stmt = $conn->prepare($sql);
 
         if ($stmt === false) {
             die("Erro na preparação da consulta: " . $conn->error);
         }
 
-        $senhaHash = !empty($senha) ? password_hash($senha, PASSWORD_DEFAULT) : $_POST['senha_atual']; 
-        $stmt->bind_param('sssssssi', $nome, $email, $senhaHash, $tipo, $status, $id_area, $fotoPerfil, $id);
+        $senhaHash = !empty($senha) ? password_hash($senha, PASSWORD_DEFAULT) : $_POST['senha_atual']; // Mantém a senha atual se não for alterada
+        $stmt->bind_param('ssssssssis', $nome, $email, $senhaHash, $descricao, $contato, $data_nasc, $id_categoria, $id_area, $fotoPerfil, $id);
 
+      
         if ($stmt->execute()) {
             header('Location: ' . $_SERVER['PHP_SELF']);
             exit;
         } else {
-            echo "Erro ao atualizar cliente: " . $stmt->error;
+            echo "Erro ao atualizar trabalhador: " . $stmt->error;
         }
     } else if ($action === 'create') {
-    
-        $sql = "INSERT INTO cliente (nome, email, senha, tipo, status, id_area, foto_perfil) VALUES (?, ?, ?, ?, ?, ?, ?)";
+      
+        $sql = "INSERT INTO trabalhador (nome, email, senha, descricao, contato, data_nasc, id_categoria, id_area, foto_perfil) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
 
         if ($stmt === false) {
             die("Erro na preparação da consulta: " . $conn->error);
         }
 
-        $stmt->bind_param('sssssss', $nome, $email, password_hash($senha, PASSWORD_DEFAULT), $tipo, $status, $id_area, $fotoPerfil);
+        $stmt->bind_param('ssssssssi', $nome, $email, password_hash($senha, PASSWORD_DEFAULT), $descricao, $contato, $data_nasc, $id_categoria, $id_area, $fotoPerfil);
 
-        
         if ($stmt->execute()) {
             header('Location: ' . $_SERVER['PHP_SELF']);
             exit;
         } else {
-            echo "Erro ao adicionar cliente: " . $stmt->error;
+            echo "Erro ao adicionar trabalhador: " . $stmt->error;
         }
     }
 }
 
 
 if ($action === 'delete' && $id) {
-    $sql = "DELETE FROM cliente WHERE id_cliente = ?";
+    $sql = "DELETE FROM trabalhador WHERE id_trabalhador = ?";
     $stmt = $conn->prepare($sql);
     if ($stmt === false) {
         die("Erro na preparação da consulta: " . $conn->error);
@@ -98,13 +96,14 @@ if ($action === 'delete' && $id) {
         header('Location: ' . $_SERVER['PHP_SELF']);
         exit();
     } else {
-        die("Erro ao excluir cliente: " . $stmt->error);
+        die("Erro ao excluir trabalhador: " . $stmt->error);
     }
 }
 
-$cliente = [];
+
+$trabalhador = [];
 if ($action === 'edit' && $id) {
-    $sql = "SELECT * FROM cliente WHERE id_cliente = ?";
+    $sql = "SELECT * FROM trabalhador WHERE id_trabalhador = ?";
     $stmt = $conn->prepare($sql);
     if ($stmt === false) {
         die("Erro na preparação da consulta: " . $conn->error);
@@ -113,18 +112,19 @@ if ($action === 'edit' && $id) {
     $stmt->bind_param("i", $id);
     $stmt->execute();
     $result = $stmt->get_result();
-    $cliente = $result->fetch_assoc();
-    if ($cliente === false) {
-        die("Erro ao buscar cliente: " . $stmt->error);
+    $trabalhador = $result->fetch_assoc();
+    if ($trabalhador === false) {
+        die("Erro ao buscar trabalhador: " . $stmt->error);
     }
 }
 
-$sql = "SELECT * FROM cliente";
+
+$sql = "SELECT * FROM trabalhador";
 $result = $conn->query($sql);
 if ($result === false) {
     die("Erro na consulta: " . $conn->error);
 }
-$clientes = $result->fetch_all(MYSQLI_ASSOC);
+$trabalhadores = $result->fetch_all(MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -132,8 +132,8 @@ $clientes = $result->fetch_all(MYSQLI_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento Clientes</title>
-    <link rel="stylesheet" href="../css/stylecrudcliente.css">
+    <title>Gerenciamento Trabalhadores</title>
+    <link rel="stylesheet" href="../css/stylecrudtrabalhador.css">
     <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
     <link rel="shortcut icon" href="../img/logo@2x.png" type="image/x-icon">
 </head>
@@ -196,46 +196,64 @@ $clientes = $result->fetch_all(MYSQLI_ASSOC);
         </ul>
     </nav>
 
-    <h2><?php echo $action === 'edit' ? 'Editar Cliente' : 'Adicionar Novo Cliente'; ?></h2>
+    <h2><?php echo $action === 'edit' ? 'Editar Trabalhador' : 'Adicionar Novo Trabalhador'; ?></h2>
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>?action=<?php echo $action === 'edit' ? 'update' : 'create'; ?>" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="<?php echo htmlspecialchars($cliente['id_cliente'] ?? ''); ?>">
+        <input type="hidden" name="id" value="<?php echo htmlspecialchars($trabalhador['id_trabalhador'] ?? ''); ?>">
 
         <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($cliente['nome'] ?? ''); ?>" required>
+        <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($trabalhador['nome'] ?? ''); ?>" required>
         <br>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($cliente['email'] ?? ''); ?>" required>
+        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($trabalhador['email'] ?? ''); ?>" required>
         <br>
 
         <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" placeholder="">
+        <input type="password" id="senha" name="senha">
         <br>
 
         <label for="foto_perfil">Foto do Perfil:</label>
-        <div class="InputsLogin FotodePerfil">
-            <input type="file" name="foto_perfil" id="foto_perfil">
-        </div>
-        <?php if (!empty($cliente['foto_perfil'])): ?>
+        <input type="file" name="foto_perfil" id="foto_perfil">
+        <?php if (!empty($trabalhador['foto_perfil'])): ?>
             <br>
-            <img src="uploads/<?php echo htmlspecialchars($cliente['foto_perfil']); ?>" alt="Foto de Perfil" width="100">
+            <img src="uploads/<?php echo htmlspecialchars($trabalhador['foto_perfil']); ?>" alt="Foto de Perfil" width="100">
             <br>
         <?php endif; ?>
-        
-         <br>
+        <br>
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" name="descricao" required><?php echo htmlspecialchars($trabalhador['descricao'] ?? ''); ?></textarea>
+        <br>
+
+        <label for="contato">Contato:</label>
+        <input type="text" id="contato" name="contato" value="<?php echo htmlspecialchars($trabalhador['contato'] ?? ''); ?>" required>
+        <br>
+
+        <label for="data_nasc">Data de Nascimento:</label>
+        <input type="date" id="data_nasc" name="data_nasc" value="<?php echo htmlspecialchars($trabalhador['data_nasc'] ?? ''); ?>" required>
+        <br>
+
+        <label for="id_categoria">Categoria:</label>
+        <div class="box">
+            <select name="id_categoria" id="id_categoria">
+                <option value="">Selecione uma categoria</option>
+               
+            </select>
+        </div>
+        <br>
 
         <label for="id_area">Cidade:</label>
         <div class="box">
             <select name="id_area" id="id_area">
                 <option value="">Selecione uma área</option>
+               
             </select>
         </div>
         <br>
 
-        <button type="submit"><?php echo $action === 'edit' ? 'Atualizar Cliente' : 'Adicionar Cliente'; ?></button>
+        <button type="submit"><?php echo $action === 'edit' ? 'Atualizar Trabalhador' : 'Adicionar Trabalhador'; ?></button>
     </form>
 
-    <h2>Lista de Clientes</h2>
+    <h2>Lista de Trabalhadores</h2>
     <table>
         <thead>
             <tr>
@@ -243,21 +261,27 @@ $clientes = $result->fetch_all(MYSQLI_ASSOC);
                 <th>Nome</th>
                 <th>Email</th>
                 <th>Foto</th>
+                <th>Descrição</th>
+                <th>Contato</th>
+                <th>Data de Nascimento</th>
                 <th>Ações</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($clientes as $cliente): ?>
+            <?php foreach ($trabalhadores as $trabalhador): ?>
                 <tr>
-                    <td><?php echo htmlspecialchars($cliente['id_cliente']); ?></td>
-                    <td><?php echo htmlspecialchars($cliente['nome']); ?></td>
-                    <td><?php echo htmlspecialchars($cliente['email']); ?></td>
-                    <td><img src="uploads/<?php echo htmlspecialchars($cliente['foto_perfil']); ?>" alt="Foto" style="width: 50px;"></td>
+                    <td><?php echo htmlspecialchars($trabalhador['id_trabalhador']); ?></td>
+                    <td><?php echo htmlspecialchars($trabalhador['nome']); ?></td>
+                    <td><?php echo htmlspecialchars($trabalhador['email']); ?></td>
+                    <td><img src="uploads/<?php echo htmlspecialchars($trabalhador['foto_perfil']); ?>" alt="Foto" style="width: 50px;"></td>
+                    <td><?php echo htmlspecialchars($trabalhador['descricao']); ?></td>
+                    <td><?php echo htmlspecialchars($trabalhador['contato']); ?></td>
+                    <td><?php echo htmlspecialchars($trabalhador['data_nasc']); ?></td>
                     <td class="actions">
-                        <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>?action=edit&id=<?php echo $cliente['id_cliente']; ?>" title="Editar">
+                        <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>?action=edit&id=<?php echo $trabalhador['id_trabalhador']; ?>" title="Editar">
                             <img src="../img/editar-arquivo.png" alt="Editar">
                         </a>
-                        <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>?action=delete&id=<?php echo $cliente['id_cliente']; ?>" title="Excluir" onclick="return confirm('Você tem certeza que deseja excluir?');">
+                        <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>?action=delete&id=<?php echo $trabalhador['id_trabalhador']; ?>" title="Excluir" onclick="return confirm('Você tem certeza que deseja excluir?');">
                             <img src="../img/botao-apagar.png" alt="Excluir">
                         </a>
                     </td>
@@ -265,30 +289,44 @@ $clientes = $result->fetch_all(MYSQLI_ASSOC);
             <?php endforeach; ?>
         </tbody>
     </table>
-
     <script src="../js/funcaoMenuLateral.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const cidadeSelect = document.getElementById('id_area');
+      document.addEventListener('DOMContentLoaded', function() {
+        const areaSelect = document.getElementById('id_area');
+        const categoriaSelect = document.getElementById('id_categoria');
 
-            fetch('./getcidades.php')
-                .then(response => response.json())
-                .then(cidades => {
-                    console.log(cidades); 
-                    cidadeSelect.innerHTML = '<option value="">Selecione uma área</option>'; 
-                    cidades.forEach(cidade => {
-                        const option = document.createElement('option');
-                        option.value = cidade.id_area; 
-                        option.textContent = cidade.cidade; 
-                        cidadeSelect.appendChild(option);
-                    });
-                })
-                .catch(error => console.error('Erro ao carregar áreas:', error));
-        });
+
+        fetch('./getcidades.php')
+            .then(response => response.json())
+            .then(areas => {
+                console.log(areas); 
+                areaSelect.innerHTML = '<option value="">Selecione uma área</option>'; 
+                areas.forEach(area => {
+                    const option = document.createElement('option');
+                    option.value = area.id_area; 
+                    option.textContent = area.cidade; 
+                    areaSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Erro ao carregar áreas:', error));
+
+        fetch('./getcategoriacadastro.php')
+            .then(response => response.json())
+            .then(categorias => {
+                console.log(categorias); 
+                categoriaSelect.innerHTML = '<option value="">Selecione uma categoria</option>'; 
+                categorias.forEach(categoria => {
+                    const option = document.createElement('option');
+                    option.value = categoria.id_categoria; 
+                    option.textContent = categoria.nome; 
+                    categoriaSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Erro ao carregar categorias:', error));
+      });
     </script>
 
     <footer class="d-flex justify-content-center ">
