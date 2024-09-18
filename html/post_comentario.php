@@ -15,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!empty($comentario)) {
         // Definir as variáveis de cliente_id e trabalhador_id
-        $id_cliente = isset($_SESSION['id_cliente']) ? $_SESSION['user_id'] : null;
-        $id_trabalhador = isset($_SESSION['trabalhador']) ? $_SESSION['user_id'] : null;
+        $id_cliente = isset($_SESSION['id_cliente']) ? $_SESSION['id_cliente'] : null;
+        $id_trabalhador = isset($_SESSION['id_trabalhador']) ? $_SESSION['id_trabalhador'] : null;
 
         echo "<pre>";
         echo "ID Cliente: " . ($id_cliente !== null ? $id_cliente : 'Não definido') . "<br>";

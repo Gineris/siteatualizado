@@ -49,6 +49,7 @@ if ($result_adm->num_rows > 0) {
         $registroUsuario = $result_trabalhador->fetch_object();
         if (password_verify($senha, $registroUsuario->senha)) {
             $_SESSION['id_trabalhador'] = $registroUsuario->id_trabalhador;
+            $_SESSION['id_trabalhador'] = $result['id_trabalhador'];
             $_SESSION['nome'] = $registroUsuario->nome;
             $_SESSION['email'] = $registroUsuario->email;
             $_SESSION['status'] = $registroUsuario->status;

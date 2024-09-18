@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 18/09/2024 às 03:09
+-- Tempo de geração: 18/09/2024 às 15:55
 -- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.0.30
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -123,7 +123,8 @@ CREATE TABLE `cliente` (
 
 INSERT INTO `cliente` (`id_cliente`, `nome`, `email`, `senha`, `foto_perfil`, `tipo`, `status`, `id_area`, `contato`, `data_nasc`) VALUES
 (15, 'Maria', 'Maria12@gmail.com', '$2y$10$IQzkVoUhJjeZ1vZP6t5bp.KXuMji2zskEdJB1njGfU5FVIw1xS6jC', '../uploads/download.jfif', '', '', 7, '12121212121', '1981-05-13'),
-(16, 'Giovana Neris', 'giovananeris942@gmail.com', '$2y$10$iVzEfkTCsahEhOAkk4NqHeVrjCnJLNtDAL8YvaRdyKeM02PfUNI5u', '../uploads/download.jfif', '', '', 6, '12121212121', '2006-08-28');
+(16, 'Giovana Neris', 'giovananeris942@gmail.com', '$2y$10$iVzEfkTCsahEhOAkk4NqHeVrjCnJLNtDAL8YvaRdyKeM02PfUNI5u', '../uploads/download.jfif', '', '', 6, '12121212121', '2006-08-28'),
+(17, 'louco', 'louco3@gmail.com', '$2y$10$4u9OGrWR.s0OUuFAggJCGueCf9zXqYdCn98jPMx3grria8GGReSiu', '../uploads/images.jpg', '', '', 5, '11111111111', '2000-12-12');
 
 -- --------------------------------------------------------
 
@@ -133,11 +134,21 @@ INSERT INTO `cliente` (`id_cliente`, `nome`, `email`, `senha`, `foto_perfil`, `t
 
 CREATE TABLE `comentarios` (
   `id_comentario` int(11) NOT NULL,
-  `id_publicacao` int(11) NOT NULL,
   `id_cliente` int(11) NOT NULL,
+  `id_trabalhador` int(11) NOT NULL,
   `comentario` text NOT NULL,
   `data_comentario` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `comentarios`
+--
+
+INSERT INTO `comentarios` (`id_comentario`, `id_cliente`, `id_trabalhador`, `comentario`, `data_comentario`) VALUES
+(1, 17, 17, 'fggg', '2024-09-18 13:36:16'),
+(2, 17, 17, 'lllllll', '2024-09-18 13:50:27'),
+(3, 17, 17, 'aa', '2024-09-18 13:53:16'),
+(4, 17, 17, 'ghggg', '2024-09-18 13:54:01');
 
 -- --------------------------------------------------------
 
@@ -251,8 +262,8 @@ ALTER TABLE `cliente`
 --
 ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`id_comentario`),
-  ADD KEY `id_publicacao` (`id_publicacao`),
-  ADD KEY `id_cliente` (`id_cliente`);
+  ADD KEY `id_cliente` (`id_cliente`),
+  ADD KEY `id_trabalhador` (`id_trabalhador`);
 
 --
 -- Índices de tabela `conversas`
@@ -313,13 +324,13 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de tabela `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `conversas`
@@ -359,8 +370,8 @@ ALTER TABLE `area_atuação`
 -- Restrições para tabelas `comentarios`
 --
 ALTER TABLE `comentarios`
-  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_publicacao`) REFERENCES `comentarios` (`id_comentario`),
-  ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `comentarios` (`id_comentario`);
+  ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`),
+  ADD CONSTRAINT `comentarios_ibfk_3` FOREIGN KEY (`id_trabalhador`) REFERENCES `trabalhador` (`id_trabalhador`);
 
 --
 -- Restrições para tabelas `conversas`
