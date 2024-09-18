@@ -40,6 +40,12 @@ if (isset($_SESSION['id_cliente'])) {
 
 
 ?>
+<style>
+    nav.menuLateral{
+    width: 65px;
+    height: 370px;
+    }
+</style>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -79,9 +85,9 @@ if (isset($_SESSION['id_cliente'])) {
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="./SeuPerfil.php">
-                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
-                        <span class="txtLink">Perfil</span>
+                    <a href="./EditarPerfilCliente.php">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="txtLink">Configurações</span>
                     </a>
                 </li>
                 <li class="itemMenu ">
@@ -96,12 +102,7 @@ if (isset($_SESSION['id_cliente'])) {
                         <span class="txtLink">Favoritos</span>
                     </a>
                 </li>
-                <li class="itemMenu">
-                    <a href="./EditarPerfil.php">
-                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-                        <span class="txtLink">Configurações</span>
-                    </a>
-                </li>
+                
                 <li class="itemMenu">
                     <a href="#">
                         <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
