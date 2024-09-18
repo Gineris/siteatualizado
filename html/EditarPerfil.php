@@ -1,6 +1,14 @@
 <?php
 session_start();
-// include_once('../backend/Conexao.php');
+include_once('../backend/Conexao.php');
+
+$id_trabalhador = $_SESSION['id_trabalhador'];
+
+$sql = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador'";
+$result = $conn->query($sql);
+
+$resultado_pesquisar = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($resultado_pesquisar);
 
 
 ?>
@@ -20,9 +28,10 @@ session_start();
             <img src="../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
             <h1>Editar Perfil</h1>
             <div class="perfil">
-                <a href="#">
-                <ion-icon name="person"></ion-icon>
-                </a>
+            <img class="FotoPerfil" src="../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/FotoPerfilGeral.png' ?>" alt="">
+            <!-- <a href="#">
+                    <img class="FotoPerfil" src="../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/FotoPerfilGeral.png' ?>" alt="">
+                </a> -->
             </div>
         </nav>
     </header>
@@ -79,31 +88,31 @@ session_start();
                 <div class="container">
                     <div class="row me-0 mb-5 topoPerfil">
                         <div class="col-1 sucess imgPerfil" >
-                            <img src="../uploads/<?php echo !empty($_SESSION['foto_perfil']) ? $_SESSION['foto_perfil'] : '../img/images100x100.png' ?>" alt="Foto de perfil">
+                            <img src="../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/images100x100.png' ?>" alt="Foto de perfil">
                     </div>
                     <div class="col txtPerfil d-flex flex-column justify-content-center">
-                        <h3><?php echo $_SESSION['nome']; ?></h3>
-                        <p><?php echo !empty($_SESSION['descricao']) ? $_SESSION['descricao'] : 'Sua descrição...' ?></p>
+                        <h3><?php echo $row['nome']; ?></h3>
+                         <p><?php echo !empty($row['descricao']) ? $row['descricao'] : 'Sua descrição...' ?></p>
                     </div>
-                                </div>
+                    </div>
                     
                     <form method="POST" action="../backend/AtualizaDados.php" enctype="multipart/form-data">
                         <div class="row me-0 ">
                             <div class="col coluna1">
                                 <div class="EstiloInputs">
-                                    <input type="text" name="nome" id="nome" value="<?php echo $_SESSION['nome']; ?>">
+                                    <input type="text" name="nome" id="nome" value="<?php echo $row['nome']; ?>">
                                 </div>
                                 <div class="EstiloInputs">
-                                    <input type="email" name="email" id="" value="<?php echo $_SESSION['email']; ?>">
+                                    <input type="email" name="email" id="" value="<?php echo $row['email']; ?>">
                                 </div>
                                 <div class="EstiloInputs">
                                     <input type="password" name="senha" id="Senha" placeholder="Nova senha">
                                 </div>
                                 <div class="EstiloInputs">
-                                    <input type="text" name="contato" id="contato" value="<?php echo !empty($_SESSION['contato']) ? $_SESSION['contato'] :  ''  ?>" placeholder="Atualize seu telefone">
+                                    <input type="text" name="contato" id="contato" value="<?php echo !empty($row['contato']) ? $row['contato'] :  ''  ?>" placeholder="Atualize seu telefone">
                                 </div>
                                 <div class="EstiloInputs mb-5">
-                                    <input type="date" name="data_nasc" id="data_nasc" value="<?php echo !empty($_SESSION['data_nasc']) ? $_SESSION['data_nasc'] : '' ?>">
+                                    <input type="date" name="data_nasc" id="data_nasc" value="<?php echo !empty($row['data_nasc']) ? $row['data_nasc'] : '' ?>">
                                 </div>
                             </div>
                             <div class="col">
@@ -118,7 +127,7 @@ session_start();
                                     </select>
                                 </div>
                                 <div>
-                                    <textarea name="descricao" id="descricao"><?php echo !empty($_SESSION['descricao']) ? $_SESSION['descricao'] : 'Fale sobre você...' ?></textarea>
+                                    <textarea name="descricao" id="descricao"><?php echo !empty($row['descricao']) ? $row['descricao'] : 'Fale sobre você...' ?></textarea>
                                 </div>
                             </div>
                         </div>
