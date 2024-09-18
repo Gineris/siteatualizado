@@ -18,7 +18,7 @@ if ($senha !== $confirmaSenha) {
     exit();
 }
 
-// Verifica se o usuário é um administrador
+
 $sql_adm = "SELECT * FROM adm WHERE email = ?";
 $stmt_adm = $conn->prepare($sql_adm);
 $stmt_adm->bind_param("s", $email);
@@ -38,7 +38,7 @@ if ($result_adm->num_rows > 0) {
         exit();
     }
 } else {
-    // Verifica se o usuário é um trabalhador
+ 
     $sql_trabalhador = "SELECT * FROM trabalhador WHERE email = ?";
     $stmt_trabalhador = $conn->prepare($sql_trabalhador);
     $stmt_trabalhador->bind_param("s", $email);

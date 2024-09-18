@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dataNascimento = new DateTime($data_nascimento);
     $idade = $dataAtual->diff($dataNascimento)->y;
 
-    // Validações
+  
     if (empty($nome) || empty($email) || empty($senha) || empty($confirmaSenha) || empty($id_area) || empty($contato) || empty($data_nascimento)) {
         echo json_encode(['sucesso' => false, 'mensagem' => 'Todos os campos são obrigatórios.']);
         exit;
@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo json_encode(['sucesso' => false, 'mensagem' => 'Você deve ter pelo menos 15 anos para se cadastrar.']);
         exit;
     }
-  // Verifica se o e-mail já está registrado
+
   $sql = "SELECT COUNT(*) FROM cliente WHERE email = ?";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("s", $email);
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       exit;
   }
 
-    // Processa o upload da foto de perfil
+  
     $diretorio = '../uploads/'; 
     $nomeArquivo = basename($fotoDePerfil['name']);
     $caminhoCompleto = $diretorio . $nomeArquivo;

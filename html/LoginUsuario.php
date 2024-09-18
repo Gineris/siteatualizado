@@ -69,34 +69,34 @@
                     return;
                 }
 
-                var formData = new FormData(this); // Coleta os dados do formulário
+                var formData = new FormData(this); 
 
-                fetch('./validaCliente.php', { // Corrigido para o nome correto do arquivo PHP
+                fetch('./validaCliente.php', { 
                     method: 'POST',
                     body: formData
                 })
-                .then(response => response.json()) // Espera a resposta em formato JSON
+                .then(response => response.json()) 
                 .then(data => {
                     var mensagemSucesso = document.getElementById('mensagemSucesso');
                     var mensagemErro = document.getElementById('mensagemErro');
 
                     if (data.sucesso) {
-                        // Exibe mensagem de sucesso e oculta erro
+                        
                         mensagemSucesso.innerText = 'Login realizado com sucesso!';
                         mensagemSucesso.style.display = 'block';
                         mensagemErro.style.display = 'none';
 
-                        // Redireciona com base no tipo de usuário
-                        window.location.href = data.redirect; // Usa o redirect retornado pelo PHP
+                       
+                        window.location.href = data.redirect; 
                     } else {
-                        // Exibe mensagem de erro
+                        
                         mensagemErro.innerText = data.mensagem;
                         mensagemErro.style.display = 'block';
                         mensagemSucesso.style.display = 'none';
                     }
                 })
                 .catch(error => {
-                    // Lida com erros na requisição
+                    
                     console.error('Erro ao enviar o formulário:', error);
                     var mensagemErro = document.getElementById('mensagemErro');
                     mensagemErro.innerText = 'Erro ao enviar o formulário. Tente novamente.';

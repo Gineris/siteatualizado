@@ -1,24 +1,31 @@
-function curtirPerfil(trabalhadorId) {
-    // Faz uma requisição AJAX para o servidor para curtir o perfil
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "curtir.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            // Atualiza o número de curtidas no frontend
-            document.getElementById('curtidas').innerText = xhr.responseText;
+document.querySelectorAll('.favorite-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const workerId = this.getAttribute('data-id');
+        const icon = this.querySelector('.favorite-icon');
+        
+        // Verifica o estado do favorito
+        if (icon.classList.contains('bi-heart')) {
+            icon.classList.remove('bi-heart');
+            icon.classList.add('bi-heart-fill'); // Muda para preenchido
+            // Enviar requisição para adicionar aos favoritos
+            fetch('favorito.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id_trabalhador: workerId }),
+            });
+        } else {
+            icon.classList.remove('bi-heart-fill');
+            icon.classList.add('bi-heart'); // Muda para vazio
+            // Enviar requisição para remover dos favoritos
+            fetch('remover_favorito.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id_trabalhador: workerId }),
+            });
         }
-    };
-    xhr.send("id=" + trabalhadorId);
-}
-
-function curtir() {
-    const curtidas = document.getElementById('curtida');
-    if (curtidas.type === 'int') {
-        olhoIcon.classList.remove('bi bi-heart');
-        olhoIcon.classList.add('bi bi-heart-fill');
-    } else {
-        olhoIcon.classList.remove('bi bi-heart-fill');
-        olhoIcon.classList.add('bi bi-heart');
-    }
-}
+    });
+});
