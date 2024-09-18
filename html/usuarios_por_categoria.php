@@ -1,5 +1,15 @@
 <?php
+session_start();
 include_once ('../backend/Conexao.php');
+
+$id_trabalhador = $_SESSION['id_trabalhador'];
+
+$sql = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador'";
+$result = $conn->query($sql);
+
+$resultado_pesquisar = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($resultado_pesquisar);
+
 
 $id_categoria = $_GET['id_categoria'];
 
@@ -62,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             <div class="perfil">
                 <a href="#">
-                <ion-icon name="person"></ion-icon>
+                <img class="FotoPerfilNav" src="../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/FotoPerfilGeral.png' ?>" alt="">
                 </a>
             </div>
         </nav>
@@ -74,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <ul>
                 <li class="itemMenu ">
-                    <a href="#">
+                    <a href="./homeLogado.php">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
                     </a>
@@ -98,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="./EditarPerfil.html">
+                    <a href="./EditarPerfil.php">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
                         <span class="txtLink">Configurações</span>
                     </a>

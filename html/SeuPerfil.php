@@ -61,7 +61,7 @@
 
             <div class="perfil">
                 <a href="#">
-                <ion-icon name="person"></ion-icon>
+                <img class="FotoPerfilNav" src="../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/FotoPerfilGeral.png' ?>" alt="">
                 </a>
             </div>
         </nav>
