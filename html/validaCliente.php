@@ -43,7 +43,9 @@ if ($result_adm->num_rows > 0) {
         if (password_verify($senha, $row_cliente['senha'])) {
             // Login bem-sucedido
             $_SESSION['email'] = $email;
-            echo json_encode(['sucesso' => true, 'tipo' => 'cliente', 'redirect' => './homeLogado.php']);
+            $_SESSION['id_cliente'] = $row_cliente['id_cliente'];
+
+            echo json_encode(['sucesso' => true, 'tipo' => 'cliente', 'redirect' => './cliente/homeClienteLogado.php']);
         } else {
             // Senha inválida
             echo json_encode(['sucesso' => false, 'mensagem' => 'Email ou senha inválidos']);
