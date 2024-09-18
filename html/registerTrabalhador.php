@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dataNascimento = new DateTime($data_nascimento);
     $idade = $dataAtual->diff($dataNascimento)->y;
 
-    // Validações
+
     if (empty($nome) || empty($email) || empty($senha) || empty($confirmaSenha) || empty($id_area) || empty($id_categoria) || empty($contato) || empty($data_nascimento)) {
         echo json_encode(['sucesso' => false, 'mensagem' => 'Todos os campos são obrigatórios.']);
         exit;

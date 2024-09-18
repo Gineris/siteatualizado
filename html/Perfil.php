@@ -129,14 +129,15 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
                 <div class="tel">
                     <?php echo '<p> Tel: ' . htmlspecialchars($row['contato']) . '</p>' ?>
                 </div>
-                <div class="LocaleLikes">
-                    <!-- <ion-icon name="location-outline"></ion-icon> -->
-                    <i class="bi bi-heart" id="curtida" onclick="curtir()"></i>
-                    <?php
-                        // echo "<p>Curtidas: <span id='curtidas'>{$trabalhador['curtidas']}</span></p>";
-                        // echo "<button onclick='curtirPerfil({$trabalhador['id']})'>Curtir</button>";
-                    ?>
-                </div>
+                <button class="favorite-btn" data-id="<?php echo $row['id_trabalhador']; ?>">
+                    <?php if ($isFavorito): ?>
+                     <i class="bi bi-heart-fill favorite-icon"></i>
+                    <?php else: ?>
+                     <i class="bi bi-heart favorite-icon"></i>
+                    <?php endif; ?>
+                </button>
+
+
             </div>
 
             <div class="txt">

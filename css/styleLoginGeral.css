@@ -184,3 +184,28 @@ footer{
 footer p{
     padding: 0px 10px 0px 10px;
 }
+.alert {
+    display: none;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+.alert.show {
+    display: block;
+}
+.alert-danger {
+    background-color: #460006;
+    color: #f1d3d6;
+    font-family: "Poppins";
+}
+.alert-success {
+    
+    color: #ecfff1;
+    font-family: "Poppins";
+}
+.alert .close {
+    cursor: pointer;
+    float: right;
+    font-size: 1.2em;
+    line-height: 1;
+}
