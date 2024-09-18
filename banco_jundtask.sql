@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16/09/2024 às 17:11
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- Tempo de geração: 18/09/2024 às 03:09
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,17 +24,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `admin`
+-- Estrutura para tabela `adm`
 --
 
-CREATE TABLE `admin` (
+CREATE TABLE `adm` (
   `id_admin` int(11) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `senha` varchar(128) NOT NULL,
   `foto_perfil` text NOT NULL,
-  `tipo` varchar(1) NOT NULL
+  `tipo` varchar(1) NOT NULL,
+  `contato` int(11) NOT NULL,
+  `data_nasc` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `adm`
+--
+
+INSERT INTO `adm` (`id_admin`, `nome`, `email`, `senha`, `foto_perfil`, `tipo`, `contato`, `data_nasc`) VALUES
+(2, 'Giovana Neris', 'Admin@gmail.com', '$2y$10$r0TlgDt5X1y/jtlRdDywn.7XMYQvMu93/MPTOM2pyjMGYS5r2DCXG', '../uploads/download.jfif', 'A', 0, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -102,17 +111,19 @@ CREATE TABLE `cliente` (
   `senha` varchar(128) NOT NULL,
   `foto_perfil` text NOT NULL,
   `tipo` varchar(1) NOT NULL,
-  `status` varchar(1) NOT NULL
+  `status` varchar(1) NOT NULL,
+  `id_area` int(11) NOT NULL,
+  `contato` varchar(11) NOT NULL,
+  `data_nasc` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `cliente`
 --
 
-INSERT INTO `cliente` (`id_cliente`, `nome`, `email`, `senha`, `foto_perfil`, `tipo`, `status`) VALUES
-(5, '', '', '', '', '', ''),
-(6, 'Mateus', '1234', 'camelo@etec.sp.gov.br', '', '', ''),
-(7, 'fernando', 'fernandomalvado@gmail.com', '777', '', '', '');
+INSERT INTO `cliente` (`id_cliente`, `nome`, `email`, `senha`, `foto_perfil`, `tipo`, `status`, `id_area`, `contato`, `data_nasc`) VALUES
+(15, 'Maria', 'Maria12@gmail.com', '$2y$10$IQzkVoUhJjeZ1vZP6t5bp.KXuMji2zskEdJB1njGfU5FVIw1xS6jC', '../uploads/download.jfif', '', '', 7, '12121212121', '1981-05-13'),
+(16, 'Giovana Neris', 'giovananeris942@gmail.com', '$2y$10$iVzEfkTCsahEhOAkk4NqHeVrjCnJLNtDAL8YvaRdyKeM02PfUNI5u', '../uploads/download.jfif', '', '', 6, '12121212121', '2006-08-28');
 
 -- --------------------------------------------------------
 
@@ -200,19 +211,20 @@ CREATE TABLE `trabalhador` (
 --
 
 INSERT INTO `trabalhador` (`id_trabalhador`, `nome`, `email`, `senha`, `foto_perfil`, `foto_trabalho1`, `foto_trabalho2`, `foto_trabalho3`, `foto_banner`, `descricao`, `contato`, `data_nasc`, `media_avaliacao`, `tipo`, `status`, `id_categoria`, `id_area`) VALUES
-(4, 'Giovana', 'giovana@gmail.com', '123', '../img/FotoTesteMuie.png', '', '', '', '0', 'faço serviço domestico a mais de 5 anos', '123123123', '0000-00-00', 5.00, '', '', 1, 2),
-(6, 'Guilherme', 'gui@gmail.com', '123456', '../uploads/download.jpg', '', '', '', '0', 'blakfjbgalfkjblfkbjaofibh', '21321321321321', '0000-00-00', 9.99, '', '', 1, 2),
 (7, 'Pablo', 'pablo@gmail.vom', '123', '', '', '', '', '0', 'fasso koizas', '11 999999 8888', '2004-08-03', 1.00, '', '', 1, 2),
-(15, 'Pato Rogério da Silva Junior', 'Patinho123@gmail.com', '$2y$10$I5NP99ROmwp36405wohCxOWRzcikOBp8a7yJQbiIZD9JJN3WZhAKy', 'teste.jpeg', 'fundo1.jpg', 'fundo2.jpg', 'testeFundo.jpeg', 'fundoPerfil.png', 'Patoo                                                                        ', '11 99999 8888', '1111-11-11', 0.00, '', '', 11, 7);
+(15, 'Pato Rog', 'Patinho123@gmail.com', '', '0', 'fundo1.jpg', 'fundo2.jpg', 'testeFundo.jpeg', 'fundoPerfil.png', 'Patoo                                                                        ', '11 99999 8888', '1111-11-11', 0.00, '', '', 1, 3),
+(17, 'michele', 'gui@gmail.com', '$2y$10$2GLOHF./f4ZZYWAFFRVt3OmUyBHSs5ZGrwcblOAY2PXOmwHTniWFy', '../uploads/download.jfif', '', '', '', '', '', '12121212121', '2002-10-16', 0.00, '', '', 8, 6),
+(18, 'Maria', 'ma@gmail.com', '$2y$10$RRoK..jGqYKCBkwinAvE3eR9jnxdLJ6zL1ZGH47MniZ8KvrWD0c3a', '../uploads/download.jfif', '', '', '', '', '', '12121212121', '1923-07-05', 0.00, '', '', 10, 5),
+(19, 'michele', 'paula@gmail.com', '$2y$10$a0SxUD2HQn4qW8WD28p.euT.5j0sjrL9akpfyCPu9vLvqUX0iJX1C', '../uploads/download.jfif', '', '', '', '', '', '12121212121', '1987-09-25', 0.00, '', '', 10, 6);
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices de tabela `admin`
+-- Índices de tabela `adm`
 --
-ALTER TABLE `admin`
+ALTER TABLE `adm`
   ADD PRIMARY KEY (`id_admin`);
 
 --
@@ -280,10 +292,10 @@ ALTER TABLE `trabalhador`
 --
 
 --
--- AUTO_INCREMENT de tabela `admin`
+-- AUTO_INCREMENT de tabela `adm`
 --
-ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `adm`
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `area_atuação`
@@ -301,7 +313,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `comentarios`
@@ -331,7 +343,7 @@ ALTER TABLE `mensagens`
 -- AUTO_INCREMENT de tabela `trabalhador`
 --
 ALTER TABLE `trabalhador`
-  MODIFY `id_trabalhador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_trabalhador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Restrições para tabelas despejadas

@@ -17,7 +17,7 @@
         </nav>
     </header>
     <main class="LoginGeral">
-        <form method="POST" action="./validaCliente.php" onsubmit="return verificaSenha()">
+        <form id="formLogin" method="POST">
             <div class="row me-0">
                 <div class="col">
                     <div class="tituloLogin">
@@ -25,64 +25,82 @@
                         <h1>Login Usuario</h1>
                     </div>
 
-
                     <div class="login-container">
-        <form id="formLogin" method="POST">
-            <div id="mensagemErro" class="alert alert-danger" style="display: none;">
-                <span class="close" onclick="this.parentElement.style.display='none'">&times;</span>
-            </div>
+                        <div id="mensagemErro" class="alert alert-danger" style="display: none;">
+                            <span class="close" onclick="this.parentElement.style.display='none'">&times;</span>
+                        </div>
 
-            <div id="mensagemSucesso" class="alert alert-success" style="display: none;">
-                <span class="close" onclick="this.parentElement.style.display='none'">&times;</span>
-            </div>
+                        <div id="mensagemSucesso" class="alert alert-success" style="display: none;">
+                            <span class="close" onclick="this.parentElement.style.display='none'">&times;</span>
+                        </div>
 
-            <div class="InputsLogin">
-                <input type="text" name="email" id="email" placeholder="Email" required>
-            </div>
+                        <div class="InputsLogin">
+                            <input type="text" name="email" id="email" placeholder="Email" required>
+                        </div>
 
-            <div class="InputsLogin Senha">
-                <input type="password" name="senha" id="senha" placeholder="Senha" required>
-                <i class="bi bi-eye-slash" id="olho" onclick="mostrarSenha()"></i>
-            </div>
+                        <div class="InputsLogin Senha">
+                            <input type="password" name="senha" id="senha" placeholder="Senha" required>
+                            <i class="bi bi-eye-slash" id="olho" onclick="mostrarSenha()"></i>
+                        </div>
 
-            <div class="BotaoLogin">
-                <input type="submit" value="Login">
+                        <div class="InputsLogin ConfirmaSenha">
+                            <input type="password" name="ConfirmaSenha" id="ConfirmaSenha" placeholder="Confirmar senha" required>
+                            <i class="bi bi-eye-slash" id="olho2" onclick="mostrarSenhaConfirma()"></i>  
+                        </div>
+
+                        <div class="BotaoLogin">
+                            <input type="submit" value="Login">
+                        </div>
+                    </div>
+                </div>
             </div>
         </form>
-
         <script>
             document.getElementById('formLogin').addEventListener('submit', function(event) {
-                event.preventDefault();
+                event.preventDefault(); // Previne o comportamento padrão do formulário
 
-                var formData = new FormData(this);
+                var senha = document.getElementById('senha').value;
+                var confirmaSenha = document.getElementById('ConfirmaSenha').value;
 
-                fetch('../html/LoginUsuario.php', {
+                if (senha !== confirmaSenha) {
+                    var mensagemErro = document.getElementById('mensagemErro');
+                    mensagemErro.innerText = 'As senhas não coincidem.';
+                    mensagemErro.style.display = 'block';
+                    return;
+                }
+
+                var formData = new FormData(this); // Coleta os dados do formulário
+
+                fetch('./validaCliente.php', { // Corrigido para o nome correto do arquivo PHP
                     method: 'POST',
                     body: formData
                 })
-                .then(response => response.json())
+                .then(response => response.json()) // Espera a resposta em formato JSON
                 .then(data => {
                     var mensagemSucesso = document.getElementById('mensagemSucesso');
                     var mensagemErro = document.getElementById('mensagemErro');
 
                     if (data.sucesso) {
+                        // Exibe mensagem de sucesso e oculta erro
                         mensagemSucesso.innerText = 'Login realizado com sucesso!';
-                        mensagemSucesso.style.display = 'block'; // Garante que a mensagem de sucesso seja exibida
-                        mensagemErro.style.display = 'none'; // Oculta a mensagem de erro
+                        mensagemSucesso.style.display = 'block';
+                        mensagemErro.style.display = 'none';
 
-                        // Redireciona para a página apropriada
-                        window.location.href = data.redirect;
+                        // Redireciona com base no tipo de usuário
+                        window.location.href = data.redirect; // Usa o redirect retornado pelo PHP
                     } else {
+                        // Exibe mensagem de erro
                         mensagemErro.innerText = data.mensagem;
-                        mensagemErro.style.display = 'block'; // Garante que a mensagem de erro seja exibida
-                        mensagemSucesso.style.display = 'none'; // Oculta a mensagem de sucesso
+                        mensagemErro.style.display = 'block';
+                        mensagemSucesso.style.display = 'none';
                     }
                 })
                 .catch(error => {
+                    // Lida com erros na requisição
                     console.error('Erro ao enviar o formulário:', error);
                     var mensagemErro = document.getElementById('mensagemErro');
                     mensagemErro.innerText = 'Erro ao enviar o formulário. Tente novamente.';
-                    mensagemErro.style.display = 'block'; // Garante que a mensagem de erro seja exibida
+                    mensagemErro.style.display = 'block';
                 });
             });
 
@@ -93,6 +111,15 @@
                 olhoIcon.classList.toggle('bi-eye');
                 olhoIcon.classList.toggle('bi-eye-slash');
             }
+
+            function mostrarSenhaConfirma() {
+                var confirmaSenhaInput = document.getElementById('ConfirmaSenha');
+                confirmaSenhaInput.type = confirmaSenhaInput.type === 'password' ? 'text' : 'password';
+                var olhoIcon = document.getElementById('olho2');
+                olhoIcon.classList.toggle('bi-eye');
+                olhoIcon.classList.toggle('bi-eye-slash');
+            }
         </script>
+    </main>
 </body>
 </html>
