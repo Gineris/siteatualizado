@@ -79,27 +79,33 @@
                 <img src="../img/boasvindasCliente.png" alt="" >
             </div>
        </div>
-    <div class="container">
-       <div class="card">
-       <a href="./sistemacrudCliente.php" class="card-button"></a>
-        <img src="" alt="Imagem do Card" class="card-image">
-        <div class="card-content">
-            <h2 class="card-title">Usuario cliente</h2>
-        </div>
+       <div class="container">
+    <div class="card">
+        <a href="./sistemacrudcliente.php" class="card-button">
+            <img src="../img/admin-panel (1).png" alt="Imagem do Card" class="card-image">
+            <div class="card-content">
+                <h2 class="card-title">Gerenciamento Cliente</h2>
+            </div>
+        </a>
     </div>
-    <div class="card" href="./sistemacrudCliente.php" class="card-button">
-        <img src="" alt="Imagem do Card" class="card-image">
-        <div class="card-content">
-            <h2 class="card-title">Usuario Trabalhador</h2>
-        </div>
+    <div class="card">
+        <a href="./sistemacrudtrabalhador.php" class="card-button">
+            <img src="../img/admin-panel.png" alt="Imagem do Card" class="card-image">
+            <div class="card-content">
+                <h2 class="card-title">Gerenciamento Trabalhador</h2>
+            </div>
+        </a>
     </div>
-    <div class="card" href="./sistemacrudCliente.php" class="card-button">
-        <img src="" alt="Imagem do Card" class="card-image">
-        <div class="card-content">
-            <h2 class="card-title">Categorias</h2>
-        </div>
+    <div class="card">
+        <a href="./adicionacategoria.php" class="card-button">
+            <img src="../img/app-settings.png" alt="Imagem do Card" class="card-image">
+            <div class="card-content">
+                <h2 class="card-title">Adicionar Categorias</h2>
+            </div>
+        </a>
     </div>
-    </div>
+</div>
+
     </main>
 
     <footer class="d-flex justify-content-center " >

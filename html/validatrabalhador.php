@@ -2,64 +2,73 @@
 session_start();
 include_once('../backend/Conexao.php');
 
-
 $email = $_POST['email'] ?? '';
 $senha = $_POST['senha'] ?? '';
+$confirmaSenha = $_POST['ConfirmaSenha'] ?? '';
 
-if (empty($email) || empty($senha)) {
+if (empty($email) || empty($senha) || empty($confirmaSenha)) {
     $_SESSION['mensagem'] = "Preencha todos os campos.";
     header('Location: ./LoginTrabalhador.php');
     exit();
 }
 
-
-$sql = "SELECT * FROM trabalhador WHERE email = ?";
-$stmt = $conn->prepare($sql);
-
-if ($stmt) {
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $registroUsuario = $result->fetch_object();
-
-    if ($registroUsuario) {
-
-        if (password_verify($senha, $registroUsuario->senha)) {
-
-            $_SESSION['mensagem'] = "Usuário Logado com sucesso!!!!";
-            $_SESSION['id_trabalhador'] = $registroUsuario->id_trabalhador;  // tirar em caso de duvida
-            $_SESSION['nome'] = $registroUsuario->nome;
-            $_SESSION['email'] = $registroUsuario->email;
-            $_SESSION['senha'] = $registroUsuario->senha;
-            $_SESSION['status'] = $registroUsuario->status;
-            $_SESSION['logado'] = true;
-
-            
-            header('Location: ./homeLogado.php');
-            exit();
-        } else {
-
-            $_SESSION['mensagem'] = "Senha incorreta!!!!!";
-            $_SESSION['logado'] = false;
-            header('Location: ./LoginTrabalhador.php');
-            exit();
-        }
-    } else {
-
-        $_SESSION['mensagem'] = "Usuário não encontrado!!!!!";
-        $_SESSION['logado'] = false;
-        header('Location: ./LoginTrabalhador.php');
-        exit();
-    }
-
-    $stmt->close();
-} else {
-
-    $_SESSION['mensagem'] = "Erro na preparação da consulta.";
+if ($senha !== $confirmaSenha) {
+    $_SESSION['mensagem'] = "As senhas não coincidem.";
     header('Location: ./LoginTrabalhador.php');
     exit();
 }
 
+// Verifica se o usuário é um administrador
+$sql_adm = "SELECT * FROM adm WHERE email = ?";
+$stmt_adm = $conn->prepare($sql_adm);
+$stmt_adm->bind_param("s", $email);
+$stmt_adm->execute();
+$result_adm = $stmt_adm->get_result();
+
+if ($result_adm->num_rows > 0) {
+    $row_adm = $result_adm->fetch_assoc();
+    if (password_verify($senha, $row_adm['senha'])) {
+        $_SESSION['email'] = $email;
+        $_SESSION['logado'] = true;
+        header('Location: ./homeAdm.php');
+        exit();
+    } else {
+        $_SESSION['mensagem'] = "Senha incorreta para administrador.";
+        header('Location: ./LoginTrabalhador.php');
+        exit();
+    }
+} else {
+    // Verifica se o usuário é um trabalhador
+    $sql_trabalhador = "SELECT * FROM trabalhador WHERE email = ?";
+    $stmt_trabalhador = $conn->prepare($sql_trabalhador);
+    $stmt_trabalhador->bind_param("s", $email);
+    $stmt_trabalhador->execute();
+    $result_trabalhador = $stmt_trabalhador->get_result();
+
+    if ($result_trabalhador->num_rows > 0) {
+        $registroUsuario = $result_trabalhador->fetch_object();
+        if (password_verify($senha, $registroUsuario->senha)) {
+            $_SESSION['id_trabalhador'] = $registroUsuario->id_trabalhador;
+            $_SESSION['nome'] = $registroUsuario->nome;
+            $_SESSION['email'] = $registroUsuario->email;
+            $_SESSION['status'] = $registroUsuario->status;
+            $_SESSION['logado'] = true;
+            header('Location: ./homeLogado.php');
+            exit();
+        } else {
+            $_SESSION['mensagem'] = "Senha incorreta para trabalhador.";
+            header('Location: ./LoginTrabalhador.php');
+            exit();
+        }
+    } else {
+        $_SESSION['mensagem'] = "Usuário não encontrado.";
+        header('Location: ./LoginTrabalhador.php');
+        exit();
+    }
+
+    $stmt_trabalhador->close();
+}
+
+$stmt_adm->close();
 $conn->close();
 ?>
-

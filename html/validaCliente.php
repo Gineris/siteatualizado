@@ -1,92 +1,63 @@
 <?php
 session_start();
+
 include_once('../backend/Conexao.php');
 
-header('Content-Type: application/json');
+// Recebe os dados do formulário de login
+$email = $_POST['email'];
+$senha = $_POST['senha'];
 
-$email = $_POST['email'] ?? '';
-$senha = $_POST['senha'] ?? '';
+// Consulta para verificar se o usuário é um administrador
+$sql_adm = "SELECT * FROM adm WHERE email = ?";
+$stmt_adm = $conn->prepare($sql_adm);
+$stmt_adm->bind_param("s", $email);
+$stmt_adm->execute();
+$result_adm = $stmt_adm->get_result();
 
-if (empty($email) || empty($senha)) {
-    echo json_encode(['sucesso' => false, 'mensagem' => 'Preencha todos os campos.']);
-    exit();
-}
+if ($result_adm->num_rows > 0) {
+    // Usuário encontrado na tabela 'adm'
+    $row_adm = $result_adm->fetch_assoc();
 
-// Verifica se o email é o do admin
-if ($email === 'Admin@gmail.com') {
-    $sql = "SELECT * FROM adm WHERE email = ?";
-    $stmt = $conn->prepare($sql);
-
-    if ($stmt) {
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $registroAdmin = $result->fetch_object();
-
-        if ($registroAdmin) {
-            if (password_verify($senha, $registroAdmin->senha)) {
-                // Senha correta
-                $_SESSION['mensagem'] = "Administrador Logado com sucesso!";
-                $_SESSION['user_id'] = $registroAdmin->id_adm;
-                $_SESSION['nome'] = $registroAdmin->nome;
-                $_SESSION['email'] = $registroAdmin->email;
-                $_SESSION['senha'] = $registroAdmin->senha;
-                $_SESSION['logado'] = true;
-
-                echo json_encode(['sucesso' => true, 'redirect' => 'homeAdm.php']);
-                exit();
-            } else {
-                echo json_encode(['sucesso' => false, 'mensagem' => 'Senha incorreta!']);
-                exit();
-            }
-        } else {
-            echo json_encode(['sucesso' => false, 'mensagem' => 'Administrador não encontrado!']);
-            exit();
-        }
-
-        $stmt->close();
+    // Verifica se a senha fornecida corresponde ao hash armazenado
+    if (password_verify($senha, $row_adm['senha'])) {
+        // Login bem-sucedido
+        $_SESSION['email'] = $email;
+        echo json_encode(['sucesso' => true, 'tipo' => 'admin', 'redirect' => './homeAdm.php']);
     } else {
-        echo json_encode(['sucesso' => false, 'mensagem' => 'Erro na preparação da consulta.']);
-        exit();
+        // Senha inválida
+        echo json_encode(['sucesso' => false, 'mensagem' => 'Email ou senha inválidos']);
     }
 } else {
-    // Verifica na tabela de clientes
-    $sql = "SELECT * FROM cliente WHERE email = ?";
-    $stmt = $conn->prepare($sql);
+    // Verifica se o usuário é cliente
+    $sql_cliente = "SELECT * FROM cliente WHERE email = ?";
+    $stmt_cliente = $conn->prepare($sql_cliente);
+    $stmt_cliente->bind_param("s", $email);
+    $stmt_cliente->execute();
+    $result_cliente = $stmt_cliente->get_result();
 
-    if ($stmt) {
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $registroCliente = $result->fetch_object();
+    if ($result_cliente->num_rows > 0) {
+        // Usuário encontrado na tabela 'cliente'
+        $row_cliente = $result_cliente->fetch_assoc();
 
-        if ($registroCliente) {
-            if (password_verify($senha, $registroCliente->senha)) {
-                // Senha correta
-                $_SESSION['mensagem'] = "Cliente Logado com sucesso!";
-                $_SESSION['user_id'] = $registroCliente->id_cliente;
-                $_SESSION['nome'] = $registroCliente->nome;
-                $_SESSION['email'] = $registroCliente->email;
-                $_SESSION['senha'] = $registroCliente->senha;
-                $_SESSION['logado'] = true;
-
-                echo json_encode(['sucesso' => true, 'redirect' => 'homeCliente.php']);
-                exit();
-            } else {
-                echo json_encode(['sucesso' => false, 'mensagem' => 'Senha incorreta!']);
-                exit();
-            }
+        // Verifica se a senha fornecida corresponde ao hash armazenado
+        if (password_verify($senha, $row_cliente['senha'])) {
+            // Login bem-sucedido
+            $_SESSION['email'] = $email;
+            echo json_encode(['sucesso' => true, 'tipo' => 'cliente', 'redirect' => './homeLogado.php']);
         } else {
-            echo json_encode(['sucesso' => false, 'mensagem' => 'Cliente não encontrado!']);
-            exit();
+            // Senha inválida
+            echo json_encode(['sucesso' => false, 'mensagem' => 'Email ou senha inválidos']);
         }
-
-        $stmt->close();
     } else {
-        echo json_encode(['sucesso' => false, 'mensagem' => 'Erro na preparação da consulta.']);
-        exit();
+        // Email não encontrado nem em 'adm' nem em 'cliente'
+        echo json_encode(['sucesso' => false, 'mensagem' => 'Email ou senha inválidos']);
     }
 }
 
+// Fecha as conexões com o banco de dados
+$stmt_adm->close();
+if (isset($stmt_cliente)) {
+    $stmt_cliente->close();
+}
 $conn->close();
 ?>
