@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19/09/2024 às 13:19
+-- Tempo de geração: 19/09/2024 às 13:22
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -134,8 +134,8 @@ INSERT INTO `cliente` (`id_cliente`, `nome`, `email`, `senha`, `foto_perfil`, `t
 
 CREATE TABLE `comentarios` (
   `id_comentario` int(11) NOT NULL,
-  `id_cliente` int(11) NOT NULL,
-  `id_trabalhador` int(11) NOT NULL,
+  `id_cliente` int(11) DEFAULT NULL,
+  `id_trabalhador` int(11) DEFAULT NULL,
   `comentario` text NOT NULL,
   `data_comentario` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
