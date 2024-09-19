@@ -1,15 +1,33 @@
 <?php
+session_start(); // Inicia a sessão
 include_once('../backend/Conexao.php');
-
-// include_once('../html/registerTrabalhador.php');
 
 $id_trabalhador = $_GET['id_trabalhador'];
 
+// Verifica se o usuário está logado
+if (!isset($_SESSION['id_cliente'])) {
+    echo 'Usuário não está logado.';
+    exit;
+}
+
+$id_usuario = $_SESSION['id_cliente']; // Use o ID do cliente
+
+// Consulta para obter os dados do trabalhador
 $sql = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador'";
 $result = $conn->query($sql);
+$row = mysqli_fetch_assoc($result);
 
-$resultado_pesquisar = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($resultado_pesquisar);
+$isFavorito = false; // Inicializa como false
+if ($row) {
+    // Verifica se o trabalhador é favorito
+    $sqlFavorito = "SELECT * FROM favoritos WHERE id_trabalhador = '$id_trabalhador' AND id_usuario = '$id_usuario'";
+    $resultFavorito = $conn->query($sqlFavorito);
+    $isFavorito = mysqli_num_rows($resultFavorito) > 0; // true se for favorito, false caso contrário
+} else {
+    echo 'Trabalhador não encontrado.';
+    exit; // Sai do script se não encontrar o trabalhador
+}
+
 
 
 //verifica se o trabalhador esta logado para fazer o comentario
