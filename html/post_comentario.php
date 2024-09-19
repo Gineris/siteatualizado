@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([empty($id_cliente) ? null : $id_cliente, empty($id_trabalhador) ? null : $id_trabalhador, $comentario]);
 
         // Redirecionar para a página principal após o comentário
-        header('Location: ./Perfil.php');
+        header('Location: ./Perfil.php?id_trabalhador=' . $id_trabalhador);
         exit();
     } else {
         echo "Erro: Nenhum cliente ou trabalhador identificado.";

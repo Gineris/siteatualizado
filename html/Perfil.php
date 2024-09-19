@@ -3,33 +3,34 @@ session_start(); // Inicia a sessão
 include_once('../backend/Conexao.php');
 
 
-//cu
-// $id_trabalhador = $_GET['id_trabalhador'];
 
-// // Verifica se o usuário está logado
-// if (!isset($_SESSION['id_trabalhador'])) {
-//     echo 'Usuário não está logado.';
-//     exit;
-// }
-
-// $id_cliente = $_SESSION['id_cliente']; // Use o ID do cliente
-//cu
-
-$id_trabalhador = isset($_GET['id_trabalhador']) ? $_GET['id_trabalhador'] : null;
-
-if ($id_trabalhador === null) {
-    echo 'ID do trabalhador não fornecido.';
-    exit;
-}
+$id_trabalhador = $_GET['id_trabalhador'];
 
 // Verifica se o usuário está logado
-if (!isset($_SESSION['tipo_usuario'])) {
+if (!isset($_SESSION['id_trabalhador'])) {
     echo 'Usuário não está logado.';
     exit;
 }
 
-$id_cliente = isset($_SESSION['id_cliente']) ? $_SESSION['id_cliente'] : null; // Use o ID do cliente
-$id_trabalhador = isset($_SESSION['id_trabalhador']) ? $_SESSION['id_trabalhador'] : null; // Use o ID do trabalhador
+$id_cliente = $_SESSION['id_cliente']; // Use o ID do cliente
+
+//cu
+
+// $id_trabalhador = isset($_GET['id_trabalhador']) ? $_GET['id_trabalhador'] : null;
+
+// if ($id_trabalhador === null) {
+//     echo 'ID do trabalhador não fornecido.';
+//     exit;
+// }
+
+// // Verifica se o usuário está logado
+// if (!isset($_SESSION['tipo_usuario'])) {
+//     echo 'Usuário não está logado.';
+//     exit;
+// }
+
+// $id_cliente = isset($_SESSION['id_cliente']) ? $_SESSION['id_cliente'] : null; // Use o ID do cliente
+// $id_trabalhador = isset($_SESSION['id_trabalhador']) ? $_SESSION['id_trabalhador'] : null; // Use o ID do trabalhador
 
 // Consulta para obter os dados do trabalhador
 $sql = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador'";
@@ -212,8 +213,7 @@ if ($row) {
     <form id="comentario" method="POST" action="post_comentario.php">
         <textarea name="comentario" id="comentario" placeholder="Escreva seu comentário" required></textarea>
         <label for="comentario"></label>
-
-        <input type="submit" form="comentario" class="." value="Enviar Comentário"/><br><br>
+        <input type="submit" form="comentario" class="." value="<?php $row['id_trabalhador']; ?>"/><br>
     </form>
     
     </main>     
