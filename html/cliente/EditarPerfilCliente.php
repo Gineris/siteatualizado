@@ -61,7 +61,7 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
                     </a>
                 </li>
                 <li class="itemMenu ">
-                    <a href="../Categorias.php">
+                    <a href="./Categorias.php">
                         <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>
                     </a>
@@ -185,10 +185,10 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
             .catch(error => console.error('Erro ao carregar categorias:', error));
       });
     </script>
-    <script src="../js/funcaoMenuLateral.js"></script>
+    <script src="../../js/funcaoMenuLateral.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

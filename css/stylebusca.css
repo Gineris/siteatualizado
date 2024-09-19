@@ -45,13 +45,13 @@
 
 }
 nav.menuLateral{
-    width: 50px;
-    height: 412px;
+    /* width: 50px;
+    height: 412px; */
     background-color: #04074B;
     padding: 30px 0 40px 1%;
     box-shadow: 3px 0 0 #ED5C15;
     border-radius: 0 20px 20px 0;
-
+    z-index: 5;
     position: fixed;
     top: 15%;
     left: 0;

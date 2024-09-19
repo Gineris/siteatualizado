@@ -12,7 +12,12 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
 
 
 ?>
-
+<style>
+    nav.menuLateral{
+     width: 50px;
+     height: 360px;
+    }
+</style>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

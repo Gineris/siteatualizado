@@ -1,9 +1,9 @@
 <?php
 session_start();
-include_once ('../backend/Conexao.php');
-$id_trabalhador = $_SESSION['id_trabalhador'];
+include_once ('../../backend/Conexao.php');
+$id_cliente = $_SESSION['id_cliente'];
 
-$sql = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador'";
+$sql = "SELECT * FROM cliente WHERE id_cliente = '$id_cliente'";
 $result = $conn->query($sql);
 
 $resultado_pesquisar = mysqli_query($conn, $sql);
@@ -27,27 +27,29 @@ $categorias = [
 ?>
 <style>
     nav.menuLateral{
-     width: 50px;
-     height: 370px;
+    width: 65px;
+    height: 370px;
     }
 </style>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JundTask - Pesquisar</title>
-    <link rel="stylesheet" href="../css/styleCategoria.css">
-    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
-    <link rel="shortcut icon" href="../img/logo@2x.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/styleCategoria.css">
+    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
+    
 </head>
 <body>
     <header>
         <nav class="BarraNav">
-            <img src="../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
+            <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
             <div class="perfil">
                 <a href="#">
-                <img class="FotoPerfilNav" src="../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/FotoPerfilGeral.png' ?>" alt="">
+                <img class="FotoPerfilNav" src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../../img/FotoPerfilGeral.png' ?>" alt="">
                 </a>
             </div>
         </nav>
@@ -60,21 +62,21 @@ $categorias = [
                 <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
             </div>
 
-            <ul>
+            <ul style="padding-left: 0rem;">
                 <li class="itemMenu">
-                    <a href="./homeLogado.php">
+                    <a href="./homeClienteLogado.php">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
                     </a>
                 </li>
-                <li class="itemMenu">
-                    <a href="./SeuPerfil.php">
-                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
-                        <span class="txtLink">Perfil</span>
+                <li class="itemMenu ">
+                    <a href="./EditarPerfilCliente.php">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="txtLink">Configurações</span>
                     </a>
                 </li>
                 <li class="itemMenu ativo">
-                    <a href="#">
+                    <a href="./Categorias.php">
                         <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>
                     </a>
@@ -85,12 +87,7 @@ $categorias = [
                         <span class="txtLink">Favoritos</span>
                     </a>
                 </li>
-                <li class="itemMenu">
-                    <a href="./EditarPerfil.php">
-                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-                        <span class="txtLink">Configurações</span>
-                    </a>
-                </li>
+                
                 <li class="itemMenu">
                     <a href="#">
                         <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
@@ -106,9 +103,9 @@ $categorias = [
 
         <div class="container">
     <?php foreach ($categorias as $categoria): ?>
-        <div class="card">
+        <div class="card" style="background-color: #f0f0f0;border-radius: 20px;">
             <a href="usuarios_por_categoria.php?id_categoria=<?= $categoria['id'] ?>">
-                <img src="../img/<?= $categoria['imagem'] ?>" alt="<?= $categoria['nome'] ?>">
+                <img src="../../img/<?= $categoria['imagem'] ?>" alt="<?= $categoria['nome'] ?>">
                 <p><?= $categoria['nome'] ?></p>
             </a>
         </div>
@@ -126,10 +123,10 @@ $categorias = [
     </footer>
     
 
-    <script src="../js/funcaoMenuLateral.js"></script>
+    <script src="../../js/funcaoMenuLateral.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

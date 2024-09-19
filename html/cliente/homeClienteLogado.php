@@ -91,7 +91,7 @@ if (isset($_SESSION['id_cliente'])) {
                     </a>
                 </li>
                 <li class="itemMenu ">
-                    <a href="../Categorias.php">
+                    <a href="./Categorias.php">
                         <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>
                     </a>
