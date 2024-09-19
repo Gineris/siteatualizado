@@ -20,7 +20,7 @@ $row = mysqli_fetch_assoc($result);
 $isFavorito = false; // Inicializa como false
 if ($row) {
     // Verifica se o trabalhador é favorito
-    $sqlFavorito = "SELECT * FROM favoritos WHERE id_trabalhador = '$id_trabalhador' AND id_usuario = '$id_usuario'";
+    $sqlFavorito = "SELECT * FROM favoritos WHERE id_trabalhador = '$id_trabalhador' AND id_cliente = '$id_cliente'";
     $resultFavorito = $conn->query($sqlFavorito);
     $isFavorito = mysqli_num_rows($resultFavorito) > 0; // true se for favorito, false caso contrário
 } else {
@@ -109,7 +109,7 @@ if ($row) {
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="#">
+                    <a href="./favoritos.php">
                         <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
                         <span class="txtLink">Favoritos</span>
                     </a>
@@ -147,15 +147,6 @@ if ($row) {
                 <div class="tel">
                     <?php echo '<p> Tel: ' . htmlspecialchars($row['contato']) . '</p>' ?>
                 </div>
-                <button class="favorite-btn" data-id="<?php echo $row['id_trabalhador']; ?>">
-                    <?php if ($isFavorito): ?>
-                     <i class="bi bi-heart-fill favorite-icon"></i>
-                    <?php else: ?>
-                     <i class="bi bi-heart favorite-icon"></i>
-                    <?php endif; ?>
-                </button>
-
-
             </div>
 
             <div class="txt">
@@ -237,6 +228,7 @@ if ($row) {
     <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="../js/FuncaoCurtirPerfil.js"></script>
+   
 
 </body>
 </html>
