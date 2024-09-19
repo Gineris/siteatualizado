@@ -44,7 +44,8 @@ if ($result_adm->num_rows > 0) {
           
             $_SESSION['email'] = $email;
             $_SESSION['id_cliente'] = $row_cliente['id_cliente'];
-            // $_SESSION['id_cliente'] = $result['id_cliente'];
+            $_SESSION['tipo_usuario'] = 'cliente';
+            
 
             echo json_encode(['sucesso' => true, 'tipo' => 'cliente', 'redirect' => './cliente/homeClienteLogado.php']);
         } else {
