@@ -16,15 +16,15 @@ $nome = $_POST['nome'] ?? '';
 $email = $_POST['email'] ?? '';
 $senha = $_POST['senha'] ?? '';
 $contato = $_POST['contato'] ?? '';
-$data_nasc = $_POST['data_nasc'] ?? '';
+$data_nasc = $_POST['data_nasc'] ?? ''; 
 $id_area = $_POST['id_area'] ?? '';
 
-$foto_perfil = '';
+$foto_perfil ='';
 
 function uploadArquivo($campoNome) {
     global $conn;
     if (isset($_FILES[$campoNome]) && $_FILES[$campoNome]['error'] == 0) {
-        $diretorio = '../uploads/';
+        $diretorio = '../../uploads/';
         $nomeArquivo = basename($_FILES[$campoNome]['name']);
         $caminhoCompleto = $diretorio . $nomeArquivo;
         $tipoArquivo = strtolower(pathinfo($caminhoCompleto, PATHINFO_EXTENSION));

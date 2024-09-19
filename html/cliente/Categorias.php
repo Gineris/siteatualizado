@@ -28,7 +28,7 @@ $categorias = [
 <style>
     nav.menuLateral{
     width: 65px;
-    height: 340px;
+    height: 370px;
     }
 </style>
 
