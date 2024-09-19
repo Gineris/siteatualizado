@@ -104,7 +104,7 @@ $categorias = [
         <div class="container">
     <?php foreach ($categorias as $categoria): ?>
         <div class="card" style="background-color: #f0f0f0;border-radius: 20px;">
-            <a href="usuarios_por_categoria.php?id_categoria=<?= $categoria['id'] ?>">
+            <a href="./usuarios_por_categoria.php?id_categoria=<?= $categoria['id'] ?>">
                 <img src="../../img/<?= $categoria['imagem'] ?>" alt="<?= $categoria['nome'] ?>">
                 <p><?= $categoria['nome'] ?></p>
             </a>

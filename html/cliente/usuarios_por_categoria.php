@@ -156,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (mysqli_num_rows($resultado_pesquisar) > 0) {
             while ($row = mysqli_fetch_assoc($resultado_pesquisar)) {?> 
             <div class="CampoEscolhaTrabalhador">
-                <a href="../Perfil.php?id_trabalhador=<?php echo $row['id_trabalhador']; ?>">
+                <a href="./Perfil.php?id_trabalhador=<?php echo $row['id_trabalhador']; ?>">
                     <?php 
                     echo '<div class="CardBox">'; 
                         echo '<div class="imagem">';

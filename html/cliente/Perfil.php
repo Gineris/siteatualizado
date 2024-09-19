@@ -1,12 +1,12 @@
 <?php
 session_start(); // Inicia a sessão
-include_once('../backend/Conexao.php');
+include_once('../../backend/Conexao.php');
 
 
-$id_trabalhador = $_GET['id_trabalhador'];  
+$id_cliente = $_SESSION['id_cliente'];  
 
 // // Verifica se o usuário está logado
-if (!isset($_SESSION['id_trabalhador'])) {
+if (!isset($_SESSION['id_cliente'])) {
     echo 'Usuário não está logado.';
     exit;
 }
@@ -59,7 +59,7 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JundTask - Perfil</title>
-    <link rel="stylesheet" href="../css/stylePerfil.css">
+    <link rel="stylesheet" href="../../css/stylePerfil.css">
     <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="shortcut icon" href="../img/logo@2x.png" type="image/x-icon">
