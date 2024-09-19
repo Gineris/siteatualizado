@@ -262,3 +262,17 @@ footer p{
     font-family: "Space Grotesk", sans-serif;
     padding-top: 10px;
 }
+/* Estilo padrão do botão */
+#favoritar-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Estilo quando o trabalhador foi curtido */
+#favoritar-btn.curtido {
+    background-color: #ff0000; /* Muda a cor para vermelho, por exemplo */
+    color: white;
+}

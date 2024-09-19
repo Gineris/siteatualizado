@@ -3,7 +3,6 @@ session_start(); // Inicia a sessão
 include_once('../backend/Conexao.php');
 
 
-$id_trabalhador = $_GET['id_trabalhador'];  
 
 // // Verifica se o usuário está logado
 if (!isset($_SESSION['id_trabalhador'])) {
@@ -105,7 +104,7 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="#">
+                    <a href="./favoritos.php">
                         <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
                         <span class="txtLink">Favoritos</span>
                     </a>
@@ -143,15 +142,6 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
                 <div class="tel">
                     <?php echo '<p> Tel: ' . htmlspecialchars($row['contato']) . '</p>' ?>
                 </div>
-                <button class="favorite-btn" data-id="<?php echo $row['id_trabalhador']; ?>">
-                    <?php if ($isFavorito): ?>
-                     <i class="bi bi-heart-fill favorite-icon"></i>
-                    <?php else: ?>
-                     <i class="bi bi-heart favorite-icon"></i>
-                    <?php endif; ?>
-                </button>
-
-
             </div>
 
             <div class="txt">
@@ -211,8 +201,7 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
     <form id="comentario" method="POST" action="post_comentario.php">
         <textarea name="comentario" id="comentario" placeholder="Escreva seu comentário" required></textarea>
         <label for="comentario"></label>
-
-        <input type="submit" form="comentario" class="." value="Enviar Comentário"/><br><br>
+        <input type="submit" form="comentario" class="." value="<?php $row['id_trabalhador']; ?>"/><br>
     </form>
     
     </main>     
@@ -233,6 +222,7 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
     <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="../js/FuncaoCurtirPerfil.js"></script>
+   
 
 </body>
 </html>

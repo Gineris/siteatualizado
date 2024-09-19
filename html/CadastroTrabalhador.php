@@ -25,11 +25,11 @@
                         <h1>Cadastro Trabalhador</h1>
                     </div>
 
-                    <div id="mensagemErro" class="alert alert-danger">
+                    <div id="mensagemErro" class="alert alert-danger" style="display:none;">
                         <span class="close" onclick="this.parentElement.style.display='none'">&times;</span>
                     </div>
 
-                    <div id="mensagemSucesso" class="alert alert-success">
+                    <div id="mensagemSucesso" class="alert alert-success" style="display:none;">
                         <span class="close" onclick="this.parentElement.style.display='none'">&times;</span>
                     </div>
 
@@ -78,11 +78,6 @@
                     <div class="BotaoCadastro">
                         <input type="submit" value="Cadastrar">
                     </div>
-                    
-                    <!-- Botão de Login -->
-                    <div class="BotaoLogin" style="display: none;">
-                        <a href="login.html" class="btn">Ir para o Login</a>
-                    </div>
                 </div>
             </div>
         </form>
@@ -108,9 +103,10 @@
                         mensagemSucesso.style.display = 'block'; // Garante que a mensagem de sucesso seja exibida
                         mensagemErro.style.display = 'none'; // Oculta a mensagem de erro
 
-                        if (data.mostrarBotaoLogin) {
-                            document.querySelector('.BotaoLogin').style.display = 'block';
-                        }
+                        // Redirecionar após 2 segundos
+                        setTimeout(function() {
+                            window.location.href = './LoginUsuario.php'; // Redireciona para a página de login
+                        }, 2000); // Tempo em milissegundos
                     } else {
                         mensagemErro.innerText = data.mensagem;
                         mensagemErro.classList.add('show');

@@ -73,88 +73,85 @@
                     <div class="BotaoCadastro">
                         <input type="submit" value="Cadastrar">
                     </div>
-                    
-                    <!-- Botão de Login -->
-                    <div class="BotaoLogin" style="display: none;">
-                        <a href="login.html" class="btn">Ir para o Login</a>
-                    </div>
                 </div>
             </div>
         </form>
 
         <script>
-            document.getElementById('formCadastro').addEventListener('submit', function(event) {
-                event.preventDefault();
+    document.getElementById('formCadastro').addEventListener('submit', function(event) {
+        event.preventDefault();
 
-                var formData = new FormData(this);
+        var formData = new FormData(this);
 
-                fetch('../html/RegisterCliente.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    var mensagemSucesso = document.getElementById('mensagemSucesso');
-                    var mensagemErro = document.getElementById('mensagemErro');
+        fetch('../html/RegisterCliente.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            var mensagemSucesso = document.getElementById('mensagemSucesso');
+            var mensagemErro = document.getElementById('mensagemErro');
 
-                    if (data.sucesso) {
-                        mensagemSucesso.innerText = data.mensagem;
-                        mensagemSucesso.classList.add('show');
-                        mensagemSucesso.style.display = 'block'; // Garante que a mensagem de sucesso seja exibida
-                        mensagemErro.style.display = 'none'; // Oculta a mensagem de erro
+            if (data.sucesso) {
+                mensagemSucesso.innerText = data.mensagem;
+                mensagemSucesso.classList.add('show');
+                mensagemSucesso.style.display = 'block'; // Garante que a mensagem de sucesso seja exibida
+                mensagemErro.style.display = 'none'; // Oculta a mensagem de erro
 
-                        if (data.mostrarBotaoLogin) {
-                            document.querySelector('.BotaoLogin').style.display = 'block';
-                        }
-                    } else {
-                        mensagemErro.innerText = data.mensagem;
-                        mensagemErro.classList.add('show');
-                        mensagemErro.style.display = 'block'; // Garante que a mensagem de erro seja exibida
-                        mensagemSucesso.style.display = 'none'; // Oculta a mensagem de sucesso
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro ao enviar o formulário:', error);
-                    var mensagemErro = document.getElementById('mensagemErro');
-                    mensagemErro.innerText = 'Erro ao enviar o formulário. Tente novamente.';
-                    mensagemErro.classList.add('show');
-                    mensagemErro.style.display = 'block'; // Garante que a mensagem de erro seja exibida
+                // Redirecionar após 2 segundos
+                setTimeout(function() {
+                    window.location.href = data.redirect; // Redireciona para a página de login
+                }, 2000); // Tempo em milissegundos
+            } else {
+                mensagemErro.innerText = data.mensagem;
+                mensagemErro.classList.add('show');
+                mensagemErro.style.display = 'block'; // Garante que a mensagem de erro seja exibida
+                mensagemSucesso.style.display = 'none'; // Oculta a mensagem de sucesso
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao enviar o formulário:', error);
+            var mensagemErro = document.getElementById('mensagemErro');
+            mensagemErro.innerText = 'Erro ao enviar o formulário. Tente novamente.';
+            mensagemErro.classList.add('show');
+            mensagemErro.style.display = 'block'; // Garante que a mensagem de erro seja exibida
+        });
+    });
+
+    function mostrarSenha() {
+        var senhaInput = document.getElementById('senha');
+        senhaInput.type = senhaInput.type === 'password' ? 'text' : 'password';
+        var olhoIcon = document.getElementById('olho');
+        olhoIcon.classList.toggle('bi-eye');
+        olhoIcon.classList.toggle('bi-eye-slash');
+    }
+
+    function mostrarSenha2() {
+        var confirmaSenhaInput = document.getElementById('ConfirmaSenha');
+        confirmaSenhaInput.type = confirmaSenhaInput.type === 'password' ? 'text' : 'password';
+        var olhoIcon2 = document.getElementById('olho2');
+        olhoIcon2.classList.toggle('bi-eye');
+        olhoIcon2.classList.toggle('bi-eye-slash');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const cidadeSelect = document.getElementById('id_area');
+
+        fetch('./getcidades.php')
+            .then(response => response.json())
+            .then(cidades => {
+                cidadeSelect.innerHTML = '<option value="">Selecione uma área</option>';
+                cidades.forEach(cidade => {
+                    const option = document.createElement('option');
+                    option.value = cidade.id_area;
+                    option.textContent = cidade.cidade;
+                    cidadeSelect.appendChild(option);
                 });
-            });
+            })
+            .catch(error => console.error('Erro ao carregar áreas:', error));
+    });
+</script>
 
-            function mostrarSenha() {
-                var senhaInput = document.getElementById('senha');
-                senhaInput.type = senhaInput.type === 'password' ? 'text' : 'password';
-                var olhoIcon = document.getElementById('olho');
-                olhoIcon.classList.toggle('bi-eye');
-                olhoIcon.classList.toggle('bi-eye-slash');
-            }
-
-            function mostrarSenha2() {
-                var confirmaSenhaInput = document.getElementById('ConfirmaSenha');
-                confirmaSenhaInput.type = confirmaSenhaInput.type === 'password' ? 'text' : 'password';
-                var olhoIcon2 = document.getElementById('olho2');
-                olhoIcon2.classList.toggle('bi-eye');
-                olhoIcon2.classList.toggle('bi-eye-slash');
-            }
-
-            document.addEventListener('DOMContentLoaded', function() {
-                const cidadeSelect = document.getElementById('id_area');
-
-                fetch('./getcidades.php')
-                    .then(response => response.json())
-                    .then(cidades => {
-                        cidadeSelect.innerHTML = '<option value="">Selecione uma área</option>';
-                        cidades.forEach(cidade => {
-                            const option = document.createElement('option');
-                            option.value = cidade.id_area;
-                            option.textContent = cidade.cidade;
-                            cidadeSelect.appendChild(option);
-                        });
-                    })
-                    .catch(error => console.error('Erro ao carregar áreas:', error));
-            });
-        </script>
 
     </main>
     <footer class="d-flex justify-content-center">
