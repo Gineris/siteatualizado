@@ -5,17 +5,19 @@ include_once('../backend/Conexao.php');
 $id_trabalhador = $_GET['id_trabalhador'];
 
 // Verifica se o usuário está logado
-if (!isset($_SESSION['id_cliente'])) {
+if (!isset($_SESSION['id_trabalhador'])) {
     echo 'Usuário não está logado.';
     exit;
 }
 
-$id_usuario = $_SESSION['id_cliente']; // Use o ID do cliente
+$id_cliente = $_SESSION['id_cliente']; // Use o ID do cliente
+
 
 // Consulta para obter os dados do trabalhador
 $sql = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador'";
 $result = $conn->query($sql);
-$row = mysqli_fetch_assoc($result);
+$resultado_pesquisar = mysqli_query($conn,$sql);
+$row = mysqli_fetch_assoc($resultado_pesquisar);
 
 $isFavorito = false; // Inicializa como false
 if ($row) {
@@ -30,30 +32,7 @@ if ($row) {
 
 
 
-//verifica se o trabalhador esta logado para fazer o comentario
-// session_start();
-// require '../backend/Conexao.php';
 
-// if (!isset($_SESSION['id_trabalhador'])) {
-//     header('Location: login.php');
-//     exit();
-// }
-
-// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//     $comentario = $_POST['comentario'];
-//     $id_trabalhador = $_SESSION['id_trabalhador'];
-// }
-
-// //cliente
-// if (!isset($_SESSION['id_cliente'])) {
-//     header('Location: login.php');
-//     exit();
-// }
-
-// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//     $comentario = $_POST['comentario'];
-//     $id_cliente = $_SESSION['id_cliente'];
-// }
 ?>
 
 
