@@ -12,6 +12,13 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
 
 
 ?>
+<style>
+    nav.menuLateral{
+    width: 65px;
+    height: 370px;
+    }
+</style>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -19,7 +26,7 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JundTask - Editar Pefil</title>
     <link rel="stylesheet" href="../../css/styleEditarPerfil.css">
-    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.css">
     <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
 </head>
 <body>
@@ -40,21 +47,21 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
                 <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
             </div>
 
-            <ul>
+            <ul style="padding-left: 0rem;">
                 <li class="itemMenu">
-                    <a href="./homeLogado.php">
+                    <a href="#">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
                     </a>
                 </li>
-                <li class="itemMenu">
-                    <a href="./SeuPerfil.php">
-                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
-                        <span class="txtLink">Perfil</span>
+                <li class="itemMenu ativo">
+                    <a href="./EditarPerfilCliente.php">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="txtLink">Configurações</span>
                     </a>
                 </li>
-                <li class="itemMenu">
-                    <a href="./Categorias.php">
+                <li class="itemMenu ">
+                    <a href="../Categorias.php">
                         <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>
                     </a>
@@ -65,12 +72,7 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
                         <span class="txtLink">Favoritos</span>
                     </a>
                 </li>
-                <li class="itemMenu ativo">
-                    <a href="#">
-                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-                        <span class="txtLink">Configurações</span>
-                    </a>
-                </li>
+                
                 <li class="itemMenu">
                     <a href="#">
                         <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>

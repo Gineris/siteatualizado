@@ -12,6 +12,7 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
