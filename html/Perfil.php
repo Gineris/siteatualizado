@@ -107,7 +107,7 @@ if ($row) {
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="#">
+                    <a href="./favoritos.php">
                         <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
                         <span class="txtLink">Favoritos</span>
                     </a>
@@ -119,7 +119,7 @@ if ($row) {
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="#">
+                    <a href="./Logout.php">
                         <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
                         <span class="txtLink">Sair</span>
                     </a>
@@ -145,15 +145,6 @@ if ($row) {
                 <div class="tel">
                     <?php echo '<p> Tel: ' . htmlspecialchars($row['contato']) . '</p>' ?>
                 </div>
-                <button class="favorite-btn" data-id="<?php echo $row['id_trabalhador']; ?>">
-                    <?php if ($isFavorito): ?>
-                     <i class="bi bi-heart-fill favorite-icon"></i>
-                    <?php else: ?>
-                     <i class="bi bi-heart favorite-icon"></i>
-                    <?php endif; ?>
-                </button>
-
-
             </div>
 
             <div class="txt">
@@ -234,6 +225,7 @@ if ($row) {
     <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="../js/FuncaoCurtirPerfil.js"></script>
+   
 
 </body>
 </html>

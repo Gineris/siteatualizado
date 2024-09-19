@@ -220,13 +220,14 @@ textarea {
     height: 48px;
 }
 .botaoSalvar input{
+    position: relative;
     width: 108px;
     border-radius: 16px;
     border: 3px solid #1c1d4e;
     background-color: #1c1d4e;
     color: white;
     cursor: pointer;
-
+    z-index: 5;
     transition: .3s;
 }
 .botaoSalvar input:hover{

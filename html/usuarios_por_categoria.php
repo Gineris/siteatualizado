@@ -54,7 +54,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $resultado_pesquisar = $result;
 }
 ?>
-
+<style>
+    nav.menuLateral{
+        width: 50px;
+        height: 370px;
+    }
+</style>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -114,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="#">
+                    <a href="./Logout.php">
                         <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
                         <span class="txtLink">Sair</span>
                     </a>
