@@ -1,41 +1,55 @@
 <?php
+session_start(); // Inicia a sessão
 include_once('../backend/Conexao.php');
 
-// include_once('../html/registerTrabalhador.php');
 
 $id_trabalhador = $_GET['id_trabalhador'];  
 
+// // Verifica se o usuário está logado
+// if (!isset($_SESSION['id_trabalhador'])) {
+//     echo 'Usuário não está logado.';
+//     exit;
+// }
+
+// $id_cliente = $_SESSION['id_cliente']; // Use o ID do cliente
+//cu
+
+$id_trabalhador = isset($_GET['id_trabalhador']) ? $_GET['id_trabalhador'] : null;
+
+if ($id_trabalhador === null) {
+    echo 'ID do trabalhador não fornecido.';
+    exit;
+}
+
+// Verifica se o usuário está logado
+if (!isset($_SESSION['tipo_usuario'])) {
+    echo 'Usuário não está logado.';
+    exit;
+}
+
+$id_cliente = isset($_SESSION['id_cliente']) ? $_SESSION['id_cliente'] : null; // Use o ID do cliente
+$id_trabalhador = isset($_SESSION['id_trabalhador']) ? $_SESSION['id_trabalhador'] : null; // Use o ID do trabalhador
+
+// Consulta para obter os dados do trabalhador
 $sql = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador'";
 $result = $conn->query($sql);
-
-$resultado_pesquisar = mysqli_query($conn, $sql);
+$resultado_pesquisar = mysqli_query($conn,$sql);
 $row = mysqli_fetch_assoc($resultado_pesquisar);
 
+$isFavorito = false; // Inicializa como false
+if ($row) {
+    // Verifica se o trabalhador é favorito
+    $sqlFavorito = "SELECT * FROM favoritos WHERE id_trabalhador = '$id_trabalhador' AND id_cliente = '$id_cliente'";
+    $resultFavorito = $conn->query($sqlFavorito);
+    $isFavorito = mysqli_num_rows($resultFavorito) > 0; // true se for favorito, false caso contrário
+} else {
+    echo 'Trabalhador não encontrado.';
+    exit; // Sai do script se não encontrar o trabalhador
+}
 
-//verifica se o trabalhador esta logado para fazer o comentario
-// session_start();
-// require '../backend/Conexao.php';
 
-// if (!isset($_SESSION['id_trabalhador'])) {
-//     header('Location: login.php');
-//     exit();
-// }
 
-// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//     $comentario = $_POST['comentario'];
-//     $id_trabalhador = $_SESSION['id_trabalhador'];
-// }
 
-// //cliente
-// if (!isset($_SESSION['id_cliente'])) {
-//     header('Location: login.php');
-//     exit();
-// }
-
-// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//     $comentario = $_POST['comentario'];
-//     $id_cliente = $_SESSION['id_cliente'];
-// }
 ?>
 
 

@@ -3,8 +3,8 @@ session_start();
 require '../backend/Conexao.php';
 
 // Verificar se o cliente ou trabalhador está logado
-if ((!isset($_SESSION['id_cliente']) && !isset($_SESSION['id_trabalhador']))) {
-    // fazer um echo de usuario nao logado
+if (!isset($_SESSION['tipo_usuario'])) {
+    echo "Erro: Nenhum cliente ou trabalhador identificado. Faça login primeiro.";
     header('Location: loginGeral.php');
     exit();
 }
@@ -14,9 +14,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $comentario = $_POST['comentario'];
 
     if (!empty($comentario)) {
+
+        $id_cliente = null;
+        $id_trabalhador = null;
+
         // Definir as variáveis de cliente_id e trabalhador_id
-        $id_cliente = isset($_SESSION['id_cliente']) ? $_SESSION['id_cliente'] : null;
-        $id_trabalhador = isset($_SESSION['id_trabalhador']) ? $_SESSION['id_trabalhador'] : null;
+        if ($_SESSION['tipo_usuario'] === 'cliente' && isset($_SESSION['id_cliente'])) {
+            $id_cliente = $_SESSION['id_cliente'];  // Define o ID do cliente
+        } elseif ($_SESSION['tipo_usuario'] === 'trabalhador' && isset($_SESSION['id_trabalhador'])) {
+            $id_trabalhador = $_SESSION['id_trabalhador'];  // Define o ID do trabalhador
+        }
 
         echo "<pre>";
         echo "ID Cliente: " . ($id_cliente !== null ? $id_cliente : 'Não definido') . "<br>";
@@ -26,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($id_cliente !== null || $id_trabalhador !== null) {
         // Inserir o comentário no banco de dados
         $stmt = $conn->prepare('INSERT INTO comentarios (id_cliente, id_trabalhador, comentario) VALUES (?, ?, ?)');
-        $stmt->execute([$id_cliente, $id_trabalhador, $comentario]);
+        $stmt->execute([empty($id_cliente) ? null : $id_cliente, empty($id_trabalhador) ? null : $id_trabalhador, $comentario]);
 
         // Redirecionar para a página principal após o comentário
         header('Location: ./Perfil.php');
