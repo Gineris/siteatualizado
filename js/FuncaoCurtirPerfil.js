@@ -3,12 +3,11 @@ document.querySelectorAll('.favorite-btn').forEach(button => {
         const workerId = this.getAttribute('data-id');
         const icon = this.querySelector('.favorite-icon');
         
-        // Verifica o estado do favorito
         if (icon.classList.contains('bi-heart')) {
             icon.classList.remove('bi-heart');
-            icon.classList.add('bi-heart-fill'); // Muda para preenchido
-            // Enviar requisição para adicionar aos favoritos
-            fetch('favorito.php', {
+            icon.classList.add('bi-heart-fill');
+
+            fetch('registerfavorito.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -17,8 +16,8 @@ document.querySelectorAll('.favorite-btn').forEach(button => {
             });
         } else {
             icon.classList.remove('bi-heart-fill');
-            icon.classList.add('bi-heart'); // Muda para vazio
-            // Enviar requisição para remover dos favoritos
+            icon.classList.add('bi-heart');
+
             fetch('remover_favorito.php', {
                 method: 'POST',
                 headers: {
