@@ -28,7 +28,7 @@ $categorias = [
 <style>
     nav.menuLateral{
     width: 65px;
-    height: 370px;
+    height: 340px;
     }
 </style>
 
@@ -89,7 +89,7 @@ $categorias = [
                 </li>
                 
                 <li class="itemMenu">
-                    <a href="#">
+                    <a href="./LogoutCliente.php">
                         <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
                         <span class="txtLink">Sair</span>
                     </a>

@@ -54,7 +54,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $resultado_pesquisar = $result;
 }
 ?>
-
+<style>
+    nav.menuLateral{
+        width: 50px;
+        height: 370px;
+    }
+</style>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -114,7 +119,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="#">
+                    <a href="./Logout.php">
                         <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
                         <span class="txtLink">Sair</span>
                     </a>
@@ -156,7 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (mysqli_num_rows($resultado_pesquisar) > 0) {
             while ($row = mysqli_fetch_assoc($resultado_pesquisar)) {?> 
             <div class="CampoEscolhaTrabalhador">
-                <a href="Perfil.php?id_trabalhador=<?php echo $row['id_trabalhador']; ?>">
+                <a href="./Perfil.php?id_trabalhador=<?php echo $row['id_trabalhador']; ?>">
                     <?php 
                     echo '<div class="CardBox">'; 
                         echo '<div class="imagem">';

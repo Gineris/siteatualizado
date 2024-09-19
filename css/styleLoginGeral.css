@@ -21,6 +21,9 @@
 body{
     background-color: #04074B;
 }
+a{
+    text-decoration: none;
+}
 
 .BarraNav{
     background-color: #FFF;
@@ -150,6 +153,7 @@ body{
     font: 1em "Poppins", sans-serif;
     color: #fff;
     transition: .2s;
+    cursor: pointer;
 }
  
 .BotaoCriarConta input{
@@ -163,6 +167,8 @@ body{
     font: 1em "Poppins", sans-serif;
     color: #fff;
     transition: .2s;
+    cursor: pointer;
+
 }
  
 .efeito input:hover{
@@ -171,9 +177,32 @@ body{
  
 .BotaoCriarConta input:hover{
     background-color: #EC5C14;
+    cursor: pointer;
+
 }
 .BotaoLogin input:hover{
     background-color: transparent;
+    cursor: pointer;
+
+}
+.BotaoCadastro input{
+    display: block;
+    width: 350px;
+    padding:10px 20px;
+    margin: 20px auto 10px auto;
+    background: #050739;
+    border: 2px solid #050739;
+    border-radius: 18px;
+    font: 1em "Poppins", sans-serif;
+    color: #fff;
+    transition: .2s;
+    cursor: pointer;
+}
+.BotaoCadastro input:hover{
+    background-color: #dfdfdf;
+    border: 2px solid #050739;
+    color: #050739;
+    cursor: pointer;
 }
 footer{
     background-color: #FFF;
@@ -184,7 +213,7 @@ footer{
 footer p{
     padding: 0px 10px 0px 10px;
 }
-.alert {
+.alert {    
     display: none;
     padding: 15px;
     margin-top: 10px;

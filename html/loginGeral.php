@@ -32,8 +32,8 @@
                 <a href="./LoginUsuario.php">
                     <input type="submit" name="submit" value="Login Cliente">
                 </div>
-                <div class="BotaoLogin">
-                <a href="./home.php#cadastro">
+                <div class="BotaoCadastro">
+                <a href="./home.php#cadastro" >
                     <input type="submit" name="submit" value="Fazer Cadastro">
                 </div>
             </div>

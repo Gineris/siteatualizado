@@ -152,13 +152,13 @@ ul li.itemMenu a .icon > ion-icon{
 }
 .carousel {
     width: 900px; 
-    height: 450px; 
+    /* height: 450px;  */
     margin: 0 auto; 
 }
 
 .carousel img {
     object-fit: cover; 
-    height: 50%;      
+    height: 80%;      
     width: 50%;      
 }
 .fundocarrossel{

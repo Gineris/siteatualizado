@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </li>
                 
                 <li class="itemMenu">
-                    <a href="#">
+                    <a href="./LogoutCliente.php">
                         <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
                         <span class="txtLink">Sair</span>
                     </a>
