@@ -54,7 +54,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $resultado_pesquisar = $result;
 }
 ?>
-
+<style>
+    nav.menuLateral{
+        width: 50px;
+        height: 370px;
+    }
+</style>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

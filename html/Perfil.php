@@ -3,7 +3,7 @@ include_once('../backend/Conexao.php');
 
 // include_once('../html/registerTrabalhador.php');
 
-$id_trabalhador = $_GET['id_trabalhador'];
+$id_trabalhador = $_GET['id_trabalhador'];  
 
 $sql = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador'";
 $result = $conn->query($sql);

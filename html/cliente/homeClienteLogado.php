@@ -52,7 +52,7 @@ if (isset($_SESSION['id_cliente'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JundTask - Home</title>
+    <title>JundTask - Home Cliente</title>
     <link rel="stylesheet" href="../../css/styleHomeLogado.css">
     <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.min.css">
 
