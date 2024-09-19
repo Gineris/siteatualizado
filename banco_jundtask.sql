@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19/09/2024 às 13:22
+-- Tempo de geração: 19/09/2024 às 14:10
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -148,7 +148,19 @@ INSERT INTO `comentarios` (`id_comentario`, `id_cliente`, `id_trabalhador`, `com
 (1, 17, 17, 'fggg', '2024-09-18 13:36:16'),
 (2, 17, 17, 'lllllll', '2024-09-18 13:50:27'),
 (3, 17, 17, 'aa', '2024-09-18 13:53:16'),
-(4, 17, 17, 'ghggg', '2024-09-18 13:54:01');
+(4, 17, 17, 'ghggg', '2024-09-18 13:54:01'),
+(5, NULL, 20, 'khhhjhjhj', '2024-09-19 11:32:02'),
+(6, NULL, 20, 'hjjhhj', '2024-09-19 11:32:48'),
+(7, NULL, 20, 'JHJHJH', '2024-09-19 11:35:30'),
+(8, NULL, 20, 'JHJHJH', '2024-09-19 11:35:44'),
+(9, NULL, 20, 'JHJHJH', '2024-09-19 11:36:13'),
+(10, NULL, 20, 'sx', '2024-09-19 11:37:40'),
+(11, NULL, 20, 'jsajkdjs', '2024-09-19 11:38:25'),
+(12, NULL, 20, 'sasda', '2024-09-19 11:42:22'),
+(13, NULL, 20, 'hhhhh', '2024-09-19 11:45:59'),
+(14, NULL, 20, 'huuhuh', '2024-09-19 11:53:12'),
+(15, NULL, 20, 'kjkjkj', '2024-09-19 11:55:18'),
+(16, NULL, 20, 'xzxz', '2024-09-19 11:57:29');
 
 -- --------------------------------------------------------
 
@@ -185,7 +197,7 @@ CREATE TABLE `curtidas` (
 CREATE TABLE `favoritos` (
   `id_favorito` int(11) NOT NULL,
   `id_trabalhador` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL
+  `id_cliente` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -238,7 +250,8 @@ INSERT INTO `trabalhador` (`id_trabalhador`, `nome`, `email`, `senha`, `foto_per
 (15, 'Pato Rog', 'Patinho123@gmail.com', '', '0', 'fundo1.jpg', 'fundo2.jpg', 'testeFundo.jpeg', 'fundoPerfil.png', 'Patoo                                                                        ', '11 99999 8888', '1111-11-11', 0.00, '', '', 1, 3),
 (17, 'michele', 'gui@gmail.com', '$2y$10$2GLOHF./f4ZZYWAFFRVt3OmUyBHSs5ZGrwcblOAY2PXOmwHTniWFy', '../uploads/download.jfif', '', '', '', '', '', '12121212121', '2002-10-16', 0.00, '', '', 8, 6),
 (18, 'Maria', 'ma@gmail.com', '$2y$10$RRoK..jGqYKCBkwinAvE3eR9jnxdLJ6zL1ZGH47MniZ8KvrWD0c3a', '../uploads/download.jfif', '', '', '', '', '', '12121212121', '1923-07-05', 0.00, '', '', 10, 5),
-(19, 'michele', 'paula@gmail.com', '$2y$10$a0SxUD2HQn4qW8WD28p.euT.5j0sjrL9akpfyCPu9vLvqUX0iJX1C', '../uploads/download.jfif', '', '', '', '', '', '12121212121', '1987-09-25', 0.00, '', '', 10, 6);
+(19, 'michele', 'paula@gmail.com', '$2y$10$a0SxUD2HQn4qW8WD28p.euT.5j0sjrL9akpfyCPu9vLvqUX0iJX1C', '../uploads/download.jfif', '', '', '', '', '', '12121212121', '1987-09-25', 0.00, '', '', 10, 6),
+(20, 'memphis', 'depay@corinthians.com', '$2y$10$z3vcOAAGGkHLMfBdjHNx4Oh5smLczVUbyNhFsSPicSN.4NhuuWHrm', '../uploads/images.jfif', '', '', '', '', '', '11991829034', '1910-09-01', 0.00, '', '', 8, 4);
 
 --
 -- Índices para tabelas despejadas
@@ -299,7 +312,7 @@ ALTER TABLE `curtidas`
 ALTER TABLE `favoritos`
   ADD PRIMARY KEY (`id_favorito`),
   ADD KEY `id_trabalhador` (`id_trabalhador`),
-  ADD KEY `id_usuario` (`id_usuario`);
+  ADD KEY `id_usuario` (`id_cliente`);
 
 --
 -- Índices de tabela `mensagens`
@@ -350,7 +363,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de tabela `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `conversas`
@@ -380,7 +393,7 @@ ALTER TABLE `mensagens`
 -- AUTO_INCREMENT de tabela `trabalhador`
 --
 ALTER TABLE `trabalhador`
-  MODIFY `id_trabalhador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_trabalhador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Restrições para tabelas despejadas
@@ -418,7 +431,7 @@ ALTER TABLE `curtidas`
 --
 ALTER TABLE `favoritos`
   ADD CONSTRAINT `favoritos_ibfk_1` FOREIGN KEY (`id_trabalhador`) REFERENCES `trabalhador` (`id_trabalhador`),
-  ADD CONSTRAINT `favoritos_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `cliente` (`id_cliente`);
+  ADD CONSTRAINT `favoritos_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`);
 
 --
 -- Restrições para tabelas `mensagens`

@@ -22,7 +22,7 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
 $isFavorito = false; // Inicializa como false
 if ($row) {
     // Verifica se o trabalhador é favorito
-    $sqlFavorito = "SELECT * FROM favoritos WHERE id_trabalhador = '$id_trabalhador' AND id_usuario = '$id_usuario'";
+    $sqlFavorito = "SELECT * FROM favoritos WHERE id_trabalhador = '$id_trabalhador' AND id_cliente = '$id_cliente'";
     $resultFavorito = $conn->query($sqlFavorito);
     $isFavorito = mysqli_num_rows($resultFavorito) > 0; // true se for favorito, false caso contrário
 } else {
