@@ -49,7 +49,7 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
 
             <ul style="padding-left: 0rem;">
                 <li class="itemMenu">
-                    <a href="#">
+                    <a href="./homeClienteLogado.php">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
                     </a>
@@ -74,7 +74,7 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
                 </li>
                 
                 <li class="itemMenu">
-                    <a href="#">
+                    <a href="./LogoutCliente.php">
                         <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
                         <span class="txtLink">Sair</span>
                     </a>
