@@ -4,6 +4,7 @@ include_once('../../backend/Conexao.php');
 
 
 $id_cliente = $_SESSION['id_cliente'];  
+$id_trabalhador = $_GET['id_trabalhador'];  
 
 // // Verifica se o usuário está logado
 if (!isset($_SESSION['id_cliente'])) {
@@ -60,14 +61,14 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JundTask - Perfil</title>
     <link rel="stylesheet" href="../../css/stylePerfil.css">
-    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="shortcut icon" href="../img/logo@2x.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
 </head>
 <body>
     <header>
         <nav class="BarraNav">
-            <img src="../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
+            <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
             <h1>Perfil</h1>
 
             <div class="perfil">
@@ -86,16 +87,16 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
             </div>
 
             <ul style="padding-left: 0rem;">
-                <li class="itemMenu">
-                    <a href="./homeLogado.php">
+                <li class="itemMenu ">
+                    <a href="#">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
                     </a>
                 </li>
-                <li class="itemMenu ">
-                    <a href="./SeuPerfil.php">
-                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
-                        <span class="txtLink">Perfil</span>
+                <li class="itemMenu">
+                    <a href="./EditarPerfilCliente.php">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="txtLink">Configurações</span>
                     </a>
                 </li>
                 <li class="itemMenu ativo">
@@ -110,14 +111,9 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
                         <span class="txtLink">Favoritos</span>
                     </a>
                 </li>
-                <li class="itemMenu ">
-                    <a href="./EditarPerfil.html">
-                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-                        <span class="txtLink">Configurações</span>
-                    </a>
-                </li>
+                
                 <li class="itemMenu">
-                    <a href="./Logout.php">
+                    <a href="./LogoutCliente.php">
                         <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
                         <span class="txtLink">Sair</span>
                     </a>
@@ -129,9 +125,9 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
         
         <div class="FotoFundo">
             <!-- foto background -->
-            <img src="../uploads/<?php echo !empty($row['foto_banner']) ? $row['foto_banner'] : '../img/TesteBackPerfil.png' ?>" alt="">
+            <img src="../../uploads/<?php echo !empty($row['foto_banner']) ? $row['foto_banner'] : '../../img/TesteBackPerfil.png' ?>" alt="">
             <div class="BlocoPerfilPrincipal">
-                <div class="FotoPerfil"><img src="../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/images100x100.png' ?>" alt=""></div>
+                <div class="FotoPerfil"><img src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../../img/images100x100.png' ?>" alt=""></div>
                 <div class="NomeTrabalhador"><?php echo '<p>' . htmlspecialchars($row['nome']) . '</p>'?></div>
                 <div class="Avaliacao">
                     <ion-icon name="star"></ion-icon>   
@@ -164,13 +160,13 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
                         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active ">
-                                <img src="../uploads/<?php echo !empty($row['foto_trabalho1']) ? $row['foto_trabalho1'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="">
+                                <img src="../../uploads/<?php echo !empty($row['foto_trabalho1']) ? $row['foto_trabalho1'] : '../../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="../uploads/<?php echo !empty($row['foto_trabalho2']) ? $row['foto_trabalho2'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="...">
+                                    <img src="../../uploads/<?php echo !empty($row['foto_trabalho2']) ? $row['foto_trabalho2'] : '../../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="../uploads//<?php echo !empty($row['foto_trabalho3']) ? $row['foto_trabalho3'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="...">
+                                    <img src="../../uploads/<?php echo !empty($row['foto_trabalho3']) ? $row['foto_trabalho3'] : '../../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="...">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
