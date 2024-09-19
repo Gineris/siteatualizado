@@ -43,7 +43,7 @@ if (isset($_SESSION['id_trabalhador'])) {
 <style>
     nav.menuLateral{
     width: 65px;
-    height: 468px;
+    height: 430px;
     }
 </style>
 <!DOCTYPE html>
