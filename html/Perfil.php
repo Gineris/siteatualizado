@@ -52,8 +52,9 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
     <title>JundTask - Perfil</title>
     <link rel="stylesheet" href="../css/stylePerfil.css">
     <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-icons-1.11.3">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="shortcut icon" href="../img/logo@2x.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
 </head>
 <body>
     <header>
@@ -143,9 +144,9 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
             <div class="favoritar-container">
                 <button id="favoritar-btn" data-id-trabalhador="<?php echo $id_trabalhador; ?>">
                     <?php if ($isFavorito): ?>
-                         <i class="bi bi-bookmark-star-fill"></i> Desfavoritar
+                         <i class="bi bi-bookmark-star-fill"></i> 
                     <?php else: ?>
-                        <i class="bi bi-bookmark-star"></i> Favoritar
+                        <i class="bi bi-bookmark-star"></i>
                     <?php endif; ?>
                 </button>
             </div>

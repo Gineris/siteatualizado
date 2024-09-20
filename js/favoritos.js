@@ -1,5 +1,10 @@
 fetch('../html/get_favoritos.php')
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
     .then(data => {
         if (data.success) {
             const container = document.getElementById('favoritos-container');
@@ -9,7 +14,7 @@ fetch('../html/get_favoritos.php')
                     <h3>${trabalhador.nome}</h3>
                     <p>Contato: ${trabalhador.contato}</p>
                     <p>Descrição: ${trabalhador.descricao}</p>
-                    <img src="../../uploads/${trabalhador.foto_perfil || 'default.png'}" alt="${trabalhador.nome}">
+                    <img src="../uploads/${trabalhador.foto_perfil || 'default.png'}" alt="${trabalhador.nome}">
                 `;
                 container.appendChild(trabalhadorDiv);
             });

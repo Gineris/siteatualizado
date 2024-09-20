@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 include_once('../backend/Conexao.php');
 
 // Verifica se o cliente está logado

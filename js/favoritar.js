@@ -1,35 +1,36 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const favoritarBtn = document.getElementById('favoritar-btn');
-    
-    if (favoritarBtn) {
-        favoritarBtn.addEventListener('click', function() {
-            const idTrabalhador = this.getAttribute('data-id-trabalhador');
+document.getElementById('favoritar-btn').addEventListener('click', function() { 
+    var idTrabalhador = this.getAttribute('data-id-trabalhador');
+    console.log('ID do trabalhador:', idTrabalhador);
 
-            // Envio de requisição AJAX para o backend
-            const xhr = new XMLHttpRequest();
-            xhr.open('POST', '../html/favoritar.php', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'http://localhost/siteatualizado/html/favoritar.php', true);
 
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        // Sucesso: Atualiza o botão conforme a resposta
-                        const response = JSON.parse(xhr.responseText);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-                        if (response.success) {
-                            const icon = response.favorited ? 'bi-bookmark-star-fill' : 'bi-bookmark-star';
-                            favoritarBtn.innerHTML = `<i class="bi ${icon}"></i>`;
-                        } else {
-                            console.log('Erro: ', response.message);
-                        }
-                    } else {
-                        console.error('Erro na requisição AJAX');
-                    }
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            try {
+                var response = JSON.parse(xhr.responseText);
+                console.log('Resposta do servidor:', response);
+                if (response.success) {
+                    var icon = response.favorited ? 'bi-bookmark-star-fill' : 'bi-bookmark-star';
+                    document.getElementById('favoritar-btn').innerHTML = `<i class="bi ${icon}"></i>`;
+                } else {
+                    alert(response.message);
                 }
-            };
+            } catch (error) {
+                console.error('Erro ao processar a resposta JSON:', error);
+                console.log('Resposta do servidor que causou erro:', xhr.responseText); // Adicionei para depuração
+            }
+        } else {
+            console.error('Erro na requisição AJAX. Status:', xhr.status);
+            console.log('Resposta do servidor:', xhr.responseText); // Adicionei para depuração
+        }
+    };
 
-            // Envia o id_trabalhador para o backend
-            xhr.send('id_trabalhador=' + encodeURIComponent(idTrabalhador));
-        });
-    }
+    xhr.onerror = function() {
+        console.error('Erro na requisição AJAX. Status:', xhr.status, 'Detalhes:', xhr.statusText);
+    };
+
+    xhr.send('id_trabalhador= ' + encodeURIComponent(idTrabalhador));
 });

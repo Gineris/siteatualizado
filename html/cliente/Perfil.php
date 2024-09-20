@@ -47,13 +47,14 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JundTask - Perfil</title>
     <link rel="stylesheet" href="../../css/stylePerfil.css">
-    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/bootstrap-icons-1.11.3">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="shortcut icon" href="../img/logo@2x.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
 </head>
 <body>
     <header>
@@ -69,22 +70,58 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
         </nav>
     </header>
 
-    <main> 
+    <main class=""> 
+        
         <nav class="menuLateral">
             <div class="IconExpandir">
                 <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
             </div>
+
             <ul style="padding-left: 0rem;">
-                <li class="itemMenu"><a href="./homeClienteLogado.php"><span class="icon"><ion-icon name="home-outline"></ion-icon></span><span class="txtLink">Início</span></a></li>
-                <li class="itemMenu ativo"><a href="./Categorias.php"><span class="icon"><ion-icon name="search-outline"></ion-icon></span><span class="txtLink">Pesquisar</span></a></li>
-                <li class="itemMenu"><a href="../favoritos.php"><span class="icon"><ion-icon name="heart-outline"></ion-icon></span><span class="txtLink">Favoritos</span></a></li>
-                <li class="itemMenu"><a href="./EditarPerfil.html"><span class="icon"><ion-icon name="settings-outline"></ion-icon></span><span class="txtLink">Configurações</span></a></li>
-                <li class="itemMenu"><a href="./Logout.php"><span class="icon"><ion-icon name="exit-outline"></ion-icon></span><span class="txtLink">Sair</span></a></li>
+                <li class="itemMenu">
+                    <a href="./homeLogado.php">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="txtLink">Início</span>
+                    </a>
+                </li>
+                <li class="itemMenu">
+                    <a href="./SeuPerfil.php">
+                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                        <span class="txtLink">Perfil</span>
+                    </a>
+                </li>
+                <li class="itemMenu ativo">
+                    <a href="./Categorias.php">
+                        <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
+                        <span class="txtLink">Pesquisar</span>
+                    </a>
+                </li>
+                <li class="itemMenu">
+                    <a href="../favoritos.php">
+                        <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
+                        <span class="txtLink">Favoritos</span>
+                    </a>
+                </li>
+                <li class="itemMenu">
+                    <a href="./EditarPerfil.html">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="txtLink">Configurações</span>
+                    </a>
+                </li>
+                <li class="itemMenu">
+                    <a href="./Logout.php">
+                        <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
+                        <span class="txtLink">Sair</span>
+                    </a>
+                </li>
             </ul>
+
         </nav>
         
         <div class="FotoFundo">
+            <!-- Foto de background -->
             <img src="../../uploads/<?php echo !empty($row['foto_banner']) ? $row['foto_banner'] : '../img/TesteBackPerfil.png' ?>" alt="Banner">
+            
             <div class="BlocoPerfilPrincipal">
                 <div class="FotoPerfil">
                     <img src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/images100x100.png' ?>" alt="Perfil">
@@ -106,15 +143,19 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
 
             <div class="favoritar-container">
                 <button id="favoritar-btn" data-id-trabalhador="<?php echo $id_trabalhador; ?>">
-                     <i class="bi <?php echo $isFavorito ? 'bi-bookmark-star-fill' : 'bi-bookmark-star'; ?>"></i>
+                    <?php if ($isFavorito): ?>
+                         <i class="bi bi-bookmark-star-fill"></i> 
+                    <?php else: ?>
+                        <i class="bi bi-bookmark-star"></i>
+                    <?php endif; ?>
                 </button>
-             </div>
-             
+            </div>
+
+
             <div class="txt">
                 <p><?php echo htmlspecialchars($row['descricao']); ?></p>
             </div>
         </div>
-
         <div class="trabalhos">
             <div class="carrousel">
                 <div class="col">
@@ -171,27 +212,36 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
     <script src="../../js/favoritar.js"></script> 
 
     <script>
-        document.getElementById('favoritar-btn').addEventListener('click', function() {
-            var idTrabalhador = this.getAttribute('data-id-trabalhador');
-            var isFavorito = this.textContent === 'Favoritar';
+    document.getElementById('favoritar-btn').addEventListener('click', function() {
+        var idTrabalhador = this.getAttribute('data-id-trabalhador');
 
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', '../../html/favoritar.php', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', './favoritar.php', true); // Verifique o caminho correto
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-            xhr.onload = function() {
-                if (xhr.status === 200) {
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                try {
                     var response = JSON.parse(xhr.responseText);
                     if (response.success) {
-                        document.getElementById('favoritar-btn').textContent = isFavorito ? 'Desfavoritar' : 'Favoritar';
+                        var icon = response.favorited ? 'bi-bookmark-star-fill' : 'bi-bookmark-star';
+                        document.getElementById('favoritar-btn').innerHTML = `<i class="bi ${icon}"></i>`;
+                        // Atualizar página para refletir mudanças
+                        location.reload();
                     } else {
                         alert(response.message);
                     }
+                } catch (error) {
+                    console.error('Erro ao processar a resposta: ', error);
                 }
-            };
+            } else {
+                console.error('Erro ao fazer a requisição: ', xhr.status);
+            }
+        };
 
-            xhr.send('id_trabalhador=' + idTrabalhador + '&isFavorito=' + (isFavorito ? 1 : 0));
-        });
-    </script>
+        xhr.send('id_trabalhador=' + encodeURIComponent(idTrabalhador)); // Corrigido para idTrabalhador
+    });
+</script>
+
 </body>
 </html>

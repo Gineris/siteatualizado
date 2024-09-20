@@ -42,19 +42,19 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
     </header>
 
     <main class=""> 
-        <nav class="menuLateral">
+    <nav class="menuLateral">
             <div class="IconExpandir">
                 <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
             </div>
 
             <ul style="padding-left: 0rem;">
-                <li class="itemMenu">
-                    <a href="./homeClienteLogado.php">
+                <li class="itemMenu ativo">
+                    <a href="#">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
                     </a>
                 </li>
-                <li class="itemMenu ativo">
+                <li class="itemMenu">
                     <a href="./EditarPerfilCliente.php">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
                         <span class="txtLink">Configurações</span>
@@ -67,7 +67,7 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="#">
+                    <a href="../favoritos.php">
                         <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
                         <span class="txtLink">Favoritos</span>
                     </a>
@@ -82,8 +82,7 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
                 
             </ul>
 
-        </nav>
-        
+        </nav> 
 
                 <div class="container">
                     <div class="row me-0 mb-5 topoPerfil">

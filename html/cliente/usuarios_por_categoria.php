@@ -88,26 +88,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
 
             <ul style="padding-left: 0rem;">
-                <li class="itemMenu">
-                    <a href="./homeClienteLogado.php">
+                <li class="itemMenu ativo">
+                    <a href="#">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
                     </a>
                 </li>
-                <li class="itemMenu ">
+                <li class="itemMenu">
                     <a href="./EditarPerfilCliente.php">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
                         <span class="txtLink">Configurações</span>
                     </a>
                 </li>
-                <li class="itemMenu ativo">
+                <li class="itemMenu ">
                     <a href="./Categorias.php">
                         <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="#">
+                    <a href="../favoritos.php">
                         <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
                         <span class="txtLink">Favoritos</span>
                     </a>
@@ -122,7 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 
             </ul>
 
-        </nav>
+        </nav> 
 
         <div class="search-container">
     <form action="" method="POST" class="search-form">

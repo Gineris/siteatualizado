@@ -97,7 +97,7 @@ if (isset($_SESSION['id_cliente'])) {
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="#">
+                    <a href="../favoritos.php">
                         <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
                         <span class="txtLink">Favoritos</span>
                     </a>
