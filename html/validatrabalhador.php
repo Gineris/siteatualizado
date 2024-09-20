@@ -53,6 +53,7 @@ if ($result_adm->num_rows > 0) {
             $_SESSION['nome'] = $registroUsuario->nome;
             $_SESSION['email'] = $registroUsuario->email;
             $_SESSION['status'] = $registroUsuario->status;
+            $_SESSION['permissao'] = $registroUsuario->permissao;
             $_SESSION['logado'] = true;
             header('Location: ./homeLogado.php');
             exit();
