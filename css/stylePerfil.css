@@ -264,15 +264,27 @@ footer p{
 }
 /* Estilo padrão do botão */
 #favoritar-btn {
-    background-color: #007bff;
-    color: white;
+
+    color: rgb(87, 0, 0);
     padding: 10px;
     border: none;
     cursor: pointer;
 }
 
-/* Estilo quando o trabalhador foi curtido */
-#favoritar-btn.curtido {
-    background-color: #ff0000; /* Muda a cor para vermelho, por exemplo */
-    color: white;
+.favoritar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px; /* Espaçamento acima do botão */
+}
+
+.favoritar-container img {
+    width: 40px; /* Largura da imagem */
+    height: 40px; /* Altura da imagem */
+    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+    transition: transform 0.2s; /* Efeito de transição */
+}
+
+.favoritar-container img:hover {
+    transform: scale(1.1); /* Aumenta a imagem levemente ao passar o mouse */
 }
