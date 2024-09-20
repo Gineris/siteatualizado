@@ -2,7 +2,7 @@
 session_start(); // Inicia a sessão
 include_once('../backend/Conexao.php');
 
-
+$id_trabalhador = $_SESSION['id_trabalhador'];
 
 // // Verifica se o usuário está logado
 if (!isset($_SESSION['id_trabalhador'])) {
