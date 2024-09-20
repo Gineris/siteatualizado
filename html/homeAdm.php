@@ -104,6 +104,14 @@
             </div>
         </a>
     </div>
+    <div class="card">
+        <a href="./Solicitacoes.php" class="card-button">
+            <img src="../img/app-settings.png" alt="Imagem do Card" class="card-image">
+            <div class="card-content">
+                <h2 class="card-title">Verificar solicitações</h2>
+            </div>
+        </a>
+    </div>
 </div>
 
     </main>
