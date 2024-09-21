@@ -85,26 +85,26 @@ if (isset($_SESSION['id_cliente'])) {
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="./EditarPerfilCliente.php">
+                    <a href="EditarPerfilCliente.php">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
                         <span class="txtLink">Configurações</span>
                     </a>
                 </li>
                 <li class="itemMenu ">
-                    <a href="./Categorias.php">
+                    <a href="Categorias.php">
                         <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="../favoritos.php">
+                    <a href="favorito.php">
                         <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
                         <span class="txtLink">Favoritos</span>
                     </a>
                 </li>
                 
                 <li class="itemMenu">
-                    <a href="./LogoutCliente.php">
+                    <a href="LogoutCliente.php">
                         <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
                         <span class="txtLink">Sair</span>
                     </a>

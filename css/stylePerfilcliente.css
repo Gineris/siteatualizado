@@ -32,7 +32,7 @@ h1 {
     display: flex;
     justify-content: space-between ;
 }
-.BarraNav img{
+.BarraNav > img{
     width: 186px;
     height: 51px;
     margin-top: -10px;
@@ -44,18 +44,18 @@ h1 {
     font: 400 1.1rem "M PLUS 1p", sans-serif ;
 }
 
-.perfil ion-icon{
-    font-size: 2em;
+.FotoPerfilNav{
+    width: 50px;
+    height: 50px;
     border: solid 3px var(--corPrimaria-2);
     border-radius: 50%;
-    padding: 3px;
-    cursor: pointer;
-    color: #0F3D60;
-} 
+    padding: 1px;
+
+}
 
 nav.menuLateral{
-    width: 50px;
-    height: 412px;
+    width: 65px;
+    height: 468px;
     background-color: #04074B;
     padding: 30px 0 40px 1%;
     box-shadow: 3px 0 0 #ED5C15;
@@ -127,18 +127,18 @@ ul li.itemMenu a .icon > ion-icon{
 
 .FotoFundo{
     position: relative;
+    z-index: 1;
+}
+.FotoFundo img{
     display: block;
     margin: auto;
-    background: #fff url(../img/TesteBackPerfil.png) no-repeat center;
-    background-size: cover;
-    width: 89%;
-    height: 390px;
-    z-index: 1;
+    width: 90%;
+    height: 420px;
 }
 .BlocoPerfilPrincipal{
     position: absolute;
     width: 353px;
-    height: 510px;
+    height: 480px;
     background: #fff;
     display: flex;
     flex-direction: column;
@@ -150,8 +150,8 @@ ul li.itemMenu a .icon > ion-icon{
     font-size: 1.1rem;
     box-shadow: 2px 2px 2px 0px #00000073;
     top: 60%;
-    left: 7%;
-    z-index: 1;
+    left: 11%;
+    z-index: 2;
 }
 .LocaleLikes{
     flex-direction: row;
@@ -166,6 +166,10 @@ ul li.itemMenu a .icon > ion-icon{
 }
 .NomeTrabalhador p{
     font-weight: bolder;
+}
+.tel{
+    font-weight: 400;
+
 }
 .Avaliacao ion-icon{
    font-size: 1.4rem;
@@ -202,37 +206,100 @@ footer p{
 }
 
 
-
-/* Criar as variaveis com as cores */
-:root {
-    --amarelo: #ffcc00;
-    --cinza: #cccccc;
+#reviewForm, #reviews{
+    margin-top:500px ;
+    margin-left: 500px;
 }
-estrelas{
-    font-size: 2rem;
+.star-rating {
+    display: flex;
+    direction: row-reverse;
+    font-size: 1.5em;
+    cursor: pointer;
 }
-/* Não exibir o input radio */
-.estrelas input[type=radio] {
+.star-rating input {
     display: none;
 }
-
-/* Criar as estrelas preenchidas de amarelo*/
-.estrelas label i.opcao.fa:before {
-    content: '\f005';
-    color: var(--amarelo);
+.star-rating label {
+    color: #ccc;
+    transition: color 0.2s;
+}
+.star-rating input:checked ~ label,
+.star-rating input:checked ~ label ~ label {
+    color: #f39c12;
+}
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #f39c12;
 }
 
-/* Atribuir o cinza nas estrelas, quando selecionar a estrela retirar o cinza*/
-.estrelas input[type=radio]:checked~label i.fa:before {
-    color: var(--cinza);
+.campo_comentario{
+    display: block;
+    margin: auto;
 }
 
-/* Personalizar a estrela preenchida */
-.estrela-preenchida {
-    color: var(--amarelo);
+.trabalhos{
+    margin-top: 30%;
+}
+.carousel {
+    max-width: 1080px; 
+    min-width: 600px; 
+    height: 450px; 
+    margin: 0 auto; 
 }
 
-/* Personalizar a estrela vazia */
-.estrela-vazia{
-    color: var(--cinza);
+.carousel img {
+    object-fit: cover; 
+    height: 100%;      
+    width: 100%;      
+}
+.fundocarrossel{
+    background-color: #050739;
+    margin-top: 500px;
+}
+.fundocarrossel h2{
+    color: #F6F6F6;
+    text-align: center;
+    font-family: "Space Grotesk", sans-serif;
+    padding-top: 10px;
+}
+.favorito {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+#favoritarBtn {
+    background-color: #04074B; 
+    color: white; 
+    border: none; 
+    box-shadow: 3px 3px 3px #ED5C15;
+    border-radius: 20px; 
+    padding: 10px 20px; 
+    font-size: 16px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+}
+
+#favoritarBtn:hover {
+    background-color: #02043a; 
+}
+
+#favoritarBtn:active {
+    background-color: #ED5C15; 
+}
+
+
+
+.like-button {
+    background-color: transparent; 
+    border: none; 
+    color: #ED5C15; 
+    font-size: 20px; 
+    cursor: pointer; 
+    margin-right: 10px; 
+}
+
+.like-button:hover {
+    color: #883106 
 }
