@@ -81,7 +81,7 @@
        </div>
        <div class="container">
     <div class="card">
-        <a href="./sistemacrudcliente.php" class="card-button">
+        <a href="./sistemacrudCliente.php" class="card-button">
             <img src="../img/admin-panel (1).png" alt="Imagem do Card" class="card-image">
             <div class="card-content">
                 <h2 class="card-title">Gerenciamento Cliente</h2>
@@ -97,7 +97,7 @@
         </a>
     </div>
     <div class="card">
-        <a href="./adicionacategoria.php" class="card-button">
+        <a href="./sistemacrudCategoria.php" class="card-button">
             <img src="../img/app-settings.png" alt="Imagem do Card" class="card-image">
             <div class="card-content">
                 <h2 class="card-title">Adicionar Categorias</h2>
@@ -106,7 +106,7 @@
     </div>
     <div class="card">
         <a href="./Solicitacoes.php" class="card-button">
-            <img src="../img/app-settings.png" alt="Imagem do Card" class="card-image">
+            <img src="../img/aprovartrabalhadores.png" alt="Imagem do Card" class="card-image">
             <div class="card-content">
                 <h2 class="card-title">Verificar solicitações</h2>
             </div>
