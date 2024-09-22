@@ -36,7 +36,7 @@ function uploadArquivo($campoNome) {
         $nomeArquivo = basename($_FILES[$campoNome]['name']);
         $caminhoCompleto = $diretorio . $nomeArquivo;
         $tipoArquivo = strtolower(pathinfo($caminhoCompleto, PATHINFO_EXTENSION));
-        $tiposPermitidos = array("jpg", "jpeg", "png");
+        $tiposPermitidos = array("jpg", "jpeg", "png", "jfif");
         
         if (in_array($tipoArquivo, $tiposPermitidos)) {
             if (move_uploaded_file($_FILES[$campoNome]['tmp_name'], $caminhoCompleto)) {
@@ -45,7 +45,7 @@ function uploadArquivo($campoNome) {
                 $_SESSION['mensagem'] = "Erro ao mover o arquivo de upload.";
             }
         } else {
-            $_SESSION['mensagem'] = "Formato de arquivo não suportado. Use JPG, JPEG, ou PNG.";
+            $_SESSION['mensagem'] = "Formato de arquivo não suportado. Use JPG, JPEG, JFIF ou PNG.";
         }
     }
     return '';
