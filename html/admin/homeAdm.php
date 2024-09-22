@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="../css/styleADM.css">
     <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
 
-    <link rel="shortcut icon" href="../img/logo@2x.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
 </head>
 <body>
     <header>
         <nav class="BarraNav">
-            <img src="../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
+            <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
             <div class="perfil">
                 <a href="#">
                 <ion-icon name="person"></ion-icon>
@@ -76,37 +76,37 @@
                 <p>Aqui você poderá administrar seu banco de dados de trabalhadores!</p>
             </div>
             <div class="col me-0 pe-0 imgfundo">
-                <img src="../img/boasvindasCliente.png" alt="" >
+                <img src="../../img/boasvindasCliente.png" alt="" >
             </div>
        </div>
        <div class="container">
     <div class="card">
-        <a href="./sistemacrudCliente.php" class="card-button">
-            <img src="../img/admin-panel (1).png" alt="Imagem do Card" class="card-image">
+        <a href="sistemacrudCliente.php" class="card-button">
+            <img src="../../img/admin-panel (1).png" alt="Imagem do Card" class="card-image">
             <div class="card-content">
                 <h2 class="card-title">Gerenciamento Cliente</h2>
             </div>
         </a>
     </div>
     <div class="card">
-        <a href="./sistemacrudtrabalhador.php" class="card-button">
-            <img src="../img/admin-panel.png" alt="Imagem do Card" class="card-image">
+        <a href="sistemacrudtrabalhador.php" class="card-button">
+            <img src="../../img/admin-panel.png" alt="Imagem do Card" class="card-image">
             <div class="card-content">
                 <h2 class="card-title">Gerenciamento Trabalhador</h2>
             </div>
         </a>
     </div>
     <div class="card">
-        <a href="./sistemacrudCategoria.php" class="card-button">
-            <img src="../img/app-settings.png" alt="Imagem do Card" class="card-image">
+        <a href="sistemacrudCategoria.php" class="card-button">
+            <img src="../../img/app-settings.png" alt="Imagem do Card" class="card-image">
             <div class="card-content">
                 <h2 class="card-title">Adicionar Categorias</h2>
             </div>
         </a>
     </div>
     <div class="card">
-        <a href="./Solicitacoes.php" class="card-button">
-            <img src="../img/aprovartrabalhadores.png" alt="Imagem do Card" class="card-image">
+        <a href="Solicitacoes.php" class="card-button">
+            <img src="../../img/aprovartrabalhadores.png" alt="Imagem do Card" class="card-image">
             <div class="card-content">
                 <h2 class="card-title">Verificar solicitações</h2>
             </div>
@@ -124,7 +124,7 @@
     </footer>
     
 
-    <script src="../js/funcaoMenuLateral.js"></script>
+    <script src="../../js/funcaoMenuLateral.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>

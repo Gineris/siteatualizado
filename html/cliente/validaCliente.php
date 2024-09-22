@@ -22,7 +22,7 @@ if ($result_adm->num_rows > 0) {
     if (password_verify($senha, $row_adm['senha'])) {
         
         $_SESSION['email'] = $email;
-        echo json_encode(['sucesso' => true, 'tipo' => 'admin', 'redirect' => './homeAdm.php']);
+        echo json_encode(['sucesso' => true, 'tipo' => 'admin', 'redirect' => '../admin/homeAdm.php']);
     } else {
         
         echo json_encode(['sucesso' => false, 'mensagem' => 'Email ou senha inválidos']);

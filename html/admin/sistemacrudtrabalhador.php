@@ -1,5 +1,5 @@
 <?php
-include_once('../backend/Conexao.php'); 
+include_once('../../backend/Conexao.php'); 
 
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -133,15 +133,15 @@ $trabalhadores = $result->fetch_all(MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento Trabalhadores</title>
-    <link rel="stylesheet" href="../css/stylecrudtrabalhador.css">
-    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
-    <link rel="shortcut icon" href="../img/logo@2x.png" type="image/x-icon">
+    <link rel="stylesheet" href=".././css/stylecrudtrabalhador.css">
+    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
+    <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
 </head>
 <body>
 
 <header>
     <nav class="BarraNav">
-        <img src="../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
+        <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
         <div class="perfil">
             <a href="#">
                 <ion-icon name="person"></ion-icon>
@@ -289,10 +289,10 @@ $trabalhadores = $result->fetch_all(MYSQLI_ASSOC);
             <?php endforeach; ?>
         </tbody>
     </table>
-    <script src="../js/funcaoMenuLateral.js"></script>
+    <script src="../../js/funcaoMenuLateral.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         const areaSelect = document.getElementById('id_area');
