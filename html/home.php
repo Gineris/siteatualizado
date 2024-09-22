@@ -92,7 +92,7 @@
                 </a>
                 </div>
                 <div class="col">
-                <a href="CadastroCliente.php">
+                <a href="../html/cliente/CadastroCliente.php">
                     <div  class="BlocoPadrao BusqueServicos">
                         <img src="../img/BusqueServicos.png" alt="varias pessoas juntas">
                         <p>busque por <br>profissionais</p>

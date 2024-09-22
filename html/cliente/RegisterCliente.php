@@ -1,5 +1,5 @@
 <?php
-include_once('../backend/Conexao.php');
+include_once('../../backend/Conexao.php');
 
 header('Content-Type: application/json');
 
@@ -11,19 +11,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $senha = trim($_POST['senha']);
     $confirmaSenha = trim($_POST['ConfirmaSenha']);
     $id_area = intval($_POST['id_area']);
-    $id_categoria = intval($_POST['id_categoria']);
     $fotoDePerfil = $_FILES['foto_de_perfil'];
 
     $dataAtual = new DateTime();
     $dataNascimento = new DateTime($data_nascimento);
     $idade = $dataAtual->diff($dataNascimento)->y;
 
-    if (empty($nome) || empty($email) || empty($senha) || empty($confirmaSenha) || empty($id_area) || empty($id_categoria) || empty($contato) || empty($data_nascimento)) {
+    // Validações
+    if (empty($nome) || empty($email) || empty($senha) || empty($confirmaSenha) || empty($id_area) || empty($contato) || empty($data_nascimento)) {
         echo json_encode(['sucesso' => false, 'mensagem' => 'Todos os campos são obrigatórios.']);
         exit;
     }
 
-    if ($senha !== $confirmaSenha) {    
+    if ($senha !== $confirmaSenha) {
         echo json_encode(['sucesso' => false, 'mensagem' => 'As senhas não coincidem.']);
         exit;
     }
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Verifica se o e-mail já está registrado
-    $sql = "SELECT COUNT(*) FROM trabalhador WHERE email = ?";
+    $sql = "SELECT COUNT(*) FROM cliente WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Processa o upload da foto de perfil
-    $diretorio = '../uploads/';
+    $diretorio = '../../uploads/';
     $nomeArquivo = basename($fotoDePerfil['name']);
     $caminhoCompleto = $diretorio . $nomeArquivo;
 
@@ -78,18 +78,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Insere o novo trabalhador na base de dados
     try {
-        $sql = "INSERT INTO trabalhador (nome, email, contato, data_nasc, senha, id_area, id_categoria, foto_perfil) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO cliente (nome, email, contato, data_nasc, senha, id_area, foto_perfil) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-
-        if (!$stmt) {
-            echo json_encode(['sucesso' => false, 'mensagem' => 'Erro na preparação da consulta: ' . $conn->error]);
-            exit;
-        }
-
-        $stmt->bind_param("sssssiis", $nome, $email, $contato, $data_nascimento, $senhaCriptografada, $id_area, $id_categoria, $caminhoCompleto);
+        $stmt->bind_param("ssssiss", $nome, $email, $contato, $data_nascimento, $senhaCriptografada, $id_area, $caminhoCompleto);
 
         if ($stmt->execute()) {
-            echo json_encode(['sucesso' => true, 'mensagem' => 'Cadastro realizado com sucesso!', 'mostrarBotaoLogin' => true]);
+            echo json_encode(['sucesso' => true, 'mensagem' => 'Cadastro realizado com sucesso!']);
         } else {
             echo json_encode(['sucesso' => false, 'mensagem' => 'Erro ao realizar o cadastro: ' . $stmt->error]);
         }
@@ -103,4 +97,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo json_encode(['sucesso' => false, 'mensagem' => 'Método de requisição inválido.']);
 }
 ?>
-
