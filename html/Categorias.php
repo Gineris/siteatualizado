@@ -12,7 +12,12 @@ $row = mysqli_fetch_assoc($result);
 $sql_categorias = "SELECT * FROM categorias";
 $resultado_categorias = $conn->query($sql_categorias);
 ?>
-
+<style>
+    nav.menuLateral{
+        width: 50px;
+        height: 370px;
+    }
+</style>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -88,7 +93,7 @@ $resultado_categorias = $conn->query($sql_categorias);
                 <?php while ($categoria = $resultado_categorias->fetch_assoc()): ?>
                     <div class="card">
                         <a href="usuarios_por_categoria.php?id_categoria=<?= $categoria['id_categoria'] ?>">
-                        <img src="../uploads/categorias/<?= !empty($categoria['imagem']) ? $categoria['imagem'] : 'default.png' ?>" alt="<?= $categoria['nome'] ?>">
+                        <img src="../uploads/categorias/<?=  !empty( $categoria['imagem']) ? $categoria['imagem'] : 'default.png' ?>" alt="<?= $categoria['nome'] ?>">
                             <p><?= $categoria['nome'] ?></p>
                         </a>
                     </div>
