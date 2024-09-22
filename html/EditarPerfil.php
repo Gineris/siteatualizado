@@ -102,7 +102,7 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
                     </div>
                     </div>
                     
-                    <form method="POST" action="../backend/VerificaPermissao.php" enctype="multipart/form-data">
+                    <form method="POST" action="../backend/atualizacoesPendentes.php" enctype="multipart/form-data">
                         <div class="row me-0 ">
                             <div class="col coluna1">
                                 <div class="EstiloInputs">

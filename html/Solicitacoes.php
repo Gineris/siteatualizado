@@ -2,27 +2,85 @@
 session_start();
 include_once('../backend/Conexao.php');
 
-// Escreva a consulta para pegar os trabalhadores com permissão 2
-$sql = "SELECT id_trabalhador FROM trabalhador WHERE permissao = 2";
+// Buscar atualizações pendentes
+$sql = "SELECT * FROM atualizacoes_pendentes WHERE aprovado = 0";
+$result = $conn->query($sql);
 
-// Executar a consulta usando o mysqli
-$resultado_pesquisar = mysqli_query($conn, $sql);
+?>
 
-// Verificar se retornou algum resultado
-if (mysqli_num_rows($resultado_pesquisar) > 0) {
-    echo "<h3>Lista de Trabalhadores com permissão 2:</h3>";
-    echo "<ul>";
-    
-    // Laço de repetição para exibir os IDs dos trabalhadores
-    while ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
-        echo "<li>ID Trabalhador: " . $row['id_trabalhador'] . "</li>";
-    }
-    
-    echo "</ul>";
-} else {
-    echo "Nenhum trabalhador encontrado com permissão 2.";
-}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Aprovar/Rejeitar Atualizações</title>
+</head>
+<body>
 
-// Fechar a conexão
-mysqli_close($conn);
+<h1>Solicitações de Atualizações Pendentes</h1>
+
+<?php if ($result->num_rows > 0): ?>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID Trabalhador</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Contato</th>
+                <th>Data de Nascimento</th>
+                <th>Descrição</th>
+                <th>Área</th>
+                <th>Categoria</th>
+                <th>Fotos</th>
+                <th>Aprovar/Rejeitar</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        <?php while ($row = $result->fetch_assoc()): ?>
+            <tr>
+                <td><?= $row['id_trabalhador'] ?></td>
+                <td><?= $row['nome'] ?></td>
+                <td><?= $row['email'] ?></td>
+                <td><?= $row['contato'] ?></td>
+                <td><?= $row['data_nasc'] ?></td>
+                <td><?= $row['descricao'] ?></td>
+                <td><?= $row['id_area'] ?></td>
+                <td><?= $row['id_categoria'] ?></td>
+                <td>
+                    <?php if (!empty($row['foto_perfil'])): ?>
+                        <img src="../uploads/<?= $row['foto_perfil'] ?>" width="50">
+                    <?php endif; ?>
+                    <?php if (!empty($row['foto_trabalho1'])): ?>
+                        <img src="../uploads/<?= $row['foto_trabalho1'] ?>" width="50">
+                    <?php endif; ?>
+                    <?php if (!empty($row['foto_trabalho2'])): ?>
+                        <img src="../uploads/<?= $row['foto_trabalho2'] ?>" width="50">
+                    <?php endif; ?>
+                    <?php if (!empty($row['foto_trabalho3'])): ?>
+                        <img src="../uploads/<?= $row['foto_trabalho3'] ?>" width="50">
+                    <?php endif; ?>
+                    <?php if (!empty($row['foto_banner'])): ?>
+                        <img src="../uploads/<?= $row['foto_banner'] ?>" width="50">
+                    <?php endif; ?>
+                </td>
+                <td>
+                    <form action="../backend/aprovar_rejeitar.php" method="POST">
+                        <input type="hidden" name="id_atualizacao" value="<?php echo $row['id_atualizacoes_pendentes']; ?>">
+                        <button type="submit" name="acao" value="aprovar">Aprovar</button>
+                        <button type="submit" name="acao" value="rejeitar">Rejeitar</button>
+                    </form>
+                </td>
+            </tr>
+        <?php endwhile; ?>
+        </tbody>
+    </table>
+<?php else: ?>
+    <p>Não há atualizações pendentes.</p>
+<?php endif; ?>
+
+</body>
+</html>
+
+<?php
+$conn->close();
 ?>
