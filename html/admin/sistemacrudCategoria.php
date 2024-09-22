@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $imagem = ''; 
     if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = '../uploads/categorias/';
+        $uploadDir = '../../uploads/categorias/';
         $fileName = basename($_FILES['imagem']['name']);
         $uploadFile = $uploadDir . $fileName;
 
@@ -128,58 +128,15 @@ $categorias = $result->fetch_all(MYSQLI_ASSOC);
     <nav class="BarraNav">
         <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
         <div class="perfil">
-            <a href="#">
-                <ion-icon name="person"></ion-icon>
+            <a href="./homeAdm.php">
+                Voltar
             </a>
         </div>
     </nav>
 </header>
 
 <main class=""> 
-    <nav class="menuLateral">
-        <div class="IconExpandir">
-            <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
-        </div>
 
-        <ul>
-            <li class="itemMenu">
-                <a href="./homeLogado.php">
-                    <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                    <span class="txtLink">Inicio</span>
-                </a>
-            </li>
-            <li class="itemMenu">
-                <a href="./SeuPerfil.php">
-                    <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
-                    <span class="txtLink">Perfil</span>
-                </a>
-            </li>
-            <li class="itemMenu ativo">
-                <a href="#">
-                    <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
-                    <span class="txtLink">Pesquisar</span>
-                </a>
-            </li>
-            <li class="itemMenu">
-                <a href="#">
-                    <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
-                    <span class="txtLink">Favoritos</span>
-                </a>
-            </li>
-            <li class="itemMenu">
-                <a href="./EditarPerfil.php">
-                    <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-                    <span class="txtLink">Configurações</span>
-                </a>
-            </li>
-            <li class="itemMenu">
-                <a href="#">
-                    <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
-                    <span class="txtLink">Sair</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
 <h2><?php echo $action === 'edit' ? 'Editar Categoria' : 'Adicionar Nova Categoria'; ?></h2>
 <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>?action=<?php echo $action === 'edit' ? 'update' : 'create'; ?>" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?php echo htmlspecialchars($categoria['id_categoria'] ?? ''); ?>">
@@ -215,13 +172,13 @@ $categorias = $result->fetch_all(MYSQLI_ASSOC);
             <tr>
                 <td><?php echo htmlspecialchars($categoria['id_categoria']); ?></td>
                 <td><?php echo htmlspecialchars($categoria['nome']); ?></td>
-                <td><img src="uploads/categorias/<?php echo htmlspecialchars($categoria['imagem']); ?>" alt="Imagem" style="width: 50px;"></td>
+                <td><img src="../../uploads/categorias/<?php echo htmlspecialchars($categoria['imagem']); ?>" alt="Imagem" style="width: 50px;"></td>
                 <td>
                     <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>?action=edit&id=<?php echo $categoria['id_categoria']; ?>" title="Editar">
-                    <img src="../img/editar-arquivo.png" alt="Editar" style="width: 25px; height: auto;">
+                    <img src="../../img/editar-arquivo.png" alt="Editar" style="width: 25px; height: auto;">
                     </a>
                     <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>?action=delete&id=<?php echo $categoria['id_categoria']; ?>" title="Excluir" onclick="return confirm('Você tem certeza que deseja excluir?');">
-                    <img src="../img/botao-apagar.png" alt="Excluir" style="width: 25px; height: auto;">
+                    <img src="../../img/botao-apagar.png" alt="Excluir" style="width: 25px; height: auto;">
                     </a>
                 </td>
             </tr>

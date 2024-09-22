@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once('../backend/Conexao.php');
+include_once('../../backend/Conexao.php');
 
 // Buscar atualizações pendentes
 $sql = "SELECT * FROM atualizacoes_pendentes WHERE aprovado = 0";

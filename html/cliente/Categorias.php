@@ -63,7 +63,7 @@ $categorias = [
             </div>
 
             <ul style="padding-left: 0rem;">
-                <li class="itemMenu ativo">
+                <li class="itemMenu">
                     <a href="homeClienteLogado.php">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
@@ -75,7 +75,7 @@ $categorias = [
                         <span class="txtLink">Configurações</span>
                     </a>
                 </li>
-                <li class="itemMenu ">
+                <li class="itemMenu ativo">
                     <a href="Categorias.php">
                         <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>
