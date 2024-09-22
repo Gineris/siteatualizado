@@ -24,7 +24,7 @@ $resultado_favoritos = mysqli_query($conn, $sql);
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JundTask - Trabalhadores Favoritos</title>
-    <link rel="stylesheet" href="../../css/styleHomeLogado.css">
+    <link rel="stylesheet" href="../../css/styleFavoritos.css">
     <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.min.css">
 
     <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
@@ -86,23 +86,33 @@ $resultado_favoritos = mysqli_query($conn, $sql);
         </nav> 
     
         <div class="resultado">
-    <h1>Trabalhadores Favoritos</h1>
+    <h1 class="mb-4">Trabalhadores Favoritos</h1>
     <div class="usuario">
-        <?php ($row = mysqli_fetch_assoc($resultado_favoritos))  ?> 
-                <div class="CampoEscolhaTrabalhador">
-                    <a href="./Perfil.php?id_trabalhador=<?php echo $row['id_trabalhador']; ?>">
-                        <div class="CardBox"> 
-                            <div class="imagem">
-                                <img src="../../uploads/<?php echo $row['foto_perfil']; ?>" alt="">
+        <?php
+        if (mysqli_num_rows($resultado_favoritos) > 0) {
+            while($row = mysqli_fetch_assoc($resultado_favoritos))  {?> 
+                    <div class="CampoEscolhaTrabalhador">
+                        <a href="./Perfil.php?id_trabalhador=<?php echo $row['id_trabalhador']; ?>">
+                            <div class="CardBox"> 
+                                <div class="imagem">
+                                    <img src="../../uploads/<?php echo $row['foto_perfil']; ?>" alt="">
+                                </div>
+                                <div class="txtTrabalhador">
+                                    <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
+                                    <p style="margin-bottom:0rem"><?php echo htmlspecialchars($row['categoria']); ?></p>
+                                    <p style="margin-bottom:0rem"><?php echo htmlspecialchars($row['media_avaliacao']); ?></p>
+                                </div>
                             </div>
-                            <div class="txtTrabalhador">
-                                <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
-                                <p><?php echo htmlspecialchars($row['categoria']); ?></p>
-                                <p><?php echo htmlspecialchars($row['media_avaliacao']); ?></p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                <?php }?>
+        <?php
+        } else {
+            echo '<div class="tituloDEnaoEncontrado">';
+            echo '<p>Nenhum trabalhador favoritado</p>';
+            echo '<div';
+        }    
+        ?>
     </div>
 </div>
 </main>
