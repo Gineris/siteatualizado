@@ -61,7 +61,7 @@ $foto_banner = uploadArquivo('foto_banner');
 // Verificar se os campos obrigatórios foram preenchidos
 if (empty($nome) || empty($email) || empty($senha) || empty($id_area) || empty($id_categoria)) {
     $_SESSION['mensagem'] = "Preencha todos os campos obrigatórios.";
-    header('Location: ./EditarPerfil.php');
+    header('Location: ../html/EditarPerfil.php');
     exit();
 }
 

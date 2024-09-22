@@ -105,7 +105,7 @@
 
                         // Redirecionar após 2 segundos
                         setTimeout(function() {
-                            window.location.href = './LoginUsuario.php'; // Redireciona para a página de login
+                            window.location.href = './LoginTrabalhador.php'; // Redireciona para a página de login
                         }, 2000); // Tempo em milissegundos
                     } else {
                         mensagemErro.innerText = data.mensagem;

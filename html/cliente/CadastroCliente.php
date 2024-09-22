@@ -95,7 +95,7 @@
                         mensagemSucesso.style.display = 'block';
                         mensagemErro.style.display = 'none';
                         setTimeout(function() {
-                            window.location.href = data.redirect || './loginUsuario.php';
+                            window.location.href = data.redirect || 'loginUsuario.php';
                         }, 2000);
                     } else {
                         mensagemErro.innerText = data.mensagem;
