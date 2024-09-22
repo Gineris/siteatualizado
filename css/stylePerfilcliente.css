@@ -55,7 +55,7 @@ h1 {
 
 nav.menuLateral{
     width: 65px;
-    height: 468px;
+    height: 410px;
     background-color: #04074B;
     padding: 30px 0 40px 1%;
     box-shadow: 3px 0 0 #ED5C15;
@@ -138,7 +138,7 @@ ul li.itemMenu a .icon > ion-icon{
 .BlocoPerfilPrincipal{
     position: absolute;
     width: 353px;
-    height: 480px;
+    height: 535px;
     background: #fff;
     display: flex;
     flex-direction: column;
