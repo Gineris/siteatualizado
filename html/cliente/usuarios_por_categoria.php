@@ -20,7 +20,8 @@ if (!is_numeric($id_categoria)) {
 }
 
 // Consulta para buscar trabalhadores pela categoria
-$query = "SELECT * FROM trabalhador WHERE id_categoria = $id_categoria";
+$query = "SELECT * FROM trabalhador WHERE id_categoria = $id_categoria ORDER BY curtidas DESC";
+
 $result = mysqli_query($conn, $query);
 
 if (!$result) {

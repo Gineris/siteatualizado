@@ -220,35 +220,42 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
     <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     
     <script> 
-    document.addEventListener("DOMContentLoaded", function() {
-    const likeBtn = document.getElementById('likeBtn');
-    const likeCount = document.getElementById('likeCount');
-    let count = 0;
-    let hasLiked = false; // Para verificar se o cliente já curtiu
+  likeBtn.addEventListener('click', function() {
+    const trabalhadorId = // ID do trabalhador atual (você deve passar isso)
+    
+    if (!hasLiked) {
+        // Curtir
+        count++;
+        likeCount.textContent = count + " Likes";
+        likeBtn.innerHTML = '<i class="bi bi-heart-fill"></i> Descurtir';
+        hasLiked = true;
 
-    likeBtn.addEventListener('click', function() {
-        if (!hasLiked) {
-            // Curtir
-            count++;
-            likeCount.textContent = count + " Likes";
-            likeBtn.innerHTML = '<i class="bi bi-heart-fill"></i> Descurtir';
-            hasLiked = true;
+        // Enviar a informação de curtir para o servidor
+        fetch('curtir.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: trabalhadorId, action: 'curtir' })
+        });
+    } else {
+        // Descurtir
+        count--;
+        likeCount.textContent = count + " Likes";
+        likeBtn.innerHTML = '<i class="bi bi-heart"></i> Curtir';
+        hasLiked = false;
 
-            // Enviar a informação de curtir para o servidor
-            // Exemplo: enviar a contagem para o servidor via fetch
-        } else {
-            // Descurtir
-            count--;
-            likeCount.textContent = count + " Likes";
-            likeBtn.innerHTML = '<i class="bi bi-heart"></i> Curtir';
-            hasLiked = false;
-
-            // Enviar a informação de descurtir para o servidor
-            // Exemplo: enviar a contagem para o servidor via fetch
-        }
-    });
+        // Enviar a informação de descurtir para o servidor
+        fetch('curtir.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: trabalhadorId, action: 'descurtir' })
+        });
+    }
 });
-;
+
 </script>
     
     <script>
