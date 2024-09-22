@@ -10,6 +10,12 @@ $result = $conn->query($sql);
 $resultado_pesquisar = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($resultado_pesquisar);
 
+$sql_edit = "SELECT * FROM atualizacoes_pendentes WHERE id_trabalhador = ? AND aprovado = 0";
+$stmt = $conn->prepare($sql_edit);
+$stmt->bind_param("i", $id_trabalhador);
+$stmt->execute();
+$result_edit = $stmt->get_result();
+$atualizacaoPendente = $result_edit->num_rows > 0;
 
 ?>
 <style>
@@ -89,7 +95,11 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
             </ul>
 
         </nav>
-        
+        <?php if ($atualizacaoPendente): ?>
+            <div style="background-color: yellow; padding: 10px; margin-bottom: 15px;">
+                <strong>Você já possui uma solicitação de atualização pendente, aguardando aprovação do administrador.</strong>
+            </div>
+        <?php endif; ?>
 
                 <div class="container">
                     <div class="row me-0 mb-5 topoPerfil">
