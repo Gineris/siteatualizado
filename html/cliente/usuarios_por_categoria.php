@@ -2,50 +2,54 @@
 session_start();
 include_once('../../backend/Conexao.php');
 
-$id_cliente = $_SESSION['id_cliente'] ?? null;
+// Pegar o id_categoria da URL (via GET)
+$id_categoria = $_GET['id_categoria'];
 
-if (!$id_cliente) {
-    die("Usuário não autenticado.");
+if (!is_numeric($id_categoria)) {
+    die("ID da categoria inválido.");
 }
 
-// Supondo que o id_categoria esteja sendo passado para esta página a partir de categorias.php
-$id_categoria = $_SESSION['id_categoria'] ?? null;
+$query = "SELECT * FROM trabalhador WHERE id_categoria = $id_categoria";
+$result = mysqli_query($conn, $query);
 
-if (!$id_categoria) {
-    die("Categoria não selecionada.");
+if (!$result) {
+    die("Erro na consulta: " . mysqli_error($conn));
 }
 
-// Busca as cidades disponíveis para a categoria selecionada
-$query_cidades = "SELECT id_area, cidade FROM area_atuação WHERE id_categoria = '" . mysqli_real_escape_string($conn, $id_categoria) . "'";
-$resultado_cidades = mysqli_query($conn, $query_cidades);
+// Processa o formulário se for enviado
+$area_atuação = '';
+$nome_pesquisa = '';
 
-if (!$resultado_cidades) {
-    die("Erro na consulta das cidades: " . mysqli_error($conn));
-}
-
-// Processa a busca de trabalhadores
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $area_atuação = $_POST['area_atuação'] ?? '';
     $nome_pesquisa = $_POST['nome_pesquisa'] ?? '';
-    $cidade = $_POST['cidade'] ?? '';
 
-    // Consulta para buscar trabalhadores da categoria selecionada e cidade
-    $query = "SELECT * FROM trabalhador WHERE id_categoria = '" . mysqli_real_escape_string($conn, $id_categoria) . "'";
+    $query_pesquisar = "SELECT * FROM trabalhador WHERE id_categoria = $id_categoria";
 
-    if (!empty($nome_pesquisa)) {
-        $query .= " AND nome LIKE '%" . mysqli_real_escape_string($conn, $nome_pesquisa) . "%'";
+    if ($area_atuação) {
+        $query_pesquisar .= " AND id_area = " . intval($area_atuação);
     }
     
-    if (!empty($cidade)) {
-        $query .= " AND id_area = '" . mysqli_real_escape_string($conn, $cidade) . "'";
+    if ($nome_pesquisa) {
+        $query_pesquisar .= " AND nome LIKE '%" . mysqli_real_escape_string($conn, $nome_pesquisa) . "%'";
     }
-
-    $resultado_pesquisar = mysqli_query($conn, $query);
+    
+    $resultado_pesquisar = mysqli_query($conn, $query_pesquisar);
 
     if (!$resultado_pesquisar) {
         die("Erro na consulta: " . mysqli_error($conn));
     }
+} else {
+    $resultado_pesquisar = $result;
 }
 ?>
+
+<style>
+    nav.menuLateral {
+        width: 50px;
+        height: 300px;
+    }
+</style>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -63,18 +67,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
         <div class="perfil">
             <a href="#">
-                <img class="FotoPerfilNav" src="../../uploads/<?php echo !empty($row['foto_perfil']) ? htmlspecialchars($row['foto_perfil']) : '../../img/FotoPerfilGeral.png'; ?>" alt="">
+                <img class="FotoPerfilNav" src="../../uploads/<?php echo !empty($row['foto_perfil']) ? htmlspecialchars($row['foto_perfil']) : '../../img/FotoPerfilGeral.png'; ?>" alt="Perfil">
             </a>
         </div>
     </nav>
 </header>
 
 <nav class="menuLateral">
+    <div class="IconExpandir">
+        <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
+    </div>
     <ul style="padding-left: 0rem;">
         <li class="itemMenu ativo">
             <a href="homeClienteLogado.php">
                 <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                <span class="txtLink">Inicio</span>
+                <span class="txtLink">Início</span>
             </a>
         </li>
         <li class="itemMenu">
@@ -103,69 +110,80 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </li>
     </ul>
 </nav>
-
 <div class="search-container">
     <form action="" method="POST" class="search-form">
+
+        <select class="category-select" name="area_atuação" id="area_atuação">
+        <option value="">Escolha a Cidade</option>
+        <?php
+            $result_cat = "SELECT * FROM area_atuação ORDER BY cidade";
+            $resultado_cat = mysqli_query($conn, $result_cat);
+
+            if (!$resultado_cat) {
+                die("Erro na consulta: " . mysqli_error($conn));
+            }
+
+            while ($row_cat = mysqli_fetch_assoc($resultado_cat)) {
+                $selected = ($row_cat['id'] == $area_atuação) ? 'selected' : '';
+                echo '<option value="'.$row_cat['id'].'" '.$selected.'>'.$row_cat['cidade'].'</option>';
+            }
+        ?>
+    </select>
         <div class="pesquisarTrabalhos">
-            <input type="text" name="nome_pesquisa" placeholder="O que você está buscando?..." value="<?php echo htmlspecialchars($nome_pesquisa ?? ''); ?>">
+        <input type="text" name="nome_pesquisa" value="<?php echo htmlspecialchars($nome_pesquisa); ?>"><br><br>
         </div>
 
-        <div class="pesquisarTrabalhos">
-            <select name="cidade">
-                <option value="">Selecione uma cidade</option>
-                <?php
-                // Preenche o select com as cidades da categoria selecionada
-                while ($row_cidade = mysqli_fetch_assoc($resultado_cidades)) {
-                    echo '<option value="' . $row_cidade['id_area'] . '">' . htmlspecialchars($row_cidade['cidades']) . '</option>';
-                }
-                ?>
-            </select>
-        </div>
-
-        <button class="search-button">BUSCAR</button>
+     <input class="search-button" type="submit" value="Pesquisar">
     </form>
 </div>
 
-<div class="usuario">
-    <?php
-    // Verifica se há resultados e exibe os dados ou uma mensagem de erro
-    if (!empty($resultado_pesquisar) && mysqli_num_rows($resultado_pesquisar) > 0) {
-        while ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
-            ?>
+<?php
+        // Verifica se há resultados e exibe os dados ou uma mensagem de erro
+        if (mysqli_num_rows($resultado_pesquisar) > 0) {
+            while ($row = mysqli_fetch_assoc($resultado_pesquisar)) {?> 
             <div class="CampoEscolhaTrabalhador">
                 <a href="./Perfil.php?id_trabalhador=<?php echo $row['id_trabalhador']; ?>">
-                    <div class="CardBox"> 
-                        <div class="imagem">
-                            <img src="../../uploads/<?php echo htmlspecialchars($row['foto_perfil']); ?>" alt="">
-                        </div>
-                        <div class="txtTrabalhador">
-                            <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
-                            <p><?php echo htmlspecialchars($row['media_avaliacao']); ?></p>
-                        </div>
-                    </div>
+                    <?php 
+                    echo '<div class="CardBox">'; 
+                        echo '<div class="imagem">';
+                                echo '<img src="../uploads/'.$row['foto_perfil'].'" alt="">';
+                        echo '</div>';
+                        echo '<div class="txtTrabalhador">';
+                            echo '<h3>' . htmlspecialchars($row['nome']) . '</h3>';
+                            echo '<p>' . htmlspecialchars($row['media_avaliacao']) . '</p>';
+                        echo '</div>';
+                    echo '</div>';
+                    ?>
                 </a>
             </div>
-            <?php 
+                <?php 
+            }
+        } else {
+            echo '<div class="tituloDEnaoEncontrado">';
+            echo '<p>Trabalhador não encontrado</p>';
+            echo '<div';
         }
-    } else {
-        echo '<div class="tituloDEnaoEncontrado">';
-        echo '<p>Trabalhador não encontrado</p>';
-        echo '</div>';
-    }
-    ?>
-</div>
+        ?>
+    
+<footer class="d-flex justify-content-center ">
+        <p>N</p>
+        <p>Terms of Service</p>
+        <p>Privacy Policy</p>
+        <p>@2022yanliudesign</p>
+    </footer>
+    
 
-<script src="../../js/funcaoMenuLateral.js"></script>
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-<script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/funcaoMenuLateral.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
 
 </body>
 </html>
 
 <?php 
-if (isset($stmt)) {
-    $stmt->close();
-}
 $conn->close(); 
 ?>
