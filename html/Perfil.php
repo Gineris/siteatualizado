@@ -10,27 +10,6 @@ if (!isset($_SESSION['id_trabalhador'])) {
     exit;
 }
 
-
-
-// $id_cliente = $_SESSION['id_cliente']; // Use o ID do cliente
-//cu
-
-// $id_trabalhador = isset($_GET['id_trabalhador']) ? $_GET['id_trabalhador'] : null;
-
-// if ($id_trabalhador === null) {
-//     echo 'ID do trabalhador não fornecido.';
-//     exit;
-// }
-
-// // Verifica se o usuário está logado
-// if (!isset($_SESSION['tipo_usuario'])) {
-//     echo 'Usuário não está logado.';
-//     exit;
-// }
-
-// $id_cliente = isset($_SESSION['id_cliente']) ? $_SESSION['id_cliente'] : null; // Use o ID do cliente
-// $id_trabalhador = isset($_SESSION['id_trabalhador']) ? $_SESSION['id_trabalhador'] : null; // Use o ID do trabalhador
-
 // Consulta para obter os dados do trabalhador
 $sql = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador'";
 $result = $conn->query($sql);
@@ -39,6 +18,11 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
 
 $id_trabalhador_sessao = $_SESSION['id_trabalhador'];
 
+// // Verifica se o usuário está logado
+if (!isset($_SESSION['id_trabalhador_sessao'])) {
+    echo 'Usuário não está logado.';
+    exit;
+}
 
 $result_id = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador_sessao'";
 $resultado_id = mysqli_query($conn, $result_id);
@@ -55,11 +39,12 @@ $row_id = mysqli_fetch_assoc($resultado_id);
 // }
 
 // Consulta para obter os comentários do trabalhador
-$sqlComentarios = " SELECT c.comentario, c.data_comentario, cl.nome AS nome_cliente 
+$sqlComentarios = " SELECT c.comentario, c.data_comentario, 
+                    COALESCE(cl.nome, tw.nome) AS nome_usuario
                     FROM comentarios c
                     LEFT JOIN cliente cl ON c.id_cliente = cl.id_cliente
-                    WHERE c.id_trabalhador = '$id_trabalhador'
-                    ORDER BY c.data_comentario DESC";
+                    LEFT JOIN trabalhador tw ON c.id_trabalhador = tw.id_trabalhador
+                    WHERE c.id_trabalhador = '$id_trabalhador_sessao'";
 $resultComentarios = mysqli_query($conn, $sqlComentarios);
 
 if (!$resultComentarios) {
@@ -201,15 +186,12 @@ if (!$resultComentarios) {
     <div id="reviews">
         <!-- Exibe os comentários -->
         <?php
-            if (mysqli_num_rows($resultComentarios) > 0) {
+            if ($resultComentarios && mysqli_num_rows($resultComentarios) > 0) {
                 while ($comentario = mysqli_fetch_assoc($resultComentarios)) {
-                    echo '<div class="comentario">';
-                    echo '<p><strong>' . htmlspecialchars($comentario['nome_cliente']) . ':</strong> ' . htmlspecialchars($comentario['comentario']) . '</p>';
-                    echo '<p><em>' . htmlspecialchars($comentario['data_comentario']) . '</em></p>';
-                    echo '</div>';
+                    echo '<p><strong>' . htmlspecialchars($comentario['nome_usuario']) . '</strong>: ' . htmlspecialchars($comentario['comentario']) . ' <em>(' . htmlspecialchars($comentario['data_comentario']) . ')</em></p>';
                 }
             } else {
-                echo '<p>Este trabalhador ainda não possui comentários.</p>';
+                echo '<p>Nenhum comentário encontrado.</p>';
             }
         ?>
     </div>
@@ -219,7 +201,7 @@ if (!$resultComentarios) {
         <label for="comentario"></label>
 
         <!-- Campo oculto para passar o id_trabalhador correto -->
-        <input type="hidden" name="id_trabalhador" value="<?php echo $id_trabalhador; ?>">
+        <input type="hidden" name="id_trabalhador_sessao" value="<?php echo $id_trabalhador_sessao; ?>">
 
         <input type="submit" form="comentario" class="." value="Enviar comentario"/><br>
     </form>
