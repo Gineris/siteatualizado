@@ -54,7 +54,18 @@ $row_id = mysqli_fetch_assoc($resultado_id);
 //     exit; // Sai do script se não encontrar o trabalhador
 // }
 
+// Consulta para obter os comentários do trabalhador
+$sqlComentarios = " SELECT c.comentario, c.data_comentario, cl.nome AS nome_cliente 
+                    FROM comentarios c
+                    LEFT JOIN cliente cl ON c.id_cliente = cl.id_cliente
+                    WHERE c.id_trabalhador = '$id_trabalhador'
+                    ORDER BY c.data_comentario DESC";
+$resultComentarios = mysqli_query($conn, $sqlComentarios);
 
+if (!$resultComentarios) {
+    echo "Erro na consulta: " . mysqli_error($conn);
+    exit;
+}
 
 
 ?>
@@ -188,7 +199,19 @@ $row_id = mysqli_fetch_assoc($resultado_id);
         <h1>Comentários e Avaliações</h1>
 
     <div id="reviews">
-        <!-- Comentários e avaliações serão carregados aqui -->
+        <!-- Exibe os comentários -->
+        <?php
+            if (mysqli_num_rows($resultComentarios) > 0) {
+                while ($comentario = mysqli_fetch_assoc($resultComentarios)) {
+                    echo '<div class="comentario">';
+                    echo '<p><strong>' . htmlspecialchars($comentario['nome_cliente']) . ':</strong> ' . htmlspecialchars($comentario['comentario']) . '</p>';
+                    echo '<p><em>' . htmlspecialchars($comentario['data_comentario']) . '</em></p>';
+                    echo '</div>';
+                }
+            } else {
+                echo '<p>Este trabalhador ainda não possui comentários.</p>';
+            }
+        ?>
     </div>
 
     <form id="reviewForm">
@@ -200,16 +223,15 @@ $row_id = mysqli_fetch_assoc($resultado_id);
             <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 star">&#9733;</label>
         </div>
     </form>
-
-    <!-- <form method="POST" action="post_comment.php">
-    <textarea name="conteudo" placeholder="Escreva seu comentário..." required></textarea><br>
-    <button type="submit">Comentar</button>
-    </form> -->
     
     <form id="comentario" method="POST" action="post_comentario.php">
         <textarea name="comentario" id="comentario" placeholder="Escreva seu comentário" required></textarea>
         <label for="comentario"></label>
-        <input type="submit" form="comentario" class="." value="<?php $row['id_trabalhador']; ?>"/><br>
+
+        <!-- Campo oculto para passar o id_trabalhador correto -->
+        <input type="hidden" name="id_trabalhador" value="<?php echo $id_trabalhador; ?>">
+
+        <input type="submit" form="comentario" class="." value="Enviar comentario"/><br>
     </form>
     
     </main>     
