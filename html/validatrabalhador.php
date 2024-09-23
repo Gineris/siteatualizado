@@ -30,7 +30,7 @@ if ($result_adm->num_rows > 0) {
     if (password_verify($senha, $row_adm['senha'])) {
         $_SESSION['email'] = $email;
         $_SESSION['logado'] = true;
-        header('Location: ./homeAdm.php');
+        header('Location: ./admin/homeAdm.php');
         exit();
     } else {
         $_SESSION['mensagem'] = "Senha incorreta para administrador.";

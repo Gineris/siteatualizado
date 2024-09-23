@@ -8,6 +8,12 @@ if (!isset($_SESSION['id_cliente'])) {
 }
 
 $id_cliente = $_SESSION['id_cliente'];
+$sql_cli = "SELECT * FROM cliente WHERE id_cliente = '$id_cliente'";
+$result_cli = $conn->query($sql_cli);
+
+$resultado_cli = mysqli_query($conn, $sql_cli);
+$row_cli = mysqli_fetch_assoc($resultado_cli);
+
 
 // Consulta para obter os favoritos, incluindo a categoria
 $sql = "SELECT t.*, c.nome AS categoria 
@@ -35,7 +41,7 @@ $resultado_favoritos = mysqli_query($conn, $sql);
             <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
             <div class="perfil">
                 <a href="#">
-                <img class="FotoPerfil" src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../../img/FotoPerfilGeral.png' ?>" alt="">
+                <img class="FotoPerfil" src="../../uploads/<?php echo !empty($row_cli['foto_perfil']) ? $row_cli['foto_perfil'] : '../../img/FotoPerfilGeral.png' ?>" alt="">
                 </a>
             </div>
         </nav>
@@ -49,7 +55,7 @@ $resultado_favoritos = mysqli_query($conn, $sql);
             </div>
 
             <ul style="padding-left: 0rem;">
-                <li class="itemMenu ativo">
+                <li class="itemMenu">
                     <a href="homeClienteLogado.php">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
@@ -67,7 +73,7 @@ $resultado_favoritos = mysqli_query($conn, $sql);
                         <span class="txtLink">Pesquisar</span>
                     </a>
                 </li>
-                <li class="itemMenu">
+                <li class="itemMenu ativo">
                     <a href="favorito.php">
                         <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
                         <span class="txtLink">Favoritos</span>

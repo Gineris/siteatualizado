@@ -11,6 +11,12 @@ if (!isset($_SESSION['id_cliente'])) {
 // ID do cliente logado
 $id_cliente = $_SESSION['id_cliente'];
 
+$sql_cli = "SELECT * FROM cliente WHERE id_cliente = '$id_cliente'";
+$result_cli = $conn->query($sql_cli);
+
+$resultado_cli = mysqli_query($conn, $sql_cli);
+$row_cli = mysqli_fetch_assoc($resultado_cli);
+
 // ID do trabalhador a ser visualizado
 $id_trabalhador = isset($_GET['id_trabalhador']) ? $_GET['id_trabalhador'] : null;
 
@@ -60,9 +66,8 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
             <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
             <h1>Perfil</h1>
             <div class="perfil">
-                <a href="#">
-                    <ion-icon name="person"></ion-icon>
-                </a>
+            <img class="FotoPerfilNav" src="../../uploads/<?php echo !empty($row_cli['foto_perfil']) ? $row_cli['foto_perfil'] : '../../img/FotoPerfilGeral.png' ?>" alt="">
+            </a>
             </div>
         </nav>
     </header>
@@ -74,7 +79,7 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
             </div>
 
             <ul style="padding-left: 0rem;">
-                <li class="itemMenu ativo">
+                <li class="itemMenu">
                     <a href="homeClienteLogado.php">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
@@ -86,7 +91,7 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
                         <span class="txtLink">Configurações</span>
                     </a>
                 </li>
-                <li class="itemMenu ">
+                <li class="itemMenu ativo">
                     <a href="Categorias.php">
                         <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>

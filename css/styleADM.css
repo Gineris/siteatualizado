@@ -47,77 +47,7 @@ body, main{
     cursor: pointer;
     color: #0F3D60;
 } 
-nav.menuLateral{
-    width: 55px;
-    height: 412px;
-    background-color: #04074B;
-    padding: 30px 0 40px 1%;
-    box-shadow: 3px 0 0 #ED5C15;
-    border-radius: 0 20px 20px 0;
-    z-index: 100;
 
-    position: fixed;
-    top: 15%;
-    left: 0;
-    overflow: hidden; 
-    transition: .3s;
-}
-nav.menuLateral.expandir{
-    width: 300px;
-}
-.IconExpandir{
-    width: 100%;
-    padding-left: 7px;
-}
-.IconExpandir > ion-icon{
-    color: #ED5C15;
-    font-size: 1.8rem;
-    cursor: pointer;
-}
-
-ul{
-    height: 100%;
-    list-style-type: none;
-    padding-left: 3%;
-    
-}
-
-ul li.itemMenu a:hover{
-    background: #ED5C15;
-    color: #FFF;
-    border-radius: 9px 0px 0px 9px;
-
-}
-
-ul li.itemMenu a{
-    color: #ED5C15;
-    text-decoration: none;
-    font-size: 1.2rem;
-    padding: 10px 1%;
-    display: flex;
-    margin-bottom: 10px;
-    line-height: 30px;
-    transition: .4s;
-}
-ul li.ativo a{
-    background-color: #ED5C15;
-    color: #FFF;
-    border-radius: 9px 0px 0px 9px;
-}
-
-ul li.itemMenu a .txtLink{
-    margin-left: 70px;
-    transition: .6s;
-    opacity: 0;
-}
-nav.menuLateral.expandir .txtLink{
-    margin-left: 40px;
-    opacity: 1;
-}
-ul li.itemMenu a .icon > ion-icon{
-    font-size: 30px;
-    padding-left: 5px;
-}
 .inicioPage{
     height: 80vh;
     font-family: "Space Grotesk", sans-serif;

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once('../backend/Conexao.php');
+include_once('../../backend/Conexao.php');
 
 // Buscar atualizações pendentes
 $sql = "SELECT * FROM atualizacoes_pendentes WHERE aprovado = 0";
@@ -9,11 +9,27 @@ $result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Admin - Aprovar/Rejeitar Atualizações</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Solicitações</title>
+    <link rel="stylesheet" href="../../css/stylecrudcliente.css">
+    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
+    <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
 </head>
+<body>
+
+<header>
+    <nav class="BarraNav">
+        <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
+        <div class="perfil">
+            <a href="./homeAdm.php">
+                Voltar
+            </a>
+        </div>
+    </nav>
+</header>
 <body>
 
 <h1>Solicitações de Atualizações Pendentes</h1>
@@ -48,19 +64,19 @@ $result = $conn->query($sql);
                 <td><?= $row['id_categoria'] ?></td>
                 <td>
                     <?php if (!empty($row['foto_perfil'])): ?>
-                        <img src="../uploads/<?= $row['foto_perfil'] ?>" width="50">
+                        <img src="../../uploads/<?= $row['foto_perfil'] ?>" width="50">
                     <?php endif; ?>
                     <?php if (!empty($row['foto_trabalho1'])): ?>
-                        <img src="../uploads/<?= $row['foto_trabalho1'] ?>" width="50">
+                        <img src="../../uploads/<?= $row['foto_trabalho1'] ?>" width="50">
                     <?php endif; ?>
                     <?php if (!empty($row['foto_trabalho2'])): ?>
-                        <img src="../uploads/<?= $row['foto_trabalho2'] ?>" width="50">
+                        <img src="../../uploads/<?= $row['foto_trabalho2'] ?>" width="50">
                     <?php endif; ?>
                     <?php if (!empty($row['foto_trabalho3'])): ?>
-                        <img src="../uploads/<?= $row['foto_trabalho3'] ?>" width="50">
+                        <img src="../../uploads/<?= $row['foto_trabalho3'] ?>" width="50">
                     <?php endif; ?>
                     <?php if (!empty($row['foto_banner'])): ?>
-                        <img src="../uploads/<?= $row['foto_banner'] ?>" width="50">
+                        <img src="../../uploads/<?= $row['foto_banner'] ?>" width="50">
                     <?php endif; ?>
                 </td>
                 <td>

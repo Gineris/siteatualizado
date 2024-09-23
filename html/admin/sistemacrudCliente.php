@@ -143,58 +143,14 @@ $clientes = $result->fetch_all(MYSQLI_ASSOC);
     <nav class="BarraNav">
         <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
         <div class="perfil">
-            <a href="#">
-                <ion-icon name="person"></ion-icon>
+            <a href="./homeAdm.php">
+                Voltar
             </a>
         </div>
     </nav>
 </header>
 
 <main class=""> 
-    <nav class="menuLateral">
-        <div class="IconExpandir">
-            <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
-        </div>
-
-        <ul>
-            <li class="itemMenu">
-                <a href="./homeLogado.php">
-                    <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                    <span class="txtLink">Inicio</span>
-                </a>
-            </li>
-            <li class="itemMenu">
-                <a href="./SeuPerfil.php">
-                    <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
-                    <span class="txtLink">Perfil</span>
-                </a>
-            </li>
-            <li class="itemMenu ativo">
-                <a href="#">
-                    <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
-                    <span class="txtLink">Pesquisar</span>
-                </a>
-            </li>
-            <li class="itemMenu">
-                <a href="#">
-                    <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
-                    <span class="txtLink">Favoritos</span>
-                </a>
-            </li>
-            <li class="itemMenu">
-                <a href="./EditarPerfil.php">
-                    <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-                    <span class="txtLink">Configurações</span>
-                </a>
-            </li>
-            <li class="itemMenu">
-                <a href="#">
-                    <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
-                    <span class="txtLink">Sair</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
 
     <h2><?php echo $action === 'edit' ? 'Editar Cliente' : 'Adicionar Novo Cliente'; ?></h2>
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>?action=<?php echo $action === 'edit' ? 'update' : 'create'; ?>" method="POST" enctype="multipart/form-data">
@@ -252,7 +208,7 @@ $clientes = $result->fetch_all(MYSQLI_ASSOC);
                     <td><?php echo htmlspecialchars($cliente['id_cliente']); ?></td>
                     <td><?php echo htmlspecialchars($cliente['nome']); ?></td>
                     <td><?php echo htmlspecialchars($cliente['email']); ?></td>
-                    <td><img src="uploads/<?php echo htmlspecialchars($cliente['foto_perfil']); ?>" alt="Foto" style="width: 50px;"></td>
+                    <td><img src="../../uploads/<?php echo htmlspecialchars($cliente['foto_perfil']); ?>" alt="Foto" style="width: 50px;"></td>
                     <td class="actions">
                         <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>?action=edit&id=<?php echo $cliente['id_cliente']; ?>" title="Editar">
                             <img src="../../img/editar-arquivo.png" alt="Editar">

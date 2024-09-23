@@ -133,7 +133,7 @@ $trabalhadores = $result->fetch_all(MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciamento Trabalhadores</title>
-    <link rel="stylesheet" href=".././css/stylecrudtrabalhador.css">
+    <link rel="stylesheet" href="../../css/stylecrudtrabalhador.css">
     <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
     <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
 </head>
@@ -143,58 +143,14 @@ $trabalhadores = $result->fetch_all(MYSQLI_ASSOC);
     <nav class="BarraNav">
         <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
         <div class="perfil">
-            <a href="#">
-                <ion-icon name="person"></ion-icon>
+            <a href="./homeAdm.php">
+                Voltar
             </a>
         </div>
     </nav>
 </header>
 
 <main class=""> 
-    <nav class="menuLateral">
-        <div class="IconExpandir">
-            <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
-        </div>
-
-        <ul>
-            <li class="itemMenu">
-                <a href="./homeLogado.php">
-                    <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                    <span class="txtLink">Inicio</span>
-                </a>
-            </li>
-            <li class="itemMenu">
-                <a href="./SeuPerfil.php">
-                    <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
-                    <span class="txtLink">Perfil</span>
-                </a>
-            </li>
-            <li class="itemMenu ativo">
-                <a href="#">
-                    <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
-                    <span class="txtLink">Pesquisar</span>
-                </a>
-            </li>
-            <li class="itemMenu">
-                <a href="#">
-                    <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
-                    <span class="txtLink">Favoritos</span>
-                </a>
-            </li>
-            <li class="itemMenu">
-                <a href="./EditarPerfil.php">
-                    <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-                    <span class="txtLink">Configurações</span>
-                </a>
-            </li>
-            <li class="itemMenu">
-                <a href="#">
-                    <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
-                    <span class="txtLink">Sair</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
 
     <h2><?php echo $action === 'edit' ? 'Editar Trabalhador' : 'Adicionar Novo Trabalhador'; ?></h2>
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>?action=<?php echo $action === 'edit' ? 'update' : 'create'; ?>" method="POST" enctype="multipart/form-data">
@@ -273,16 +229,16 @@ $trabalhadores = $result->fetch_all(MYSQLI_ASSOC);
                     <td><?php echo htmlspecialchars($trabalhador['id_trabalhador']); ?></td>
                     <td><?php echo htmlspecialchars($trabalhador['nome']); ?></td>
                     <td><?php echo htmlspecialchars($trabalhador['email']); ?></td>
-                    <td><img src="uploads/<?php echo htmlspecialchars($trabalhador['foto_perfil']); ?>" alt="Foto" style="width: 50px;"></td>
+                    <td><img src="../../uploads/<?php echo htmlspecialchars($trabalhador['foto_perfil']); ?>" alt="Foto" style="width: 50px;"></td>
                     <td><?php echo htmlspecialchars($trabalhador['descricao']); ?></td>
                     <td><?php echo htmlspecialchars($trabalhador['contato']); ?></td>
                     <td><?php echo htmlspecialchars($trabalhador['data_nasc']); ?></td>
                     <td class="actions">
                         <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>?action=edit&id=<?php echo $trabalhador['id_trabalhador']; ?>" title="Editar">
-                            <img src="../img/editar-arquivo.png" alt="Editar">
+                            <img src="../../img/editar-arquivo.png" alt="Editar">
                         </a>
                         <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>?action=delete&id=<?php echo $trabalhador['id_trabalhador']; ?>" title="Excluir" onclick="return confirm('Você tem certeza que deseja excluir?');">
-                            <img src="../img/botao-apagar.png" alt="Excluir">
+                            <img src="../../img/botao-apagar.png" alt="Excluir">
                         </a>
                     </td>
                 </tr>
@@ -299,7 +255,7 @@ $trabalhadores = $result->fetch_all(MYSQLI_ASSOC);
         const categoriaSelect = document.getElementById('id_categoria');
 
 
-        fetch('./getcidades.php')
+        fetch('../getcidades.php')
             .then(response => response.json())
             .then(areas => {
                 console.log(areas); 
@@ -313,7 +269,7 @@ $trabalhadores = $result->fetch_all(MYSQLI_ASSOC);
             })
             .catch(error => console.error('Erro ao carregar áreas:', error));
 
-        fetch('./getcategoriacadastro.php')
+        fetch('../getcategoriacadastro.php')
             .then(response => response.json())
             .then(categorias => {
                 console.log(categorias); 
