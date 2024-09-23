@@ -10,27 +10,6 @@ if (!isset($_SESSION['id_trabalhador'])) {
     exit;
 }
 
-
-
-// $id_cliente = $_SESSION['id_cliente']; // Use o ID do cliente
-//cu
-
-// $id_trabalhador = isset($_GET['id_trabalhador']) ? $_GET['id_trabalhador'] : null;
-
-// if ($id_trabalhador === null) {
-//     echo 'ID do trabalhador não fornecido.';
-//     exit;
-// }
-
-// // Verifica se o usuário está logado
-// if (!isset($_SESSION['tipo_usuario'])) {
-//     echo 'Usuário não está logado.';
-//     exit;
-// }
-
-// $id_cliente = isset($_SESSION['id_cliente']) ? $_SESSION['id_cliente'] : null; // Use o ID do cliente
-// $id_trabalhador = isset($_SESSION['id_trabalhador']) ? $_SESSION['id_trabalhador'] : null; // Use o ID do trabalhador
-
 // Consulta para obter os dados do trabalhador
 $sql = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador'";
 $result = $conn->query($sql);
@@ -39,6 +18,11 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
 
 $id_trabalhador_sessao = $_SESSION['id_trabalhador'];
 
+// // Verifica se o usuário está logado
+if (!isset($_SESSION['id_trabalhador_sessao'])) {
+    echo 'Usuário não está logado.';
+    exit;
+}
 
 $result_id = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador_sessao'";
 $resultado_id = mysqli_query($conn, $result_id);
@@ -54,7 +38,19 @@ $row_id = mysqli_fetch_assoc($resultado_id);
 //     exit; // Sai do script se não encontrar o trabalhador
 // }
 
+// Consulta para obter os comentários do trabalhador
+$sqlComentarios = " SELECT c.comentario, c.data_comentario, 
+                    COALESCE(cl.nome, tw.nome) AS nome_usuario
+                    FROM comentarios c
+                    LEFT JOIN cliente cl ON c.id_cliente = cl.id_cliente
+                    LEFT JOIN trabalhador tw ON c.id_trabalhador = tw.id_trabalhador
+                    WHERE c.id_trabalhador = '$id_trabalhador_sessao'";
+$resultComentarios = mysqli_query($conn, $sqlComentarios);
 
+if (!$resultComentarios) {
+    echo "Erro na consulta: " . mysqli_error($conn);
+    exit;
+}
 
 
 ?>
@@ -188,28 +184,26 @@ $row_id = mysqli_fetch_assoc($resultado_id);
         <h1>Comentários e Avaliações</h1>
 
     <div id="reviews">
-        <!-- Comentários e avaliações serão carregados aqui -->
+        <!-- Exibe os comentários -->
+        <?php
+            if ($resultComentarios && mysqli_num_rows($resultComentarios) > 0) {
+                while ($comentario = mysqli_fetch_assoc($resultComentarios)) {
+                    echo '<p><strong>' . htmlspecialchars($comentario['nome_usuario']) . '</strong>: ' . htmlspecialchars($comentario['comentario']) . ' <em>(' . htmlspecialchars($comentario['data_comentario']) . ')</em></p>';
+                }
+            } else {
+                echo '<p>Nenhum comentário encontrado.</p>';
+            }
+        ?>
     </div>
-
-    <form id="reviewForm">
-        <div class="star-rating">
-            <input type="radio" id="star5" name="rating" value="5"><label for="star5" title="5 stars">&#9733;</label>
-            <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 stars">&#9733;</label>
-            <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 stars">&#9733;</label>
-            <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 stars">&#9733;</label>
-            <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 star">&#9733;</label>
-        </div>
-    </form>
-
-    <!-- <form method="POST" action="post_comment.php">
-    <textarea name="conteudo" placeholder="Escreva seu comentário..." required></textarea><br>
-    <button type="submit">Comentar</button>
-    </form> -->
     
     <form id="comentario" method="POST" action="post_comentario.php">
         <textarea name="comentario" id="comentario" placeholder="Escreva seu comentário" required></textarea>
         <label for="comentario"></label>
-        <input type="submit" form="comentario" class="." value="<?php $row['id_trabalhador']; ?>"/><br>
+
+        <!-- Campo oculto para passar o id_trabalhador correto -->
+        <input type="hidden" name="id_trabalhador_sessao" value="<?php echo $id_trabalhador_sessao; ?>">
+
+        <input type="submit" form="comentario" class="." value="Enviar comentario"/><br>
     </form>
     
     </main>     

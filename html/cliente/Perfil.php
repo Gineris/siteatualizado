@@ -206,9 +206,13 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
         </div>
 
         <form id="comentario" method="POST" action="post_comentario.php">
-            <textarea name="comentario" id="comentario" placeholder="Escreva seu comentário" required></textarea>
-            <input type="hidden" name="id_trabalhador" value="<?php echo $id_trabalhador; ?>" />
-            <input type="submit" value="Comentar"/><br>
+        <textarea name="comentario" id="comentario" placeholder="Escreva seu comentário" required></textarea>
+        <label for="comentario"></label>
+
+        <!-- Campo oculto para passar o id_trabalhador correto -->
+        <input type="hidden" name="id_trabalhador_sessao" value="<?php echo $id_trabalhador_sessao; ?>">
+
+        <input type="submit" form="comentario" class="." value="Enviar comentario"/><br>
         </form>
     </main>
 

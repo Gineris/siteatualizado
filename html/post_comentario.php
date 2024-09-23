@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 require '../backend/Conexao.php';
 
@@ -9,43 +10,29 @@ if (!isset($_SESSION['tipo_usuario'])) {
     exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $comentario = $_POST['comentario'];
+    $id_trabalhador_sessao = $_POST['id_trabalhador_sessao'];
 
     if (!empty($comentario)) {
-
         $id_cliente = null;
-        $id_trabalhador = null;
 
-        // Definir as variáveis de cliente_id e trabalhador_id
+        // Verifica se é cliente
         if ($_SESSION['tipo_usuario'] === 'cliente' && isset($_SESSION['id_cliente'])) {
-            $id_cliente = $_SESSION['id_cliente'];  // Define o ID do cliente
-        } elseif ($_SESSION['tipo_usuario'] === 'trabalhador' && isset($_SESSION['id_trabalhador'])) {
-            $id_trabalhador = $_SESSION['id_trabalhador'];  // Define o ID do trabalhador
+            $id_cliente = $_SESSION['id_cliente'];
         }
 
-        echo "<pre>";
-        echo "ID Cliente: " . ($id_cliente !== null ? $id_cliente : 'Não definido') . "<br>";
-        echo "ID Trabalhador: " . ($id_trabalhador !== null ? $id_trabalhador : 'Não definido') . "<br>";
-        echo "</pre>";
-
-        if ($id_cliente !== null || $id_trabalhador !== null) {
-        // Inserir o comentário no banco de dados
+        // Insere o comentário no banco de dados
         $stmt = $conn->prepare('INSERT INTO comentarios (id_cliente, id_trabalhador, comentario) VALUES (?, ?, ?)');
-        $stmt->execute([empty($id_cliente) ? null : $id_cliente, empty($id_trabalhador) ? null : $id_trabalhador, $comentario]);
+        $stmt->bind_param('iis', $id_cliente, $id_trabalhador, $comentario);
+        $stmt->execute();
 
-        // Redirecionar para a página principal após o comentário
-        header('Location: ./Perfil.php?id_trabalhador=' . $id_trabalhador);
+        // Redireciona para o perfil do trabalhador após o comentário
+        header("Location: Perfil.php?id_trabalhador=$id_trabalhador");
         exit();
     } else {
-        echo "Erro: Nenhum cliente ou trabalhador identificado.";
-    }
-    
-    } else {
-        // Mensagem de erro se o conteúdo do comentário estiver vazio
-        $error = 'O comentário não pode estar vazio.';
-        header('Location: Perfil.php?error=' . urlencode($error));
-        exit();
+        echo "Erro: O comentário não pode estar vazio.";
     }
 }
+
