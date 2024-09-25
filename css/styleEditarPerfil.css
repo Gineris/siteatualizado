@@ -62,6 +62,8 @@ nav.menuLateral{
     left: 0;
     overflow: hidden; 
     transition: .3s;
+    z-index: 20;
+
 }
 nav.menuLateral.expandir{
     width: 300px;
@@ -237,6 +239,37 @@ textarea {
 }
 .marginteste{
     margin-top: 20px;
+}
+
+.MensagemAtualizacao{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 6px;
+    margin: 0px 0px 20px 0px;
+    background-color: #235789;
+    z-index: 2;
+    font-family: "Poppins", sans-serif;
+    color: #e0e0e0;
+    /* width: 150px; */
+}
+label{
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    color: #04074B;
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+.txtFotos input{
+    margin-left: 20%;
+}
+/* .txtFotosT label{
+    text-align: center;
+} */
+.txtFotosT input{
+    margin-left: 10%;
 }
 footer{
     background-color: #FFF;
