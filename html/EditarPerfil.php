@@ -96,8 +96,8 @@ $atualizacaoPendente = $result_edit->num_rows > 0;
 
         </nav>
         <?php if ($atualizacaoPendente): ?>
-            <div style="background-color: yellow; padding: 10px; margin-bottom: 15px;">
-                <strong>Você já possui uma solicitação de atualização pendente, aguardando aprovação do administrador.</strong>
+            <div class="MensagemAtualizacao">
+                <strong><p>Você já possui uma solicitação de atualização pendente, aguardando aprovação do administrador.</p></strong>
             </div>
         <?php endif; ?>
 
@@ -147,24 +147,28 @@ $atualizacaoPendente = $result_edit->num_rows > 0;
                                 </div>
                             </div>
                         </div>
-                        <div class="rol d-flex me-0">
-                            <label for="foto_perfil">Foto de perfil</label>
-                            <input type="file" name="foto_perfil" id="foto_perfil">
+                        <div class="rol d-flex me-0 txtFotos">
+                            <div class="col d-flex flex-column justify-content-center">
+                                <label for="foto_perfil">Foto de perfil</label>
+                                <input type="file" name="foto_perfil" id="foto_perfil">
+                            </div>
                             
-                            <label for="foto_perfil">Foto do banner</label>
-                            <input type="file" name="foto_banner" id="foto_banner">
+                            <div class="col d-flex flex-column justify-content-center">
+                                <label for="foto_perfil">Foto do banner</label>
+                                <input type="file" name="foto_banner" id="foto_banner">
+                            </div>
                         </div>
-                        <div class="rol d-flex mt-0">
-                            <div class="col txtMargin mt-5 ">
-                                <label for="foto_trabalho1">foto trabalho 1</label>
+                        <div class="rol d-flex mt-0 txtFotosT">
+                            <div class="col d-flex flex-column justify-content-center txtMargin mt-5 ">
+                                <label for="foto_trabalho1">Foto trabalho 1</label>
                                 <input type="file" name="foto_trabalho1" id="foto_trabalho1">
                             </div>
-                            <div class="col mt-5">
-                                <label for="foto_trabalho2">foto trabalho 2</label>
+                            <div class="col d-flex flex-column justify-content-center mt-5">
+                                <label for="foto_trabalho2">Foto trabalho 2</label>
                                 <input type="file" name="foto_trabalho2" id="foto_trabalho2">
                             </div>
-                            <div class="col mt-5">
-                                <label for="foto_trabalho3">foto trabalho 3</label>
+                            <div class="col d-flex flex-column justify-content-center mt-5">
+                                <label for="foto_trabalho3">Foto trabalho 3</label>
                                 <input type="file" name="foto_trabalho3" id="foto_trabalho3">
                             </div>
                         </div>
