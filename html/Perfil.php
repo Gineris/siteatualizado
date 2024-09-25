@@ -4,11 +4,15 @@ include_once('../backend/Conexao.php');
 
 $id_trabalhador = $_GET['id_trabalhador'];
 
-// // Verifica se o usuário está logado
+// Verifica se o trabalhador está logado
 if (!isset($_SESSION['id_trabalhador'])) {
-    echo 'Usuário não está logado.';
-    exit;
+    echo "Erro: Nenhum trabalhador identificado. Faça login primeiro.";
+    header('Location: loginGeral.php');
+    exit();
 }
+
+$id_trabalhador_sessao = $_SESSION['id_trabalhador']; // Trabalhador logado
+$id_trabalhador = $_GET['id_trabalhador']; // Trabalhador que recebe o comentário
 
 // Consulta para obter os dados do trabalhador
 $sql = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador'";
@@ -16,41 +20,10 @@ $result = $conn->query($sql);
 $resultado_pesquisar = mysqli_query($conn,$sql);
 $row = mysqli_fetch_assoc($resultado_pesquisar);
 
-$id_trabalhador_sessao = $_SESSION['id_trabalhador'];
-
-// // Verifica se o usuário está logado
-if (!isset($_SESSION['id_trabalhador_sessao'])) {
-    echo 'Usuário não está logado.';
-    exit;
-}
 
 $result_id = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador_sessao'";
 $resultado_id = mysqli_query($conn, $result_id);
 $row_id = mysqli_fetch_assoc($resultado_id);
-// $isFavorito = false; // Inicializa como false
-// if ($row) {
-//     // Verifica se o trabalhador é favorito
-//     $sqlFavorito = "SELECT * FROM favoritos WHERE id_trabalhador = '$id_trabalhador' AND id_cliente = '$id_cliente'";
-//     $resultFavorito = $conn->query($sqlFavorito);
-//     $isFavorito = mysqli_num_rows($resultFavorito) > 0; // true se for favorito, false caso contrário
-// } else {
-//     echo 'Trabalhador não encontrado.';
-//     exit; // Sai do script se não encontrar o trabalhador
-// }
-
-// Consulta para obter os comentários do trabalhador
-$sqlComentarios = " SELECT c.comentario, c.data_comentario, 
-                    COALESCE(cl.nome, tw.nome) AS nome_usuario
-                    FROM comentarios c
-                    LEFT JOIN cliente cl ON c.id_cliente = cl.id_cliente
-                    LEFT JOIN trabalhador tw ON c.id_trabalhador = tw.id_trabalhador
-                    WHERE c.id_trabalhador = '$id_trabalhador_sessao'";
-$resultComentarios = mysqli_query($conn, $sqlComentarios);
-
-if (!$resultComentarios) {
-    echo "Erro na consulta: " . mysqli_error($conn);
-    exit;
-}
 
 
 ?>
@@ -82,7 +55,7 @@ if (!$resultComentarios) {
     </header>
 
     <main class=""> 
-        
+
         <nav class="menuLateral">
             <div class="IconExpandir">
                 <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
@@ -125,11 +98,11 @@ if (!$resultComentarios) {
                         <span class="txtLink">Sair</span>
                     </a>
                 </li>
-                
+
             </ul>
 
         </nav>
-        
+
         <div class="FotoFundo">
             <!-- foto background -->
             <img src="../uploads/<?php echo !empty($row['foto_banner']) ? $row['foto_banner'] : '../img/TesteBackPerfil.png' ?>" alt="">
@@ -186,29 +159,35 @@ if (!$resultComentarios) {
     <div id="reviews">
         <!-- Exibe os comentários -->
         <?php
-            if ($resultComentarios && mysqli_num_rows($resultComentarios) > 0) {
-                while ($comentario = mysqli_fetch_assoc($resultComentarios)) {
-                    echo '<p><strong>' . htmlspecialchars($comentario['nome_usuario']) . '</strong>: ' . htmlspecialchars($comentario['comentario']) . ' <em>(' . htmlspecialchars($comentario['data_comentario']) . ')</em></p>';
-                }
-            } else {
-                echo '<p>Nenhum comentário encontrado.</p>';
+            $sql_comentarios = "SELECT c.comentario, t.nome as nome_trabalhador 
+                                FROM comentarios c
+                                LEFT JOIN trabalhador t ON c.id_trabalhador_sessao = t.id_trabalhador
+                                WHERE c.id_trabalhador = ?";
+            $stmt_comentarios = $conn->prepare($sql_comentarios);
+            $stmt_comentarios->bind_param("i", $id_trabalhador);
+            $stmt_comentarios->execute();
+            $result_comentarios = $stmt_comentarios->get_result();
+
+            while ($comentario = $result_comentarios->fetch_assoc()) {
+            echo "<p><strong>" . $comentario['nome_trabalhador'] . ":</strong> " . $comentario['comentario'] . "</p>";
             }
         ?>
     </div>
-    
-    <form id="comentario" method="POST" action="post_comentario.php">
+
+
+    <form id="comentario" method="POST" action="post_comentario_trabalhador.php">
         <textarea name="comentario" id="comentario" placeholder="Escreva seu comentário" required></textarea>
         <label for="comentario"></label>
 
         <!-- Campo oculto para passar o id_trabalhador correto -->
-        <input type="hidden" name="id_trabalhador_sessao" value="<?php echo $id_trabalhador_sessao; ?>">
+        <input type="hidden" name="id_trabalhador" value="<?php echo $id_trabalhador; ?>">
 
         <input type="submit" form="comentario" class="." value="Enviar comentario"/><br>
     </form>
-    
+
     </main>     
 
-    
+
 
     <footer class="d-flex justify-content-center ">
         <p>N</p>
@@ -216,7 +195,7 @@ if (!$resultComentarios) {
         <p>Privacy Policy</p>
         <p>@2022yanliudesign</p>
     </footer>
-    
+
 
     <script src="../js/funcaoMenuLateral.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -224,7 +203,6 @@ if (!$resultComentarios) {
     <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="../js/FuncaoCurtirPerfil.js"></script>
-   
+
 
 </body>
-</html>

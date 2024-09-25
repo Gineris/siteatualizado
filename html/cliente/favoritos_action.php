@@ -61,4 +61,3 @@ if ($action === 'adicionar') {
 $conn->close();
 ob_end_flush();  // Finaliza o buffer de saída
 ?>
-

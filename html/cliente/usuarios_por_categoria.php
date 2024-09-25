@@ -25,7 +25,7 @@ if (!$result_cidades) {
 
 // Construir a consulta SQL para filtrar por cidade, categoria e nome (se houver)
 $query = "
-    SELECT t.*, COUNT(c.id_trabalhador) AS total_curtidas 
+    SELECT t.*, a.cidade, COUNT(c.id_trabalhador) AS total_curtidas 
     FROM trabalhador t 
     LEFT JOIN curtidas c ON t.id_trabalhador = c.id_trabalhador 
     INNER JOIN area_atuação a ON t.id_area = a.id_area
@@ -56,7 +56,6 @@ if (!$result) {
     height: 370px;
     }
 </style>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -65,7 +64,6 @@ if (!$result) {
     <title>JundTask - Home Cliente</title>
     <link rel="stylesheet" href="../../css/stylebusca.css">
     <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.min.css">
-
     <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
 </head>
 <body>
