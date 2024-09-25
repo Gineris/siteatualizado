@@ -85,6 +85,43 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
     </header>
 
     <main>
+    <nav class="menuLateral">
+            <div class="IconExpandir">
+                <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
+            </div>
+            <ul style="padding-left: 0rem;">
+                <li class="itemMenu ativo">
+                    <a href="#">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="txtLink">Início</span>
+                    </a>
+                </li>
+                <li class="itemMenu">
+                    <a href="EditarPerfilCliente.php">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="txtLink">Configurações</span>
+                    </a>
+                </li>
+                <li class="itemMenu">
+                    <a href="Categorias.php">
+                        <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
+                        <span class="txtLink">Pesquisar</span>
+                    </a>
+                </li>
+                <li class="itemMenu">
+                    <a href="favorito.php">
+                        <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
+                        <span class="txtLink">Favoritos</span>
+                    </a>
+                </li>
+                <li class="itemMenu">
+                    <a href="LogoutCliente.php">
+                        <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
+                        <span class="txtLink">Sair</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
         <div class="FotoFundo">
             <img src="../../uploads/<?php echo !empty($row['foto_banner']) ? $row['foto_banner'] : '../img/TesteBackPerfil.png' ?>" alt="Banner">
             <div class="BlocoPerfilPrincipal">
@@ -122,6 +159,35 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
             </div>
         </div>
 
+        <div class="trabalhos">
+                <div class="carrousel">
+                <div class="col">
+                        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active ">
+                                <img src="../../uploads/<?php echo !empty($row['foto_trabalho1']) ? $row['foto_trabalho1'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../../uploads/<?php echo !empty($row['foto_trabalho2']) ? $row['foto_trabalho2'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="../../uploads//<?php echo !empty($row['foto_trabalho3']) ? $row['foto_trabalho3'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="...">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+
         <h1>Comentários e Avaliações</h1>
         <div id="reviews">
             <!-- Comentários e avaliações serão carregados aqui -->
@@ -141,6 +207,8 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
     </footer>
 
     <script src="../../js/funcaoMenuLateral.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
@@ -186,26 +254,29 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
         });
 
         document.getElementById('favoritarBtn').addEventListener('click', function() {
-            const idTrabalhador = this.getAttribute('data-id');
-            const action = this.textContent.includes('Adicionar') ? 'adicionar' : 'remover';
+    const idTrabalhador = this.getAttribute('data-id');
+    const action = this.textContent.includes('Adicionar') ? 'adicionar' : 'remover';
 
-            fetch('favoritar_action.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ id: idTrabalhador, action: action })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Atualiza a interface
-                    this.textContent = action === 'adicionar' ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos';
-                } else {
-                    alert(data.message); // Mostra mensagem de erro
-                }
-            });
-        });
+    fetch('favoritos_action.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id_trabalhador: idTrabalhador, action: action })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Atualiza a interface
+            this.textContent = action === 'adicionar' ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos';
+        } else {
+            alert(data.message); // Mostra mensagem de erro
+        }
+    })
+    .catch(error => console.error('Erro ao processar favoritos:', error));
+});
+
+
     </script>
 </body>
 </html>
