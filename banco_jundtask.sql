@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 23/09/2024 às 00:23
+-- Tempo de geração: 25/09/2024 às 16:34
 -- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.0.30
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -162,6 +162,7 @@ CREATE TABLE `comentarios` (
   `id_comentario` int(11) NOT NULL,
   `id_cliente` int(11) DEFAULT NULL,
   `id_trabalhador` int(11) DEFAULT NULL,
+  `id_trabalhador_sessao` int(11) DEFAULT NULL,
   `comentario` text NOT NULL,
   `data_comentario` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -170,23 +171,26 @@ CREATE TABLE `comentarios` (
 -- Despejando dados para a tabela `comentarios`
 --
 
-INSERT INTO `comentarios` (`id_comentario`, `id_cliente`, `id_trabalhador`, `comentario`, `data_comentario`) VALUES
-(1, 17, 17, 'fggg', '2024-09-18 13:36:16'),
-(2, 17, 17, 'lllllll', '2024-09-18 13:50:27'),
-(3, 17, 17, 'aa', '2024-09-18 13:53:16'),
-(4, 17, 17, 'ghggg', '2024-09-18 13:54:01'),
-(5, NULL, 20, 'khhhjhjhj', '2024-09-19 11:32:02'),
-(6, NULL, 20, 'hjjhhj', '2024-09-19 11:32:48'),
-(7, NULL, 20, 'JHJHJH', '2024-09-19 11:35:30'),
-(8, NULL, 20, 'JHJHJH', '2024-09-19 11:35:44'),
-(9, NULL, 20, 'JHJHJH', '2024-09-19 11:36:13'),
-(10, NULL, 20, 'sx', '2024-09-19 11:37:40'),
-(11, NULL, 20, 'jsajkdjs', '2024-09-19 11:38:25'),
-(12, NULL, 20, 'sasda', '2024-09-19 11:42:22'),
-(13, NULL, 20, 'hhhhh', '2024-09-19 11:45:59'),
-(14, NULL, 20, 'huuhuh', '2024-09-19 11:53:12'),
-(15, NULL, 20, 'kjkjkj', '2024-09-19 11:55:18'),
-(16, NULL, 20, 'xzxz', '2024-09-19 11:57:29');
+INSERT INTO `comentarios` (`id_comentario`, `id_cliente`, `id_trabalhador`, `id_trabalhador_sessao`, `comentario`, `data_comentario`) VALUES
+(18, NULL, 20, 22, 'pinto\r\n', '2024-09-25 13:41:21'),
+(19, NULL, 20, 22, 'pinto\r\ncu\r\n', '2024-09-25 13:42:10'),
+(20, NULL, 20, 22, 'safado', '2024-09-25 13:42:54'),
+(21, NULL, 20, 22, 'loucio', '2024-09-25 13:44:15'),
+(22, NULL, 20, 17, 'loucooooo', '2024-09-25 13:45:29'),
+(23, 16, NULL, NULL, 'adasd', '2024-09-25 13:54:59'),
+(24, 16, NULL, NULL, 'adasd', '2024-09-25 13:55:54'),
+(25, 16, NULL, NULL, 'olaaa mundo', '2024-09-25 13:56:47'),
+(26, 16, NULL, NULL, 'ijkj', '2024-09-25 13:57:51'),
+(27, 16, NULL, NULL, 'dsad', '2024-09-25 14:00:30'),
+(28, 16, NULL, NULL, 'fsdfsdf', '2024-09-25 14:01:52'),
+(29, 16, NULL, NULL, 'pp', '2024-09-25 14:05:55'),
+(30, 16, NULL, NULL, 'porra', '2024-09-25 14:10:44'),
+(31, 16, NULL, NULL, 'dsd', '2024-09-25 14:13:57'),
+(32, 16, NULL, NULL, 'dsdgfhf', '2024-09-25 14:15:12'),
+(33, 16, NULL, NULL, 'dsfs', '2024-09-25 14:17:08'),
+(34, 16, NULL, NULL, 'asda', '2024-09-25 14:17:26'),
+(35, 16, 20, NULL, 'fsdfs', '2024-09-25 14:20:12'),
+(36, 16, 20, NULL, 'louco', '2024-09-25 14:30:14');
 
 -- --------------------------------------------------------
 
@@ -214,6 +218,13 @@ CREATE TABLE `curtidas` (
   `id_trabalhador` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `curtidas`
+--
+
+INSERT INTO `curtidas` (`id_curtida`, `data_curtida`, `id_cliente`, `id_trabalhador`) VALUES
+(8, 0, 16, 20);
+
 -- --------------------------------------------------------
 
 --
@@ -225,6 +236,13 @@ CREATE TABLE `favoritos` (
   `id_trabalhador` int(11) NOT NULL,
   `id_cliente` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `favoritos`
+--
+
+INSERT INTO `favoritos` (`id_favorito`, `id_trabalhador`, `id_cliente`) VALUES
+(6, 20, 16);
 
 -- --------------------------------------------------------
 
@@ -274,12 +292,13 @@ CREATE TABLE `trabalhador` (
 --
 
 INSERT INTO `trabalhador` (`id_trabalhador`, `nome`, `email`, `senha`, `foto_perfil`, `foto_trabalho1`, `foto_trabalho2`, `foto_trabalho3`, `foto_banner`, `descricao`, `contato`, `data_nasc`, `media_avaliacao`, `tipo`, `status`, `id_categoria`, `id_area`, `permissao`, `curtidas`) VALUES
-(15, 'Pato Rog', 'Patinho123@gmail.com', '', '0', 'fundo1.jpg', 'fundo2.jpg', 'testeFundo.jpeg', 'fundoPerfil.png', 'Patoo                                                                        ', '11 99999 8888', '1111-11-11', 0.00, '', '', 1, 3, 0, 0),
+(15, 'Pato Rog', 'Patinho123@gmail.com', '', 'teste.jpeg\r\n', 'fundo1.jpg', 'fundo2.jpg', 'testeFundo.jpeg', 'fundoPerfil.png', 'Patoo                                                                        ', '11 99999 8888', '1111-11-11', 0.00, '', '', 1, 3, 0, 0),
 (17, 'michele', 'gui@gmail.com', '$2y$10$2GLOHF./f4ZZYWAFFRVt3OmUyBHSs5ZGrwcblOAY2PXOmwHTniWFy', '../uploads/download.jfif', '../uploads/fundo1.jpg', '../uploads/fundo2.jpg', '../uploads/testeFundo.jpeg', '../uploads/fundoPerfil.png', 'sou pobre', '12121212121', '2002-10-16', 0.00, '', '', 8, 6, 0, 0),
 (18, 'Maria', 'ma@gmail.com', '$2y$10$RRoK..jGqYKCBkwinAvE3eR9jnxdLJ6zL1ZGH47MniZ8KvrWD0c3a', '../uploads/download.jfif', '', '', '', '', '', '12121212121', '1923-07-05', 0.00, '', '', 10, 5, 0, 0),
 (19, 'Paula Pao', 'paula@gmail.com', '$2y$10$NF2UP6tmq3lCAfI2HTtsdufGRVLR0myk4uJx4dJXYTZPNzuokiRH6', '', '', '', '', '', 'Sou a paula teJANDO', '12121212121', '1987-09-25', 0.00, '', '', 11, 7, 0, 0),
 (20, 'memphis', 'depay@corinthians.com', '$2y$10$z3vcOAAGGkHLMfBdjHNx4Oh5smLczVUbyNhFsSPicSN.4NhuuWHrm', '../uploads/images.jfif', '', '', '', '', '', '11991829034', '1910-09-01', 0.00, '', '', 8, 4, 0, 0),
-(21, 'Maria Silva', 'MariaSilva@gmail.com', '$2y$10$RKPswhmOBsg7lBBmz82VqexnabMXvuQEJmx8813PGCHvApxj14Vve', '../uploads/trabalhadora1.png', '', '', '', '', '', '11912345678', '1982-08-12', 0.00, '', '', 1, 1, 0, 0);
+(21, 'Maria Silva', 'MariaSilva@gmail.com', '$2y$10$RKPswhmOBsg7lBBmz82VqexnabMXvuQEJmx8813PGCHvApxj14Vve', '../uploads/trabalhadora1.png', '', '', '', '', '', '11912345678', '1982-08-12', 0.00, '', '', 1, 1, 0, 0),
+(22, 'Pato Rog', 'patorogerio@gmail.com', '$2y$10$il6HsiBFAuVs.I3/OnGofu1YV6H8ywMYaSyqAWlwmw61de5zHw/H2', '../uploads/howardtheduck2.jpg', '', '', '', '', '', '11111111111', '1034-12-12', 0.00, '', '', 8, 4, 0, 0);
 
 --
 -- Índices para tabelas despejadas
@@ -325,7 +344,8 @@ ALTER TABLE `cliente`
 ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`id_comentario`),
   ADD KEY `id_cliente` (`id_cliente`),
-  ADD KEY `id_trabalhador` (`id_trabalhador`);
+  ADD KEY `id_trabalhador` (`id_trabalhador`),
+  ADD KEY `id_trabalhador_sessao` (`id_trabalhador_sessao`);
 
 --
 -- Índices de tabela `conversas`
@@ -406,7 +426,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de tabela `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de tabela `conversas`
@@ -418,13 +438,13 @@ ALTER TABLE `conversas`
 -- AUTO_INCREMENT de tabela `curtidas`
 --
 ALTER TABLE `curtidas`
-  MODIFY `id_curtida` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_curtida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `favoritos`
 --
 ALTER TABLE `favoritos`
-  MODIFY `id_favorito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_favorito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `mensagens`
@@ -436,7 +456,7 @@ ALTER TABLE `mensagens`
 -- AUTO_INCREMENT de tabela `trabalhador`
 --
 ALTER TABLE `trabalhador`
-  MODIFY `id_trabalhador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_trabalhador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Restrições para tabelas despejadas
@@ -461,7 +481,8 @@ ALTER TABLE `atualizacoes_pendentes`
 --
 ALTER TABLE `comentarios`
   ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`),
-  ADD CONSTRAINT `comentarios_ibfk_3` FOREIGN KEY (`id_trabalhador`) REFERENCES `trabalhador` (`id_trabalhador`);
+  ADD CONSTRAINT `comentarios_ibfk_3` FOREIGN KEY (`id_trabalhador`) REFERENCES `trabalhador` (`id_trabalhador`),
+  ADD CONSTRAINT `comentarios_ibfk_4` FOREIGN KEY (`id_trabalhador_sessao`) REFERENCES `trabalhador` (`id_trabalhador`);
 
 --
 -- Restrições para tabelas `conversas`

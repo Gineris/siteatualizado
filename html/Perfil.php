@@ -5,8 +5,9 @@ include_once('../backend/Conexao.php');
 
 // Verifica se o usuário está logado
 if (!isset($_SESSION['id_trabalhador'])) {
-    echo 'Usuário não está logado.';
-    exit;
+    echo "Erro: Nenhum trabalhador identificado. Faça login primeiro.";
+    header('Location: loginGeral.php');
+    exit();
 }
 
 $id_trabalhador = $_GET['id_trabalhador']; // Trabalhador da pagina
@@ -84,7 +85,7 @@ if (!isset($_SESSION['id_trabalhador_sessao'])) {
     </header>
 
     <main class=""> 
-        
+
         <nav class="menuLateral">
             <div class="IconExpandir">
                 <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
@@ -127,11 +128,11 @@ if (!isset($_SESSION['id_trabalhador_sessao'])) {
                         <span class="txtLink">Sair</span>
                     </a>
                 </li>
-                
+
             </ul>
 
         </nav>
-        
+
         <div class="FotoFundo">
             <!-- foto background -->
             <img src="../uploads/<?php echo !empty($row['foto_banner']) ? $row['foto_banner'] : '../img/TesteBackPerfil.png' ?>" alt="">
@@ -208,14 +209,14 @@ if (!isset($_SESSION['id_trabalhador_sessao'])) {
         <label for="comentario"></label>
 
         <!-- Campo oculto para passar o id_trabalhador correto -->
-        <input type="hidden" name="id_trabalhador_sessao" value="<?php echo $id_trabalhador_sessao; ?>">
+        <input type="hidden" name="id_trabalhador" value="<?php echo $id_trabalhador; ?>">
 
         <input type="submit" form="comentario" class="." value="Enviar comentario"/><br>
     </form>
-    
+
     </main>     
 
-    
+
 
     <footer class="d-flex justify-content-center ">
         <p>N</p>
@@ -223,7 +224,7 @@ if (!isset($_SESSION['id_trabalhador_sessao'])) {
         <p>Privacy Policy</p>
         <p>@2022yanliudesign</p>
     </footer>
-    
+
 
     <script src="../js/funcaoMenuLateral.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
@@ -232,5 +233,5 @@ if (!isset($_SESSION['id_trabalhador_sessao'])) {
 
     <script src="../js/FuncaoCurtirPerfil.js"></script>
 
+
 </body>
-</html>

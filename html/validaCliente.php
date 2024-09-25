@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include_once('../../backend/Conexao.php');
+include_once('../backend/Conexao.php');
 
 
 $email = $_POST['email'];
@@ -22,7 +22,7 @@ if ($result_adm->num_rows > 0) {
     if (password_verify($senha, $row_adm['senha'])) {
         
         $_SESSION['email'] = $email;
-        echo json_encode(['sucesso' => true, 'tipo' => 'admin', 'redirect' => '../admin/homeAdm.php']);
+        echo json_encode(['sucesso' => true, 'tipo' => 'admin', 'redirect' => '../html/admin/homeAdm.php']);
     } else {
         
         echo json_encode(['sucesso' => false, 'mensagem' => 'Email ou senha inválidos']);
@@ -48,7 +48,7 @@ if ($result_adm->num_rows > 0) {
 
             // $_SESSION['id_cliente'] = $result['id_cliente'];
 
-            echo json_encode(['sucesso' => true, 'tipo' => 'cliente', 'redirect' => './homeClienteLogado.php']);
+            echo json_encode(['sucesso' => true, 'tipo' => 'cliente', 'redirect' => '../html/cliente/homeClienteLogado.php']);
         } else {
            
             echo json_encode(['sucesso' => false, 'mensagem' => 'Email ou senha inválidos']);
