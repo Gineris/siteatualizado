@@ -10,14 +10,13 @@ if (!isset($_SESSION['id_cliente'])) {
 
 // ID do cliente logado
 $id_cliente = $_SESSION['id_cliente'];
+// ID do trabalhador a ser visualizado
+$id_trabalhador = $_GET['id_trabalhador'];
 
 $sql_cli = "SELECT * FROM cliente WHERE id_cliente = '$id_cliente'";
 $result_cli = $conn->query($sql_cli);
 $resultado_cli = mysqli_query($conn, $sql_cli);
 $row_cli = mysqli_fetch_assoc($resultado_cli);
-
-// ID do trabalhador a ser visualizado
-$id_trabalhador = isset($_GET['id_trabalhador']) ? $_GET['id_trabalhador'] : null;
 
 // Verifica se o ID do trabalhador foi passado
 if ($id_trabalhador === null) {
@@ -32,6 +31,7 @@ $hasLiked = false;
 // Consulta para obter os dados do trabalhador
 $sql = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador'";
 $resultado_pesquisar = mysqli_query($conn, $sql);
+
 
 // Verifica se o trabalhador foi encontrado
 if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
@@ -56,10 +56,10 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
     if (mysqli_num_rows($resultLike) > 0) {
         $hasLiked = true; // Define como true se o trabalhador foi curtido
     }
-} else {
-    echo 'Trabalhador não encontrado.';
-    exit;
-}
+    } else {
+        echo 'Trabalhador não encontrado.';
+        exit;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -190,14 +190,33 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
 
         <h1>Comentários e Avaliações</h1>
         <div id="reviews">
-            <!-- Comentários e avaliações serão carregados aqui -->
-        </div>
+        <!-- Exibe os comentários -->
+        <?php
+            $sql_comentarios = "SELECT c.comentario, t.nome as nome_trabalhador 
+                                FROM comentarios c
+                                LEFT JOIN trabalhador t ON c.id_trabalhador_sessao = t.id_trabalhador
+                                WHERE c.id_trabalhador = ?";
+            $stmt_comentarios = $conn->prepare($sql_comentarios);
+            $stmt_comentarios->bind_param("i", $id_trabalhador);
+            $stmt_comentarios->execute();
+            $result_comentarios = $stmt_comentarios->get_result();
 
-        <form id="comentario" method="POST" action="post_comentario.php">
-            <textarea name="comentario" id="comentario" placeholder="Escreva seu comentário" required></textarea>
-            <input type="hidden" name="id_trabalhador_sessao" value="<?php echo $id_trabalhador; ?>">
-            <input type="submit" form="comentario" value="Enviar comentário"/><br>
-        </form>
+            while ($comentario = $result_comentarios->fetch_assoc()) {
+            echo "<p><strong>" . $comentario['nome_trabalhador'] . ":</strong> " . $comentario['comentario'] . "</p>";
+            }
+        ?>
+    </div>
+
+
+    <form id="comentario" method="POST" action="post_comentario_cliente.php">
+        <textarea name="comentario" id="comentario" placeholder="Escreva seu comentário" required></textarea>
+        <label for="comentario"></label>
+
+        <!-- Campo oculto para passar o id_trabalhador correto -->
+        <input type="hidden" name="id_cliente" value="<?php echo $id_cliente; ?>">
+
+        <input type="submit" form="comentario" class="." value="Enviar comentario"/><br>
+    </form>
     </main>
 
     <footer class="d-flex justify-content-center">
