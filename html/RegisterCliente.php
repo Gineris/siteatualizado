@@ -1,5 +1,5 @@
 <?php
-include_once('../../backend/Conexao.php');
+include_once('../backend/Conexao.php');
 
 header('Content-Type: application/json');
 
@@ -10,7 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data_nascimento = $_POST['data_nascimento'];
     $senha = trim($_POST['senha']);
     $confirmaSenha = trim($_POST['ConfirmaSenha']);
-    $id_area = intval($_POST['id_area']);
+    $id_area = intval($_POST['id_area']); 
+    $id_area = $_POST['id_area']; 
     $fotoDePerfil = $_FILES['foto_de_perfil'];
 
     $dataAtual = new DateTime();
@@ -23,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    if ($senha !== $confirmaSenha) {
+    if ($senha !== $confirmaSenha) {    
         echo json_encode(['sucesso' => false, 'mensagem' => 'As senhas não coincidem.']);
         exit;
     }
@@ -32,33 +33,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo json_encode(['sucesso' => false, 'mensagem' => 'Você deve ter pelo menos 15 anos para se cadastrar.']);
         exit;
     }
+  // Verifica se o e-mail já está registrado
+  $sql = "SELECT COUNT(*) FROM cliente WHERE email = ?";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("s", $email);
+  $stmt->execute();
+  $stmt->bind_result($count);
+  $stmt->fetch();
+  $stmt->close();
 
-    if (!preg_match('/^\d{11}$/', $contato)) {
-        echo json_encode(['sucesso' => false, 'mensagem' => 'O número de contato deve ter exatamente 11 dígitos.']);
-        exit;
-    }
-
-    // Verifica se o e-mail já está registrado
-    $sql = "SELECT COUNT(*) FROM cliente WHERE email = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->bind_result($count);
-    $stmt->fetch();
-    $stmt->close();
-
-    if ($count > 0) {
-        echo json_encode(['sucesso' => false, 'mensagem' => 'O e-mail já está registrado.']);
-        exit;
-    }
+  if ($count > 0) {
+      echo json_encode(['sucesso' => false, 'mensagem' => 'O e-mail já está registrado.']);
+      exit;
+  }
 
     // Processa o upload da foto de perfil
-    $diretorio = '../../uploads/';
+    $diretorio = '../uploads/'; 
     $nomeArquivo = basename($fotoDePerfil['name']);
     $caminhoCompleto = $diretorio . $nomeArquivo;
 
     if (!is_dir($diretorio)) {
-        mkdir($diretorio, 0777, true);
+        mkdir($diretorio, 0777, true); 
     }
 
     $tiposPermitidos = ['image/jpeg', 'image/png', 'image/gif'];
@@ -76,14 +71,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Criptografa a senha
     $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
 
-    // Insere o novo trabalhador na base de dados
+    // Insere o novo cliente na base de dados
     try {
         $sql = "INSERT INTO cliente (nome, email, contato, data_nasc, senha, id_area, foto_perfil) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssssiss", $nome, $email, $contato, $data_nascimento, $senhaCriptografada, $id_area, $caminhoCompleto);
+
+        if (!$stmt) {
+            echo json_encode(['sucesso' => false, 'mensagem' => 'Erro na preparação da consulta: ' . $conn->error]);
+            exit;
+        }
+
+        $stmt->bind_param("sssssis", $nome, $email, $contato, $data_nascimento, $senhaCriptografada, $id_area, $caminhoCompleto);
 
         if ($stmt->execute()) {
-            echo json_encode(['sucesso' => true, 'mensagem' => 'Cadastro realizado com sucesso!']);
+            echo json_encode(['sucesso' => true, 'mensagem' => 'Cadastro realizado com sucesso!', 'mostrarBotaoLogin' => true]);
         } else {
             echo json_encode(['sucesso' => false, 'mensagem' => 'Erro ao realizar o cadastro: ' . $stmt->error]);
         }

@@ -239,3 +239,24 @@ footer p{
     font: 2rem "Poppins", sans-serif;
     align-content: center;
 }
+.city-buttons-container {
+    display: flex;
+    justify-content: center; /* Centraliza os botões das cidades */
+    gap: 15px; /* Espaçamento entre os botões */
+    margin-top: 20px; /* Espaço acima dos botões de cidade */
+    flex-wrap: wrap; /* Faz os botões quebrarem linha se necessário */
+}
+
+.city-btn {
+    color: rgb(11, 0, 59);
+    padding: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+    font-size: 18px;
+}
+
+.city-btn:hover {
+    transform: scale(1.1);
+}

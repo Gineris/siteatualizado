@@ -3,7 +3,7 @@ include_once('../backend/Conexao.php');
 
 try {
     
-    $sql = "SELECT id_area, cidade FROM area_atuacao";
+    $sql = "SELECT id_area, cidade FROM area_atuação";
     $result = $conn->query($sql);
 
     $cidades = array();

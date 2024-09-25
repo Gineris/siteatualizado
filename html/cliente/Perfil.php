@@ -81,6 +81,52 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
             <div class="perfil">
                 <img class="FotoPerfilNav" src="../../uploads/<?php echo !empty($row_cli['foto_perfil']) ? $row_cli['foto_perfil'] : '../../img/FotoPerfilGeral.png' ?>" alt="">
             </div>
+    </header>
+
+    <main> 
+        <nav class="menuLateral">
+            <div class="IconExpandir">
+                <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
+            </div>
+
+            <ul>
+                <li class="itemMenu">
+                    <a href="homeLogado.php">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="txtLink">Inicio</span>
+                    </a>
+                </li>
+                <li class="itemMenu">
+                    <a href="SeuPerfil.php">
+                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                        <span class="txtLink">Perfil</span>
+                    </a>
+                </li>
+                <li class="itemMenu ativo">
+                    <a href="Categorias.php">
+                        <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
+                        <span class="txtLink">Pesquisar</span>
+                    </a>
+                </li>
+                <li class="itemMenu">
+                    <a href="favorito.php">
+                        <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
+                        <span class="txtLink">Favoritos</span>
+                    </a>
+                </li>
+                <li class="itemMenu">
+                    <a href="EditarPerfil.php">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="txtLink">Configurações</span>
+                    </a>
+                </li>
+                <li class="itemMenu">
+                    <a href="LogoutCliente">
+                        <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
+                        <span class="txtLink">Sair</span>
+                    </a>
+                </li>
+            </ul>
         </nav>
     </header>
 
@@ -184,28 +230,31 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
                 });
             }
         });
+</script>
+    <script>
+       document.getElementById('favoritarBtn').addEventListener('click', function() {
+    const idTrabalhador = this.getAttribute('data-id');
+    const action = this.textContent.includes('Adicionar') ? 'adicionar' : 'remover';
 
-        document.getElementById('favoritarBtn').addEventListener('click', function() {
-            const idTrabalhador = this.getAttribute('data-id');
-            const action = this.textContent.includes('Adicionar') ? 'adicionar' : 'remover';
+    fetch('favoritos_action.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ id_trabalhador: idTrabalhador, action: action })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Atualiza a interface
+            this.textContent = action === 'adicionar' ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos';
+        } else {
+            alert(data.message); // Mostra mensagem de erro
+        }
+    })
+    .catch(error => console.error('Erro ao processar favoritos:', error));
+});
 
-            fetch('favoritar_action.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ id: idTrabalhador, action: action })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Atualiza a interface
-                    this.textContent = action === 'adicionar' ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos';
-                } else {
-                    alert(data.message); // Mostra mensagem de erro
-                }
-            });
-        });
     </script>
 </body>
 </html>
