@@ -25,7 +25,7 @@ if (!$result_cidades) {
 
 // Construir a consulta SQL para filtrar por cidade, categoria e nome (se houver)
 $query = "
-    SELECT t.*, a.cidade, COUNT(c.id_trabalhador) AS total_curtidas 
+    SELECT t.*, COUNT(c.id_trabalhador) AS total_curtidas 
     FROM trabalhador t 
     LEFT JOIN curtidas c ON t.id_trabalhador = c.id_trabalhador 
     INNER JOIN area_atuação a ON t.id_area = a.id_area
@@ -56,6 +56,7 @@ if (!$result) {
     height: 370px;
     }
 </style>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -67,115 +68,27 @@ if (!$result) {
     <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
 </head>
 <body>
-<header>
-    <nav class="BarraNav">
-        <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
-        <div class="perfil">
-            <a href="#">
-                <img class="FotoPerfilNav" src="../../uploads/<?php echo !empty($row['foto_perfil']) ? htmlspecialchars($row['foto_perfil']) : '../../img/FotoPerfilGeral.png'; ?>" alt="Perfil">
-            </a>
-        </div>
-    </nav>
-</header>
-
-<nav class="menuLateral">
-    <div class="IconExpandir">
-        <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
-    </div>
-    <ul style="padding-left: 0rem;">
-        <li class="itemMenu ativo">
-            <a href="homeClienteLogado.php">
-                <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                <span class="txtLink">Início</span>
-            </a>
-        </li>
-        <li class="itemMenu">
-            <a href="EditarPerfilCliente.php">
-                <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-                <span class="txtLink">Configurações</span>
-            </a>
-        </li>
-        <li class="itemMenu">
-            <a href="Categorias.php">
-                <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
-                <span class="txtLink">Pesquisar</span>
-            </a>
-        </li>
-        <li class="itemMenu">
-            <a href="favorito.php">
-                <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
-                <span class="txtLink">Favoritos</span>
-            </a>
-        </li>
-        <li class="itemMenu">
-            <a href="LogoutCliente.php">
-                <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
-                <span class="txtLink">Sair</span>
-            </a>
-        </li>
-    </ul>
-</nav>
-<div class="search-container">
-    <form action="" method="POST" class="search-form">
-
-        <select class="category-select" name="area_atuação" id="area_atuação">
-        <option value="">Escolha a Cidade</option>
-        <?php
-            $result_cat = "SELECT * FROM area_atuação ORDER BY cidade";
-            $resultado_cat = mysqli_query($conn, $result_cat);
-
-            if (!$resultado_cat) {
-                die("Erro na consulta: " . mysqli_error($conn));
-            }
-
-            while ($row_cat = mysqli_fetch_assoc($resultado_cat)) {
-                $selected = ($row_cat['id'] == $area_atuação) ? 'selected' : '';
-                echo '<option value="'.$row_cat['id'].'" '.$selected.'>'.$row_cat['cidade'].'</option>';
-            }
-        ?>
-    </select>
-        <div class="pesquisarTrabalhos">
-        <input type="text" name="nome_pesquisa" value="<?php echo htmlspecialchars($nome_pesquisa); ?>"><br><br>
-        </div>
-
-    <input class="search-button" type="submit" value="Pesquisar">
-    </form>
-</div>
-
-<?php
-        // Verifica se há resultados e exibe os dados ou uma mensagem de erro
-        if (mysqli_num_rows($resultado_pesquisar) > 0) {
-            while ($row = mysqli_fetch_assoc($resultado_pesquisar)) {?> 
-            <div class="CampoEscolhaTrabalhador">
-                <a href="./Perfil.php?id_trabalhador=<?php echo $row['id_trabalhador']; ?>">
-                    <?php 
-                    echo '<div class="CardBox">'; 
-                        echo '<div class="imagem">';
-                                echo '<img src="../uploads/'.$row['foto_perfil'].'" alt="">';
-                        echo '</div>';
-                        echo '<div class="txtTrabalhador">';
-                            echo '<h3>' . htmlspecialchars($row['nome']) . '</h3>';
-                            echo '<p>' . htmlspecialchars($row['media_avaliacao']) . '</p>';
-                        echo '</div>';
-                    echo '</div>';
-                    ?>
+    <header>
+        <nav class="BarraNav">
+            <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
+            <div class="perfil">
+                <a href="#">
+                    <img class="FotoPerfil" src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../../img/FotoPerfilGeral.png' ?>" alt="">
                 </a>
             </div>
         </nav>
     </header>
 
-    <main class=""> 
-        
+    <main>
         <nav class="menuLateral">
             <div class="IconExpandir">
                 <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
             </div>
-
             <ul style="padding-left: 0rem;">
                 <li class="itemMenu ativo">
-                    <a href="homeClienteLogado.php">
+                    <a href="#">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                        <span class="txtLink">Inicio</span>
+                        <span class="txtLink">Início</span>
                     </a>
                 </li>
                 <li class="itemMenu">
@@ -184,9 +97,9 @@ if (!$result) {
                         <span class="txtLink">Configurações</span>
                     </a>
                 </li>
-                <li class="itemMenu ">
+                <li class="itemMenu">
                     <a href="Categorias.php">
-                        <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
+                        <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>
                     </a>
                 </li>
@@ -196,17 +109,14 @@ if (!$result) {
                         <span class="txtLink">Favoritos</span>
                     </a>
                 </li>
-                
                 <li class="itemMenu">
                     <a href="LogoutCliente.php">
                         <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
                         <span class="txtLink">Sair</span>
                     </a>
                 </li>
-                
             </ul>
-
-        </nav> 
+        </nav>
 
         <div class="sistemabusca">
             <div class="search-container">
@@ -217,7 +127,9 @@ if (!$result) {
                     <input class="search-button" type="submit" value="Pesquisar">
                 </form>
 
-                <div class="city-buttons-container">
+                
+            </div>
+            <div class="city-buttons-container">
                     <?php while ($cidade = mysqli_fetch_assoc($result_cidades)) { ?>
                         <form action="usuarios_por_categoria.php" method="GET" style="display: inline;">
                             <input type="hidden" name="id_categoria" value="<?php echo $id_categoria; ?>">
@@ -228,7 +140,6 @@ if (!$result) {
                         </form>
                     <?php } ?>
                 </div>
-            </div>
 
             <div class="listatrabalhadores">
                 <?php
@@ -238,7 +149,7 @@ if (!$result) {
                             <a href="./Perfil.php?id_trabalhador=<?php echo $row['id_trabalhador']; ?>">
                                 <div class="CardBox">
                                     <div class="imagem">
-                                        <img src="../uploads/<?php echo $row['foto_perfil']; ?>" alt="">
+                                        <img src="../../uploads/<?php echo $row['foto_perfil']; ?>" alt="">
                                     </div>
                                     <div class="txtTrabalhador">
                                         <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
