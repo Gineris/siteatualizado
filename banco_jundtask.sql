@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25/09/2024 às 16:34
+-- Tempo de geração: 25/09/2024 às 22:56
 -- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Versão do PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -292,13 +292,12 @@ CREATE TABLE `trabalhador` (
 --
 
 INSERT INTO `trabalhador` (`id_trabalhador`, `nome`, `email`, `senha`, `foto_perfil`, `foto_trabalho1`, `foto_trabalho2`, `foto_trabalho3`, `foto_banner`, `descricao`, `contato`, `data_nasc`, `media_avaliacao`, `tipo`, `status`, `id_categoria`, `id_area`, `permissao`, `curtidas`) VALUES
-(15, 'Pato Rog', 'Patinho123@gmail.com', '', 'teste.jpeg\r\n', 'fundo1.jpg', 'fundo2.jpg', 'testeFundo.jpeg', 'fundoPerfil.png', 'Patoo                                                                        ', '11 99999 8888', '1111-11-11', 0.00, '', '', 1, 3, 0, 0),
 (17, 'michele', 'gui@gmail.com', '$2y$10$2GLOHF./f4ZZYWAFFRVt3OmUyBHSs5ZGrwcblOAY2PXOmwHTniWFy', '../uploads/download.jfif', '../uploads/fundo1.jpg', '../uploads/fundo2.jpg', '../uploads/testeFundo.jpeg', '../uploads/fundoPerfil.png', 'sou pobre', '12121212121', '2002-10-16', 0.00, '', '', 8, 6, 0, 0),
 (18, 'Maria', 'ma@gmail.com', '$2y$10$RRoK..jGqYKCBkwinAvE3eR9jnxdLJ6zL1ZGH47MniZ8KvrWD0c3a', '../uploads/download.jfif', '', '', '', '', '', '12121212121', '1923-07-05', 0.00, '', '', 10, 5, 0, 0),
 (19, 'Paula Pao', 'paula@gmail.com', '$2y$10$NF2UP6tmq3lCAfI2HTtsdufGRVLR0myk4uJx4dJXYTZPNzuokiRH6', '', '', '', '', '', 'Sou a paula teJANDO', '12121212121', '1987-09-25', 0.00, '', '', 11, 7, 0, 0),
 (20, 'memphis', 'depay@corinthians.com', '$2y$10$z3vcOAAGGkHLMfBdjHNx4Oh5smLczVUbyNhFsSPicSN.4NhuuWHrm', '../uploads/images.jfif', '', '', '', '', '', '11991829034', '1910-09-01', 0.00, '', '', 8, 4, 0, 0),
-(21, 'Maria Silva', 'MariaSilva@gmail.com', '$2y$10$RKPswhmOBsg7lBBmz82VqexnabMXvuQEJmx8813PGCHvApxj14Vve', '../uploads/trabalhadora1.png', '', '', '', '', '', '11912345678', '1982-08-12', 0.00, '', '', 1, 1, 0, 0),
-(22, 'Pato Rog', 'patorogerio@gmail.com', '$2y$10$il6HsiBFAuVs.I3/OnGofu1YV6H8ywMYaSyqAWlwmw61de5zHw/H2', '../uploads/howardtheduck2.jpg', '', '', '', '', '', '11111111111', '1034-12-12', 0.00, '', '', 8, 4, 0, 0);
+(22, 'Pato Rog', 'patorogerio@gmail.com', '$2y$10$il6HsiBFAuVs.I3/OnGofu1YV6H8ywMYaSyqAWlwmw61de5zHw/H2', '../uploads/howardtheduck2.jpg', '', '', '', '', '', '11111111111', '1034-12-12', 0.00, '', '', 8, 4, 0, 0),
+(23, 'Maria da Silva', 'maria.silva@limpeza.com', '$2y$10$1uzoRY652Bq4w1DCMq1DLeM97R86MtQjHYApDpsYZtIPOHAsqQyiG', '../uploads/maria silva.png', '', '', '', '', '', '11987654321', '1000-08-28', 0.00, '', '', 1, 1, 0, 0);
 
 --
 -- Índices para tabelas despejadas
@@ -456,7 +455,7 @@ ALTER TABLE `mensagens`
 -- AUTO_INCREMENT de tabela `trabalhador`
 --
 ALTER TABLE `trabalhador`
-  MODIFY `id_trabalhador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_trabalhador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Restrições para tabelas despejadas
