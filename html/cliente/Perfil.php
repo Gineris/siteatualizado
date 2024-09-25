@@ -189,11 +189,10 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
                     <p>Tel: <?php echo htmlspecialchars($row['contato']); ?></p>
                 </div>
                 <div class="curtir">
-                    <button id="likeBtn" class="curtir-button">
-                        <i class="bi bi-heart<?php echo $hasLiked ? '-fill' : ''; ?>"></i> 
-                        <?php echo $hasLiked ? 'Descurtir' : 'Curtir'; ?>
-                    </button>
-                    <span id="likeCount"><?php echo $totalCurtidas; ?> Likes</span>
+                <button id="likeBtn" class="like-button">
+                        <i class="bi bi-heart"></i> Curtir
+                </button>
+                    <span id="likeCount">0 Likes</span>
                 </div>
                 <div class="favorito">
                     <button id="favoritarBtn" data-id="<?php echo $id_trabalhador; ?>">
@@ -298,6 +297,17 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script> 
+    likeBtn.addEventListener('click', function() {
+    const trabalhadorId = // ID do trabalhador atual (você deve passar isso)
+    
+    if (!hasLiked) {
+        // Curtir
+        count++;
+        likeCount.textContent = count + " Likes";
+        likeBtn.innerHTML = '<i class="bi bi-heart-fill"></i> Descurtir';
+        hasLiked = true;
 
     <script>
         const likeBtn = document.getElementById('likeBtn');

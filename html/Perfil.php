@@ -2,17 +2,16 @@
 session_start(); // Inicia a sessão
 include_once('../backend/Conexao.php');
 
-$id_trabalhador = $_GET['id_trabalhador'];
 
-// Verifica se o trabalhador está logado
+// Verifica se o usuário está logado
 if (!isset($_SESSION['id_trabalhador'])) {
     echo "Erro: Nenhum trabalhador identificado. Faça login primeiro.";
     header('Location: loginGeral.php');
     exit();
 }
 
-$id_trabalhador_sessao = $_SESSION['id_trabalhador']; // Trabalhador logado
-$id_trabalhador = $_GET['id_trabalhador']; // Trabalhador que recebe o comentário
+$id_trabalhador = $_GET['id_trabalhador']; // Trabalhador da pagina
+$id_trabalhador_sessao = $_SESSION['id_trabalhador']; //Trabalhador logado
 
 // Consulta para obter os dados do trabalhador
 $sql = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador'";
@@ -21,9 +20,40 @@ $resultado_pesquisar = mysqli_query($conn,$sql);
 $row = mysqli_fetch_assoc($resultado_pesquisar);
 
 
-$result_id = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador_sessao'";
-$resultado_id = mysqli_query($conn, $result_id);
-$row_id = mysqli_fetch_assoc($resultado_id);
+// // Verifica se o usuário está logado
+if (!isset($_SESSION['id_trabalhador_sessao'])) {
+    echo 'Usuário não está logado.';
+    exit;
+}
+
+// $result_id = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador_sessao'";
+// $resultado_id = mysqli_query($conn, $result_id);
+// $row_id = mysqli_fetch_assoc($resultado_id);
+
+// $isFavorito = false; // Inicializa como false
+// if ($row) {
+//     // Verifica se o trabalhador é favorito
+//     $sqlFavorito = "SELECT * FROM favoritos WHERE id_trabalhador = '$id_trabalhador' AND id_cliente = '$id_cliente'";
+//     $resultFavorito = $conn->query($sqlFavorito);
+//     $isFavorito = mysqli_num_rows($resultFavorito) > 0; // true se for favorito, false caso contrário
+// } else {
+//     echo 'Trabalhador não encontrado.';
+//     exit; // Sai do script se não encontrar o trabalhador
+// }
+
+// Consulta para obter os comentários do trabalhador
+// $sqlComentarios = " SELECT c.comentario, c.data_comentario, 
+//                     COALESCE(cl.nome, tw.nome) AS nome_usuario
+//                     FROM comentarios c
+//                     LEFT JOIN cliente cl ON c.id_cliente = cl.id_cliente
+//                     LEFT JOIN trabalhador tw ON c.id_trabalhador = tw.id_trabalhador
+//                     WHERE c.id_trabalhador = '$id_trabalhador_sessao'";
+// $resultComentarios = mysqli_query($conn, $sqlComentarios);
+
+// if (!$resultComentarios) {
+//     echo "Erro na consulta: " . mysqli_error($conn);
+//     exit;
+// }
 
 
 ?>
@@ -161,7 +191,7 @@ $row_id = mysqli_fetch_assoc($resultado_id);
         <?php
             $sql_comentarios = "SELECT c.comentario, t.nome as nome_trabalhador 
                                 FROM comentarios c
-                                LEFT JOIN trabalhador t ON c.id_trabalhador_sessao = t.id_trabalhador
+                                LEFT JOIN trabalhadores t ON c.id_trabalhador_comentario = t.id_trabalhador
                                 WHERE c.id_trabalhador = ?";
             $stmt_comentarios = $conn->prepare($sql_comentarios);
             $stmt_comentarios->bind_param("i", $id_trabalhador);
@@ -173,8 +203,7 @@ $row_id = mysqli_fetch_assoc($resultado_id);
             }
         ?>
     </div>
-
-
+    
     <form id="comentario" method="POST" action="post_comentario_trabalhador.php">
         <textarea name="comentario" id="comentario" placeholder="Escreva seu comentário" required></textarea>
         <label for="comentario"></label>
