@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25/09/2024 às 22:56
+-- Tempo de geração: 26/09/2024 às 00:24
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.0.30
 
@@ -297,7 +297,25 @@ INSERT INTO `trabalhador` (`id_trabalhador`, `nome`, `email`, `senha`, `foto_per
 (19, 'Paula Pao', 'paula@gmail.com', '$2y$10$NF2UP6tmq3lCAfI2HTtsdufGRVLR0myk4uJx4dJXYTZPNzuokiRH6', '', '', '', '', '', 'Sou a paula teJANDO', '12121212121', '1987-09-25', 0.00, '', '', 11, 7, 0, 0),
 (20, 'memphis', 'depay@corinthians.com', '$2y$10$z3vcOAAGGkHLMfBdjHNx4Oh5smLczVUbyNhFsSPicSN.4NhuuWHrm', '../uploads/images.jfif', '', '', '', '', '', '11991829034', '1910-09-01', 0.00, '', '', 8, 4, 0, 0),
 (22, 'Pato Rog', 'patorogerio@gmail.com', '$2y$10$il6HsiBFAuVs.I3/OnGofu1YV6H8ywMYaSyqAWlwmw61de5zHw/H2', '../uploads/howardtheduck2.jpg', '', '', '', '', '', '11111111111', '1034-12-12', 0.00, '', '', 8, 4, 0, 0),
-(23, 'Maria da Silva', 'maria.silva@limpeza.com', '$2y$10$1uzoRY652Bq4w1DCMq1DLeM97R86MtQjHYApDpsYZtIPOHAsqQyiG', '../uploads/maria silva.png', '', '', '', '', '', '11987654321', '1000-08-28', 0.00, '', '', 1, 1, 0, 0);
+(23, 'Maria da Silva', 'maria.silva@limpeza.com', '$2y$10$1uzoRY652Bq4w1DCMq1DLeM97R86MtQjHYApDpsYZtIPOHAsqQyiG', 'maria silva.png', 'faxina7.png', 'faxina4.png', 'faxina6.png', 'banner2.png', 'Eu sou a Maria da Silva, uma profissional com mais de 10 anos de experiência em serviços de limpeza. Minha abordagem é sempre focada na satisfação do cliente. Eu realizo uma limpeza profunda em cada cômodo da casa, cuidando dos detalhes que muitas vezes passam despercebidos, como cantos, rodapés e atrás dos móveis.', '11987654321', '1000-08-28', 0.00, '', '', 1, 1, 0, 0),
+(24, 'João Pereira', 'joao.pereira@limpeza.com', '$2y$10$C/RIZ3EasSolB48xanoU3.hafYo4nJzveNpXFlfFSWjLt7uKbsioa', 'joao .png', 'faxina5.png', 'faxina2.png', 'faxina8.png', 'banner3.png', 'Realizo serviços de limpeza em casas e apartamentos, sempre focando na organização e na manutenção da limpeza com regularidade. Tenho mais de 5 anos de experiência e ofereço pacotes flexíveis para atender a cada cliente.', '11986543210', '1000-08-28', 0.00, '', '', 1, 1, 0, 0),
+(25, 'Renata Oliveira', 'renata.oliveira@limpeza.com', '$2y$10$whlrUXPQ3aGYdCsg6uuCFOEJw4ScSvLYHHqm/B3uH0kxkKVUWFTIq', 'renata.png', 'faxina4.png', 'faxina7.png', 'faxina1.png', 'banner4.png', 'Atuo na limpeza de residências e pequenos escritórios em Cabreuva, com foco na desinfecção de áreas de alto tráfego e limpeza detalhada de cozinhas e banheiros.', '11987651234', '1000-08-28', 0.00, '', '', 1, 1, 0, 0),
+(26, 'Paulo Fernandes', 'paulo.fernandes@limpeza.com', '$2y$10$IvVlhNhI5a6UZl..NtQUI.CqNIE/lMlB5.M/PtewwcOyO4cA2WHli', 'paulo.png', 'faxina6.png', 'faxina1.png', 'faxina5.png', 'banner6.png', 'Com mais de 8 anos de experiência, ofereço serviços de limpeza de alta qualidade. Faço desde a limpeza básica até a detalhada, com foco em áreas de difícil acesso.', '11987654322', '1000-08-28', 0.00, '', '', 1, 1, 0, 0),
+(27, 'Laura Martins', 'laura.martins@limpeza.com', '$2y$10$wTZ./O0vvKVi2c9wKrGDxuvEikFlWzIVbCPBtFtQTmjBcdOFSzKha', 'laura.png', 'faxina7.png', 'faxina4.png', 'faxina2.png', 'banner5.png', 'Sou especializada na organização e limpeza de casas e escritórios. Trabalho com produtos ecológicos e garantias de ambientes livres de sujeira.', '11998765432', '1000-01-28', 0.00, '', '', 1, 2, 0, 0),
+(28, 'Rafael Mendes', 'rafael.mendes@limpeza.com', '$2y$10$rSUnYc.y83quCJgZGpAtGOavlATpgH/JVrzH8EFG54ExC7HkoAqB.', 'rafael.png', 'faxina3.png', 'faxina8.png', 'faxina1.png', 'banner6.png', 'Faço a limpeza regular de escritórios e residências, com atenção especial à organização e ao uso de produtos de limpeza seguros para pets e crianças.', '11986754213', '1000-03-28', 0.00, '', '', 1, 2, 0, 0),
+(29, 'Ana Costa', 'ana.costa@limpeza.com', '$2y$10$5oO4jiE9tLkVPlC7S4tIE.b0tfUE78aBCyoQZzs.43xFXzq.Zv4Ru', 'ana.png', 'faxina1.png', 'faxina2.png', 'faxina3.png', 'banner6.png', 'Atuo na limpeza de residências e empresas, com serviços que incluem limpeza de estofados, lavagem de vidros e organização de ambientes.', '11985432109', '1000-09-28', 0.00, '', '', 1, 3, 0, 0),
+(30, 'Carlos Souza', 'carlos.souza@limpeza.com', '$2y$10$eRvrGw6hXLfg3fOS2Un1g.PXV0UFv95DC4BdorbkQ7YKk8/zuzGPG', 'carlos.png', 'faxina4.png', 'faxina5.png', 'faxina6.png', 'banner1.png', 'Realizo limpeza detalhada de casas, apartamentos e empresas em Itupeva. Faço questão de deixar todos os espaços organizados e limpos, do chão ao teto.', '11982347654', '1000-11-28', 0.00, '', '', 1, 3, 0, 0),
+(31, 'Juliana Ribeiro', 'juliana.ribeiro@limpeza.com', '$2y$10$x1p0iPNLWVtcWm3lnOKPwui7YyxMhNm52xDd5ph0o.n1zricXQ1HO', 'juliana.png', 'faxina7.png', 'faxina8.png', 'faxina2.png', 'banner5.png', 'Especialista em limpezas pós-obra, removo todo o resíduo e deixo o ambiente pronto para uso imediato. Atendo em Itupeva e região.', '11987653421', '2000-09-12', 0.00, '', '', 1, 3, 0, 0),
+(32, 'Fernanda Alves', 'fernanda.alves@limpeza.com', '$2y$10$VmE9U5JXgto4shAL7IcQGur7JwxziveSqzLP3S0UljQJmF8Qrel.i', 'fernanda.png', 'faxina2.png', 'faxina7.png', 'faxina5.png', 'banner4.png', ' Ofereço serviços de limpeza profunda e organização de ambientes, garantindo uma rotina de manutenção para quem quer manter a casa sempre em ordem.', '11983456278', '1000-11-12', 0.00, '', '', 1, 6, 0, 0),
+(33, 'Beatriz Lima', 'beatriz.lima@limpeza.com', '$2y$10$/QGuVCc0lr8nBvSIA4r4K.JwxgpAGqZdx/ZvpoTP0Ye9rGeSjYDxa', 'beatriz.png', 'faxina7.png', 'faxina8.png', 'faxina2.png', 'banner3.png', 'Sou especialista em limpeza de grandes espaços, como galpões e escritórios, utilizando equipamentos profissionais para garantir a eficiência do serviço.', '11987612345', '2000-02-12', 0.00, '', '', 1, 6, 0, 0),
+(34, 'Camila Nunes', 'camila.nunes@limpeza.com', '$2y$10$3bsOLhSpbOGLa9UuoKXtv.P.MLR5DtnHs4SWqi0gNLkEZaKpctCYS', 'camila.png', 'faxina6.png', 'faxina2.png', 'faxina4.png', 'banner2.png', 'Atuo em Jundiaí com serviços de limpeza de condomínios e residências de grande porte, sempre priorizando o uso de produtos biodegradáveis.', '11986754321', '1000-02-12', 0.00, '', '', 1, 5, 0, 0),
+(35, 'Lucas Silva', 'lucas.silva@limpeza.com', '$2y$10$ENI79nTUbtlb180s8bZ9R.z05fMOGDk8xFx5jFQ/CGjDlHIgxNx7y', 'lucas .png', 'faxina1.png', 'faxina3.png', 'faxina5.png', 'banner1.png', 'Trabalho com limpeza residencial e empresarial, oferecendo serviços personalizados que incluem a organização de ambientes e a lavagem de vidros.', '11986547896', '1222-02-12', 0.00, '', '', 1, 5, 0, 0),
+(36, 'Patricia Rocha', 'patricia.rocha@limpeza.com', '$2y$10$i8usPgcXYSR.AGt1DHIJ1ejQ.3IZeCGXVPwhLUO5Qrait/PxBH0P2', 'patricia.png', 'faxina2.png', 'faxina7.png', 'faxina8.png', 'banner4.png', 'Faço serviços de limpeza pesada em casas, especialmente para quem busca uma faxina mais completa ou para eventos especiais.', '11983216587', '1200-03-12', 0.00, '', '', 1, 5, 0, 0),
+(37, 'Eduardo Cunha', 'eduardo.cunha@limpeza.com', '$2y$10$pKf8sE1pcS77Z2tArVdJievKZDOUg.iJ104pmPg815ac3MuB6ISrK', 'lucas.png', 'faxina8.png', 'faxina3.png', 'faxina1.png', 'banner5.png', 'Faço a limpeza completa de espaços residenciais e empresariais, com atenção especial a detalhes como rodapés, portas e janelas.', '11987653210', '1000-02-12', 0.00, '', '', 1, 4, 0, 0),
+(38, 'Mariana Santos', 'mariana.santos@limpeza.com', '$2y$10$nNBgrbhlLGN.pt2bMMUPe.aCAP2HXD7ssRsqXUkEAYldRNXexGohq', 'mariana.png', 'faxina6.png', 'faxina1.png', 'faxina2.png', 'banner1.png', 'Realizo serviços de limpeza em apartamentos e casas de médio porte, além de organização de ambientes e pequenos reparos de manutenção.', '11983214567', '1000-02-12', 0.00, '', '', 1, 4, 0, 0),
+(39, 'Roberto Farias', 'roberto.farias@limpeza.com', '$2y$10$gQ06GDm132wtVYruWLwsVuEuTVMj/78127nfRsHnW2s5u8rKbRdOG', 'robert.png', 'faxina5.png', 'faxina6.png', 'faxina8.png', 'banner6.png', 'Atuo com limpezas de fim de obra e organização pós-eventos, oferecendo soluções rápidas e eficientes para deixar o local impecável.', '11987643125', '1000-02-28', 0.00, '', '', 1, 4, 0, 0),
+(40, 'Daniela Almeida', 'daniela.almeida@limpeza.com', '$2y$10$wOBGPvcpJBv34CQDpU9YYehOMHM/IZdfF8BgvNOAw0vcr8E1drwVe', 'daniela.png', 'faxina8.png', 'faxina6.png', 'faxina5.png', 'banner4.png', 'Trabalho com serviços de limpeza residencial em Várzea Paulista, focando na limpeza profunda de cozinhas e banheiros, além de áreas externas.\r\n', '11983216578', '1000-02-13', 0.00, '', '', 1, 7, 0, 0),
+(41, 'André Batista', 'andre.batista@limpeza.com', '$2y$10$jhTwkQ2SwPFBwBkePR4iuezolaad6ipyVMOnS5uWtTXiTPRSb1wDW', 'andre.png', 'faxina4.png', 'faxina2.png', 'faxina1.png', 'banner3.png', 'Ofereço serviços de limpeza para escritórios e comércios, com foco na manutenção diária e organização de ambientes de trabalho.', '11987653214', '1230-03-12', 0.00, '', '', 1, 7, 0, 0);
 
 --
 -- Índices para tabelas despejadas
@@ -407,7 +425,7 @@ ALTER TABLE `area_atuação`
 -- AUTO_INCREMENT de tabela `atualizacoes_pendentes`
 --
 ALTER TABLE `atualizacoes_pendentes`
-  MODIFY `id_atualizacoes_pendentes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_atualizacoes_pendentes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de tabela `categorias`
@@ -455,7 +473,7 @@ ALTER TABLE `mensagens`
 -- AUTO_INCREMENT de tabela `trabalhador`
 --
 ALTER TABLE `trabalhador`
-  MODIFY `id_trabalhador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_trabalhador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Restrições para tabelas despejadas
