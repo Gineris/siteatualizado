@@ -90,5 +90,5 @@ echo $_SESSION['mensagem'] ;
 $conn->close();
 
 // Redireciona de volta para a página de administração
-header('Location: ../html/Solicitacoes.php');
+header('Location: ../html/admin/Solicitacoes.php');
 ?>
