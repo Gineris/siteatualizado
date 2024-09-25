@@ -138,13 +138,13 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
                 <button id="likeBtn" class="like-button">
                         <i class="bi bi-heart"></i> Curtir
                 </button>
-                     <span id="likeCount">0 Likes</span>
+                    <span id="likeCount">0 Likes</span>
                 </div>
                 
 
 
                 <div class="favorito">
-                     <button id="favoritarBtn" data-id="<?php echo $id_trabalhador; ?>">
+                    <button id="favoritarBtn" data-id="<?php echo $id_trabalhador; ?>">
                         <?php echo $isFavorito ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos'; ?>
                     </button>
                 </div>
@@ -229,7 +229,7 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
     <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     
     <script> 
-  likeBtn.addEventListener('click', function() {
+    likeBtn.addEventListener('click', function() {
     const trabalhadorId = // ID do trabalhador atual (você deve passar isso)
     
     if (!hasLiked) {

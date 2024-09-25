@@ -2,13 +2,15 @@
 session_start(); // Inicia a sessão
 include_once('../backend/Conexao.php');
 
-$id_trabalhador = $_GET['id_trabalhador'];
 
-// // Verifica se o usuário está logado
+// Verifica se o usuário está logado
 if (!isset($_SESSION['id_trabalhador'])) {
     echo 'Usuário não está logado.';
     exit;
 }
+
+$id_trabalhador = $_GET['id_trabalhador']; // Trabalhador da pagina
+$id_trabalhador_sessao = $_SESSION['id_trabalhador']; //Trabalhador logado
 
 // Consulta para obter os dados do trabalhador
 $sql = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador'";
@@ -16,7 +18,6 @@ $result = $conn->query($sql);
 $resultado_pesquisar = mysqli_query($conn,$sql);
 $row = mysqli_fetch_assoc($resultado_pesquisar);
 
-$id_trabalhador_sessao = $_SESSION['id_trabalhador'];
 
 // // Verifica se o usuário está logado
 if (!isset($_SESSION['id_trabalhador_sessao'])) {
@@ -24,9 +25,10 @@ if (!isset($_SESSION['id_trabalhador_sessao'])) {
     exit;
 }
 
-$result_id = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador_sessao'";
-$resultado_id = mysqli_query($conn, $result_id);
-$row_id = mysqli_fetch_assoc($resultado_id);
+// $result_id = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador_sessao'";
+// $resultado_id = mysqli_query($conn, $result_id);
+// $row_id = mysqli_fetch_assoc($resultado_id);
+
 // $isFavorito = false; // Inicializa como false
 // if ($row) {
 //     // Verifica se o trabalhador é favorito
@@ -39,18 +41,18 @@ $row_id = mysqli_fetch_assoc($resultado_id);
 // }
 
 // Consulta para obter os comentários do trabalhador
-$sqlComentarios = " SELECT c.comentario, c.data_comentario, 
-                    COALESCE(cl.nome, tw.nome) AS nome_usuario
-                    FROM comentarios c
-                    LEFT JOIN cliente cl ON c.id_cliente = cl.id_cliente
-                    LEFT JOIN trabalhador tw ON c.id_trabalhador = tw.id_trabalhador
-                    WHERE c.id_trabalhador = '$id_trabalhador_sessao'";
-$resultComentarios = mysqli_query($conn, $sqlComentarios);
+// $sqlComentarios = " SELECT c.comentario, c.data_comentario, 
+//                     COALESCE(cl.nome, tw.nome) AS nome_usuario
+//                     FROM comentarios c
+//                     LEFT JOIN cliente cl ON c.id_cliente = cl.id_cliente
+//                     LEFT JOIN trabalhador tw ON c.id_trabalhador = tw.id_trabalhador
+//                     WHERE c.id_trabalhador = '$id_trabalhador_sessao'";
+// $resultComentarios = mysqli_query($conn, $sqlComentarios);
 
-if (!$resultComentarios) {
-    echo "Erro na consulta: " . mysqli_error($conn);
-    exit;
-}
+// if (!$resultComentarios) {
+//     echo "Erro na consulta: " . mysqli_error($conn);
+//     exit;
+// }
 
 
 ?>
@@ -186,17 +188,22 @@ if (!$resultComentarios) {
     <div id="reviews">
         <!-- Exibe os comentários -->
         <?php
-            if ($resultComentarios && mysqli_num_rows($resultComentarios) > 0) {
-                while ($comentario = mysqli_fetch_assoc($resultComentarios)) {
-                    echo '<p><strong>' . htmlspecialchars($comentario['nome_usuario']) . '</strong>: ' . htmlspecialchars($comentario['comentario']) . ' <em>(' . htmlspecialchars($comentario['data_comentario']) . ')</em></p>';
-                }
-            } else {
-                echo '<p>Nenhum comentário encontrado.</p>';
+            $sql_comentarios = "SELECT c.comentario, t.nome as nome_trabalhador 
+                                FROM comentarios c
+                                LEFT JOIN trabalhadores t ON c.id_trabalhador_comentario = t.id_trabalhador
+                                WHERE c.id_trabalhador = ?";
+            $stmt_comentarios = $conn->prepare($sql_comentarios);
+            $stmt_comentarios->bind_param("i", $id_trabalhador);
+            $stmt_comentarios->execute();
+            $result_comentarios = $stmt_comentarios->get_result();
+
+            while ($comentario = $result_comentarios->fetch_assoc()) {
+            echo "<p><strong>" . $comentario['nome_trabalhador'] . ":</strong> " . $comentario['comentario'] . "</p>";
             }
         ?>
     </div>
     
-    <form id="comentario" method="POST" action="post_comentario.php">
+    <form id="comentario" method="POST" action="post_comentario_trabalhador.php">
         <textarea name="comentario" id="comentario" placeholder="Escreva seu comentário" required></textarea>
         <label for="comentario"></label>
 
@@ -224,7 +231,6 @@ if (!$resultComentarios) {
     <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 
     <script src="../js/FuncaoCurtirPerfil.js"></script>
-   
 
 </body>
 </html>

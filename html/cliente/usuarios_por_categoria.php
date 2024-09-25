@@ -133,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input type="text" name="nome_pesquisa" value="<?php echo htmlspecialchars($nome_pesquisa); ?>"><br><br>
         </div>
 
-     <input class="search-button" type="submit" value="Pesquisar">
+    <input class="search-button" type="submit" value="Pesquisar">
     </form>
 </div>
 
