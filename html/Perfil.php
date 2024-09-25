@@ -25,6 +25,7 @@ $result_id = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador_
 $resultado_id = mysqli_query($conn, $result_id);
 $row_id = mysqli_fetch_assoc($resultado_id);
 
+
 ?>
 
 

@@ -33,6 +33,7 @@ $sql = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador'";
 $resultado_pesquisar = mysqli_query($conn, $sql);
 
 
+
 // Verifica se o trabalhador foi encontrado
 if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
     // Consulta para verificar se o trabalhador é favorito
@@ -192,17 +193,39 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
         <div id="reviews">
         <!-- Exibe os comentários -->
         <?php
-            $sql_comentarios = "SELECT c.comentario, t.nome as nome_trabalhador 
-                                FROM comentarios c
-                                LEFT JOIN trabalhador t ON c.id_trabalhador_sessao = t.id_trabalhador
-                                WHERE c.id_trabalhador = ?";
-            $stmt_comentarios = $conn->prepare($sql_comentarios);
-            $stmt_comentarios->bind_param("i", $id_trabalhador);
-            $stmt_comentarios->execute();
-            $result_comentarios = $stmt_comentarios->get_result();
+            $sql_comentarios_clientes = "SELECT c.comentario, t.nome as nome_cliente 
+                        FROM comentarios c
+                        LEFT JOIN cliente t ON c.id_cliente = t.id_cliente
+                        WHERE c.id_trabalhador = ?";
 
-            while ($comentario = $result_comentarios->fetch_assoc()) {
-            echo "<p><strong>" . $comentario['nome_trabalhador'] . ":</strong> " . $comentario['comentario'] . "</p>";
+            $sql_comentarios_trabalhador = "SELECT c.comentario, t.nome as nome_trabalhador 
+                        FROM comentarios c
+                        LEFT JOIN trabalhador t ON c.id_trabalhador_sessao = t.id_trabalhador
+                        WHERE c.id_trabalhador = ?";
+
+
+
+            // Executa a consulta de comentários de clientes
+            $stmt_comentarios_cliente = $conn->prepare($sql_comentarios_cliente);
+            $stmt_comentarios_cliente->bind_param("i", $id_trabalhador);
+            $stmt_comentarios_cliente->execute();
+            $result_comentarios_cliente = $stmt_comentarios_cliente->get_result();
+
+
+            // Exibe os comentários dos clientes
+            while ($comentario_cliente = $result_comentarios_cliente->fetch_assoc()) {
+            echo "<p><strong>" . htmlspecialchars($comentario_cliente['nome_cliente']) . ":</strong> " . htmlspecialchars($comentario_cliente['comentario']) . "</p>";
+            }
+
+            // Executa a consulta de comentários de trabalhadores
+            $stmt_comentarios_trabalhador = $conn->prepare($sql_comentarios_trabalhador);
+            $stmt_comentarios_trabalhador->bind_param("i", $id_trabalhador);
+            $stmt_comentarios_trabalhador->execute();
+            $result_comentarios_trabalhador = $stmt_comentarios_trabalhador->get_result();
+
+            // Exibe os comentários dos trabalhadores
+            while ($comentario_trabalhador = $result_comentarios_trabalhador->fetch_assoc()) {
+            echo "<p><strong>" . htmlspecialchars($comentario_trabalhador['nome_trabalhador']) . ":</strong> " . htmlspecialchars($comentario_trabalhador['comentario']) . "</p>";
             }
         ?>
     </div>
@@ -213,7 +236,7 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
         <label for="comentario"></label>
 
         <!-- Campo oculto para passar o id_trabalhador correto -->
-        <input type="hidden" name="id_cliente" value="<?php echo $id_cliente; ?>">
+        <input type="hidden" name="id_trabalhador" value="<?php echo $id_trabalhador; ?>">
 
         <input type="submit" form="comentario" class="." value="Enviar comentario"/><br>
     </form>
