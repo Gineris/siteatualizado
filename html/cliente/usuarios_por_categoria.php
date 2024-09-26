@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once('../../backend/Conexao.php');
+$id_cliente = $_SESSION['id_cliente'];
 
 // Pegar o id_categoria da URL (via GET)
 $id_categoria = $_GET['id_categoria'];

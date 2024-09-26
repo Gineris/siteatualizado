@@ -31,29 +31,54 @@ if (!$result) {
 $area_atuação = '';
 $nome_pesquisa = '';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $area_atuação = $_POST['area_atuação'] ?? '';
-    $nome_pesquisa = $_POST['nome_pesquisa'] ?? '';
+$id_categoria = $_GET['id_categoria'];
 
-    $query_pesquisar = "SELECT * FROM trabalhador WHERE id_categoria = $id_categoria";
+if (!is_numeric($id_categoria)) {
+    die("ID da categoria inválido.");
+}
 
-    if ($area_atuação) {
-        $query_pesquisar .= " AND id_area = " . intval($area_atuação);
-    }
-    
-    if ($nome_pesquisa) {
-        $query_pesquisar .= " AND nome LIKE '%" . mysqli_real_escape_string($conn, $nome_pesquisa) . "%'";
-    }
-    
-    $resultado_pesquisar = mysqli_query($conn, $query_pesquisar);
+// Pegar a cidade selecionada via GET, se existir
+$id_area = isset($_GET['id_area']) ? $_GET['id_area'] : '';
 
-    if (!$resultado_pesquisar) {
-        die("Erro na consulta: " . mysqli_error($conn));
-    }
-} else {
-    $resultado_pesquisar = $result;
+// Capturar o valor da pesquisa pelo nome
+$nome_pesquisa = isset($_POST['nome_pesquisa']) ? trim($_POST['nome_pesquisa']) : '';
+
+// Consulta para obter todas as cidades da área de atuação
+$query_cidades = "SELECT DISTINCT id_area, cidade FROM area_atuação";
+$result_cidades = mysqli_query($conn, $query_cidades);
+
+if (!$result_cidades) {
+    die("Erro ao obter as cidades: " . mysqli_error($conn));
+}
+
+// Construir a consulta SQL para filtrar por cidade, categoria e nome (se houver)
+$query = "
+    SELECT t.*, COUNT(c.id_trabalhador) AS total_curtidas 
+    FROM trabalhador t 
+    LEFT JOIN curtidas c ON t.id_trabalhador = c.id_trabalhador 
+    INNER JOIN area_atuação a ON t.id_area = a.id_area
+    WHERE t.id_categoria = $id_categoria
+";
+
+// Se uma cidade for selecionada, adicionar condição na consulta
+if (!empty($id_area)) {
+    $query .= " AND t.id_area = $id_area";
+}
+
+// Se um nome foi pesquisado, adicionar a condição de busca pelo nome
+if (!empty($nome_pesquisa)) {
+    $nome_pesquisa = mysqli_real_escape_string($conn, $nome_pesquisa);
+    $query .= " AND t.nome LIKE '%$nome_pesquisa%'";
+}
+
+$query .= " GROUP BY t.id_trabalhador ORDER BY total_curtidas DESC";
+$result = mysqli_query($conn, $query);
+
+if (!$result) {
+    die("Erro na consulta: " . mysqli_error($conn));
 }
 ?>
+
 <style>
     nav.menuLateral{
         width: 50px;
@@ -130,8 +155,56 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </ul>
 
         </nav>
+        <div class="sistemabusca">
+            <div class="search-container">
+                <form action="" method="POST" class="search-form">
+                    <div class="pesquisarTrabalhos">
+                        <input type="text" name="nome_pesquisa" placeholder="O que você está buscando?..." value="<?php echo htmlspecialchars($nome_pesquisa); ?>">
+                    </div>
+                    <input class="search-button" type="submit" value="Pesquisar">
+                </form>
 
-        <div class="search-container">
+                
+            </div>
+            <div class="city-buttons-container">
+                    <?php while ($cidade = mysqli_fetch_assoc($result_cidades)) { ?>
+                        <form action="usuarios_por_categoria.php" method="GET" style="display: inline;">
+                            <input type="hidden" name="id_categoria" value="<?php echo $id_categoria; ?>">
+                            <input type="hidden" name="id_area" value="<?php echo $cidade['id_area']; ?>">
+                            <button type="submit" class="city-btn">
+                                <?php echo htmlspecialchars($cidade['cidade']); ?>
+                            </button>
+                        </form>
+                    <?php } ?>
+                </div>
+
+            <div class="listatrabalhadores">
+                <?php
+                if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) { ?>
+                        <div class="CampoEscolhaTrabalhador">
+                            <a href="./Perfil.php?id_trabalhador=<?php echo $row['id_trabalhador']; ?>">
+                                <div class="CardBox">
+                                    <div class="imagem">
+                                        <img src="../uploads/<?php echo $row['foto_perfil']; ?>" alt="">
+                                    </div>
+                                    <div class="txtTrabalhador">
+                                        <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
+                                        <p><?php echo htmlspecialchars($row['media_avaliacao']); ?></p>
+                                        <p>Curtidas: <?php echo htmlspecialchars($row['total_curtidas']); ?></p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    <?php }
+                } else {
+                    echo '<div class="tituloDEnaoEncontrado"><p>Nenhum trabalhador encontrado.</p></div>';
+                }
+                ?>
+            </div>
+        </div>
+
+        <!-- <div class="search-container">
     <form action="" method="POST" class="search-form">
         <select class="category-select" name="area_atuação" id="area_atuação">
             <option value="">Escolha a Cidade</option>
@@ -185,7 +258,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo '<div';
         }
         ?>
-    </div>
+    </div> -->
 
    
     <script src="../js/funcaoMenuLateral.js"></script>

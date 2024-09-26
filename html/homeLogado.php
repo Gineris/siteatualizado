@@ -128,12 +128,12 @@ if (isset($_SESSION['id_trabalhador'])) {
             </div>
        </div>
     
-                <div class="row me-0 d-flex justify-content-center fundocarrossel">
+       <div class="row me-0 d-flex justify-content-center fundocarrossel">
                     <h2>Olhe algumas de nossas avaliações!</h2>
                     <div class="col">
                         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
-                                <div class="    -item active">
+                                <div class="carousel-item active">
                                     <img src="../img/avaliacao1.png" class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item">
