@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once ('../backend/Conexao.php');
+include_once ('../../backend/Conexao.php');
 
 
 if (isset($_SESSION['id_trabalhador'])) {
@@ -52,10 +52,10 @@ if (isset($_SESSION['id_trabalhador'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JundTask - Home Trabalhador</title>
-    <link rel="stylesheet" href="../css/styleHomeLogado.css">
-    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/styleHomeLogado.css">
+    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.min.css">
 
-    <link rel="shortcut icon" href="../img/logo@2x.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
 </head>
 <body>
     <header>
@@ -63,7 +63,7 @@ if (isset($_SESSION['id_trabalhador'])) {
             <img src="../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
             <div class="perfil">
                 <a href="#">
-                <img class="FotoPerfil" src="../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/FotoPerfilGeral.png' ?>" alt="">
+                <img class="FotoPerfil" src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/FotoPerfilGeral.png' ?>" alt="">
                 </a>
             </div>
         </nav>
@@ -124,7 +124,7 @@ if (isset($_SESSION['id_trabalhador'])) {
                 <p>Espero que este seja o lugar onde você encontre os melhores profissionais da sua região.</p>
             </div>
             <div class="col me-0 pe-0 imgfundo">
-                <img src="../img/boasvindasTrabalhador.png" alt="" >
+                <img src="../../img/boasvindasTrabalhador.png" alt="" >
             </div>
        </div>
     
@@ -171,7 +171,7 @@ if (isset($_SESSION['id_trabalhador'])) {
                         </div>
                     </div>
                     <div class="col ImgHomeContate">
-                        <img src="../img/ElementoHomeLogado.png" alt="#">
+                        <img src="../../img/ElementoHomeLogado.png" alt="#">
                     </div>
                 </div>
 
@@ -186,10 +186,10 @@ if (isset($_SESSION['id_trabalhador'])) {
     </footer>
     
 
-    <script src="../js/funcaoMenuLateral.js"></script>
+    <script src="../../js/funcaoMenuLateral.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once('../backend/Conexao.php');
+include_once('../../backend/Conexao.php');
 
 // Consulta para pegar o perfil do trabalhador
 $id_trabalhador = $_SESSION['id_trabalhador'];
@@ -24,17 +24,17 @@ $resultado_categorias = $conn->query($sql_categorias);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JundTask - Pesquisar</title>
-    <link rel="stylesheet" href="../css/styleCategoria.css">
-    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
-    <link rel="shortcut icon" href="../img/logo@2x.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/styleCategoria.css">
+    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
+    <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
 </head>
 <body>
     <header>
         <nav class="BarraNav">
-            <img src="../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
+            <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
             <div class="perfil">
                 <a href="#">
-                <img class="FotoPerfilNav" src="../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/FotoPerfilGeral.png' ?>" alt="">
+                <img class="FotoPerfilNav" src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/FotoPerfilGeral.png' ?>" alt="">
                 </a>
             </div>
         </nav>
@@ -97,7 +97,7 @@ $resultado_categorias = $conn->query($sql_categorias);
                 <?php while ($categoria = $resultado_categorias->fetch_assoc()): ?>
                     <div class="card">
                         <a href="usuarios_por_categoria.php?id_categoria=<?= $categoria['id_categoria'] ?>">
-                        <img src="../uploads/categorias/<?=  !empty( $categoria['imagem']) ? $categoria['imagem'] : 'default.png' ?>" alt="<?= $categoria['nome'] ?>">
+                        <img src="../../uploads/categorias/<?=  !empty( $categoria['imagem']) ? $categoria['imagem'] : 'default.png' ?>" alt="<?= $categoria['nome'] ?>">
                             <p><?= $categoria['nome'] ?></p>
                         </a>
                     </div>
@@ -115,10 +115,10 @@ $resultado_categorias = $conn->query($sql_categorias);
         <p>@2022yanliudesign</p>
     </footer>
 
-    <script src="../js/funcaoMenuLateral.js"></script>
+    <script src="../../js/funcaoMenuLateral.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 

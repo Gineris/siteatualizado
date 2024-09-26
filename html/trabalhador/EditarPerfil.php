@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once('../backend/Conexao.php');
+include_once('../../backend/Conexao.php');
 
 $id_trabalhador = $_SESSION['id_trabalhador'];
 
@@ -30,17 +30,17 @@ $atualizacaoPendente = $result_edit->num_rows > 0;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JundTask - Editar Pefil</title>
-    <link rel="stylesheet" href="../css/styleEditarPerfil.css">
-    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
-    <link rel="shortcut icon" href="../img/logo@2x.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/styleEditarPerfil.css">
+    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
+    <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
 </head>
 <body>
     <header>
         <nav class="BarraNav">
-            <img src="../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
+            <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
             <h1>Editar Perfil</h1>
             <div class="perfil">
-            <img class="FotoPerfil" src="../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/FotoPerfilGeral.png' ?>" alt="">
+            <img class="FotoPerfil" src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/FotoPerfilGeral.png' ?>" alt="">
             <!-- <a href="#">
                     <img class="FotoPerfil" src="../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/FotoPerfilGeral.png' ?>" alt="">
                 </a> -->
@@ -104,7 +104,7 @@ $atualizacaoPendente = $result_edit->num_rows > 0;
                 <div class="container">
                     <div class="row me-0 mb-5 topoPerfil">
                         <div class="col-1 sucess imgPerfil" >
-                            <img src="../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/images100x100.png' ?>" alt="Foto de perfil">
+                            <img src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/images100x100.png' ?>" alt="Foto de perfil">
                     </div>
                     <div class="col txtPerfil d-flex flex-column justify-content-center">
                         <h3><?php echo $row['nome']; ?></h3>
@@ -112,7 +112,7 @@ $atualizacaoPendente = $result_edit->num_rows > 0;
                     </div>
                     </div>
                     
-                    <form method="POST" action="../backend/atualizacoesPendentes.php" enctype="multipart/form-data">
+                    <form method="POST" action="../../backend/atualizacoesPendentes.php" enctype="multipart/form-data">
                         <div class="row me-0 ">
                             <div class="col coluna1">
                                 <div class="EstiloInputs">
@@ -228,10 +228,10 @@ $atualizacaoPendente = $result_edit->num_rows > 0;
             .catch(error => console.error('Erro ao carregar categorias:', error));
       });
     </script>
-    <script src="../js/funcaoMenuLateral.js"></script>
+    <script src="../../js/funcaoMenuLateral.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

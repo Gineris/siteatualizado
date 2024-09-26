@@ -1,6 +1,6 @@
 <?php
 session_start(); // Inicia a sessão
-include_once('../backend/Conexao.php');
+include_once('../../backend/Conexao.php');
 $id_trabalhador = $_GET['id_trabalhador']; // Trabalhador da pagina
 
 // Verifica se o usuário está logado

@@ -149,7 +149,7 @@ if (!$result) {
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) { ?>
                             <div class="CampoEscolhaTrabalhador">
-                                <a href="./Perfil.php?id_trabalhador=<?php echo $row['id_trabalhador']; ?>">
+                                <a href="Perfil.php?id_trabalhador=<?php echo $row['id_trabalhador']; ?>">
                                     <div class="CardBox">
                                         <div class="imagem">
                                             <img src="../../uploads/<?php echo $row['foto_perfil']; ?>" alt="">
