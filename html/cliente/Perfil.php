@@ -308,7 +308,7 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
         likeCount.textContent = count + " Likes";
         likeBtn.innerHTML = '<i class="bi bi-heart-fill"></i> Descurtir';
         hasLiked = true;
-
+    
     <script>
         const likeBtn = document.getElementById('likeBtn');
         const likeCount = document.getElementById('likeCount');

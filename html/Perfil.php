@@ -26,9 +26,9 @@ if (!isset($_SESSION['id_trabalhador_sessao'])) {
     exit;
 }
 
-// $result_id = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador_sessao'";
-// $resultado_id = mysqli_query($conn, $result_id);
-// $row_id = mysqli_fetch_assoc($resultado_id);
+$result_id = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador_sessao'";
+$resultado_id = mysqli_query($conn, $result_id);
+$row_id = mysqli_fetch_assoc($resultado_id);
 
 // $isFavorito = false; // Inicializa como false
 // if ($row) {

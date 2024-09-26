@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once ('../backend/Conexao.php');
-
+$id_trabalhador_sessao= $_SESSION['id_trabalhador'];
 $id_trabalhador = $_SESSION['id_trabalhador'];
 
 $sql = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador'";
