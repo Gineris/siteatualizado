@@ -17,19 +17,12 @@
                 <li><a href="#cadastro">Cadastro</a></li>
                 <li><a href="#comoFunciona">Como funciona </a></li>
                 <li><a href="#secaoJundiai">Sobre nós</a></li>
+                <li><a href="./loginGeral.php"> Login </a></li>
             </ul>
-            <div class="perfil" >
-                <a href="./loginGeral.php">
-                <div class="IconCx">
-                    <ion-icon name="person"></ion-icon>
-                </div>
-                </a>
-            </div>
         </nav>
     </header>
-
     <main>
-        <section class="InicialHomePage">
+    <section class="InicialHomePage">
             <div class="row ">
                 <div class="col ">
                     <h1>JUNDTASK: PLATAFORMA DE DIVULGAÇÃO DE TRABALHADORES AUTÔNOMOS NA REGIÃO DE JUNDIAÍ</h1>
@@ -54,7 +47,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+    </section>
 
         <section class="BlocosDeEscolha" id="cadastro">
             <img src="../img/Vector01.png" alt="">

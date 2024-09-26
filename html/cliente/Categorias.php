@@ -41,48 +41,47 @@ $resultado_categorias = $conn->query($sql_categorias);
         </nav>
     </header>
 
-    <main> 
-    <nav class="menuLateral">
+    <main class=""> 
+        <nav class="menuLateral">
             <div class="IconExpandir">
                 <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
             </div>
 
             <ul style="padding-left: 0rem;">
-                <li class="itemMenu ">
-                    <a href="./homeClienteLogado.php">
+                <li class="itemMenu ativo">
+                    <a href="homeClienteLogado.php">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="./EditarPerfilCliente.php">
+                    <a href="EditarPerfilCliente.php">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
                         <span class="txtLink">Configurações</span>
                     </a>
                 </li>
-                <li class="itemMenu ativo">
-                    <a href="./Categorias.php">
+                <li class="itemMenu ">
+                    <a href="Categorias.php">
                         <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="./favorito.php">
+                    <a href="favorito.php">
                         <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
                         <span class="txtLink">Favoritos</span>
                     </a>
                 </li>
                 
                 <li class="itemMenu">
-                    <a href="./LogoutCliente.php">
+                    <a href="LogoutCliente.php">
                         <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
                         <span class="txtLink">Sair</span>
                     </a>
-                </li>
-                
+                </li>   
             </ul>
-
         </nav> 
+
 
         <h1>Categorias de Trabalhos</h1>
 

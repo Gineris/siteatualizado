@@ -40,13 +40,18 @@ if (isset($_SESSION['id_trabalhador'])) {
 
 
 ?>
-
+<style>
+    nav.menuLateral{
+    width: 64px;
+    height: 430px;
+    }
+</style>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JundTask - Home</title>
+    <title>JundTask - Home Trabalhador</title>
     <link rel="stylesheet" href="../css/styleHomeLogado.css">
     <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
 
@@ -73,37 +78,37 @@ if (isset($_SESSION['id_trabalhador'])) {
 
             <ul style="padding-left: 0rem;">
                 <li class="itemMenu ativo">
-                    <a href="#">
+                    <a href="homeLogado">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="./SeuPerfil.php">
+                    <a href="SeuPerfil.php">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                         <span class="txtLink">Perfil</span>
                     </a>
                 </li>
                 <li class="itemMenu ">
-                    <a href="./Categorias.php">
+                    <a href="Categorias.php">
                         <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="#">
+                    <a href="favoritotrabalhador">
                         <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
                         <span class="txtLink">Favoritos</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="./EditarPerfil.php">
+                    <a href="EditarPerfil.php">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
                         <span class="txtLink">Configurações</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="#">
+                    <a href="Logout.php">
                         <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
                         <span class="txtLink">Sair</span>
                     </a>
@@ -119,11 +124,11 @@ if (isset($_SESSION['id_trabalhador'])) {
                 <p>Espero que este seja o lugar onde você encontre os melhores profissionais da sua região.</p>
             </div>
             <div class="col me-0 pe-0 imgfundo">
-                <img src="../img/boasvindasCliente.png" alt="" >
+                <img src="../img/boasvindasTrabalhador.png" alt="" >
             </div>
        </div>
     
-                <div class="row me-0 d-flex justify-content-center fundocarrossel">
+       <div class="row me-0 d-flex justify-content-center fundocarrossel">
                     <h2>Olhe algumas de nossas avaliações!</h2>
                     <div class="col">
                         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">

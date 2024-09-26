@@ -1,30 +1,17 @@
 <?php
 session_start(); // Inicia a sessão
-include_once('../../backend/Conexao.php');
+include_once('../backend/Conexao.php');
+$id_trabalhador = $_GET['id_trabalhador']; // Trabalhador da pagina
 
 // Verifica se o usuário está logado
-if (!isset($_SESSION['id_cliente'])) {
-    echo 'Usuário não está logado.';
-    exit;
+if (!isset($_SESSION['id_trabalhador'])) {
+    echo "Erro: Nenhum trabalhador identificado. Faça login primeiro.";
+    header('Location: loginGeral.php');
+    exit();
 }
 
-// ID do cliente logado
-$id_cliente = $_SESSION['id_cliente'];
 
-$sql_cli = "SELECT * FROM cliente WHERE id_cliente = '$id_cliente'";
-$result_cli = $conn->query($sql_cli);
-$resultado_cli = mysqli_query($conn, $sql_cli);
-$row_cli = mysqli_fetch_assoc($resultado_cli);
-
-// ID do trabalhador a ser visualizado
-$id_trabalhador = isset($_GET['id_trabalhador']) ? $_GET['id_trabalhador'] : null;
-
-// Verifica se o ID do trabalhador foi passado
-if ($id_trabalhador === null) {
-    echo 'ID do trabalhador não fornecido.';
-    exit;
-}
-
+$id_trabalhador_sessao = $_SESSION['id_trabalhador']; //Trabalhador logado
 // Inicializa as variáveis isFavorito e hasLiked
 $isFavorito = false;
 $hasLiked = false;
@@ -60,6 +47,18 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
     echo 'Trabalhador não encontrado.';
     exit;
 }
+
+
+
+// Consulta para obter os dados do trabalhador
+$sql = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador'";
+$result = $conn->query($sql);
+$resultado_pesquisar = mysqli_query($conn,$sql);
+$row = mysqli_fetch_assoc($resultado_pesquisar);
+
+$result_id = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador_sessao'";
+$resultado_id = mysqli_query($conn, $result_id);
+$row_id = mysqli_fetch_assoc($resultado_id);
 ?>
 
 <!DOCTYPE html>

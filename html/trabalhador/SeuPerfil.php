@@ -49,19 +49,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JundTask - Seu Perfil</title>
-    <link rel="stylesheet" href="../css/stylePerfil.css">
-    <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
-    <link rel="shortcut icon" href="../img/logo@2x.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/stylePerfil.css">
+    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
 </head>
 <body>
     <header>
         <nav class="BarraNav">
-            <img src="../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
+            <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
             <h1>Seu Perfil</h1>
 
             <div class="perfil">
                 <a href="#">
-                <img class="FotoPerfilNav" src="../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/FotoPerfilGeral.png' ?>" alt="">
+                <img class="FotoPerfilNav" src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/FotoPerfilGeral.png' ?>" alt="">
                 </a>
             </div>
         </nav>
@@ -76,37 +76,37 @@
 
             <ul style="padding-left: 0rem;">
                 <li class="itemMenu">
-                    <a href="./homeLogado.php">
+                    <a href="homeLogado.php">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
                     </a>
                 </li>
                 <li class="itemMenu ativo">
-                    <a href="#">
+                    <a href="SeuPerfil.php">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                         <span class="txtLink">Perfil</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="./Categorias.php">
+                    <a href="Categorias.php">
                         <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="#">
+                    <a href="favoritotrabalhador.php">
                         <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
                         <span class="txtLink">Favoritos</span>
                     </a>
                 </li>
                 <li class="itemMenu ">
-                    <a href="./EditarPerfil.php">
+                    <a href="EditarPerfil.php">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
                         <span class="txtLink">Configurações</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="./Logout.php">
+                    <a href="Logout.php">
                         <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
                         <span class="txtLink">Sair</span>
                     </a>
@@ -150,13 +150,13 @@
                         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active ">
-                                <img src="../uploads/<?php echo !empty($row['foto_trabalho1']) ? $row['foto_trabalho1'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="">
+                                <img src="../../uploads/<?php echo !empty($row['foto_trabalho1']) ? $row['foto_trabalho1'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="../uploads/<?php echo !empty($row['foto_trabalho2']) ? $row['foto_trabalho2'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="...">
+                                    <img src="../../uploads/<?php echo !empty($row['foto_trabalho2']) ? $row['foto_trabalho2'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="../uploads//<?php echo !empty($row['foto_trabalho3']) ? $row['foto_trabalho3'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="...">
+                                    <img src="../../uploads//<?php echo !empty($row['foto_trabalho3']) ? $row['foto_trabalho3'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="...">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -184,10 +184,10 @@
     </footer>
     
 
-    <script src="../js/funcaoMenuLateral.js"></script>
+    <script src="../../js/funcaoMenuLateral.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

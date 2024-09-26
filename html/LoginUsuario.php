@@ -55,6 +55,8 @@
                 </div>
             </div>
         </form> 
+
+
         <script>
             document.getElementById('formLogin').addEventListener('submit', function(event) {
                 event.preventDefault(); // Previne o comportamento padrão do formulário
@@ -121,5 +123,13 @@
             }
         </script>
     </main>
+
+    <footer class="d-flex justify-content-center">
+        <p>N</p>
+        <p>Terms of Service</p>
+        <p>Privacy Policy</p>
+        <p>@2022yanliudesign</p>
+    </footer>
+    
 </body>
 </html>

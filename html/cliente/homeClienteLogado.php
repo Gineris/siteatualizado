@@ -79,7 +79,7 @@ if (isset($_SESSION['id_cliente'])) {
 
             <ul style="padding-left: 0rem;">
                 <li class="itemMenu ativo">
-                    <a href="#">
+                    <a href="homeClienteLogado.php">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
                     </a>
