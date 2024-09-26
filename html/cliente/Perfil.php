@@ -10,13 +10,14 @@ if (!isset($_SESSION['id_cliente'])) {
 
 // ID do cliente logado
 $id_cliente = $_SESSION['id_cliente'];
-// ID do trabalhador a ser visualizado
-$id_trabalhador = $_GET['id_trabalhador'];
 
 $sql_cli = "SELECT * FROM cliente WHERE id_cliente = '$id_cliente'";
 $result_cli = $conn->query($sql_cli);
 $resultado_cli = mysqli_query($conn, $sql_cli);
 $row_cli = mysqli_fetch_assoc($resultado_cli);
+
+// ID do trabalhador a ser visualizado
+$id_trabalhador = isset($_GET['id_trabalhador']) ? $_GET['id_trabalhador'] : null;
 
 // Verifica se o ID do trabalhador foi passado
 if ($id_trabalhador === null) {
@@ -31,8 +32,6 @@ $hasLiked = false;
 // Consulta para obter os dados do trabalhador
 $sql = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador'";
 $resultado_pesquisar = mysqli_query($conn, $sql);
-
-
 
 // Verifica se o trabalhador foi encontrado
 if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
@@ -57,10 +56,10 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
     if (mysqli_num_rows($resultLike) > 0) {
         $hasLiked = true; // Define como true se o trabalhador foi curtido
     }
-    } else {
-        echo 'Trabalhador não encontrado.';
-        exit;
-    }
+} else {
+    echo 'Trabalhador não encontrado.';
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -82,52 +81,6 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
             <div class="perfil">
                 <img class="FotoPerfilNav" src="../../uploads/<?php echo !empty($row_cli['foto_perfil']) ? $row_cli['foto_perfil'] : '../../img/FotoPerfilGeral.png' ?>" alt="">
             </div>
-    </header>
-
-    <main> 
-        <nav class="menuLateral">
-            <div class="IconExpandir">
-                <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
-            </div>
-
-            <ul>
-                <li class="itemMenu">
-                    <a href="homeLogado.php">
-                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                        <span class="txtLink">Inicio</span>
-                    </a>
-                </li>
-                <li class="itemMenu">
-                    <a href="SeuPerfil.php">
-                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
-                        <span class="txtLink">Perfil</span>
-                    </a>
-                </li>
-                <li class="itemMenu ativo">
-                    <a href="Categorias.php">
-                        <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
-                        <span class="txtLink">Pesquisar</span>
-                    </a>
-                </li>
-                <li class="itemMenu">
-                    <a href="favorito.php">
-                        <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
-                        <span class="txtLink">Favoritos</span>
-                    </a>
-                </li>
-                <li class="itemMenu">
-                    <a href="EditarPerfil.php">
-                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-                        <span class="txtLink">Configurações</span>
-                    </a>
-                </li>
-                <li class="itemMenu">
-                    <a href="LogoutCliente">
-                        <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
-                        <span class="txtLink">Sair</span>
-                    </a>
-                </li>
-            </ul>
         </nav>
     </header>
 
@@ -178,21 +131,15 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
                 <div class="NomeTrabalhador">
                     <p><?php echo htmlspecialchars($row['nome']); ?></p>
                 </div>
-                <div class="Avaliacao">
-                    <ion-icon name="star"></ion-icon>   
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                </div>
                 <div class="tel">
                     <p>Tel: <?php echo htmlspecialchars($row['contato']); ?></p>
                 </div>
                 <div class="curtir">
-                <button id="likeBtn" class="like-button">
-                        <i class="bi bi-heart"></i> Curtir
-                </button>
-                    <span id="likeCount">0 Likes</span>
+                    <button id="likeBtn" class="curtir-button">
+                        <i class="bi bi-heart<?php echo $hasLiked ? '-fill' : ''; ?>"></i> 
+                        <?php echo $hasLiked ? 'Descurtir' : 'Curtir'; ?>
+                    </button>
+                    <span id="likeCount"><?php echo $totalCurtidas; ?> Likes</span>
                 </div>
                 <div class="favorito">
                     <button id="favoritarBtn" data-id="<?php echo $id_trabalhador; ?>">
@@ -292,23 +239,11 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
         <p>Privacy Policy</p>
         <p>@2022yanliudesign</p>
     </footer>
-
     <script src="../../js/funcaoMenuLateral.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script> 
-    likeBtn.addEventListener('click', function() {
-    const trabalhadorId = // ID do trabalhador atual (você deve passar isso)
-    
-    if (!hasLiked) {
-        // Curtir
-        count++;
-        likeCount.textContent = count + " Likes";
-        likeBtn.innerHTML = '<i class="bi bi-heart-fill"></i> Descurtir';
-        hasLiked = true;
-    
+
     <script>
         const likeBtn = document.getElementById('likeBtn');
         const likeCount = document.getElementById('likeCount');
@@ -350,9 +285,8 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
                 });
             }
         });
-</script>
-    <script>
-       document.getElementById('favoritarBtn').addEventListener('click', function() {
+
+        document.getElementById('favoritarBtn').addEventListener('click', function() {
     const idTrabalhador = this.getAttribute('data-id');
     const action = this.textContent.includes('Adicionar') ? 'adicionar' : 'remover';
 
@@ -374,6 +308,7 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
     })
     .catch(error => console.error('Erro ao processar favoritos:', error));
 });
+
 
     </script>
 </body>
