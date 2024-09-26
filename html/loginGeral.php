@@ -29,7 +29,7 @@
                     <input type="submit" name="submit" value="Login Trabalhador">
                 </div>
                 <div class="BotaoLogin">
-                <a href="./cliente/LoginUsuario.php">
+                <a href="./LoginUsuario.php">
                     <input type="submit" name="submit" value="Login Cliente">
                 </div>
                 <div class="BotaoCadastro">

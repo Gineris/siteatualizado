@@ -77,7 +77,7 @@ a{
     font-family: "Poppins", sans-serif;
 }
 .InputsLogin input::placeholder{
-    color: #FFF;
+    color: #ffffffb4;
 }
 .Senha{
     display: inline-block;

@@ -19,34 +19,11 @@
                 <li><a href="#secaoJundiai">Sobre nós</a></li>
             </ul>
             <div class="perfil" >
+                <a href="./loginGeral.php">
                 <div class="IconCx">
                     <ion-icon name="person"></ion-icon>
                 </div>
                 </a>
-            </div>
-            <div class="menuPerfil">
-                <ul>
-                    <li>
-                        <a href="./loginGeral.php">
-                            <ion-icon name="person-outline"></ion-icon>
-                            Perfil                    
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <ion-icon name="help-circle-outline"></ion-icon>
-                            Ajuda
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../backend/login/logout.php">
-                            <ion-icon name="exit-outline"></ion-icon>
-                            Sair
-                        </a>
-                    </li>
-                    
-                    </li>
-                </ul>
             </div>
         </nav>
     </header>
