@@ -60,7 +60,7 @@ $resultado_categorias = $conn->query($sql_categorias);
                     </a>
                 </li>
                 <li class="itemMenu ativo">
-                    <a href="#">
+                    <a href="./Categorias.php">
                         <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>
                     </a>
@@ -78,7 +78,7 @@ $resultado_categorias = $conn->query($sql_categorias);
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="#">
+                    <a href="./Logout.php">
                         <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
                         <span class="txtLink">Sair</span>
                     </a>

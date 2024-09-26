@@ -299,7 +299,7 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
     <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     
     <script> 
-    likeBtn.addEventListener('click', function() {
+    likeBtn.addEventListener('click', function()) {
     const trabalhadorId = // ID do trabalhador atual (você deve passar isso)
     
     if (!hasLiked) {
@@ -309,7 +309,6 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
         likeBtn.innerHTML = '<i class="bi bi-heart-fill"></i> Descurtir';
         hasLiked = true;
     
-    <script>
         const likeBtn = document.getElementById('likeBtn');
         const likeCount = document.getElementById('likeCount');
         let hasLiked = <?php echo json_encode($hasLiked); ?>; // Verifica se já curtiu

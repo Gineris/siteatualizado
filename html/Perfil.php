@@ -1,7 +1,7 @@
 <?php
 session_start(); // Inicia a sessão
 include_once('../backend/Conexao.php');
-
+$id_trabalhador = $_GET['id_trabalhador']; // Trabalhador da pagina
 
 // Verifica se o usuário está logado
 if (!isset($_SESSION['id_trabalhador'])) {
@@ -19,43 +19,9 @@ $result = $conn->query($sql);
 $resultado_pesquisar = mysqli_query($conn,$sql);
 $row = mysqli_fetch_assoc($resultado_pesquisar);
 
-
-// // Verifica se o usuário está logado
-if (!isset($_SESSION['id_trabalhador_sessao'])) {
-    echo 'Usuário não está logado.';
-    exit;
-}
-
 $result_id = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador_sessao'";
 $resultado_id = mysqli_query($conn, $result_id);
 $row_id = mysqli_fetch_assoc($resultado_id);
-
-// $isFavorito = false; // Inicializa como false
-// if ($row) {
-//     // Verifica se o trabalhador é favorito
-//     $sqlFavorito = "SELECT * FROM favoritos WHERE id_trabalhador = '$id_trabalhador' AND id_cliente = '$id_cliente'";
-//     $resultFavorito = $conn->query($sqlFavorito);
-//     $isFavorito = mysqli_num_rows($resultFavorito) > 0; // true se for favorito, false caso contrário
-// } else {
-//     echo 'Trabalhador não encontrado.';
-//     exit; // Sai do script se não encontrar o trabalhador
-// }
-
-// Consulta para obter os comentários do trabalhador
-// $sqlComentarios = " SELECT c.comentario, c.data_comentario, 
-//                     COALESCE(cl.nome, tw.nome) AS nome_usuario
-//                     FROM comentarios c
-//                     LEFT JOIN cliente cl ON c.id_cliente = cl.id_cliente
-//                     LEFT JOIN trabalhador tw ON c.id_trabalhador = tw.id_trabalhador
-//                     WHERE c.id_trabalhador = '$id_trabalhador_sessao'";
-// $resultComentarios = mysqli_query($conn, $sqlComentarios);
-
-// if (!$resultComentarios) {
-//     echo "Erro na consulta: " . mysqli_error($conn);
-//     exit;
-// }
-
-
 ?>
 
 
@@ -135,7 +101,7 @@ $row_id = mysqli_fetch_assoc($resultado_id);
 
         <div class="FotoFundo">
             <!-- foto background -->
-            <img src="../uploads/<?php echo !empty($row['foto_banner']) ? $row['foto_banner'] : '../img/TesteBackPerfil.png' ?>" alt="">
+            <img src="../uploads/<?php echo !empty($row['foto_banner']) ? $row['foto_banner'] : '../img/TelaPredefinida.png' ?>" alt="">
             <div class="BlocoPerfilPrincipal">
                 <div class="FotoPerfil"><img src="../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/images100x100.png' ?>" alt=""></div>
                 <div class="NomeTrabalhador"><?php echo '<p>' . htmlspecialchars($row['nome']) . '</p>'?></div>
@@ -161,13 +127,13 @@ $row_id = mysqli_fetch_assoc($resultado_id);
                         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active ">
-                                <img src="../uploads/<?php echo !empty($row['foto_trabalho1']) ? $row['foto_trabalho1'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="">
+                                <img src="../uploads/<?php echo !empty($row['foto_trabalho1']) ? $row['foto_trabalho1'] : '../img/TelaPredefinidaTrabalhos.png' ?>" class="d-block w-100 img-fluid" alt="">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="../uploads/<?php echo !empty($row['foto_trabalho2']) ? $row['foto_trabalho2'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="...">
+                                    <img src="../uploads/<?php echo !empty($row['foto_trabalho2']) ? $row['foto_trabalho2'] : '../img/TelaPredefinidaTrabalhos2.png' ?>" class="d-block w-100 img-fluid" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="../uploads//<?php echo !empty($row['foto_trabalho3']) ? $row['foto_trabalho3'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="...">
+                                    <img src="../uploads/<?php echo !empty($row['foto_trabalho3']) ? $row['foto_trabalho3'] : '../img/TelaPredefinidaTrabalhos3.png' ?>" class="d-block w-100 img-fluid" alt="...">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -191,7 +157,7 @@ $row_id = mysqli_fetch_assoc($resultado_id);
         <?php
             $sql_comentarios = "SELECT c.comentario, t.nome as nome_trabalhador 
                                 FROM comentarios c
-                                LEFT JOIN trabalhadores t ON c.id_trabalhador_comentario = t.id_trabalhador
+                                LEFT JOIN trabalhador t ON c.id_comentario = t.id_trabalhador
                                 WHERE c.id_trabalhador = ?";
             $stmt_comentarios = $conn->prepare($sql_comentarios);
             $stmt_comentarios->bind_param("i", $id_trabalhador);
