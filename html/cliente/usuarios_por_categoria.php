@@ -10,6 +10,8 @@ if (!is_numeric($id_categoria)) {
     die("ID da categoria inválido.");
 }
 
+
+
 // Pegar a cidade selecionada via GET, se existir
 $id_area = isset($_GET['id_area']) ? $_GET['id_area'] : '';
 
@@ -26,7 +28,7 @@ if (!$result_cidades) {
 
 // Construir a consulta SQL para filtrar por cidade, categoria e nome (se houver)
 $query = "
-    SELECT t.*, COUNT(c.id_trabalhador) AS total_curtidas 
+    SELECT t.*, a.cidade, COUNT(c.id_trabalhador) AS total_curtidas 
     FROM trabalhador t 
     LEFT JOIN curtidas c ON t.id_trabalhador = c.id_trabalhador 
     INNER JOIN area_atuação a ON t.id_area = a.id_area
@@ -142,30 +144,31 @@ if (!$result) {
                     <?php } ?>
                 </div>
 
-            <div class="listatrabalhadores">
-                <?php
-                if (mysqli_num_rows($result) > 0) {
-                    while ($row = mysqli_fetch_assoc($result)) { ?>
-                        <div class="CampoEscolhaTrabalhador">
-                            <a href="./Perfil.php?id_trabalhador=<?php echo $row['id_trabalhador']; ?>">
-                                <div class="CardBox">
-                                    <div class="imagem">
-                                        <img src="../../uploads/<?php echo $row['foto_perfil']; ?>" alt="">
+                <div class="listatrabalhadores">
+                    <?php
+                    if (mysqli_num_rows($result) > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) { ?>
+                            <div class="CampoEscolhaTrabalhador">
+                                <a href="./Perfil.php?id_trabalhador=<?php echo $row['id_trabalhador']; ?>">
+                                    <div class="CardBox">
+                                        <div class="imagem">
+                                            <img src="../../uploads/<?php echo $row['foto_perfil']; ?>" alt="">
+                                        </div>
+                                        <div class="txtTrabalhador">
+                                            <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
+                                            <p><?php echo htmlspecialchars($row['cidade']); ?></p> <!-- Exibindo a cidade -->
+                                            <p><?php echo htmlspecialchars($row['total_curtidas']); ?> Likes</p>
+                                        </div>
                                     </div>
-                                    <div class="txtTrabalhador">
-                                        <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
-                                        <p><?php echo htmlspecialchars($row['media_avaliacao']); ?></p>
-                                        <p>Curtidas: <?php echo htmlspecialchars($row['total_curtidas']); ?></p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    <?php }
-                } else {
-                    echo '<div class="tituloDEnaoEncontrado"><p>Nenhum trabalhador encontrado.</p></div>';
-                }
-                ?>
-            </div>
+                                </a>
+                            </div>
+                        <?php }
+                    } else {
+                        echo '<div class="tituloDEnaoEncontrado"><p>Nenhum trabalhador encontrado.</p></div>';
+                    }
+                    ?>
+                </div>
+
         </div>
 
     </main>

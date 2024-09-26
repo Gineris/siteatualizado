@@ -1,6 +1,10 @@
 <?php
 session_start(); // Inicia a sessão
 include_once('../backend/Conexao.php');
+<<<<<<< HEAD
+=======
+
+>>>>>>> f9ef53a1345b00cf69b08084c5f515d919321a81
 $id_trabalhador = $_GET['id_trabalhador']; // Trabalhador da pagina
 
 // Verifica se o usuário está logado
@@ -10,7 +14,7 @@ if (!isset($_SESSION['id_trabalhador'])) {
     exit();
 }
 
-$id_trabalhador = $_GET['id_trabalhador']; // Trabalhador da pagina
+
 $id_trabalhador_sessao = $_SESSION['id_trabalhador']; //Trabalhador logado
 
 // Consulta para obter os dados do trabalhador
@@ -19,9 +23,20 @@ $result = $conn->query($sql);
 $resultado_pesquisar = mysqli_query($conn,$sql);
 $row = mysqli_fetch_assoc($resultado_pesquisar);
 
+<<<<<<< HEAD
 $result_id = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador_sessao'";
 $resultado_id = mysqli_query($conn, $result_id);
 $row_id = mysqli_fetch_assoc($resultado_id);
+=======
+
+
+$result_id = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador_sessao'";
+$resultado_id = mysqli_query($conn, $result_id);
+$row_id = mysqli_fetch_assoc($resultado_id);
+
+
+
+>>>>>>> f9ef53a1345b00cf69b08084c5f515d919321a81
 ?>
 
 
@@ -157,7 +172,11 @@ $row_id = mysqli_fetch_assoc($resultado_id);
         <?php
             $sql_comentarios = "SELECT c.comentario, t.nome as nome_trabalhador 
                                 FROM comentarios c
+<<<<<<< HEAD
                                 LEFT JOIN trabalhador t ON c.id_comentario = t.id_trabalhador
+=======
+                                LEFT JOIN trabalhador t ON c.id_trabalhador_sessao = t.id_trabalhador
+>>>>>>> f9ef53a1345b00cf69b08084c5f515d919321a81
                                 WHERE c.id_trabalhador = ?";
             $stmt_comentarios = $conn->prepare($sql_comentarios);
             $stmt_comentarios->bind_param("i", $id_trabalhador);
