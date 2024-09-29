@@ -60,10 +60,10 @@ if (isset($_SESSION['id_trabalhador'])) {
 <body>
     <header>
         <nav class="BarraNav">
-            <img src="../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
+            <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
             <div class="perfil">
                 <a href="#">
-                <img class="FotoPerfil" src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/FotoPerfilGeral.png' ?>" alt="">
+                <img class="FotoPerfil" src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../../img/FotoPerfilGeral.png' ?>" alt="">
                 </a>
             </div>
         </nav>
@@ -78,37 +78,37 @@ if (isset($_SESSION['id_trabalhador'])) {
 
             <ul style="padding-left: 0rem;">
                 <li class="itemMenu ativo">
-                    <a href="homeLogado">
+                    <a href="./homeLogado">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="SeuPerfil.php">
+                    <a href="./SeuPerfil.php">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                         <span class="txtLink">Perfil</span>
                     </a>
                 </li>
                 <li class="itemMenu ">
-                    <a href="Categorias.php">
+                    <a href="./Categorias.php">
                         <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="favoritotrabalhador">
+                    <a href="./favoritotrabalhador.php">
                         <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
                         <span class="txtLink">Favoritos</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="EditarPerfil.php">
+                    <a href="./EditarPerfil.php">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
                         <span class="txtLink">Configurações</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="Logout.php">
+                    <a href="./Logout.php">
                         <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
                         <span class="txtLink">Sair</span>
                     </a>
@@ -134,13 +134,13 @@ if (isset($_SESSION['id_trabalhador'])) {
                         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <img src="../img/avaliacao1.png" class="d-block w-100" alt="...">
+                                    <img src="../../img/avaliacao1.png" class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="../img/avaliacao2.png" class="d-block w-100" alt="...">
+                                    <img src="../../img/avaliacao2.png" class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="../img/avaliacao3.png" class="d-block w-100" alt="...">
+                                    <img src="../../img/avaliacao3.png" class="d-block w-100" alt="...">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">

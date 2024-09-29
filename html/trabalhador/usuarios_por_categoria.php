@@ -1,7 +1,11 @@
 <?php
 session_start();
 include_once('../../backend/Conexao.php');
-$id_cliente = $_SESSION['id_cliente'];
+
+$id_trabalhador = $_SESSION['id_trabalhador'];
+$sql = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador'";
+$result = $conn->query($sql);
+$row = mysqli_fetch_assoc($result);
 
 // Pegar o id_categoria da URL (via GET)
 $id_categoria = $_GET['id_categoria'];
@@ -56,7 +60,7 @@ if (!$result) {
 <style>
     nav.menuLateral{
     width: 65px;
-    height: 370px;
+    height: 420px;
     }
 </style>
 
@@ -76,49 +80,58 @@ if (!$result) {
             <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
             <div class="perfil">
                 <a href="#">
-                    <img class="FotoPerfil" src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../../img/FotoPerfilGeral.png' ?>" alt="">
+                    <img class="FotoPerfilNav" src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/FotoPerfilGeral.png' ?>" alt="">
                 </a>
             </div>
         </nav>
     </header>
 
     <main>
-        <nav class="menuLateral">
+    <nav class="menuLateral">
             <div class="IconExpandir">
                 <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
             </div>
+
             <ul style="padding-left: 0rem;">
-                <li class="itemMenu ">
-                    <a href="homeClienteLogado.php">
+                <li class="itemMenu">
+                    <a href="./homeLogado.php">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                        <span class="txtLink">Início</span>
+                        <span class="txtLink">Inicio</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="EditarPerfilCliente.php">
-                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-                        <span class="txtLink">Configurações</span>
+                    <a href="./SeuPerfil.php">
+                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                        <span class="txtLink">Perfil</span>
                     </a>
                 </li>
                 <li class="itemMenu ativo">
-                    <a href="Categorias.php">
-                        <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
+                    <a href="./Categorias.php">
+                        <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="favorito.php">
+                    <a href="./favoritotrabalhador.php">
                         <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
                         <span class="txtLink">Favoritos</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="LogoutCliente.php">
+                    <a href="./EditarPerfil.php">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="txtLink">Configurações</span>
+                    </a>
+                </li>
+                <li class="itemMenu">
+                    <a href="./Logout.php">
                         <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
                         <span class="txtLink">Sair</span>
                     </a>
                 </li>
+                
             </ul>
+
         </nav>
 
         <div class="sistemabusca">
@@ -148,7 +161,7 @@ if (!$result) {
                     <?php
                     if (mysqli_num_rows($result) > 0) {
                         while ($row = mysqli_fetch_assoc($result)) { ?>
-                            <div class="CampoEscolhaTrabalhador">
+                            <div class="CampoEscolhaTrabalhador mt-3">
                                 <a href="Perfil.php?id_trabalhador=<?php echo $row['id_trabalhador']; ?>">
                                     <div class="CardBox">
                                         <div class="imagem">

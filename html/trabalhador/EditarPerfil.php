@@ -56,7 +56,7 @@ $atualizacaoPendente = $result_edit->num_rows > 0;
 
             <ul>
                 <li class="itemMenu">
-                    <a href="hometrabalhador.php">
+                    <a href="homeLogado.php">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
                     </a>
@@ -74,7 +74,7 @@ $atualizacaoPendente = $result_edit->num_rows > 0;
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="favoritostrabalhador">
+                    <a href="favoritostrabalhador.php">
                         <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
                         <span class="txtLink">Favoritos</span>
                     </a>
@@ -198,7 +198,7 @@ $atualizacaoPendente = $result_edit->num_rows > 0;
         const categoriaSelect = document.getElementById('id_categoria');
 
         // Carregar áreas
-        fetch('./getcidades.php')
+        fetch('../getcidades.php')
             .then(response => response.json())
             .then(areas => {
                 console.log(areas); 
@@ -213,7 +213,7 @@ $atualizacaoPendente = $result_edit->num_rows > 0;
             .catch(error => console.error('Erro ao carregar áreas:', error));
 
         // Carregar categorias
-        fetch('./getcategoriacadastro.php')
+        fetch('../getcategoriacadastro.php')
             .then(response => response.json())
             .then(categorias => {
                 console.log(categorias); 

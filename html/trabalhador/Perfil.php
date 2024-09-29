@@ -67,18 +67,24 @@ $row_id = mysqli_fetch_assoc($resultado_id);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JundTask - Perfil</title>
-    <link rel="stylesheet" href="../../css/stylePerfilcliente.css">
+    <link rel="stylesheet" href="../../css/stylePerfil.css">
     <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
 </head>
+<style>
+    nav.menuLateral{
+    width: 65px;
+    height: 420px;
+    }
+</style>
 <body>
     <header>
         <nav class="BarraNav">
             <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
             <h1>Perfil</h1>
             <div class="perfil">
-                <img class="FotoPerfilNav" src="../../uploads/<?php echo !empty($row_cli['foto_perfil']) ? $row_cli['foto_perfil'] : '../../img/FotoPerfilGeral.png' ?>" alt="">
+                <img class="FotoPerfilNav" src="../../uploads/<?php echo !empty($row_id['foto_perfil']) ? $row_id['foto_perfil'] : '../../img/FotoPerfilGeral.png' ?>" alt="">
             </div>
         </nav>
     </header>
@@ -88,38 +94,47 @@ $row_id = mysqli_fetch_assoc($resultado_id);
             <div class="IconExpandir">
                 <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
             </div>
+
             <ul style="padding-left: 0rem;">
-                <li class="itemMenu ativo">
-                    <a href="homeClienteLogado.php">
+                <li class="itemMenu">
+                    <a href="./homeLogado">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                        <span class="txtLink">Início</span>
+                        <span class="txtLink">Inicio</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="EditarPerfilCliente.php">
-                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-                        <span class="txtLink">Configurações</span>
+                    <a href="./SeuPerfil.php">
+                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
+                        <span class="txtLink">Perfil</span>
                     </a>
                 </li>
-                <li class="itemMenu">
-                    <a href="Categorias.php">
-                        <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
+                <li class="itemMenu ativo">
+                    <a href="./Categorias.php">
+                        <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="favorito.php">
+                    <a href="./favoritotrabalhador.php">
                         <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
                         <span class="txtLink">Favoritos</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="LogoutCliente.php">
+                    <a href="./EditarPerfil.php">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="txtLink">Configurações</span>
+                    </a>
+                </li>
+                <li class="itemMenu">
+                    <a href="./Logout.php">
                         <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
                         <span class="txtLink">Sair</span>
                     </a>
                 </li>
+                
             </ul>
+
         </nav>
         <div class="FotoFundo">
             <img src="../../uploads/<?php echo !empty($row['foto_banner']) ? $row['foto_banner'] : '../img/TesteBackPerfil.png' ?>" alt="Banner">

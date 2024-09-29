@@ -55,7 +55,7 @@ if ($result_adm->num_rows > 0) {
             $_SESSION['status'] = $registroUsuario->status;
             $_SESSION['permissao'] = $registroUsuario->permissao;
             $_SESSION['logado'] = true;
-            header('Location: hometrabalhador.php');
+            header('Location: ./trabalhador/homeLogado.php');
             exit();
         } else {
             $_SESSION['mensagem'] = "Senha incorreta para trabalhador.";
