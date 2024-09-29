@@ -65,6 +65,14 @@
             </div>
         </a>
     </div>
+    <div class="card">
+        <a href="./reclamacaoTrabalhador.php" class="card-button">
+            <img src="../../img/aprovartrabalhadores.png" alt="Imagem do Card" class="card-image">
+            <div class="card-content">
+                <h2 class="card-title">FeedBacks trabalhadores</h2>
+            </div>
+        </a>
+    </div>
 </div>
 
     </main>

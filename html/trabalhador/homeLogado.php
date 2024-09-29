@@ -154,27 +154,31 @@ if (isset($_SESSION['id_trabalhador'])) {
                         </div>
                     </div>
                 </div>
-
+            <form action="../../backend/reclamacao_trabalhador.php" method="POST">
                 <div class="row me-0 mt-5 pb-5 d-flex ContateNos">
                     <div class="col flex-column elementosContateNos align-content-center">
                         <div class="TituloContateNos mb-3">
                             <h2>Contate-nos</h2>
                         </div>
+                        <input type="hidden" name="id_trabalhador" value="<?php echo $_SESSION['id_trabalhador']; ?>">
+                        <input type="hidden" name="nome" value="<?php echo $_SESSION['nome']; ?>">
+                        <input type="hidden" name="email" value="<?php echo $_SESSION['email']; ?>">
                         <div>
                             <label for="ContateNos">Mensagem*</label>
                         </div>
                         <div>
-                            <textarea name="ContateNos" id="" placeholder="Mande sua mensagem..."></textarea>
+                            <textarea name="reclamacao" id="" placeholder="Mande sua mensagem..."></textarea>
                         </div>
                         <div class="mt-3 botaoMensagem">
                             <input type="submit" value="Enviar mensagem">
                         </div>
+                        <!-- <?php echo $_SESSION['mensagem'];?> -->
                     </div>
                     <div class="col ImgHomeContate">
                         <img src="../../img/ElementoHomeLogado.png" alt="#">
                     </div>
                 </div>
-
+            </form>
 
     </main>
 
