@@ -74,7 +74,7 @@ $atualizacaoPendente = $result_edit->num_rows > 0;
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="favoritostrabalhador.php">
+                    <a href="./favoritotrabalhador.php">
                         <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
                         <span class="txtLink">Favoritos</span>
                     </a>

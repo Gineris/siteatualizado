@@ -124,7 +124,7 @@
         
         <div class="FotoFundo">
             <!-- foto background -->
-            <img src="../../uploads/<?php echo !empty($row['foto_banner']) ? $row['foto_banner'] : '../img/TesteBackPerfil.png' ?>" alt="">
+            <img src="../../uploads/<?php echo !empty($row['foto_banner']) ? $row['foto_banner'] : '../img/TelaPredefinida.png' ?>" alt="">
             <div class="BlocoPerfilPrincipal">
                 <div class="FotoPerfil"><img src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../../img/images100x100.png' ?>" alt=""></div>
                 <div class="NomeTrabalhador"> <?php echo $row['nome']; ?></div>
@@ -156,13 +156,13 @@
                         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active ">
-                                <img src="../../uploads/<?php echo !empty($row['foto_trabalho1']) ? $row['foto_trabalho1'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="">
+                                <img src="../../uploads/<?php echo !empty($row['foto_trabalho1']) ? $row['foto_trabalho1'] : '../img/TelaPredefinidaTrabalhos1.png' ?>" class="d-block w-100 img-fluid" alt="">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="../../uploads/<?php echo !empty($row['foto_trabalho2']) ? $row['foto_trabalho2'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="...">
+                                    <img src="../../uploads/<?php echo !empty($row['foto_trabalho2']) ? $row['foto_trabalho2'] : '../img/TelaPredefinidaTrabalhos2.png' ?>" class="d-block w-100 img-fluid" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="../../uploads/<?php echo !empty($row['foto_trabalho3']) ? $row['foto_trabalho3'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="...">
+                                    <img src="../../uploads/<?php echo !empty($row['foto_trabalho3']) ? $row['foto_trabalho3'] : '../img/TelaPredefinidaTrabalhos3.png' ?>" class="d-block w-100 img-fluid" alt="...">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">

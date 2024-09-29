@@ -123,7 +123,7 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
             </ul>
         </nav>
         <div class="FotoFundo">
-            <img src="../../uploads/<?php echo !empty($row['foto_banner']) ? $row['foto_banner'] : '../img/TesteBackPerfil.png' ?>" alt="Banner">
+            <img src="../../uploads/<?php echo !empty($row['foto_banner']) ? $row['foto_banner'] : '../img/TelaPredefinida' ?>" alt="Banner">
             <div class="BlocoPerfilPrincipal">
                 <div class="FotoPerfil">
                     <img src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/images100x100.png' ?>" alt="Perfil">
