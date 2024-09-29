@@ -123,7 +123,7 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
             </ul>
         </nav>
         <div class="FotoFundo">
-            <img src="../../uploads/<?php echo !empty($row['foto_banner']) ? $row['foto_banner'] : '../img/TelaPredefinida' ?>" alt="Banner">
+            <img src="../../uploads/<?php echo !empty($row['foto_banner']) ? $row['foto_banner'] : '../img/TelaPredefinida.png' ?>" alt="Banner">
             <div class="BlocoPerfilPrincipal">
                 <div class="FotoPerfil">
                     <img src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/images100x100.png' ?>" alt="Perfil">
@@ -165,13 +165,13 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
                         <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active ">
-                                <img src="../../uploads/<?php echo !empty($row['foto_trabalho1']) ? $row['foto_trabalho1'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="">
+                                <img src="../../uploads/<?php echo !empty($row['foto_trabalho1']) ? $row['foto_trabalho1'] : '../img/TelaPredefinidaTrabalhos1.png' ?>" class="d-block w-100 img-fluid" alt="">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="../../uploads/<?php echo !empty($row['foto_trabalho2']) ? $row['foto_trabalho2'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="...">
+                                    <img src="../../uploads/<?php echo !empty($row['foto_trabalho2']) ? $row['foto_trabalho2'] : '../img/TelaPredefinidaTrabalhos2.png' ?>" class="d-block w-100 img-fluid" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="../../uploads//<?php echo !empty($row['foto_trabalho3']) ? $row['foto_trabalho3'] : '../img/avaliacao1.png' ?>" class="d-block w-100 img-fluid" alt="...">
+                                    <img src="../../uploads/<?php echo !empty($row['foto_trabalho3']) ? $row['foto_trabalho3'] : '../img/TelaPredefinidaTrabalhos3.png' ?>" class="d-block w-100 img-fluid" alt="...">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
