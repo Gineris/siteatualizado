@@ -122,13 +122,13 @@ footer p{
     padding: 0px 10px 0px 10px;
 }.container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Cria três colunas de tamanhos iguais */
+  grid-template-columns: repeat(5, 1fr); /* Cria três colunas de tamanhos iguais */
   gap: 20px; /* Espaço entre os cartões */
 }
 
 .card {
-  width: 354px;
-  height: 331px;
+  width: 164px;
+  height: 141px;
   padding: 10px;
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
@@ -142,18 +142,18 @@ h1 {
   text-align: center;
   font-weight: 500; /* Ajusta o peso da fonte */
   font-family: "M PLUS 1p", sans-serif;
-  color: #04074B;
+  color: #0b0442;
   margin-bottom: 30px;
 }
 
 .card img {
-  width: 284px;
+  width: 84px;
   height: auto;
 }
 
 .card p {
   margin: 10px 0 0;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 500; 
   font-family: "M PLUS 1p", sans-serif;
   color: #04074B;

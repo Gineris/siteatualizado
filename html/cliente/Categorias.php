@@ -2,6 +2,8 @@
 session_start();
 include_once('../../backend/Conexao.php');
 
+
+
 $id_cliente = $_SESSION['id_cliente'];
 
 // Consulta para pegar as informações do cliente
