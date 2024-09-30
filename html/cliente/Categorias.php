@@ -2,8 +2,6 @@
 session_start();
 include_once('../../backend/Conexao.php');
 
-
-
 $id_cliente = $_SESSION['id_cliente'];
 
 // Consulta para pegar as informações do cliente
@@ -11,14 +9,17 @@ $sql = "SELECT * FROM cliente WHERE id_cliente = '$id_cliente'";
 $result = $conn->query($sql);
 $row = mysqli_fetch_assoc($result);
 
-// Consulta para pegar todas as categorias
-$sql_categorias = "SELECT * FROM categorias";
+// Captura o valor da pesquisa pelo nome
+$nome_pesquisa = isset($_POST['nome_pesquisa']) ? trim($_POST['nome_pesquisa']) : '';
+
+// Consulta para pegar todas as categorias, com condição de busca se o nome for preenchido
+$sql_categorias = "SELECT * FROM categorias WHERE nome LIKE '%$nome_pesquisa%'";
 $resultado_categorias = $conn->query($sql_categorias);
 ?>
 <style>
-    nav.menuLateral {
-        width: 50px;
-        height: 300px;
+    nav.menuLateral{
+    width: 65px;
+    height: 370px;
     }
 </style>
 <!DOCTYPE html>
@@ -37,20 +38,19 @@ $resultado_categorias = $conn->query($sql_categorias);
             <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
             <div class="perfil">
                 <a href="#">
-                <img class="FotoPerfilNav" src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/FotoPerfilGeral.png' ?>" alt="">
+                    <img class="FotoPerfilNav" src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/FotoPerfilGeral.png' ?>" alt="">
                 </a>
             </div>
         </nav>
     </header>
 
-    <main class=""> 
-        <nav class="menuLateral">
+    <main>
+    <nav class="menuLateral">
             <div class="IconExpandir">
                 <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
             </div>
-
             <ul style="padding-left: 0rem;">
-                <li class="itemMenu">
+                <li class="itemMenu ativo">
                     <a href="homeClienteLogado.php">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
@@ -62,7 +62,7 @@ $resultado_categorias = $conn->query($sql_categorias);
                         <span class="txtLink">Configurações</span>
                     </a>
                 </li>
-                <li class="itemMenu ativo">
+                <li class="itemMenu ">
                     <a href="Categorias.php">
                         <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>
@@ -80,20 +80,33 @@ $resultado_categorias = $conn->query($sql_categorias);
                         <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
                         <span class="txtLink">Sair</span>
                     </a>
-                </li>   
+                </li>
+                
             </ul>
+
         </nav> 
 
-
-        <h1>Categorias de Trabalhos</h1>
-
+        <div class="containerbusca">
+            <div class="sistemabusca">
+                <div class="search-container">
+                    <form action="" method="POST" class="search-form">
+                        <div class="pesquisarTrabalhos">
+                            <input type="text" name="nome_pesquisa" placeholder="O que você está buscando?..." value="<?php echo htmlspecialchars($nome_pesquisa); ?>">
+                        </div>
+                        <input class="search-button" type="submit" value="Buscar">
+                    </form>
+                </div>
+            </div>
+        </div>
+           
+            
         <div class="container">
             <?php if ($resultado_categorias->num_rows > 0): ?>
                 <?php while ($categoria = $resultado_categorias->fetch_assoc()): ?>
                     <div class="card">
                         <a href="usuarios_por_categoria.php?id_categoria=<?= $categoria['id_categoria'] ?>">
-                        <img src="../../uploads/categorias/<?= !empty($categoria['imagem']) ? $categoria['imagem'] : 'default.png' ?>" alt="<?= htmlspecialchars($categoria['nome']) ?>">
-                            <p><?= htmlspecialchars($categoria['nome']) ?></p>
+                        <img src="../../uploads/categorias/<?=  !empty( $categoria['imagem']) ? $categoria['imagem'] : 'default.png' ?>" alt="<?= $categoria['nome'] ?>">
+                            <p><?= $categoria['nome'] ?></p>
                         </a>
                     </div>
                 <?php endwhile; ?>
@@ -101,20 +114,19 @@ $resultado_categorias = $conn->query($sql_categorias);
                 <p>Nenhuma categoria disponível.</p>
             <?php endif; ?>
         </div>
+
     </main>
 
-    <footer class="d-flex justify-content-center">
-        <p>N</p>
-        <p>Terms of Service</p>
-        <p>Privacy Policy</p>
-        <p>@2022yanliudesign</p>
+    <footer class="d-flex justify-content-center " >
+        <p style="margin-bottom: 0rem;">N</p>
+        <p style="margin-bottom: 0rem;">Terms of Service</p>
+        <p style="margin-bottom: 0rem;">Privacy Policy</p>
+        <p style="margin-bottom: 0rem;">@2022yanliudesign</p>
     </footer>
-
+    
     <script src="../../js/funcaoMenuLateral.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-<?php $conn->close(); ?>

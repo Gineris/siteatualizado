@@ -125,6 +125,13 @@ if ($result === false) {
     die("Erro na consulta: " . $conn->error);
 }
 $clientes = $result->fetch_all(MYSQLI_ASSOC);
+
+// Captura o valor da pesquisa pelo nome
+$nome_pesquisa = isset($_POST['nome_pesquisa']) ? trim($_POST['nome_pesquisa']) : '';
+
+// Consulta para pegar todas as categorias, com condição de busca se o nome for preenchido
+$sql_categorias = "SELECT * FROM cliente  WHERE nome LIKE '%$nome_pesquisa%'";
+$resultado_categorias = $conn->query($sql_categorias);
 ?>
 
 <!DOCTYPE html>
@@ -192,6 +199,21 @@ $clientes = $result->fetch_all(MYSQLI_ASSOC);
     </form>
 
     <h2>Lista de Clientes</h2>
+
+    
+    <div class="containerbusca">
+            <div class="sistemabusca">
+                <div class="search-container">
+                    <form action="" method="POST" class="search-form">
+                        <div class="pesquisarTrabalhos">
+                            <input type="text" name="nome_pesquisa" placeholder="O que você está buscando?..." value="<?php echo htmlspecialchars($nome_pesquisa); ?>">
+                        </div>
+                        <input class="search-button" type="submit" value="Buscar">
+                    </form>
+                </div>
+            </div>
+        </div>
+
     <table>
         <thead>
             <tr>
