@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fotoPerfil = ''; 
 
     if (isset($_FILES['foto_perfil']) && $_FILES['foto_perfil']['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = 'uploads/';
+        $uploadDir = '../../uploads/';
         $fileName = basename($_FILES['foto_perfil']['name']);
         $uploadFile = $uploadDir . $fileName;
 
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $senhaHash = !empty($senha) ? password_hash($senha, PASSWORD_DEFAULT) : $_POST['senha_atual']; // Mantém a senha atual se não for alterada
-        $stmt->bind_param('ssssssssis', $nome, $email, $senhaHash, $descricao, $contato, $data_nasc, $id_categoria, $id_area, $fotoPerfil, $id);
+        $stmt->bind_param('sssssssssi', $nome, $email, $senhaHash, $descricao, $contato, $data_nasc, $id_categoria, $id_area, $fotoPerfil, $id);
 
       
         if ($stmt->execute()) {
@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             die("Erro na preparação da consulta: " . $conn->error);
         }
 
-        $stmt->bind_param('ssssssssi', $nome, $email, password_hash($senha, PASSWORD_DEFAULT), $descricao, $contato, $data_nasc, $id_categoria, $id_area, $fotoPerfil);
+        $stmt->bind_param('sssssssis', $nome, $email, password_hash($senha, PASSWORD_DEFAULT), $descricao, $contato, $data_nasc, $id_categoria, $id_area, $fotoPerfil);
 
         if ($stmt->execute()) {
             header('Location: ' . $_SERVER['PHP_SELF']);
@@ -172,7 +172,7 @@ $trabalhadores = $result->fetch_all(MYSQLI_ASSOC);
         <input type="file" name="foto_perfil" id="foto_perfil">
         <?php if (!empty($trabalhador['foto_perfil'])): ?>
             <br>
-            <img src="uploads/<?php echo htmlspecialchars($trabalhador['foto_perfil']); ?>" alt="Foto de Perfil" width="100">
+            <img src="../../uploads/<?php echo htmlspecialchars($trabalhador['foto_perfil']); ?>" alt="Foto de Perfil" width="100">
             <br>
         <?php endif; ?>
         <br>

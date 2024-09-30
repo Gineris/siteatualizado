@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once ('../../backend/Conexao.php');
-
+// $id_cliente = $_SESSION['id_cliente'];
 
 if (isset($_SESSION['id_cliente'])) {
     $id_cliente = $_SESSION['id_cliente']; // Pega o ID do trabalhador logado
@@ -151,15 +151,15 @@ if (isset($_SESSION['id_cliente'])) {
                     </div>
                 </div>
 
-                <form action="../../backend/reclamacao_cliente.php" method="POST">
+            <form action="../../backend/reclamacao_cliente.php" method="POST">
                 <div class="row me-0 mt-5 pb-5 d-flex ContateNos">
                     <div class="col flex-column elementosContateNos align-content-center">
                         <div class="TituloContateNos mb-3">
                             <h2>Contate-nos</h2>
                         </div>
-                        <input type="hidden" name="id_cliente" value="<?php echo $_SESSION['id_cliente']; ?>">
-                        <input type="hidden" name="nome" value="<?php echo $_SESSION['nome']; ?>">
-                        <input type="hidden" name="email" value="<?php echo $_SESSION['email']; ?>">
+                        <input type="hidden" name="id_cliente" value="<?php echo $row['id_cliente']; ?>">
+                        <input type="hidden" name="nome" value="<?php echo $row['nome']; ?>">
+                        <input type="hidden" name="email" value="<?php echo $row['email']; ?>">
                         <div>
                             <label for="ContateNos">Mensagem*</label>
                         </div>
