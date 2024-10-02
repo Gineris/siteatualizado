@@ -1,23 +1,30 @@
 <?php
 session_start();
-include_once('../backend/Conexao.php');
+include_once('../../backend/Conexao.php');
 
 // Verifica se o cliente está logado
 if (!isset($_SESSION['id_cliente'])) {
-    echo "Usuário não está logado.";
+    echo 'Usuário não está logado.';
     exit;
 }
 
-$id_cliente = $_SESSION['id_cliente'];  // Cliente logado
-$id_trabalhador = $_POST['id_trabalhador'];  // Trabalhador destinatário
+// ID do cliente logado
+$id_cliente = $_SESSION['id_cliente'];
+// ID do trabalhador para o qual a mensagem está sendo enviada
+$id_trabalhador = $_POST['id_trabalhador'];
+// Mensagem a ser enviada
 $mensagem = $_POST['mensagem'];
 
-if (!empty($mensagem)) {
-    $stmt = $conn->prepare("INSERT INTO mensagens (id_remetente, id_destinatario, mensagem) VALUES (?, ?, ?)");
-    $stmt->bind_param('iis', $id_cliente, $id_trabalhador, $mensagem);
-    $stmt->execute();
+// Prepara e executa a consulta para inserir a mensagem no banco de dados
+$sql = "INSERT INTO mensagens (id_cliente, id_trabalhador, mensagem, data_envio) VALUES (?, ?, ?, NOW())";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("iis", $id_cliente, $id_trabalhador, $mensagem);
 
-    echo "Mensagem enviada com sucesso!";
+if ($stmt->execute()) {
+    // Redireciona de volta para a página de mensagens do cliente
+    header("Location: mensagem_cliente.php");
+    exit;
 } else {
-    echo "A mensagem não pode estar vazia.";
+    echo "Erro ao enviar a mensagem: " . $conn->error;
 }
+

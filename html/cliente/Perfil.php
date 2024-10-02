@@ -187,6 +187,15 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
                 </div>
         </div>
 
+         <!-- Formulário para enviar nova mensagem -->
+         <div class="EnviarMensagem">
+            <h2>Enviar mensagem</h2>
+            <form action="post_mensagem_cliente.php" method="POST">
+                <input type="hidden" name="id_trabalhador" value="<?php echo $id_trabalhador; ?>">
+                <textarea name="mensagem" rows="4" placeholder="Escreva sua mensagem..."></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
 
         <!-- <h1>Comentários e Avaliações</h1>
         <div id="reviews">

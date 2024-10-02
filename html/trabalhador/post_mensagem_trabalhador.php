@@ -1,30 +1,29 @@
 <?php
-// Conexão com o banco de dados
-$conn = new mysqli('localhost', 'usuario', 'senha', 'banco_de_dados');
+session_start();
+include_once('../../backend/Conexao.php');
 
-if ($conn->connect_error) {
-    die("Conexão falhou: " . $conn->connect_error);
+// Verifica se o trabalhador está logado
+if (!isset($_SESSION['id_trabalhador'])) {
+    echo 'Usuário não está logado.';
+    exit;
 }
 
-// Pegue os dados do formulário (supomos que o cliente ou trabalhador já está logado e tem um ID)
-$id_remetente = $_POST['id_remetente'];
-$id_destinatario = $_POST['id_destinatario'];
+// ID do trabalhador logado
+$id_trabalhador = $_SESSION['id_trabalhador'];
+// ID do cliente para o qual a mensagem está sendo enviada
+$id_cliente = $_POST['id_cliente'];
+// Mensagem a ser enviada
 $mensagem = $_POST['mensagem'];
-$remetente_tipo = $_POST['remetente_tipo']; // cliente ou trabalhador
 
-// Inserir a mensagem no banco de dados
-$sql = "INSERT INTO mensagens (id_remetente, id_destinatario, mensagem, remetente_tipo)
-        VALUES (?, ?, ?, ?)";
-
+// Prepara e executa a consulta para inserir a mensagem no banco de dados
+$sql = "INSERT INTO mensagens (id_cliente, id_trabalhador, mensagem, data_envio) VALUES (?, ?, ?, NOW())";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("iiss", $id_remetente, $id_destinatario, $mensagem, $remetente_tipo);
+$stmt->bind_param("iis", $id_cliente, $id_trabalhador, $mensagem);
 
 if ($stmt->execute()) {
-    echo "Mensagem enviada com sucesso!";
+    // Redireciona de volta para a página de mensagens do trabalhador
+    header("Location: mensagens_trabalhador.php");
+    exit;
 } else {
-    echo "Erro ao enviar a mensagem: " . $stmt->error;
+    echo "Erro ao enviar a mensagem: " . $conn->error;
 }
-header("Location:../mensagens.php");
-
-$stmt->close();
-$conn->close();
