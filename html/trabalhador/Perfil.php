@@ -19,31 +19,32 @@ $hasLiked = false;
 // Consulta para obter os dados do trabalhador
 $sql = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador'";
 $resultado_pesquisar = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($resultado_pesquisar);
 
-if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
-    // Verifica se o trabalhador é favorito
-    $sqlFavorito = "SELECT * FROM favoritos WHERE id_trabalhador = '$id_trabalhador_sessao' AND id_trabalhador_favorito = '$id_trabalhador'";
-    $resultFavorito = mysqli_query($conn, $sqlFavorito);
-    if (mysqli_num_rows($resultFavorito) > 0) {
-        $isFavorito = true;
-    }
+// if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
+//     // Verifica se o trabalhador é favorito
+//     $sqlFavorito = "SELECT * FROM favoritos WHERE id_trabalhador = '$id_trabalhador_sessao' AND id_trabalhador_favorito = '$id_trabalhador'";
+//     $resultFavorito = mysqli_query($conn, $sqlFavorito);
+//     if (mysqli_num_rows($resultFavorito) > 0) {
+//         $isFavorito = true;
+//     }
 
-    // Consulta para contar as curtidas
-    $sqlCurtidas = "SELECT COUNT(*) as total_curtidas FROM curtidas WHERE id_trabalhador_curtiu = '$id_trabalhador'";
-    $resultCurtidas = mysqli_query($conn, $sqlCurtidas);
-    $rowCurtidas = mysqli_fetch_assoc($resultCurtidas);
-    $totalCurtidas = $rowCurtidas['total_curtidas'];
+//     // Consulta para contar as curtidas
+//     $sqlCurtidas = "SELECT COUNT(*) as total_curtidas FROM curtidas WHERE id_trabalhador_curtiu = '$id_trabalhador'";
+//     $resultCurtidas = mysqli_query($conn, $sqlCurtidas);
+//     $rowCurtidas = mysqli_fetch_assoc($resultCurtidas);
+//     $totalCurtidas = $rowCurtidas['total_curtidas'];
 
-    // Verifica se o trabalhador foi curtido pelo trabalhador logado
-    $sqlLike = "SELECT * FROM curtidas WHERE id_trabalhador = '$id_trabalhador_sessao' AND id_trabalhador_curtiu = '$id_trabalhador'";
-    $resultLike = mysqli_query($conn, $sqlLike);
-    if (mysqli_num_rows($resultLike) > 0) {
-        $hasLiked = true;
-    }
-} else {
-    echo 'Trabalhador não encontrado.';
-    exit;
-}
+//     // Verifica se o trabalhador foi curtido pelo trabalhador logado
+//     $sqlLike = "SELECT * FROM curtidas WHERE id_trabalhador = '$id_trabalhador_sessao' AND id_trabalhador_curtiu = '$id_trabalhador'";
+//     $resultLike = mysqli_query($conn, $sqlLike);
+//     if (mysqli_num_rows($resultLike) > 0) {
+//         $hasLiked = true;
+//     }
+//     } else {
+//         echo 'Trabalhador não encontrado.';
+//         exit;
+//     }
 
 // Consulta para obter os dados do trabalhador logado
 $sql_id = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador_sessao'";
@@ -155,6 +156,21 @@ $row_id = mysqli_fetch_assoc($resultado_id);
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
+        </div>
+
+        <div class="mensagemk">
+            <form action="post_mensagem_trabalhador.php" method="POST">
+            <textarea name="mensagem" placeholder="Escreva sua mensagem aqui..."></textarea>
+            
+            <!-- IDs do cliente e trabalhador -->
+            <input type="hidden" name="id_cliente" value="<?php echo $id_cliente; ?>">
+            <input type="hidden" name="id_trabalhador" value="<?php echo $id_trabalhador; ?>">
+            
+            <!-- Campo oculto para identificar o tipo de usuário -->
+            <input type="hidden" name="tipo_usuario" value="<?php echo isset($id_cliente) ? 'cliente' : 'trabalhador'; ?>">
+            
+            <button type="submit">Enviar Mensagem</button>
+            </form>
         </div>
     </main>
 
