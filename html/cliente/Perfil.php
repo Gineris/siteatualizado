@@ -61,14 +61,19 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
     exit;
 }
 ?>
-
+<style>
+    nav.menuLateral{
+    width: 65px;
+    height: 420px;
+    }
+</style>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JundTask - Perfil</title>
-    <link rel="stylesheet" href="../../css/stylePerfilcliente.css">
+    <link rel="stylesheet" href="../../css/stylePerfilCliente.css">
     <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
@@ -131,20 +136,20 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
                 <div class="NomeTrabalhador">
                     <p><?php echo htmlspecialchars($row['nome']); ?></p>
                 </div>
-                <div class="Avaliacao">
-                    <ion-icon name="star"></ion-icon>   
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                </div>
+
                 <div class="tel">
                     <p>Tel: <?php echo htmlspecialchars($row['contato']); ?></p>
+                </div>
+                <div class="email">
+                    <p><?php echo htmlspecialchars($row['email']); ?></p>
                 </div>
                 <div class="curtir">
                     <button id="likeBtn" class="curtir-button">
                         <i class="bi bi-heart<?php echo $hasLiked ? '-fill' : ''; ?>"></i> 
-                        <?php echo $hasLiked ? 'Descurtir' : 'Curtir'; ?>
+                        <?php echo '<div class = "butao">';
+                            echo $hasLiked ? 'Descurtir' : 'Curtir'; 
+                            echo '</div>';
+                        ?>
                     </button>
                     <span id="likeCount"><?php echo $totalCurtidas; ?> Likes</span>
                 </div>

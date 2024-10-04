@@ -119,7 +119,8 @@ if ($action === 'edit' && $id) {
 }
 
 
-$sql = "SELECT * FROM trabalhador";
+$sql = "SELECT trabalhador. *,area_atuação.cidade FROM trabalhador 
+LEFT JOIN area_atuação ON trabalhador.id_area = area_atuação.id_area";
 $result = $conn->query($sql);
 if ($result === false) {
     die("Erro na consulta: " . $conn->error);
@@ -213,10 +214,10 @@ $trabalhadores = $result->fetch_all(MYSQLI_ASSOC);
     <table>
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Nome</th>
                 <th>Email</th>
                 <th>Foto</th>
+                <th>Cidade</th>
                 <th>Descrição</th>
                 <th>Contato</th>
                 <th>Data de Nascimento</th>
@@ -226,10 +227,12 @@ $trabalhadores = $result->fetch_all(MYSQLI_ASSOC);
         <tbody>
             <?php foreach ($trabalhadores as $trabalhador): ?>
                 <tr>
-                    <td><?php echo htmlspecialchars($trabalhador['id_trabalhador']); ?></td>
+                 
                     <td><?php echo htmlspecialchars($trabalhador['nome']); ?></td>
                     <td><?php echo htmlspecialchars($trabalhador['email']); ?></td>
                     <td><img src="../../uploads/<?php echo htmlspecialchars($trabalhador['foto_perfil']); ?>" alt="Foto" style="width: 50px;"></td>
+                    <td><?php echo htmlspecialchars($trabalhador['cidade']); ?></td>
+
                     <td><?php echo htmlspecialchars($trabalhador['descricao']); ?></td>
                     <td><?php echo htmlspecialchars($trabalhador['contato']); ?></td>
                     <td><?php echo htmlspecialchars($trabalhador['data_nasc']); ?></td>
@@ -277,7 +280,7 @@ $trabalhadores = $result->fetch_all(MYSQLI_ASSOC);
                 categorias.forEach(categoria => {
                     const option = document.createElement('option');
                     option.value = categoria.id_categoria; 
-                    option.textContent = categoria.nome; 
+                    option.textContent = categoria.nome_cat; 
                     categoriaSelect.appendChild(option);
                 });
             })

@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if ($action === 'update' && $id) {
-        $sql = "UPDATE categorias SET nome = ?, imagem = IFNULL(?, imagem) WHERE id_categoria = ?";
+        $sql = "UPDATE categorias SET nome_cat= ?, imagem = IFNULL(?, imagem) WHERE id_categoria = ?";
         $stmt = $conn->prepare($sql);
 
         if ($stmt === false) {
@@ -142,7 +142,7 @@ $categorias = $result->fetch_all(MYSQLI_ASSOC);
     <input type="hidden" name="id" value="<?php echo htmlspecialchars($categoria['id_categoria'] ?? ''); ?>">
 
     <label for="nome">Nome:</label>
-    <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($categoria['nome'] ?? ''); ?>" required>
+    <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($categoria['nome_cat'] ?? ''); ?>" required>
     <br>
 
     <label for="imagem">Imagem da Categoria:</label>
@@ -171,7 +171,7 @@ $categorias = $result->fetch_all(MYSQLI_ASSOC);
         <?php foreach ($categorias as $categoria): ?>
             <tr>
                 <td><?php echo htmlspecialchars($categoria['id_categoria']); ?></td>
-                <td><?php echo htmlspecialchars($categoria['nome']); ?></td>
+                <td><?php echo htmlspecialchars($categoria['nome_cat']); ?></td>
                 <td><img src="../../uploads/categorias/<?php echo htmlspecialchars($categoria['imagem']); ?>" alt="Imagem" style="width: 50px;"></td>
                 <td>
                     <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>?action=edit&id=<?php echo $categoria['id_categoria']; ?>" title="Editar">

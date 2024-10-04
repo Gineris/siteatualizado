@@ -1,137 +1,119 @@
 <?php
 include_once('../../backend/Conexao.php'); 
 
-
 if (!$conn || !($conn instanceof mysqli)) {
     die("Erro: Conexão com o banco de dados não estabelecida ou não é uma instância de mysqli.");
 }
 
-$action = isset($_GET['action']) ? $_GET['action'] : '';
-$id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+// Função para excluir um cliente
+function deleteClient($conn, $id_cliente) {
+    $sql = "DELETE FROM cliente WHERE id_cliente = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id_cliente);
+    
+    if ($stmt->execute()) {
+        echo "Cliente excluído com sucesso.";
+    } else {
+        echo "Erro ao excluir cliente: " . $stmt->error;
+    }
+}
+
+// Função para editar um cliente
+function editClient($conn, $id_cliente, $nome, $email, $contato, $data_nasc, $id_area) {
+    $sql = "UPDATE cliente SET nome = ?, email = ?, contato = ?, data_nasc = ?, id_area = ? WHERE id_cliente = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssssi", $nome, $email, $contato, $data_nasc, $id_area, $id_cliente);
+    
+    if ($stmt->execute()) {
+        echo "Cliente atualizado com sucesso.";
+    } else {
+        echo "Erro ao atualizar cliente: " . $stmt->error;
+    }
+}
+
+// Processar a ação de exclusão
+if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])) {
+    $id_cliente = (int)$_GET['id'];
+    deleteClient($conn, $id_cliente);
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
+
+// Processar a ação de edição
+if (isset($_GET['action']) && $_GET['action'] === 'edit' && isset($_GET['id'])) {
+    $id_cliente = (int)$_GET['id'];
+    // Buscando os dados do cliente
+    $sql = "SELECT * FROM cliente WHERE id_cliente = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id_cliente);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $cliente = $result->fetch_assoc();
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  
-    $nome = $_POST['nome'];
-    $email = $_POST['email'];
-    $senha = $_POST['senha'];
-    $tipo = $_POST['tipo'];
-    $status = $_POST['status'];
-    $id_area = $_POST['id_area'];
-    $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
-
+    // Obtenha os dados do formulário
+    $nome = isset($_POST['nome']) ? $_POST['nome'] : '';
+    $email = isset($_POST['email']) ? $_POST['email'] : '';
+    $senha = isset($_POST['senha']) ? $_POST['senha'] : '';
+    $contato = isset($_POST['contato']) ? $_POST['contato'] : '';
+    $data_nasc = isset($_POST['data_nasc']) ? $_POST['data_nasc'] : '';
+    $id_area = isset($_POST['id_area']) ? (int)$_POST['id_area'] : null;
     
-    if (empty($nome) || empty($email)) {
-        echo "Os campos de nome e email são obrigatórios.";
-        exit;
-    }
-
-    $fotoPerfil = ''; 
-    if (isset($_FILES['foto_perfil']) && $_FILES['foto_perfil']['error'] === UPLOAD_ERR_OK) {
-        $uploadDir = 'uploads/';
-        $fileName = basename($_FILES['foto_perfil']['name']);
-        $uploadFile = $uploadDir . $fileName;
-
-       
-        if (!is_dir($uploadDir)) {
-            mkdir($uploadDir, 0777, true);
-        }
-
-
-        if (move_uploaded_file($_FILES['foto_perfil']['tmp_name'], $uploadFile)) {
-            $fotoPerfil = $fileName;  
-        } else {
-            echo "Erro ao fazer upload da foto.";
+    // Se estiver editando, chamamos a função editClient
+    if (isset($_POST['id_cliente'])) {
+        $id_cliente = (int)$_POST['id_cliente'];
+        editClient($conn, $id_cliente, $nome, $email, $contato, $data_nasc, $id_area);
+    } else {
+        // Validações básicas
+        if (empty($nome) || empty($email) || empty($senha) || empty($contato) || empty($data_nasc) || empty($id_area)) {
+            echo "Todos os campos são obrigatórios.";
             exit;
         }
-    }
 
-    if ($action === 'update' && $id) {
-        
-        $sql = "UPDATE cliente SET nome = ?, email = ?, senha = ?, tipo = ?, status = ?, id_area = ?, foto_perfil = ? WHERE id_cliente = ?";
+        // Prepare a query de inserção
+        $sql = "INSERT INTO cliente (nome, email, senha, contato, data_nasc, id_area) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
 
         if ($stmt === false) {
             die("Erro na preparação da consulta: " . $conn->error);
         }
 
-        $senhaHash = !empty($senha) ? password_hash($senha, PASSWORD_DEFAULT) : $_POST['senha_atual']; 
-        $stmt->bind_param('sssssssi', $nome, $email, $senhaHash, $tipo, $status, $id_area, $fotoPerfil, $id);
+        // Hash da senha (opcional)
+        $senha_hash = password_hash($senha, PASSWORD_BCRYPT);
 
+        // Vincular os parâmetros
+        $stmt->bind_param("sssssi", $nome, $email, $senha_hash, $contato, $data_nasc, $id_area);
+
+        // Execute a query
         if ($stmt->execute()) {
-            header('Location: ' . $_SERVER['PHP_SELF']);
-            exit;
-        } else {
-            echo "Erro ao atualizar cliente: " . $stmt->error;
-        }
-    } else if ($action === 'create') {
-    
-        $sql = "INSERT INTO cliente (nome, email, senha, tipo, status, id_area, foto_perfil) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($sql);
-
-        if ($stmt === false) {
-            die("Erro na preparação da consulta: " . $conn->error);
-        }
-
-        $stmt->bind_param('sssssss', $nome, $email, password_hash($senha, PASSWORD_DEFAULT), $tipo, $status, $id_area, $fotoPerfil);
-
-        
-        if ($stmt->execute()) {
-            header('Location: ' . $_SERVER['PHP_SELF']);
-            exit;
+            echo "Cliente adicionado com sucesso.";
         } else {
             echo "Erro ao adicionar cliente: " . $stmt->error;
         }
     }
 }
 
+// Selecionar as cidades para o select
+$sql_cidades = "SELECT id_area, cidade FROM area_atuação";
+$result_cidades = $conn->query($sql_cidades);
 
-if ($action === 'delete' && $id) {
-    $sql = "DELETE FROM cliente WHERE id_cliente = ?";
-    $stmt = $conn->prepare($sql);
-    if ($stmt === false) {
-        die("Erro na preparação da consulta: " . $conn->error);
-    }
-    
-    $stmt->bind_param("i", $id);
-    
-    if ($stmt->execute()) {
-        header('Location: ' . $_SERVER['PHP_SELF']);
-        exit();
-    } else {
-        die("Erro ao excluir cliente: " . $stmt->error);
-    }
+if ($result_cidades === false) {
+    die("Erro ao buscar cidades: " . $conn->error);
 }
 
-$cliente = [];
-if ($action === 'edit' && $id) {
-    $sql = "SELECT * FROM cliente WHERE id_cliente = ?";
-    $stmt = $conn->prepare($sql);
-    if ($stmt === false) {
-        die("Erro na preparação da consulta: " . $conn->error);
-    }
+// Obter a lista de clientes
+$sql_clientes = "SELECT id_cliente, nome, email, foto_perfil FROM cliente";
+$result_clientes = $conn->query($sql_clientes);
 
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $cliente = $result->fetch_assoc();
-    if ($cliente === false) {
-        die("Erro ao buscar cliente: " . $stmt->error);
-    }
+if ($result_clientes === false) {
+    die("Erro ao buscar clientes: " . $conn->error);
 }
 
-$sql = "SELECT * FROM cliente";
-$result = $conn->query($sql);
-if ($result === false) {
-    die("Erro na consulta: " . $conn->error);
+$clientes = [];
+while ($cliente = $result_clientes->fetch_assoc()) {
+    $clientes[] = $cliente;
 }
-$clientes = $result->fetch_all(MYSQLI_ASSOC);
-
-// Captura o valor da pesquisa pelo nome
-$nome_pesquisa = isset($_POST['nome_pesquisa']) ? trim($_POST['nome_pesquisa']) : '';
-
-// Consulta para pegar todas as categorias, com condição de busca se o nome for preenchido
-$sql_categorias = "SELECT * FROM cliente  WHERE nome LIKE '%$nome_pesquisa%'";
-$resultado_categorias = $conn->query($sql_categorias);
 ?>
 
 <!DOCTYPE html>
@@ -139,10 +121,8 @@ $resultado_categorias = $conn->query($sql_categorias);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciamento Clientes</title>
+    <title>Cadastro de Cliente</title>
     <link rel="stylesheet" href="../../css/stylecrudcliente.css">
-    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
-    <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
 </head>
 <body>
 
@@ -150,74 +130,55 @@ $resultado_categorias = $conn->query($sql_categorias);
     <nav class="BarraNav">
         <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
         <div class="perfil">
-            <a href="./homeAdm.php">
-                Voltar
-            </a>
+            <a href="./homeAdm.php">Voltar</a>
         </div>
     </nav>
 </header>
 
-<main class=""> 
-
-    <h2><?php echo $action === 'edit' ? 'Editar Cliente' : 'Adicionar Novo Cliente'; ?></h2>
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>?action=<?php echo $action === 'edit' ? 'update' : 'create'; ?>" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="<?php echo htmlspecialchars($cliente['id_cliente'] ?? ''); ?>">
-
+<main>
+    <h2><?php echo isset($cliente) ? 'Editar Cliente' : 'Adicionar Novo Cliente'; ?></h2>
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+        <?php if (isset($cliente)): ?>
+            <input type="hidden" name="id_cliente" value="<?php echo $cliente['id_cliente']; ?>">
+        <?php endif; ?>
         <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($cliente['nome'] ?? ''); ?>" required>
+        <input type="text" id="nome" name="nome" value="<?php echo isset($cliente) ? htmlspecialchars($cliente['nome']) : ''; ?>" required>
         <br>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($cliente['email'] ?? ''); ?>" required>
+        <input type="email" id="email" name="email" value="<?php echo isset($cliente) ? htmlspecialchars($cliente['email']) : ''; ?>" required>
         <br>
 
         <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" placeholder="">
+        <input type="password" id="senha" name="senha" required>
         <br>
 
-        <label for="foto_perfil">Foto do Perfil:</label>
-        <div class="InputsLogin FotodePerfil">
-            <input type="file" name="foto_perfil" id="foto_perfil">
-        </div>
-        <?php if (!empty($cliente['foto_perfil'])): ?>
-            <br>
-            <img src="uploads/<?php echo htmlspecialchars($cliente['foto_perfil']); ?>" alt="Foto de Perfil" width="100">
-            <br>
-        <?php endif; ?>
-        
-         <br>
+        <label for="contato">Contato:</label>
+        <input type="text" id="contato" name="contato" value="<?php echo isset($cliente) ? htmlspecialchars($cliente['contato']) : ''; ?>" required>
+        <br>
+
+        <label for="data_nasc">Data de Nascimento:</label>
+        <input type="date" id="data_nasc" name="data_nasc" value="<?php echo isset($cliente) ? htmlspecialchars($cliente['data_nasc']) : ''; ?>" required>
+        <br>
 
         <label for="id_area">Cidade:</label>
-        <div class="box">
-            <select name="id_area" id="id_area">
-                <option value="">Selecione uma área</option>
-            </select>
-        </div>
+        <select name="id_area" id="id_area" required>
+            <option value="">Selecione a cidade</option>
+            <?php while ($cidade = $result_cidades->fetch_assoc()): ?>
+                <option value="<?php echo $cidade['id_area']; ?>" <?php echo isset($cliente) && $cliente['id_area'] == $cidade['id_area'] ? 'selected' : ''; ?>>
+                    <?php echo htmlspecialchars($cidade['cidade']); ?>
+                </option>
+            <?php endwhile; ?>
+        </select>
         <br>
 
-        <button type="submit"><?php echo $action === 'edit' ? 'Atualizar Cliente' : 'Adicionar Cliente'; ?></button>
+        <button type="submit"><?php echo isset($cliente) ? 'Atualizar Cliente' : 'Adicionar Cliente'; ?></button>
     </form>
 
     <h2>Lista de Clientes</h2>
-
-    
-    <div class="containerbusca">
-            <div class="sistemabusca">
-                <div class="search-container">
-                    <form action="" method="POST" class="search-form">
-                        <div class="pesquisarTrabalhos">
-                            <input type="text" name="nome_pesquisa" placeholder="O que você está buscando?..." value="<?php echo htmlspecialchars($nome_pesquisa); ?>">
-                        </div>
-                        <input class="search-button" type="submit" value="Buscar">
-                    </form>
-                </div>
-            </div>
-        </div>
-
     <table>
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Nome</th>
                 <th>Email</th>
                 <th>Foto</th>
@@ -225,55 +186,34 @@ $resultado_categorias = $conn->query($sql_categorias);
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($clientes as $cliente): ?>
+            <?php if (empty($clientes)): ?>
                 <tr>
-                    <td><?php echo htmlspecialchars($cliente['id_cliente']); ?></td>
-                    <td><?php echo htmlspecialchars($cliente['nome']); ?></td>
-                    <td><?php echo htmlspecialchars($cliente['email']); ?></td>
-                    <td><img src="../../uploads/<?php echo htmlspecialchars($cliente['foto_perfil']); ?>" alt="Foto" style="width: 50px;"></td>
-                    <td class="actions">
-                        <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>?action=edit&id=<?php echo $cliente['id_cliente']; ?>" title="Editar">
-                            <img src="../../img/editar-arquivo.png" alt="Editar">
-                        </a>
-                        <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>?action=delete&id=<?php echo $cliente['id_cliente']; ?>" title="Excluir" onclick="return confirm('Você tem certeza que deseja excluir?');">
-                            <img src="../../img/botao-apagar.png" alt="Excluir">
-                        </a>
-                    </td>
+                    <td colspan="4">Nenhum cliente encontrado.</td>
                 </tr>
-            <?php endforeach; ?>
+            <?php else: ?>
+                <?php foreach ($clientes as $cliente): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($cliente['nome']); ?></td>
+                        <td><?php echo htmlspecialchars($cliente['email']); ?></td>
+                        <td><img src="../../uploads/<?php echo htmlspecialchars($cliente['foto_perfil']); ?>" alt="Foto" style="width: 50px;"></td>
+                        <td class="actions">
+                            <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>?action=edit&id=<?php echo $cliente['id_cliente']; ?>" title="Editar">
+                                <img src="../../img/editar-arquivo.png" alt="Editar">
+                            </a>
+                            <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>?action=delete&id=<?php echo $cliente['id_cliente']; ?>" onclick="return confirm('Tem certeza que deseja excluir este cliente?');" title="Excluir">
+                                <img src="../../img/botao-apagar.png" alt="Excluir">
+                            </a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </tbody>
     </table>
+</main>
 
-    <script src="../../js/funcaoMenuLateral.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+<footer>
+    <p>&copy; 2024 JundTask. Todos os direitos reservados.</p>
+</footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const cidadeSelect = document.getElementById('id_area');
-
-            fetch('./getcidades.php')
-                .then(response => response.json())
-                .then(cidades => {
-                    console.log(cidades); 
-                    cidadeSelect.innerHTML = '<option value="">Selecione uma área</option>'; 
-                    cidades.forEach(cidade => {
-                        const option = document.createElement('option');
-                        option.value = cidade.id_area; 
-                        option.textContent = cidade.cidade; 
-                        cidadeSelect.appendChild(option);
-                    });
-                })
-                .catch(error => console.error('Erro ao carregar áreas:', error));
-        });
-    </script>
-
-    <footer class="d-flex justify-content-center ">
-        <p>N</p>
-        <p>Terms of Service</p>
-        <p>Privacy Policy</p>
-        <p>@2022yanliudesign</p>
-    </footer>
 </body>
 </html>

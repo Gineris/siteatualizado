@@ -19,10 +19,9 @@ $atualizacaoPendente = $result_edit->num_rows > 0;
 
 ?>
 <style>
-    nav.menuLateral{
-     width: 50px;
-     height: 360px;
-    }
+nav.menuLateral{
+width: 64px;
+height: 250px;}
 </style>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -49,44 +48,32 @@ $atualizacaoPendente = $result_edit->num_rows > 0;
     </header>
 
     <main class=""> 
-        <nav class="menuLateral">
+    <nav class="menuLateral">
             <div class="IconExpandir">
                 <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
             </div>
 
-            <ul>
-                <li class="itemMenu">
-                    <a href="homeLogado.php">
+            <ul style="padding-left: 0rem;">
+                <li class="itemMenu ativo">
+                    <a href="./homeLogado.php">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="SeuPerfil.php">
+                    <a href="./SeuPerfil.php">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
                         <span class="txtLink">Perfil</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="Categorias.php">
-                        <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
-                        <span class="txtLink">Pesquisar</span>
-                    </a>
-                </li>
-                <li class="itemMenu">
-                    <a href="./favoritotrabalhador.php">
-                        <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
-                        <span class="txtLink">Favoritos</span>
-                    </a>
-                </li>
-                <li class="itemMenu ativo">
-                    <a href="EditarPerfil.php">
+                    <a href="./EditarPerfil.php">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
                         <span class="txtLink">Configurações</span>
                     </a>
                 </li>
                 <li class="itemMenu">
-                    <a href="Logout.php">
+                    <a href="./Logout.php">
                         <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
                         <span class="txtLink">Sair</span>
                     </a>
@@ -94,7 +81,7 @@ $atualizacaoPendente = $result_edit->num_rows > 0;
                 
             </ul>
 
-        </nav>
+        </nav> 
         <?php if ($atualizacaoPendente): ?>
             <div class="MensagemAtualizacao">
                 <strong><p>Você já possui uma solicitação de atualização pendente, aguardando aprovação do administrador.</p></strong>

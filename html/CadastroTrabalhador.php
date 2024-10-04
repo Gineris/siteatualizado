@@ -163,7 +163,7 @@
                         categorias.forEach(categoria => {
                             const option = document.createElement('option');
                             option.value = categoria.id_categoria;
-                            option.textContent = categoria.nome;
+                            option.textContent = categoria.nome_cat;
                             categoriaSelect.appendChild(option);
                         });
                     })
