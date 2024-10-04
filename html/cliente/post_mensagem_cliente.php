@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 include_once('../../backend/Conexao.php');
 
@@ -8,23 +9,37 @@ if (!isset($_SESSION['id_cliente'])) {
     exit;
 }
 
-// ID do cliente logado
+// Obtém o ID do cliente logado
 $id_cliente = $_SESSION['id_cliente'];
-// ID do trabalhador para o qual a mensagem está sendo enviada
-$id_trabalhador = $_POST['id_trabalhador'];
-// Mensagem a ser enviada
-$mensagem = $_POST['mensagem'];
 
-// Prepara e executa a consulta para inserir a mensagem no banco de dados
-$sql = "INSERT INTO mensagens (id_cliente, id_trabalhador, mensagem, data_envio) VALUES (?, ?, ?, NOW())";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("iis", $id_cliente, $id_trabalhador, $mensagem);
+// Verifica se os dados foram enviados corretamente
+if (isset($_POST['id_trabalhador']) && isset($_POST['mensagem'])) {
+    $id_trabalhador = $_POST['id_trabalhador'];
+    $mensagem = trim($_POST['mensagem']); // Remover espaços extras
 
-if ($stmt->execute()) {
-    // Redireciona de volta para a página de mensagens do cliente
-    header("Location: mensagem_cliente.php");
-    exit;
+    // Verifica se a mensagem não está vazia
+    if (empty($mensagem)) {
+        echo 'A mensagem não pode estar vazia.';
+        exit;
+    }
+
+    // Prepara a consulta para inserir a mensagem
+    $sql = "INSERT INTO mensagens (id_remetente, id_destinatario, mensagem, data_envio, tipo_remetente) 
+            VALUES (?, ?, ?, NOW(), 'cliente')";
+    $stmt = $conn->prepare($sql);
+
+    // Insere o cliente como remetente e o trabalhador como destinatário
+    $stmt->bind_param("iis", $id_cliente, $id_trabalhador, $mensagem);
+
+    if ($stmt->execute()) {
+        // Redireciona de volta para a página de mensagens após o envio
+        header("Location: mensagem_cliente.php?id_trabalhador=$id_trabalhador");
+        exit;
+    } else {
+        echo "Erro ao enviar a mensagem: " . $stmt->error;
+    }
+
 } else {
-    echo "Erro ao enviar a mensagem: " . $conn->error;
+    echo 'Dados insuficientes para o envio da mensagem.';
 }
 
