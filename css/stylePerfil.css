@@ -288,3 +288,35 @@ footer p{
 .favoritar-container img:hover {
     transform: scale(1.1); /* Aumenta a imagem levemente ao passar o mouse */
 }
+.curtir-button {
+    background-color: transparent; /* Remove o fundo cinza */
+    border: none; /* Remove a borda do botão */
+    color: #ff4b5c; /* Cor vermelha para o ícone de coração */
+    font-size: 1.5rem; /* Aumenta o tamanho do ícone */
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 0; /* Remove o espaçamento interno */
+}
+
+.curtir-button:hover {
+    color: #ff0000; /* Cor vermelha mais intensa ao passar o mouse */
+}
+
+.curtir-button i {
+    margin-right: 5px; /* Espaço entre o ícone e o texto */
+}
+
+#likeCount {
+    font-size: 1rem;
+    color: #333; /* Cor do texto do contador de curtidas */
+    font-weight: bold;
+}
+
+.curtir-button:focus {
+    outline: none; /* Remove o contorno padrão ao focar no botão */
+}
+.butao{
+    color: #04074B;
+}
