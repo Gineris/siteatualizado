@@ -1,10 +1,9 @@
 <?php
 include_once('../backend/Conexao.php');
 
-
 try {
-    
-    $sql = "SELECT id_categoria, nome FROM categorias";
+    // Corrigido para 'nome_cat'
+    $sql = "SELECT id_categoria, nome_cat FROM categorias";
     $result = $conn->query($sql);
 
     $categorias = array();
@@ -13,19 +12,16 @@ try {
         while($row = $result->fetch_assoc()) {
             $categorias[] = array(
                 'id_categoria' => $row['id_categoria'],  
-                'nome' => $row['nome'] 
+                'nome_cat' => $row['nome_cat'] // Atualizado para 'nome_cat'
             );
         }
     }
 
-   
     echo json_encode($categorias);
 } catch (Exception $e) {
-    
     echo json_encode(array('error' => 'Erro ao buscar categorias ' . $e->getMessage()));
 } finally {
-  
     $conn->close();
 }
-
 ?>
+

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30-Set-2024 às 02:12
--- Versão do servidor: 10.4.25-MariaDB
--- versão do PHP: 8.2.12
+-- Tempo de geração: 04/10/2024 às 14:16
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `adm`
+-- Estrutura para tabela `adm`
 --
 
 CREATE TABLE `adm` (
@@ -36,10 +36,10 @@ CREATE TABLE `adm` (
   `tipo` varchar(1) NOT NULL,
   `contato` int(11) NOT NULL,
   `data_nasc` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `adm`
+-- Despejando dados para a tabela `adm`
 --
 
 INSERT INTO `adm` (`id_admin`, `nome`, `email`, `senha`, `foto_perfil`, `tipo`, `contato`, `data_nasc`) VALUES
@@ -48,17 +48,17 @@ INSERT INTO `adm` (`id_admin`, `nome`, `email`, `senha`, `foto_perfil`, `tipo`, 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `area_atuação`
+-- Estrutura para tabela `area_atuação`
 --
 
 CREATE TABLE `area_atuação` (
   `id_area` int(11) NOT NULL,
   `cidade` varchar(50) NOT NULL,
   `id_categoria` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `area_atuação`
+-- Despejando dados para a tabela `area_atuação`
 --
 
 INSERT INTO `area_atuação` (`id_area`, `cidade`, `id_categoria`) VALUES
@@ -73,7 +73,7 @@ INSERT INTO `area_atuação` (`id_area`, `cidade`, `id_categoria`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `atualizacoes_pendentes`
+-- Estrutura para tabela `atualizacoes_pendentes`
 --
 
 CREATE TABLE `atualizacoes_pendentes` (
@@ -93,32 +93,25 @@ CREATE TABLE `atualizacoes_pendentes` (
   `foto_trabalho3` text DEFAULT NULL,
   `foto_banner` text DEFAULT NULL,
   `aprovado` tinyint(1) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `atualizacoes_pendentes`
---
-
-INSERT INTO `atualizacoes_pendentes` (`id_atualizacoes_pendentes`, `id_trabalhador`, `nome`, `email`, `senha`, `contato`, `data_nasc`, `descricao`, `id_area`, `id_categoria`, `foto_perfil`, `foto_trabalho1`, `foto_trabalho2`, `foto_trabalho3`, `foto_banner`, `aprovado`) VALUES
-(29, 17, 'michele gomes', 'gui@gmail.com', '$2y$10$CRIJGwEmVkKS1XhQBo7d3.fImGEnlBVmflRj50/QgEd94MaC2bNZO', '12121212121', '2002-10-16', 'sou pobre dms', 2, 8, '', '', '', '', '', 0);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `categorias`
+-- Estrutura para tabela `categorias`
 --
 
 CREATE TABLE `categorias` (
   `id_categoria` int(11) NOT NULL,
-  `nome` varchar(255) NOT NULL,
+  `nome_cat` varchar(255) NOT NULL,
   `imagem` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `categorias`
+-- Despejando dados para a tabela `categorias`
 --
 
-INSERT INTO `categorias` (`id_categoria`, `nome`, `imagem`) VALUES
+INSERT INTO `categorias` (`id_categoria`, `nome_cat`, `imagem`) VALUES
 (1, 'Serviços Doméstico', 'servico-de-limpeza.png'),
 (2, 'Reparos e Manutenção', 'repair.png'),
 (3, 'Serviços Tecnologicos', 'data-management.png'),
@@ -134,7 +127,7 @@ INSERT INTO `categorias` (`id_categoria`, `nome`, `imagem`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `cliente`
+-- Estrutura para tabela `cliente`
 --
 
 CREATE TABLE `cliente` (
@@ -148,10 +141,10 @@ CREATE TABLE `cliente` (
   `id_area` int(11) NOT NULL,
   `contato` varchar(11) NOT NULL,
   `data_nasc` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `cliente`
+-- Despejando dados para a tabela `cliente`
 --
 
 INSERT INTO `cliente` (`id_cliente`, `nome`, `email`, `senha`, `foto_perfil`, `tipo`, `status`, `id_area`, `contato`, `data_nasc`) VALUES
@@ -162,7 +155,7 @@ INSERT INTO `cliente` (`id_cliente`, `nome`, `email`, `senha`, `foto_perfil`, `t
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `comentarios`
+-- Estrutura para tabela `comentarios`
 --
 
 CREATE TABLE `comentarios` (
@@ -172,10 +165,10 @@ CREATE TABLE `comentarios` (
   `id_trabalhador_sessao` int(11) DEFAULT NULL,
   `comentario` text NOT NULL,
   `data_comentario` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `comentarios`
+-- Despejando dados para a tabela `comentarios`
 --
 
 INSERT INTO `comentarios` (`id_comentario`, `id_cliente`, `id_trabalhador`, `id_trabalhador_sessao`, `comentario`, `data_comentario`) VALUES
@@ -202,7 +195,7 @@ INSERT INTO `comentarios` (`id_comentario`, `id_cliente`, `id_trabalhador`, `id_
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `conversas`
+-- Estrutura para tabela `conversas`
 --
 
 CREATE TABLE `conversas` (
@@ -210,12 +203,12 @@ CREATE TABLE `conversas` (
   `id_trabalhador` int(11) NOT NULL,
   `id_cliente` int(11) NOT NULL,
   `data_inicio` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `curtidas`
+-- Estrutura para tabela `curtidas`
 --
 
 CREATE TABLE `curtidas` (
@@ -223,30 +216,31 @@ CREATE TABLE `curtidas` (
   `data_curtida` int(11) NOT NULL,
   `id_cliente` int(11) NOT NULL,
   `id_trabalhador` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `curtidas`
+-- Despejando dados para a tabela `curtidas`
 --
 
 INSERT INTO `curtidas` (`id_curtida`, `data_curtida`, `id_cliente`, `id_trabalhador`) VALUES
 (8, 0, 16, 20),
-(9, 0, 17, 24);
+(9, 0, 17, 24),
+(10, 0, 17, 43);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `favoritos`
+-- Estrutura para tabela `favoritos`
 --
 
 CREATE TABLE `favoritos` (
   `id_favorito` int(11) NOT NULL,
   `id_trabalhador` int(11) NOT NULL,
   `id_cliente` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `favoritos`
+-- Despejando dados para a tabela `favoritos`
 --
 
 INSERT INTO `favoritos` (`id_favorito`, `id_trabalhador`, `id_cliente`) VALUES
@@ -256,7 +250,7 @@ INSERT INTO `favoritos` (`id_favorito`, `id_trabalhador`, `id_cliente`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `mensagens`
+-- Estrutura para tabela `mensagens`
 --
 
 CREATE TABLE `mensagens` (
@@ -266,12 +260,12 @@ CREATE TABLE `mensagens` (
   `id_destinatario` int(11) NOT NULL,
   `data_inicio` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `mensagem` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `reclamacao_cliente`
+-- Estrutura para tabela `reclamacao_cliente`
 --
 
 CREATE TABLE `reclamacao_cliente` (
@@ -280,10 +274,10 @@ CREATE TABLE `reclamacao_cliente` (
   `nome` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `reclamacao` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `reclamacao_cliente`
+-- Despejando dados para a tabela `reclamacao_cliente`
 --
 
 INSERT INTO `reclamacao_cliente` (`id_reclamacao_cliente`, `id_cliente`, `nome`, `email`, `reclamacao`) VALUES
@@ -292,7 +286,7 @@ INSERT INTO `reclamacao_cliente` (`id_reclamacao_cliente`, `id_cliente`, `nome`,
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `reclamacao_trabalhador`
+-- Estrutura para tabela `reclamacao_trabalhador`
 --
 
 CREATE TABLE `reclamacao_trabalhador` (
@@ -301,10 +295,10 @@ CREATE TABLE `reclamacao_trabalhador` (
   `nome` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `reclamacao` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `reclamacao_trabalhador`
+-- Despejando dados para a tabela `reclamacao_trabalhador`
 --
 
 INSERT INTO `reclamacao_trabalhador` (`id_reclamacao_trabalhador`, `id_trabalhador`, `nome`, `email`, `reclamacao`) VALUES
@@ -317,7 +311,7 @@ INSERT INTO `reclamacao_trabalhador` (`id_reclamacao_trabalhador`, `id_trabalhad
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `trabalhador`
+-- Estrutura para tabela `trabalhador`
 --
 
 CREATE TABLE `trabalhador` (
@@ -340,10 +334,10 @@ CREATE TABLE `trabalhador` (
   `id_area` int(11) NOT NULL,
   `permissao` int(4) NOT NULL,
   `curtidas` int(11) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `trabalhador`
+-- Despejando dados para a tabela `trabalhador`
 --
 
 INSERT INTO `trabalhador` (`id_trabalhador`, `nome`, `email`, `senha`, `foto_perfil`, `foto_trabalho1`, `foto_trabalho2`, `foto_trabalho3`, `foto_banner`, `descricao`, `contato`, `data_nasc`, `media_avaliacao`, `tipo`, `status`, `id_categoria`, `id_area`, `permissao`, `curtidas`) VALUES
@@ -371,27 +365,44 @@ INSERT INTO `trabalhador` (`id_trabalhador`, `nome`, `email`, `senha`, `foto_per
 (39, 'Roberto Farias', 'roberto.farias@limpeza.com', '$2y$10$gQ06GDm132wtVYruWLwsVuEuTVMj/78127nfRsHnW2s5u8rKbRdOG', 'robert.png', 'faxina5.png', 'faxina6.png', 'faxina8.png', 'banner6.png', 'Atuo com limpezas de fim de obra e organização pós-eventos, oferecendo soluções rápidas e eficientes para deixar o local impecável.', '11987643125', '1000-02-28', 0.00, '', '', 1, 4, 0, 0),
 (40, 'Daniela Almeida', 'daniela.almeida@limpeza.com', '$2y$10$wOBGPvcpJBv34CQDpU9YYehOMHM/IZdfF8BgvNOAw0vcr8E1drwVe', 'daniela.png', 'faxina8.png', 'faxina6.png', 'faxina5.png', 'banner4.png', 'Trabalho com serviços de limpeza residencial em Várzea Paulista, focando na limpeza profunda de cozinhas e banheiros, além de áreas externas.\r\n', '11983216578', '1000-02-13', 0.00, '', '', 1, 7, 0, 0),
 (41, 'André Batista', 'andre.batista@limpeza.com', '$2y$10$jhTwkQ2SwPFBwBkePR4iuezolaad6ipyVMOnS5uWtTXiTPRSb1wDW', 'andre.png', 'faxina4.png', 'faxina2.png', 'faxina1.png', 'banner3.png', 'Ofereço serviços de limpeza para escritórios e comércios, com foco na manutenção diária e organização de ambientes de trabalho.', '11987653214', '1230-03-12', 0.00, '', '', 1, 7, 0, 0),
-(42, 'Pedro de Oliveira Melo', 'pedro.melo@gmail.com', '$2y$10$be9.28FxpHAwJ/b8VgrtwOGY5MelWIHCI1GofIW9iGhd10K8bfGK6', '../uploads/teste2.jpeg', '', '', '', '', 'sou eu', '12956452384', '1980-05-30', 0.00, '', '', 3, 1, 0, 0);
+(42, 'Pedro de Oliveira Melo', 'pedro.melo@gmail.com', '$2y$10$be9.28FxpHAwJ/b8VgrtwOGY5MelWIHCI1GofIW9iGhd10K8bfGK6', '../uploads/teste2.jpeg', '', '', '', '', 'sou eu', '12956452384', '1980-05-30', 0.00, '', '', 3, 1, 0, 0),
+(43, 'Ana Paula Oliveira Junior', 'anapaula@gmail.com', '$2y$10$tUFwBdGKkQylHG/Tv0.0NOpMo3KtK8FjGKh658Sr1dqV0khtZ.CCq', 'fotoM1.PNG', 'fotoTrabalho1.PNG', 'fotoTrabalho2.PNG', 'fotoTrabalho3.PNG', 'fotoBanner1.PNG', 'Sou a Ana, uma apaixonada por gastronomia. Tenho uma lanchonete que serve petiscos e pratos rápidos. Adoro receber os clientes e sempre busco inovar no cardápio com receitas que encantam!', '11912345678', '1980-10-10', 0.00, '', '', 4, 1, 0, 0),
+(44, 'Carlos Eduardo', 'carloseduardo@hotmail.com', '$2y$10$mWXlZ5TcWfVm/svvnTbfv.YJwzE9TfbEi6mccL5i1z2mWr7cCINmW', 'fotoH.PNG', 'fotoTrabalho4.PNG', 'fotoTrabalho5.PNG', 'fotoTrabalho6.PNG', 'fotoBanner2.PNG', 'Me chamo Carlos e sou dono de uma marmitaria. Preparo refeições caseiras com ingredientes frescos e de qualidade. Meu maior objetivo é proporcionar conforto e sabor às mesas das pessoas', '11987654321', '1900-10-10', 0.00, '', '', 4, 5, 0, 0),
+(45, 'Juliana Lima', 'julianalima@yahoo.com.br', '$2y$10$WVDA0hRAFW/5.nPdd42N3OAI5c8d2J4fvDWM2EVtgOD.ubwkvyFme', 'fotoM2.PNG', 'fotoTrabalho7.PNG', 'fotoTrabalho8.PNG', 'fotoTrabalho9.PNG', 'fotoBanner3.PNG', 'Oi, sou a Ju! Trabalho com um food truck que oferece comida saudável e saborosa. Acredito que comer bem é fundamental, e estou sempre em busca de novos ingredientes para minhas receitas', '11998765432', '2000-02-11', 0.00, '', '', 4, 3, 0, 0),
+(46, 'Felipe Santos', 'felipesantos@gmail.com', '$2y$10$z/oJ24kWBg52vQXBMwz5DezAR3mN3JhPLr5iLBhfqCGBG6hb0YR9C', 'fotoH2.PNG', 'fotoTrabalho10.PNG', 'fotoTrabalho3.PNG', 'fotoTrabalho7.PNG', 'fotoBanner4.PNG', 'Meu nome é Felipe e sou chef em uma pequena lanchonete. Minha paixão é cozinhar e criar pratos que façam as pessoas sorrirem. Acredito que cada refeição deve ser uma experiência única.', '11963219876', '1960-02-23', 0.00, '', '', 4, 6, 0, 0),
+(47, 'Larissa Ferreira', 'larissa.ferreira@gmail.com', '$2y$10$y4HqtH1TU3Q/xYH5rmAOwevA9wfWsOOGE8Sfw82VHAJAGKzAuLePa', 'fotoM3.PNG', 'fotoTrabalho1.PNG', 'fotoTrabalho9.PNG', 'fotoTrabalho4.PNG', 'fotoBanner5.PNG', 'Oi, sou a Larissa, e sou especialista em comidas de boteco. Tenho um barzinho que é o ponto de encontro da galera. Faço tudo com muito carinho e adoro ouvir as histórias dos clientes', '11934567890', '2000-04-04', 0.00, '', '', 4, 7, 0, 0),
+(48, 'Bruno Almeida', 'bruno.almeida@gmail.com', '$2y$10$jiPa8caLfwVU8lVh3L0Fsu7B8CLM4INDWDflHp3d40I9vg9OaMEGa', 'fotoH3.PNG', 'fotoTrabalho8.PNG', 'fotoTrabalho2.PNG', 'fotoTrabalho9.PNG', 'fotoBanner6.PNG', 'Meu nome é Bruno, e sou dono de uma lanchonete de hambúrgueres artesanais. Gosto de experimentar novos sabores e sempre busco oferecer uma experiência única para meus clientes', '11901234567', '1978-02-02', 0.00, '', '', 4, 4, 0, 0),
+(49, 'Mariana Costa', 'mariana.costa@hotmail.com', '$2y$10$fZ6YP2pXc82akP1DDAnJi.jharehmEBB5HvwNBNTRc584dPWU0yii', 'fotoM4.PNG', 'fotoTrabalho3.PNG', 'fotoTrabalho7.PNG', 'fotoTrabalho6.PNG', 'fotoBanner7.PNG', 'Sou a Mariana e tenho uma empresa de marmitas fitness. Minha missão é ajudar as pessoas a se alimentarem de forma saudável, sem abrir mão do sabor. Adoro ver meus clientes satisfeitos!', '1187654-3210', '2000-11-11', 0.00, '', '', 4, 2, 0, 0),
+(50, 'Ricardo Silva', 'ricardosilva@yahoo.com.br', '$2y$10$twwzGDwisMmOLiQ5AFV/8OVKzdkWDlx4XshRRCavsiKto9s5K31wq', 'fotoH4.PNG', 'fotoTrabalho4.PNG', 'fotoTrabalho1.PNG', 'fotoTrabalho10.PNG', 'fotoBanner1.PNG', 'Oi, eu sou o Ricardo. Trabalho em uma lanchonete que serve pratos tradicionais. Tenho uma relação muito próxima com os clientes e sempre busco entender suas preferências.', '11912346789', '1990-02-10', 0.00, '', '', 4, 1, 0, 0),
+(51, 'Camila Rocha', 'camilarocha@gmail.com', '$2y$10$7zq37Zz1mBHNyFHdMMjjeOPNZ7/K6j8pOKrBJGtDRKXDR0tU5NHiq', 'fotoM5.PNG', 'fotoTrabalho5.PNG', 'fotoTrabalho8.PNG', 'fotoTrabalho3.PNG', 'fotoBanner2.PNG', 'Meu nome é Camila e sou chef de cozinha em uma pequena bistrô. Acredito que a comida é uma forma de arte e me esforço para criar pratos que sejam tão bonitos quanto gostosos.', '11934561234', '2000-11-11', 0.00, '', '', 4, 5, 0, 0),
+(52, 'Eduardo Martins', 'eduardomartins@hotmail.com', '$2y$10$.AIx/cf8zcB4lj7dATnhkutgF1gZiO.6meOMzvdMBYagL3bXYmDe2', 'fotoH5.PNG', 'fotoTrabalho3.PNG', 'fotoTrabalho9.PNG', 'fotoTrabalho5.PNG', 'fotoBanner3.PNG', 'Sou o Eduardo, e tenho uma lanchonete famosa pelos sanduíches. Cada receita é feita com muito amor e dedicação. Ver a alegria dos clientes ao comer é a minha maior recompensa', '11998765432', '2000-02-22', 0.00, '', '', 4, 3, 0, 0),
+(53, 'Aline Souza', 'alinesouza@gmail.com', '$2y$10$zUbx87YLitw3h3iWw6zmQeWERMyqi0UwcxBKHWUZEM51ghuUtrgz.', 'fotoM6.PNG', 'fotoTrabalho4.PNG', 'fotoTrabalho7.PNG', 'fotoTrabalho6.PNG', 'fotoBanner4.PNG', 'Oi, sou a Aline! Tenho um pequeno restaurante que serve comida caseira. Cada prato que faço é preparado com receitas da minha avó, e adoro compartilhar essa tradição com meus clientes', '11921234567', '1999-05-05', 0.00, '', '', 4, 6, 0, 0),
+(54, '', 'jorgelima@yahoo.com.br', '$2y$10$/CelomElx2fRklCDK9crDOIjQ0SuWSbtc6Hv1Nr.ad1T4yOMG8pm.', 'fotoH6.PNG', 'fotoTrabalho10.PNG', 'fotoTrabalho9.PNG', 'fotoTrabalho5.PNG', 'fotoBanner5.PNG', 'Meu nome é Jorge e sou chef em uma lanchonete que se destaca pelo seu tempero caseiro. Gosto de ouvir os feedbacks dos clientes e aprimorar sempre minhas receitas', '11909876543', '2000-05-05', 0.00, '', '', 4, 7, 0, 0),
+(55, 'Paula Gomes', 'paulagomes@hotmail.com', '$2y$10$V9uHP6NRf5QGfTpdYMTOCe5QYQGsLUmBSlQ9dF/6IARMKgtuN5rz6', 'fotoM7.PNG', 'fotoTrabalho1.PNG', 'fotoTrabalho8.PNG', 'fotoTrabalho6.PNG', 'fotoBanner6.PNG', 'Sou a Paula, e trabalho em uma marmitaria que preza pela qualidade e sabor. Acredito que uma refeição saudável pode ser deliciosa e faço questão de oferecer isso aos meus clientes.', '11932109876', '2000-11-11', 0.00, '', '', 4, 4, 0, 0),
+(56, 'André Pereira', 'andre.pereira@gmail.com', '$2y$10$mM0OgF36HvWrRq/H4lGqQeYB4.D0UxJJRbQ0Tr2dKYxzIoyp.BNPC', 'fotoH7.PNG', 'fotoTrabalho8.PNG', 'fotoTrabalho2.PNG', 'fotoTrabalho6.PNG', 'fotoBanner7.PNG', 'Meu nome é André e sou dono de uma lanchonete que serve comida nordestina. Adoro fazer pratos tradicionais e vejo isso como uma forma de representar minha cultura e minhas raízes.', '11998765432', '2000-02-22', 0.00, '', '', 4, 2, 0, 0),
+(57, 'Renata Alves', 'renata.alves@yahoo.com.br', '$2y$10$Sdj7sdOxu8jb0Ch8WvATpulgR/I2sYZe09/jFmB/9vyHNFApKbS0i', 'fotoM8.PNG', 'fotoTrabalho3.PNG', 'fotoTrabalho9.PNG', 'fotoTrabalho1.PNG', 'fotoBanner6.PNG', 'Oi, sou a Renata! Tenho um pequeno café onde faço doces e salgados caseiros. A satisfação dos meus clientes ao experimentar minhas receitas é o que me motiva a continuar.', '11934567890', '1999-05-05', 0.00, '', '', 4, 5, 0, 0),
+(58, 'Samuel Dias', 'samuel.dias@hotmail.com', '$2y$10$dF4OSCsguRr6vA5P3UoCXe//AdVz52k7bD.mjoTEHQBUnkHtVdwRa', 'fotoH8.PNG', 'fotoTrabalho4.PNG', 'fotoTrabalho5.PNG', 'fotoTrabalho8.PNG', 'fotoBanner7.PNG', 'Meu nome é Samuel, e sou chef em uma lanchonete de comida internacional. Adoro viajar e trazer novas influências para o meu cardápio, sempre buscando surpreender meus clientes', '11987651234', '2000-07-07', 0.00, '', '', 4, 6, 0, 0),
+(59, 'Thais Mello', 'thaismello@gmail.com', '$2y$10$7XIWYLX9bK9pNx90vWxmq.6UoQSWRi0cy4adu4R8Mt4bPjmuK7TaW', 'fotoM9.PNG', 'fotoTrabalho3.PNG', 'fotoTrabalho9.PNG', 'fotoTrabalho3.PNG', 'fotoBanner4.PNG', 'Sou a Thais e trabalho com um delivery de marmitas. Meu foco é oferecer opções saudáveis e práticas, sempre com ingredientes frescos. Ver a saúde dos meus clientes melhorando é gratificante.', '11998765432', '3333-04-04', 0.00, '', '', 4, 1, 0, 0);
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices para tabela `adm`
+-- Índices de tabela `adm`
 --
 ALTER TABLE `adm`
   ADD PRIMARY KEY (`id_admin`);
 
 --
--- Índices para tabela `area_atuação`
+-- Índices de tabela `area_atuação`
 --
 ALTER TABLE `area_atuação`
   ADD PRIMARY KEY (`id_area`),
   ADD KEY `id_categoria` (`id_categoria`);
 
 --
--- Índices para tabela `atualizacoes_pendentes`
+-- Índices de tabela `atualizacoes_pendentes`
 --
 ALTER TABLE `atualizacoes_pendentes`
   ADD PRIMARY KEY (`id_atualizacoes_pendentes`),
@@ -400,19 +411,19 @@ ALTER TABLE `atualizacoes_pendentes`
   ADD KEY `fk_categoria` (`id_categoria`);
 
 --
--- Índices para tabela `categorias`
+-- Índices de tabela `categorias`
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id_categoria`);
 
 --
--- Índices para tabela `cliente`
+-- Índices de tabela `cliente`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id_cliente`);
 
 --
--- Índices para tabela `comentarios`
+-- Índices de tabela `comentarios`
 --
 ALTER TABLE `comentarios`
   ADD PRIMARY KEY (`id_comentario`),
@@ -421,7 +432,7 @@ ALTER TABLE `comentarios`
   ADD KEY `id_trabalhador_sessao` (`id_trabalhador_sessao`);
 
 --
--- Índices para tabela `conversas`
+-- Índices de tabela `conversas`
 --
 ALTER TABLE `conversas`
   ADD PRIMARY KEY (`id_conversa`),
@@ -429,7 +440,7 @@ ALTER TABLE `conversas`
   ADD KEY `id_cliente` (`id_cliente`);
 
 --
--- Índices para tabela `curtidas`
+-- Índices de tabela `curtidas`
 --
 ALTER TABLE `curtidas`
   ADD PRIMARY KEY (`id_curtida`),
@@ -437,7 +448,7 @@ ALTER TABLE `curtidas`
   ADD KEY `id_trabalhador` (`id_trabalhador`);
 
 --
--- Índices para tabela `favoritos`
+-- Índices de tabela `favoritos`
 --
 ALTER TABLE `favoritos`
   ADD PRIMARY KEY (`id_favorito`),
@@ -445,7 +456,7 @@ ALTER TABLE `favoritos`
   ADD KEY `id_usuario` (`id_cliente`);
 
 --
--- Índices para tabela `mensagens`
+-- Índices de tabela `mensagens`
 --
 ALTER TABLE `mensagens`
   ADD PRIMARY KEY (`id_mensagem`),
@@ -454,21 +465,21 @@ ALTER TABLE `mensagens`
   ADD KEY `id_destinatario` (`id_destinatario`);
 
 --
--- Índices para tabela `reclamacao_cliente`
+-- Índices de tabela `reclamacao_cliente`
 --
 ALTER TABLE `reclamacao_cliente`
   ADD PRIMARY KEY (`id_reclamacao_cliente`),
   ADD KEY `id_cliente` (`id_cliente`);
 
 --
--- Índices para tabela `reclamacao_trabalhador`
+-- Índices de tabela `reclamacao_trabalhador`
 --
 ALTER TABLE `reclamacao_trabalhador`
   ADD PRIMARY KEY (`id_reclamacao_trabalhador`),
   ADD KEY `id_trabalhador` (`id_trabalhador`);
 
 --
--- Índices para tabela `trabalhador`
+-- Índices de tabela `trabalhador`
 --
 ALTER TABLE `trabalhador`
   ADD PRIMARY KEY (`id_trabalhador`),
@@ -476,7 +487,7 @@ ALTER TABLE `trabalhador`
   ADD KEY `id_area` (`id_area`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
@@ -495,7 +506,7 @@ ALTER TABLE `area_atuação`
 -- AUTO_INCREMENT de tabela `atualizacoes_pendentes`
 --
 ALTER TABLE `atualizacoes_pendentes`
-  MODIFY `id_atualizacoes_pendentes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_atualizacoes_pendentes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de tabela `categorias`
@@ -525,7 +536,7 @@ ALTER TABLE `conversas`
 -- AUTO_INCREMENT de tabela `curtidas`
 --
 ALTER TABLE `curtidas`
-  MODIFY `id_curtida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_curtida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `favoritos`
@@ -555,20 +566,20 @@ ALTER TABLE `reclamacao_trabalhador`
 -- AUTO_INCREMENT de tabela `trabalhador`
 --
 ALTER TABLE `trabalhador`
-  MODIFY `id_trabalhador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_trabalhador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
--- Restrições para despejos de tabelas
+-- Restrições para tabelas despejadas
 --
 
 --
--- Limitadores para a tabela `area_atuação`
+-- Restrições para tabelas `area_atuação`
 --
 ALTER TABLE `area_atuação`
   ADD CONSTRAINT `area_atuação_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`);
 
 --
--- Limitadores para a tabela `atualizacoes_pendentes`
+-- Restrições para tabelas `atualizacoes_pendentes`
 --
 ALTER TABLE `atualizacoes_pendentes`
   ADD CONSTRAINT `fk_area` FOREIGN KEY (`id_area`) REFERENCES `area_atuação` (`id_area`),
@@ -576,7 +587,7 @@ ALTER TABLE `atualizacoes_pendentes`
   ADD CONSTRAINT `fk_trabalhador` FOREIGN KEY (`id_trabalhador`) REFERENCES `trabalhador` (`id_trabalhador`) ON DELETE CASCADE;
 
 --
--- Limitadores para a tabela `comentarios`
+-- Restrições para tabelas `comentarios`
 --
 ALTER TABLE `comentarios`
   ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`),
@@ -584,28 +595,28 @@ ALTER TABLE `comentarios`
   ADD CONSTRAINT `comentarios_ibfk_4` FOREIGN KEY (`id_trabalhador_sessao`) REFERENCES `trabalhador` (`id_trabalhador`);
 
 --
--- Limitadores para a tabela `conversas`
+-- Restrições para tabelas `conversas`
 --
 ALTER TABLE `conversas`
   ADD CONSTRAINT `conversas_ibfk_1` FOREIGN KEY (`id_trabalhador`) REFERENCES `conversas` (`id_conversa`),
   ADD CONSTRAINT `conversas_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `conversas` (`id_conversa`);
 
 --
--- Limitadores para a tabela `curtidas`
+-- Restrições para tabelas `curtidas`
 --
 ALTER TABLE `curtidas`
   ADD CONSTRAINT `curtidas_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`),
   ADD CONSTRAINT `curtidas_ibfk_2` FOREIGN KEY (`id_trabalhador`) REFERENCES `trabalhador` (`id_trabalhador`);
 
 --
--- Limitadores para a tabela `favoritos`
+-- Restrições para tabelas `favoritos`
 --
 ALTER TABLE `favoritos`
   ADD CONSTRAINT `favoritos_ibfk_1` FOREIGN KEY (`id_trabalhador`) REFERENCES `trabalhador` (`id_trabalhador`),
   ADD CONSTRAINT `favoritos_ibfk_2` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`);
 
 --
--- Limitadores para a tabela `mensagens`
+-- Restrições para tabelas `mensagens`
 --
 ALTER TABLE `mensagens`
   ADD CONSTRAINT `mensagens_ibfk_1` FOREIGN KEY (`id_conversa`) REFERENCES `mensagens` (`id_mensagem`),
@@ -613,19 +624,19 @@ ALTER TABLE `mensagens`
   ADD CONSTRAINT `mensagens_ibfk_3` FOREIGN KEY (`id_destinatario`) REFERENCES `mensagens` (`id_mensagem`);
 
 --
--- Limitadores para a tabela `reclamacao_cliente`
+-- Restrições para tabelas `reclamacao_cliente`
 --
 ALTER TABLE `reclamacao_cliente`
   ADD CONSTRAINT `reclamacao_cliente_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`);
 
 --
--- Limitadores para a tabela `reclamacao_trabalhador`
+-- Restrições para tabelas `reclamacao_trabalhador`
 --
 ALTER TABLE `reclamacao_trabalhador`
   ADD CONSTRAINT `reclamacao_trabalhador_ibfk_1` FOREIGN KEY (`id_trabalhador`) REFERENCES `trabalhador` (`id_trabalhador`);
 
 --
--- Limitadores para a tabela `trabalhador`
+-- Restrições para tabelas `trabalhador`
 --
 ALTER TABLE `trabalhador`
   ADD CONSTRAINT `trabalhador_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`),
