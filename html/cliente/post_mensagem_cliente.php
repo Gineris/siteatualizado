@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 include_once('../../backend/Conexao.php');
 
@@ -23,10 +22,20 @@ if (isset($_POST['id_trabalhador']) && isset($_POST['mensagem'])) {
         exit;
     }
 
+    // Verifica se a conexão foi estabelecida corretamente
+    if (!$conn || !$conn instanceof mysqli) {
+        die("Erro: Conexão com o banco de dados não estabelecida.");
+    }
+
     // Prepara a consulta para inserir a mensagem
     $sql = "INSERT INTO mensagens (id_remetente, id_destinatario, mensagem, data_envio, tipo_remetente) 
             VALUES (?, ?, ?, NOW(), 'cliente')";
     $stmt = $conn->prepare($sql);
+
+    // Verifica se a preparação da consulta foi bem-sucedida
+    if ($stmt === false) {
+        die("Erro na preparação da consulta: " . $conn->error);
+    }
 
     // Insere o cliente como remetente e o trabalhador como destinatário
     $stmt->bind_param("iis", $id_cliente, $id_trabalhador, $mensagem);
@@ -42,4 +51,3 @@ if (isset($_POST['id_trabalhador']) && isset($_POST['mensagem'])) {
 } else {
     echo 'Dados insuficientes para o envio da mensagem.';
 }
-

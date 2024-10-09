@@ -318,3 +318,72 @@ footer p{
 .curtir-button:focus {
     outline: none; /* Remove o contorno padrão ao focar no botão */
 }
+/* Estilização do contêiner do formulário */
+.EnviarMensagem {
+    width: 100%;
+    max-width: 500px; /* Largura máxima para evitar que o formulário fique muito largo em telas grandes */
+    margin: 20px auto; /* Centraliza o formulário horizontalmente */
+    padding: 20px;
+    background-color: #f7f7f7; /* Cor de fundo clara */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para destacar o formulário */
+}
+
+/* Título do formulário */
+.EnviarMensagem h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #04074B /* Cor do texto */
+}
+
+/* Campo de texto */
+.EnviarMensagem textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc; /* Borda leve */
+    border-radius: 4px;
+    font-size: 16px;
+    resize: none; /* Impede o redimensionamento do campo */
+    margin-bottom: 15px;
+    transition: border-color 0.3s;
+}
+
+/* Foco no campo de texto */
+.EnviarMensagem textarea:focus {
+    border-color: #ED5C15;; /* Borda azul quando o campo está em foco */
+    outline: none; /* Remove o contorno padrão do navegador */
+}
+
+/* Botão de enviar */
+.EnviarMensagem button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ED5C15; /* Cor de fundo do botão */
+    border: none;
+    border-radius: 4px;
+    color: #fff; /* Cor do texto do botão */
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Efeito hover no botão */
+.EnviarMensagem button:hover {
+    background-color:  #ED5C15; /* Tom mais escuro de azul ao passar o mouse */
+}
+
+/* Estilo para telas menores */
+@media (max-width: 768px) {
+    .EnviarMensagem {
+        padding: 15px;
+    }
+
+    .EnviarMensagem h2 {
+        font-size: 20px;
+    }
+
+    .EnviarMensagem button {
+        font-size: 16px;
+    }
+}
