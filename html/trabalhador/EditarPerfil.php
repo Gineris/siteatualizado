@@ -21,7 +21,7 @@ $atualizacaoPendente = $result_edit->num_rows > 0;
 <style>
     nav.menuLateral{
      width: 50px;
-     height: 360px;
+     height: 300px;
     }
 </style>
 <!DOCTYPE html>
@@ -72,13 +72,7 @@ $atualizacaoPendente = $result_edit->num_rows > 0;
                         <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>
                     </a>
-                </li>
-                <li class="itemMenu">
-                    <a href="./favoritotrabalhador.php">
-                        <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
-                        <span class="txtLink">Favoritos</span>
-                    </a>
-                </li>
+                </li>   
                 <li class="itemMenu ativo">
                     <a href="EditarPerfil.php">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>

@@ -43,7 +43,7 @@ if (isset($_SESSION['id_trabalhador'])) {
 <style>
     nav.menuLateral{
     width: 64px;
-    height: 430px;
+    height: 380px;
     }
 </style>
 <!DOCTYPE html>
@@ -93,12 +93,6 @@ if (isset($_SESSION['id_trabalhador'])) {
                     <a href="./Categorias.php">
                         <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>
-                    </a>
-                </li>
-                <li class="itemMenu">
-                    <a href="./favoritotrabalhador.php">
-                        <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
-                        <span class="txtLink">Favoritos</span>
                     </a>
                 </li>
                 <li class="itemMenu">

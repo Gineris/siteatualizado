@@ -56,7 +56,7 @@
 <style>
     nav.menuLateral{
     width: 65px;
-    height: 470px;
+    height: 400px;
     }
 </style>
 <body>
@@ -99,12 +99,6 @@
                         <span class="txtLink">Pesquisar</span>
                     </a>
                 </li>
-                <li class="itemMenu">
-                    <a href="./favoritotrabalhador.php">
-                        <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
-                        <span class="txtLink">Favoritos</span>
-                    </a>
-                </li>
                 <li class="itemMenu ">
                     <a href="./EditarPerfil.php">
                         <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
@@ -138,11 +132,6 @@
                 </div>
                 <div class="tel">
                     <p><?php echo $row['contato'];?></p>
-                </div>
-                <div class="LocaleLikes">
-                    <!-- <ion-icon name="location-outline"></ion-icon> -->
-                    <ion-icon name="heart-outline"></ion-icon>
-                    <p>37K likes</p>
                 </div>
             </div>
 

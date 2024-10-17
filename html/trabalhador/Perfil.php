@@ -51,6 +51,12 @@ $sql_id = "SELECT * FROM trabalhador WHERE id_trabalhador = '$id_trabalhador_ses
 $resultado_id = mysqli_query($conn, $sql_id);
 $row_id = mysqli_fetch_assoc($resultado_id);
 ?>
+<style>
+    nav.menuLateral{
+    width: 65px;
+    height: 380px;
+    }
+</style>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -81,7 +87,7 @@ $row_id = mysqli_fetch_assoc($resultado_id);
             </div>
 
             <ul style="padding-left: 0rem;">
-                <li class="itemMenu ativo">
+                <li class="itemMenu ">
                     <a href="./homeLogado">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
@@ -93,7 +99,7 @@ $row_id = mysqli_fetch_assoc($resultado_id);
                         <span class="txtLink">Perfil</span>
                     </a>
                 </li>
-                <li class="itemMenu ">
+                <li class="itemMenu ativo">
                     <a href="./Categorias.php">
                         <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>
@@ -158,20 +164,7 @@ $row_id = mysqli_fetch_assoc($resultado_id);
             </div>
         </div>
 
-        <div class="mensagemk">
-            <form action="post_mensagem_trabalhador.php" method="POST">
-            <textarea name="mensagem" placeholder="Escreva sua mensagem aqui..."></textarea>
-            
-            <!-- IDs do cliente e trabalhador -->
-            <input type="hidden" name="id_cliente" value="<?php echo $id_cliente; ?>">
-            <input type="hidden" name="id_trabalhador" value="<?php echo $id_trabalhador; ?>">
-            
-            <!-- Campo oculto para identificar o tipo de usuário -->
-            <input type="hidden" name="tipo_usuario" value="<?php echo isset($id_cliente) ? 'cliente' : 'trabalhador'; ?>">
-            
-            <button type="submit">Enviar Mensagem</button>
-            </form>
-        </div>
+        
     </main>
 
     <footer class="d-flex justify-content-center">
@@ -179,7 +172,8 @@ $row_id = mysqli_fetch_assoc($resultado_id);
         <p>Privacy Policy</p>
         <p>@2022yanliudesign</p>
     </footer>
-
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="../../js/funcaoMenuLateral.js"></script>
     <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 

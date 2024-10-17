@@ -60,7 +60,7 @@ if (!$result) {
 <style>
     nav.menuLateral{
     width: 65px;
-    height: 420px;
+    height: 380px;
     }
 </style>
 
@@ -109,12 +109,6 @@ if (!$result) {
                     <a href="./Categorias.php">
                         <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>
-                    </a>
-                </li>
-                <li class="itemMenu">
-                    <a href="./favoritotrabalhador.php">
-                        <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
-                        <span class="txtLink">Favoritos</span>
                     </a>
                 </li>
                 <li class="itemMenu">
