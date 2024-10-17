@@ -70,7 +70,7 @@ $result_trabalhadores = $conn->query($sql_trabalhadores);
                 <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
             </div>
             <ul style="padding-left: 0rem;">
-                <li class="itemMenu ativo">
+                <li class="itemMenu">
                     <a href="homeClienteLogado.php">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
@@ -82,7 +82,7 @@ $result_trabalhadores = $conn->query($sql_trabalhadores);
                         <span class="txtLink">Configurações</span>
                     </a>
                 </li>
-                <li class="itemMenu ">
+                <li class="itemMenu ativo">
                     <a href="Categorias.php">
                         <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>

@@ -64,7 +64,7 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
 <style>
     nav.menuLateral{
     width: 65px;
-    height: 420px;
+    height: 380px;
     }
 </style>
 <!DOCTYPE html>
