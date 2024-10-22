@@ -43,7 +43,7 @@ if (isset($_SESSION['id_cliente'])) {
 <style>
     nav.menuLateral{
     width: 65px;
-    height: 370px;
+    height: 420px;
     }
 </style>
 

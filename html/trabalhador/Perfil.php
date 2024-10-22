@@ -88,7 +88,7 @@ $row_id = mysqli_fetch_assoc($resultado_id);
 
             <ul style="padding-left: 0rem;">
                 <li class="itemMenu ">
-                    <a href="./homeLogado">
+                    <a href="./homeLogado.php">
                         <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                         <span class="txtLink">Inicio</span>
                     </a>

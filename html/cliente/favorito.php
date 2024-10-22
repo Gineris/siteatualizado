@@ -59,7 +59,7 @@ if (!$resultado_favoritos) {
     </div>
 
     <ul style="padding-left: 0rem;">
-        <li class="itemMenu ativo">
+        <li class="itemMenu ">
             <a href="homeClienteLogado.php">
                 <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                 <span class="txtLink">Início</span>
@@ -77,7 +77,7 @@ if (!$resultado_favoritos) {
                 <span class="txtLink">Pesquisar</span>
             </a>
         </li>
-        <li class="itemMenu">
+        <li class="itemMenu ativo">
             <a href="favorito.php">
                 <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
                 <span class="txtLink">Favoritos</span>
