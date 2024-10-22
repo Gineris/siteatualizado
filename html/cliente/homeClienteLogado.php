@@ -74,47 +74,51 @@ if (isset($_SESSION['id_cliente'])) {
 
     <main class=""> 
         
-        <nav class="menuLateral">
-            <div class="IconExpandir">
-                <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
-            </div>
+    <nav class="menuLateral">
+    <div class="IconExpandir">
+        <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
+    </div>
 
-            <ul style="padding-left: 0rem;">
-                <li class="itemMenu ativo">
-                    <a href="homeClienteLogado.php">
-                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                        <span class="txtLink">Inicio</span>
-                    </a>
-                </li>
-                <li class="itemMenu">
-                    <a href="EditarPerfilCliente.php">
-                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-                        <span class="txtLink">Configurações</span>
-                    </a>
-                </li>
-                <li class="itemMenu ">
-                    <a href="Categorias.php">
-                        <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
-                        <span class="txtLink">Pesquisar</span>
-                    </a>
-                </li>
-                <li class="itemMenu">
-                    <a href="favorito.php">
-                        <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
-                        <span class="txtLink">Favoritos</span>
-                    </a>
-                </li>
-                
-                <li class="itemMenu">
-                    <a href="LogoutCliente.php">
-                        <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
-                        <span class="txtLink">Sair</span>
-                    </a>
-                </li>
-                
-            </ul>
+    <ul style="padding-left: 0rem;">
+        <li class="itemMenu ativo">
+            <a href="homeClienteLogado.php">
+                <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                <span class="txtLink">Início</span>
+            </a>
+        </li>
+        <li class="itemMenu">
+            <a href="EditarPerfilCliente.php">
+                <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                <span class="txtLink">Configurações</span>
+            </a>
+        </li>
+        <li class="itemMenu">
+            <a href="Categorias.php">
+                <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
+                <span class="txtLink">Pesquisar</span>
+            </a>
+        </li>
+        <li class="itemMenu">
+            <a href="favorito.php">
+                <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
+                <span class="txtLink">Favoritos</span>
+            </a>
+        </li>
+        <li class="itemMenu">
+            <a href="historico_conversas_cliente.php"> <!-- Novo item de menu para histórico de mensagens -->
+                <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
+                <span class="txtLink">Mensagens</span>
+            </a>
+        </li>
+        <li class="itemMenu">
+            <a href="LogoutCliente.php">
+                <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
+                <span class="txtLink">Sair</span>
+            </a>
+        </li>
+    </ul>
+</nav>
 
-        </nav> 
 
         <div class="row me-0 inicioPage d-flex justify-content-center BGblob">
             <div class="col d-flex justify-content-center flex-column ">

@@ -120,6 +120,8 @@ if (isset($_SESSION['id_trabalhador'])) {
             <div class="col me-0 pe-0 imgfundo">
                 <img src="../../img/boasvindasTrabalhador.png" alt="" >
             </div>
+            <a href="troca_mensagens_trabalhador.php?id_cliente=<?php echo $id_cliente; ?>">Ver Mensagens com o Cliente</a>
+
        </div>
     
        <div class="row me-0 d-flex justify-content-center fundocarrossel">

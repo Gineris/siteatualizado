@@ -60,6 +60,21 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
     echo 'Trabalhador não encontrado.';
     exit;
 }
+// Inserir mensagem inicial se o formulário for enviado
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $mensagem = $conn->real_escape_string($_POST['mensagem']);
+
+    $sql = "INSERT INTO mensagens (id_cliente, id_trabalhador, mensagem, remetente) 
+            VALUES ('$id_cliente', '$id_trabalhador', '$mensagem', 'cliente')";
+    
+    if ($conn->query($sql) === TRUE) {
+        // Redirecionar para a tela de troca de mensagens
+        header("Location: troca_mensagens.php?id_trabalhador=$id_trabalhador");
+        exit();
+    } else {
+        echo "Erro: " . $conn->error;
+    }
+}
 ?>
 <style>
     nav.menuLateral{
@@ -91,42 +106,50 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
 
     <main>
     <nav class="menuLateral">
-            <div class="IconExpandir">
-                <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
-            </div>
-            <ul style="padding-left: 0rem;">
-                <li class="itemMenu">
-                    <a href="homeClienteLogado.php">
-                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                        <span class="txtLink">Início</span>
-                    </a>
-                </li>
-                <li class="itemMenu">
-                    <a href="EditarPerfilCliente.php">
-                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-                        <span class="txtLink">Configurações</span>
-                    </a>
-                </li>
-                <li class="itemMenu ativo">
-                    <a href="Categorias.php">
-                        <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
-                        <span class="txtLink">Pesquisar</span>
-                    </a>
-                </li>
-                <li class="itemMenu">
-                    <a href="favorito.php">
-                        <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
-                        <span class="txtLink">Favoritos</span>
-                    </a>
-                </li>
-                <li class="itemMenu">
-                    <a href="LogoutCliente.php">
-                        <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
-                        <span class="txtLink">Sair</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+    <div class="IconExpandir">
+        <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
+    </div>
+
+    <ul style="padding-left: 0rem;">
+        <li class="itemMenu ativo">
+            <a href="homeClienteLogado.php">
+                <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                <span class="txtLink">Início</span>
+            </a>
+        </li>
+        <li class="itemMenu">
+            <a href="EditarPerfilCliente.php">
+                <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                <span class="txtLink">Configurações</span>
+            </a>
+        </li>
+        <li class="itemMenu">
+            <a href="Categorias.php">
+                <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
+                <span class="txtLink">Pesquisar</span>
+            </a>
+        </li>
+        <li class="itemMenu">
+            <a href="favorito.php">
+                <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
+                <span class="txtLink">Favoritos</span>
+            </a>
+        </li>
+        <li class="itemMenu">
+            <a href="historico_conversas_cliente.php"> <!-- Novo item de menu para histórico de mensagens -->
+                <span class="icon"><ion-icon name="chatbubbles-outline"></ion-icon></span>
+                <span class="txtLink">Mensagens</span>
+            </a>
+        </li>
+        <li class="itemMenu">
+            <a href="LogoutCliente.php">
+                <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
+                <span class="txtLink">Sair</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
         <div class="FotoFundo">
             <img src="../../uploads/<?php echo !empty($row['foto_banner']) ? $row['foto_banner'] : '../img/TelaPredefinida.png' ?>" alt="Banner">
             <div class="BlocoPerfilPrincipal">
@@ -194,13 +217,13 @@ if ($row = mysqli_fetch_assoc($resultado_pesquisar)) {
 
          <!-- Formulário para enviar nova mensagem -->
          <div class="EnviarMensagem">
-            <h2>Enviar mensagem</h2>
-            <form action="post_mensagem_cliente.php" method="POST">
-                <input type="hidden" name="id_trabalhador" value="<?php echo $id_trabalhador; ?>">
-                <textarea name="mensagem" rows="4" placeholder="Escreva sua mensagem..."></textarea>
-                <button type="submit">Enviar</button>
-            </form>
-        </div>
+    <h2>Enviar mensagem</h2>
+    <form action="" method="POST">
+        <input type="hidden" name="id_trabalhador" value="<?php echo $id_trabalhador; ?>">
+        <textarea name="mensagem" rows="4" placeholder="Escreva sua mensagem..." required></textarea>
+        <button type="submit">Enviar</button>
+    </form>
+</div>
 
         <!-- <h1>Comentários e Avaliações</h1>
         <div id="reviews">
