@@ -50,86 +50,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JundTask - Seu Perfil</title>
     <link rel="stylesheet" href="../../css/stylePerfil.css">
-    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css">
+
     <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
 </head>
 <style>
-    nav.menuLateral{
-    width: 65px;
-    height: 400px;
+   nav.menuLateral{
+    width: 64px;
+    height: 430px;
     }
+    .menuLateral .icon i {
+    font-size: 34px; /* Ajuste o valor de acordo com o tamanho desejado */
+}
 </style>
 <body>
     <header>
-        <nav class="BarraNav">
-            <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
-            <h1>Seu Perfil</h1>
+    <nav class="menuLateral">
+    <div class="IconExpandir">
+        <!-- <ion-icon name="menu-outline" id="btn-exp"></ion-icon> -->
+        <i class="bi bi-list" id="btn-exp"></i>
+    </div>
 
-            <div class="perfil">
-                <a href="#">
-                <img class="FotoPerfilNav" src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../../img/FotoPerfilGeral.png' ?>" alt="">
-                </a>
-            </div>
-        </nav>
-    </header>
+    <ul style="padding-left: 0rem;">
+        <li class="itemMenu ativo">
+            <a href="homeLogado.php">
+                <span class="icon">
+                    <!-- <ion-icon name="home-outline"></ion-icon> -->
+                    <i class="bi bi-house-door"></i>
+                </span>
+                <span class="txtLink">Início</span>
+            </a>
+        </li>
 
-    <main class=""> 
-        
-        <nav class="menuLateral">
-            <div class="IconExpandir">
-                <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
-            </div>
-
-            <ul style="padding-left: 0rem;">
-                <li class="itemMenu">
-                    <a href="./homeLogado.php">
-                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                        <span class="txtLink">Inicio</span>
-                    </a>
-                </li>
-                <li class="itemMenu ativo">
-                    <a href="./SeuPerfil.php">
-                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
-                        <span class="txtLink">Perfil</span>
-                    </a>
-                </li>
-                <li class="itemMenu">
-                    <a href="./Categorias.php">
-                        <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
-                        <span class="txtLink">Pesquisar</span>
-                    </a>
-                </li>
-                <li class="itemMenu ">
-                    <a href="./EditarPerfil.php">
-                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-                        <span class="txtLink">Configurações</span>
-                    </a>
-                </li>
-                <li class="itemMenu">
-                    <a href="./Logout.php">
-                        <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
-                        <span class="txtLink">Sair</span>
-                    </a>
-                </li>
-                
-            </ul>
-
-        </nav>
-        
+        <li class="itemMenu">
+            <a href="SeuPerfil.php">
+        <span class="icon">
+            <i class="bi bi-person"></i> <!-- Ícone de perfil -->
+        </span>
+        <span class="txtLink">Meu Perfil</span>
+         </a>
+</li>
+        <li class="itemMenu">
+            <a href="EditarPerfil.php">
+                <span class="icon">
+                    <!-- <ion-icon name="settings-outline"></ion-icon> -->
+                    <i class="bi bi-gear"></i>
+                </span>
+                <span class="txtLink">Configurações</span>
+            </a>
+        </li>
+        <li class="itemMenu">
+            <a href="historico_conversas.php"> <!-- Novo item de menu para histórico de mensagens -->
+                <span class="icon">
+                    <!-- <ion-icon name="chatbubbles-outline"></ion-icon> -->
+                    <i class="bi bi-chat"></i>
+                </span>
+                <span class="txtLink">Mensagens</span>
+            </a>
+        </li>
+        <li class="itemMenu">
+            <a href="Logout.php">
+                <span class="icon">
+                    <!-- <ion-icon name="exit-outline"></ion-icon> -->
+                    <i class="bi bi-box-arrow-right"></i>
+                </span>
+                <span class="txtLink">Sair</span>
+            </a>
+        </li>
+    </ul>
+</nav>
         <div class="FotoFundo">
             <!-- foto background -->
             <img src="../../uploads/<?php echo !empty($row['foto_banner']) ? $row['foto_banner'] : '../img/TelaPredefinida.png' ?>" alt="">
             <div class="BlocoPerfilPrincipal">
                 <div class="FotoPerfil"><img src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../../img/images100x100.png' ?>" alt=""></div>
                 <div class="NomeTrabalhador"> <?php echo $row['nome']; ?></div>
-                <!-- <div class="Categoria"><p>Confeiteira</p></div> -->
-                <div class="Avaliacao">
-                    <ion-icon name="star"></ion-icon>   
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                </div>
                 <div class="tel">
                     <p><?php echo $row['contato'];?></p>
                 </div>

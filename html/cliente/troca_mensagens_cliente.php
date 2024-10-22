@@ -46,6 +46,12 @@ $sql_mensagens = "SELECT * FROM mensagens
 $resultado_mensagens = $conn->query($sql_mensagens);
 ?>
 
+<style>
+    nav.menuLateral{
+    width: 65px;
+    height: 420px;
+    }
+</style>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -62,9 +68,6 @@ $resultado_mensagens = $conn->query($sql_mensagens);
         <nav class="BarraNav">
             <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
             <div class="perfil">
-                <a href="#">
-                    <img class="FotoPerfilNav" src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/FotoPerfilGeral.png' ?>" alt="">
-                </a>
             </div>
         </nav>
     </header>

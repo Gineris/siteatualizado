@@ -14,10 +14,7 @@
         <nav class="BarraNav">
             <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
             <div class="perfil">
-                <a href="#">
-                <ion-icon name="person"></ion-icon>
-                </a>
-            </div>
+            
         </nav>
     </header>
 
@@ -59,7 +56,7 @@
     </div>
     <div class="card">
         <a href="Solicitacoes.php" class="card-button">
-            <img src="../../img/aprovartrabalhadores.png" alt="Imagem do Card" class="card-image">
+            <img src="../../img/job-application.png" alt="Imagem do Card" class="card-image">
             <div class="card-content">
                 <h2 class="card-title">Verificar solicitações</h2>
             </div>
@@ -67,7 +64,7 @@
     </div>
     <div class="card">
         <a href="./reclamacaoTrabalhador.php" class="card-button">
-            <img src="../../img/aprovartrabalhadores.png" alt="Imagem do Card" class="card-image">
+            <img src="../../img/satisfaction.png" alt="Imagem do Card" class="card-image">
             <div class="card-content">
                 <h2 class="card-title">FeedBacks trabalhadores</h2>
             </div>
@@ -75,7 +72,7 @@
     </div>
     <div class="card">
         <a href="./reclamacaoCliente.php" class="card-button">
-            <img src="../../img/aprovartrabalhadores.png" alt="Imagem do Card" class="card-image">
+            <img src="../../img/satisfaction.png" alt="Imagem do Card" class="card-image">
             <div class="card-content">
                 <h2 class="card-title">FeedBacks clientes</h2>
             </div>
@@ -89,7 +86,7 @@
         <p style="margin-bottom: 0rem;">N</p>
         <p style="margin-bottom: 0rem;">Terms of Service</p>
         <p style="margin-bottom: 0rem;">Privacy Policy</p>
-        <p style="margin-bottom: 0rem;">@2022yanliudesign</p>
+        <p style="margin-bottom: 0rem;">@2024nerisdesign</p>
     </footer>
     
 
