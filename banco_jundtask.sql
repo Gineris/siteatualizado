@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04/10/2024 às 14:16
+-- Tempo de geração: 22/10/2024 às 03:19
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.0.30
 
@@ -150,7 +150,8 @@ CREATE TABLE `cliente` (
 INSERT INTO `cliente` (`id_cliente`, `nome`, `email`, `senha`, `foto_perfil`, `tipo`, `status`, `id_area`, `contato`, `data_nasc`) VALUES
 (15, 'Maria', 'Maria12@gmail.com', '$2y$10$IQzkVoUhJjeZ1vZP6t5bp.KXuMji2zskEdJB1njGfU5FVIw1xS6jC', '../uploads/download.jfif', '', '', 7, '12121212121', '1981-05-13'),
 (16, 'Giovana Neris', 'giovananeris942@gmail.com', '$2y$10$iVzEfkTCsahEhOAkk4NqHeVrjCnJLNtDAL8YvaRdyKeM02PfUNI5u', '../uploads/download.jfif', '', '', 6, '12121212121', '2006-08-28'),
-(17, 'louco mto louco', 'louco3@gmail.com', '$2y$10$XohQicz/RGpGpda2VBqBgO/aeMpLNTQ/XV2mS5nFSVL3s1RfmKWCq', '../uploads/images.jpg', '', '', 1, '11111111111', '2000-12-12');
+(17, 'louco mto louco', 'louco3@gmail.com', '$2y$10$XohQicz/RGpGpda2VBqBgO/aeMpLNTQ/XV2mS5nFSVL3s1RfmKWCq', '../uploads/images.jpg', '', '', 1, '11111111111', '2000-12-12'),
+(18, 'luana', 'luana@gmail.com', '$2y$10$fyCrOn/ZohSj70IjzjpGoe2exkGfqJ/LP.FCAH0LtySgkJ.VxTiKK', '../uploads/fotoPerfilGeral.png', '', '', 2, '11111111111', '2000-08-28');
 
 -- --------------------------------------------------------
 
@@ -225,7 +226,13 @@ CREATE TABLE `curtidas` (
 INSERT INTO `curtidas` (`id_curtida`, `data_curtida`, `id_cliente`, `id_trabalhador`) VALUES
 (8, 0, 16, 20),
 (9, 0, 17, 24),
-(10, 0, 17, 43);
+(10, 0, 17, 43),
+(11, 0, 16, 23),
+(12, 0, 16, 24),
+(13, 0, 16, 27),
+(14, 0, 18, 23),
+(15, 0, 18, 24),
+(16, 0, 18, 27);
 
 -- --------------------------------------------------------
 
@@ -245,7 +252,8 @@ CREATE TABLE `favoritos` (
 
 INSERT INTO `favoritos` (`id_favorito`, `id_trabalhador`, `id_cliente`) VALUES
 (6, 20, 16),
-(7, 24, 17);
+(7, 24, 17),
+(8, 27, 16);
 
 -- --------------------------------------------------------
 
@@ -255,12 +263,30 @@ INSERT INTO `favoritos` (`id_favorito`, `id_trabalhador`, `id_cliente`) VALUES
 
 CREATE TABLE `mensagens` (
   `id_mensagem` int(11) NOT NULL,
-  `id_conversa` int(11) NOT NULL,
-  `id_remetende` int(11) NOT NULL,
-  `id_destinatario` int(11) NOT NULL,
-  `data_inicio` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `mensagem` int(11) NOT NULL
+  `id_cliente` int(11) DEFAULT NULL,
+  `id_trabalhador` int(11) DEFAULT NULL,
+  `mensagem` text DEFAULT NULL,
+  `remetente` enum('cliente','trabalhador') DEFAULT NULL,
+  `data_envio` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `mensagens`
+--
+
+INSERT INTO `mensagens` (`id_mensagem`, `id_cliente`, `id_trabalhador`, `mensagem`, `remetente`, `data_envio`) VALUES
+(1, 16, 24, 'oi', 'cliente', '2024-10-21 13:11:24'),
+(2, 16, 24, 'oi', 'cliente', '2024-10-21 13:11:52'),
+(3, 16, 24, 'oi', 'cliente', '2024-10-21 13:12:04'),
+(4, 16, 24, 'oi', 'cliente', '2024-10-21 13:14:00'),
+(5, 16, 24, 'oi\r\n', 'cliente', '2024-10-21 13:26:00'),
+(6, 16, 24, 'oi, gostaria de fazer um orçamento', 'cliente', '2024-10-21 13:27:46'),
+(7, 16, 24, 'ola meu orçamento é de 100 reais a diaria', 'trabalhador', '2024-10-21 13:41:20'),
+(8, 16, 24, 'para quais dias vc deseja?\r\n', 'trabalhador', '2024-10-21 13:48:06'),
+(9, 16, 24, 'oi\r\n', 'cliente', '2024-10-21 14:53:34'),
+(10, 16, 24, 'oi\r\n', 'cliente', '2024-10-21 14:55:30'),
+(11, 16, 24, 'oi', 'cliente', '2024-10-21 14:55:59'),
+(12, 16, 24, 'li\r\n', 'cliente', '2024-10-21 14:58:50');
 
 -- --------------------------------------------------------
 
@@ -460,9 +486,8 @@ ALTER TABLE `favoritos`
 --
 ALTER TABLE `mensagens`
   ADD PRIMARY KEY (`id_mensagem`),
-  ADD KEY `id_conversa` (`id_conversa`),
-  ADD KEY `id_remetende` (`id_remetende`),
-  ADD KEY `id_destinatario` (`id_destinatario`);
+  ADD KEY `id_cliente` (`id_cliente`),
+  ADD KEY `id_trabalhador` (`id_trabalhador`);
 
 --
 -- Índices de tabela `reclamacao_cliente`
@@ -518,7 +543,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de tabela `comentarios`
@@ -536,19 +561,19 @@ ALTER TABLE `conversas`
 -- AUTO_INCREMENT de tabela `curtidas`
 --
 ALTER TABLE `curtidas`
-  MODIFY `id_curtida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_curtida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `favoritos`
 --
 ALTER TABLE `favoritos`
-  MODIFY `id_favorito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_favorito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `mensagens`
 --
 ALTER TABLE `mensagens`
-  MODIFY `id_mensagem` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_mensagem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `reclamacao_cliente`
@@ -619,9 +644,8 @@ ALTER TABLE `favoritos`
 -- Restrições para tabelas `mensagens`
 --
 ALTER TABLE `mensagens`
-  ADD CONSTRAINT `mensagens_ibfk_1` FOREIGN KEY (`id_conversa`) REFERENCES `mensagens` (`id_mensagem`),
-  ADD CONSTRAINT `mensagens_ibfk_2` FOREIGN KEY (`id_remetende`) REFERENCES `mensagens` (`id_mensagem`),
-  ADD CONSTRAINT `mensagens_ibfk_3` FOREIGN KEY (`id_destinatario`) REFERENCES `mensagens` (`id_mensagem`);
+  ADD CONSTRAINT `mensagens_ibfk_1` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`),
+  ADD CONSTRAINT `mensagens_ibfk_2` FOREIGN KEY (`id_trabalhador`) REFERENCES `trabalhador` (`id_trabalhador`);
 
 --
 -- Restrições para tabelas `reclamacao_cliente`
