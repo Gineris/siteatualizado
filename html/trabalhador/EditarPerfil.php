@@ -202,11 +202,17 @@ ul li.itemMenu a .icon > i{
         </li>
     </ul>
 </nav>
-        <?php if ($atualizacaoPendente): ?>
-            <div class="MensagemAtualizacao">
-                <strong><p>Você já possui uma solicitação de atualização pendente, aguardando aprovação do administrador.</p></strong>
-            </div>
-        <?php endif; ?>
+<?php if ($atualizacaoPendente): ?>
+    <div class="MensagemAtualizacao">
+        <strong>
+            <p>
+                <img src="../../img/loading.gif" alt="Carregando" style="width: 70px; vertical-align: middle;">
+                Você já possui uma solicitação de atualização pendente, aguardando aprovação do administrador.
+            </p>
+        </strong>
+    </div>
+<?php endif; ?>
+
 
                 <div class="container">
                     <div class="row me-0 mb-5 topoPerfil">

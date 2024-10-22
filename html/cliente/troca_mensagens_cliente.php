@@ -159,17 +159,14 @@ $resultado_mensagens = $conn->query($sql_mensagens);
         <button type="submit">Enviar</button>
     </form>
 
-    <div class="navegacao">
-        <a href="historico_conversas_cliente.php">Voltar ao histórico de conversas</a>
-    </div>
-</div>
+  
 
 
     <footer class="d-flex justify-content-center">
         <p style="margin-bottom: 0rem;">N</p>
         <p style="margin-bottom: 0rem;">Terms of Service</p>
         <p style="margin-bottom: 0rem;">Privacy Policy</p>
-        <p style="margin-bottom: 0rem;">@2022yanliudesign</p>
+        <p style="margin-bottom: 0rem;">@2024nerisdesign</p>
     </footer>
     <script>
    document.addEventListener("DOMContentLoaded", function() {
