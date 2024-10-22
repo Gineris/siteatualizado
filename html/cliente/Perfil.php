@@ -238,7 +238,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
          <!-- Formulário para enviar nova mensagem -->
          <div class="EnviarMensagem">
     <h2>Enviar mensagem</h2>
-    <form action="" method="POST">
+    <form action="./troca_mensagens_cliente.php" method="GET">
         <input type="hidden" name="id_trabalhador" value="<?php echo $id_trabalhador; ?>">
         <textarea name="mensagem" rows="4" placeholder="Escreva sua mensagem..." required></textarea>
         <button type="submit">Enviar</button>

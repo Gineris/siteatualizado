@@ -34,6 +34,8 @@ if ($resultado_historico === false) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Histórico de Conversas</title>
+    <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../../css/estilos.css"> <!-- Ajuste o caminho conforme necessário -->
 </head>
 <body>
@@ -66,7 +68,7 @@ if ($resultado_historico === false) {
     </div>
 
     <div class="navegacao">
-        <a href="index.php">Voltar à página inicial</a>
+        <a href="./homeClienteLogado.php">Voltar à página inicial</a>
     </div>
 </div>
 
