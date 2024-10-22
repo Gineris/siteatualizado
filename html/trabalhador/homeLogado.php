@@ -43,7 +43,7 @@ if (isset($_SESSION['id_trabalhador'])) {
 <style>
     nav.menuLateral{
     width: 64px;
-    height: 380px;
+    height: 430px;
     }
 </style>
 <!DOCTYPE html>
@@ -79,7 +79,10 @@ if (isset($_SESSION['id_trabalhador'])) {
             <ul style="padding-left: 0rem;">
                 <li class="itemMenu ativo">
                     <a href="./homeLogado">
-                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="icon">
+                            <!-- <ion-icon name="home-outline"></ion-icon> -->
+                            <i class="bi bi-0-circle"></i>
+                        </span>
                         <span class="txtLink">Inicio</span>
                     </a>
                 </li>
@@ -93,6 +96,12 @@ if (isset($_SESSION['id_trabalhador'])) {
                     <a href="./Categorias.php">
                         <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
                         <span class="txtLink">Pesquisar</span>
+                    </a>
+                </li>
+                <li class="itemMenu">
+                    <a href="./favoritotrabalhador.php">
+                        <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
+                        <span class="txtLink">Favoritos</span>
                     </a>
                 </li>
                 <li class="itemMenu">
@@ -120,8 +129,6 @@ if (isset($_SESSION['id_trabalhador'])) {
             <div class="col me-0 pe-0 imgfundo">
                 <img src="../../img/boasvindasTrabalhador.png" alt="" >
             </div>
-            <!-- <a href="troca_mensagens_trabalhador.php?id_cliente=<?php echo $id_cliente; ?>">Ver Mensagens com o Cliente</a> -->
-
        </div>
     
        <div class="row me-0 d-flex justify-content-center fundocarrossel">
