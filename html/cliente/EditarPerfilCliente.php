@@ -15,7 +15,7 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
 <style>
     nav.menuLateral{
     width: 65px;
-    height: 370px;
+    height: 420px;
     }
 </style>
 
@@ -48,13 +48,13 @@ $row = mysqli_fetch_assoc($resultado_pesquisar);
     </div>
 
     <ul style="padding-left: 0rem;">
-        <li class="itemMenu ativo">
+        <li class="itemMenu ">
             <a href="homeClienteLogado.php">
                 <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                 <span class="txtLink">Início</span>
             </a>
         </li>
-        <li class="itemMenu">
+        <li class="itemMenu ativo">
             <a href="EditarPerfilCliente.php">
                 <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
                 <span class="txtLink">Configurações</span>

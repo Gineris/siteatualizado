@@ -38,7 +38,7 @@ $result_trabalhadores = $conn->query($sql_trabalhadores);
 <style>
     nav.menuLateral {
         width: 65px;
-        height: 370px;
+        height: 420px;
     }
 </style>
 <!DOCTYPE html>
@@ -71,7 +71,7 @@ $result_trabalhadores = $conn->query($sql_trabalhadores);
     </div>
 
     <ul style="padding-left: 0rem;">
-        <li class="itemMenu ativo">
+        <li class="itemMenu ">
             <a href="homeClienteLogado.php">
                 <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
                 <span class="txtLink">Início</span>
@@ -83,7 +83,7 @@ $result_trabalhadores = $conn->query($sql_trabalhadores);
                 <span class="txtLink">Configurações</span>
             </a>
         </li>
-        <li class="itemMenu">
+        <li class="itemMenu ativo">
             <a href="Categorias.php">
                 <span class="icon"><ion-icon name="search-outline"></ion-icon></span>
                 <span class="txtLink">Pesquisar</span>
