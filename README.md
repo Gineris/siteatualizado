@@ -18,6 +18,6 @@
 </p>
 
 <p align="center">
-    ![Tela inicial](https://github.com/user-attachments/assets/f3a2b081-b9fe-4406-9e56-e1f05566ce76)
+    <img src="../.github/logo.png" alt="Image Example" width="400px">
 </p>
 
