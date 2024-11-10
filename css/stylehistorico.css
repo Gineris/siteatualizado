@@ -117,10 +117,10 @@ ul li.itemMenu a .icon > i{
     font-size: 30px;
     padding-left: 5px;
 }
- /* Estilos básicos para a página */
- body {
+/* Estilos básicos da página */
+body {
     font-family: 'Roboto', sans-serif; /* Fonte moderna */
-    background-color: #f0f0f0; /* Fundo suave */
+    background-color: #f0f0f0;
     margin: 0;
     padding: 20px;
 }
@@ -130,89 +130,73 @@ ul li.itemMenu a .icon > i{
     margin: auto;
     background: white;
     padding: 20px;
-    border-radius: 10px; /* Bordas arredondadas */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
-    text-align: center;
-    color: #333;
+/* Histórico de conversas */
+.historico {
+    margin-top: 20px;
 }
 
-.mensagens {
-    max-height: 400px;
-    overflow-y: auto;
-    margin-bottom: 20px;
+/* Card de cliente */
+.CampoEscolhaCliente {
+    margin-bottom: 15px;
+}
+
+.CampoEscolhaCliente a {
+    text-decoration: none; /* Remove sublinhado */
+    color: inherit; /* Mantém a cor do texto padrão */
+    display: flex;
+    align-items: center;
     padding: 15px;
-    border: none;
     border-radius: 10px;
     background-color: #ffffff;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05); /* Sombra interna */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.mensagem {
-    margin-bottom: 15px;
-    padding: 15px;
-    border-radius: 10px;
-    transition: background-color 0.3s ease;
+.CampoEscolhaCliente a:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra mais forte no hover */
+    transform: translateY(-3px); /* Elevação suave no hover */
 }
 
-.mensagem-cliente {
-    background-color: #d6eaf8; /* Azul suave para mensagens do cliente */
-    align-self: flex-start;
-}
-
-.mensagem-trabalhador {
-    background-color: #fdebd0; /* Laranja suave para mensagens do trabalhador */
-    align-self: flex-end;
-}
-
-.mensagem p {
-    margin: 0;
-    color: #333;
-}
-
-.data {
-    font-size: 0.8em;
-    color: #777;
-    margin-top: 5px;
-}
-
-.EnviarMensagem {
-    margin-top: 20px;
+/* Estilo da caixa do cliente */
+.CardBox {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    align-items: center;
 }
 
-textarea {
-    width: 100%;
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+.imagem img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Faz a imagem ser redonda */
+    margin-right: 15px;
+    object-fit: cover; /* Mantém a proporção da imagem */
+}
+
+.txtCliente h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 0;
+}
+
+/* Texto para quando não há conversas */
+.tituloDEnaoEncontrado p {
     font-size: 1rem;
-    transition: border-color 0.3s;
+    color: #777;
+    text-align: center;
 }
 
-textarea:focus {
-    border-color: #04074B; /* Cor azul escura ao focar */
-    outline: none;
-}
-
-button {
-    padding: 12px 20px;
-    background-color: #04074B; /* Cor do botão */
-    color: white;
-    border: none;
-    border-radius: 8px;
+/* Navegação */
+.navegacao a {
+    color: #04074B;
+    text-decoration: none;
     font-size: 1rem;
     font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    align-self: flex-end;
+    transition: color 0.3s ease;
 }
 
-button:hover {
-    background-color: #020436; /* Tom mais escuro do azul no hover */
+.navegacao a:hover {
+    color: #020436;
 }

@@ -46,6 +46,12 @@ $sql_mensagens = "SELECT * FROM mensagens
 $resultado_mensagens = $conn->query($sql_mensagens);
 ?>
 
+<style>
+    nav.menuLateral{
+    width: 65px;
+    height: 420px;
+    }
+</style>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -62,9 +68,6 @@ $resultado_mensagens = $conn->query($sql_mensagens);
         <nav class="BarraNav">
             <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
             <div class="perfil">
-                <a href="#">
-                    <img class="FotoPerfilNav" src="../../uploads/<?php echo !empty($row['foto_perfil']) ? $row['foto_perfil'] : '../img/FotoPerfilGeral.png' ?>" alt="">
-                </a>
             </div>
         </nav>
     </header>
@@ -156,17 +159,14 @@ $resultado_mensagens = $conn->query($sql_mensagens);
         <button type="submit">Enviar</button>
     </form>
 
-    <div class="navegacao">
-        <a href="historico_conversas_cliente.php">Voltar ao histórico de conversas</a>
-    </div>
-</div>
+  
 
 
     <footer class="d-flex justify-content-center">
         <p style="margin-bottom: 0rem;">N</p>
         <p style="margin-bottom: 0rem;">Terms of Service</p>
         <p style="margin-bottom: 0rem;">Privacy Policy</p>
-        <p style="margin-bottom: 0rem;">@2022yanliudesign</p>
+        <p style="margin-bottom: 0rem;">@2024nerisdesign</p>
     </footer>
     <script>
    document.addEventListener("DOMContentLoaded", function() {

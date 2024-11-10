@@ -27,15 +27,98 @@ if ($resultado_historico === false) {
 }
 ?>
 
+<style>
+    /* Estilos básicos para a página */
+    nav.menuLateral{
+    width: 64px;
+    height: 430px;
+    }
+ 
+
+</style>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Histórico de Conversas</title>
-    <link rel="stylesheet" href="../../css/estilos.css"> <!-- Ajuste o caminho conforme necessário -->
+    <link rel="stylesheet" href="../../css/stylehistorico.css"> <!-- Ajuste o caminho conforme necessário -->
+    <link rel="stylesheet" href="../../css/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css">
+
+</head>
+
+<link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
 </head>
 <body>
+    <header>
+        <nav class="BarraNav">
+            <img src="../../img/LogoJundtaskCompleta.png" alt="Logo JundTask">
+            <div class="perfil">
+                <a href="#">
+                
+                </a>
+            </div>
+        </nav>
+    </header>
+
+         
+<nav class="menuLateral">
+    <div class="IconExpandir">
+        <!-- <ion-icon name="menu-outline" id="btn-exp"></ion-icon> -->
+        <i class="bi bi-list" id="btn-exp"></i>
+    </div>
+
+    <ul style="padding-left: 0rem;">
+        <li class="itemMenu ativo">
+            <a href="homeLogado.php">
+                <span class="icon">
+                    <!-- <ion-icon name="home-outline"></ion-icon> -->
+                    <i class="bi bi-house-door"></i>
+                </span>
+                <span class="txtLink">Início</span>
+            </a>
+        </li>
+
+        <li class="itemMenu">
+            <a href="SeuPerfil.php">
+        <span class="icon">
+            <i class="bi bi-person"></i> <!-- Ícone de perfil -->
+        </span>
+        <span class="txtLink">Meu Perfil</span>
+         </a>
+</li>
+        <li class="itemMenu">
+            <a href="EditarPerfil.php">
+                <span class="icon">
+                    <!-- <ion-icon name="settings-outline"></ion-icon> -->
+                    <i class="bi bi-gear"></i>
+                </span>
+                <span class="txtLink">Configurações</span>
+            </a>
+        </li>
+        <li class="itemMenu">
+            <a href="historico_conversas.php"> <!-- Novo item de menu para histórico de mensagens -->
+                <span class="icon">
+                    <!-- <ion-icon name="chatbubbles-outline"></ion-icon> -->
+                    <i class="bi bi-chat"></i>
+                </span>
+                <span class="txtLink">Mensagens</span>
+            </a>
+        </li>
+        <li class="itemMenu">
+            <a href="Logout.php">
+                <span class="icon">
+                    <!-- <ion-icon name="exit-outline"></ion-icon> -->
+                    <i class="bi bi-box-arrow-right"></i>
+                </span>
+                <span class="txtLink">Sair</span>
+            </a>
+        </li>
+    </ul>
+</nav>
 
 <div class="container">
     <h2>Histórico de Conversas</h2>
@@ -47,11 +130,10 @@ if ($resultado_historico === false) {
                     <a href="troca_mensagens_trabalhador.php?id_cliente=<?php echo $row['id_cliente']; ?>">
                         <div class="CardBox"> 
                             <div class="imagem">
-                                <img src="../../uploads/<?php echo $row['foto_perfil']; ?>" alt="">
+                                <img src="../../uploads/<?php echo $row['foto_perfil']; ?>" alt="Foto do Cliente">
                             </div>
                             <div class="txtCliente">
                                 <h3><?php echo htmlspecialchars($row['nome']); ?></h3>
-
                             </div>
                         </div>
                     </a>
@@ -63,76 +145,14 @@ if ($resultado_historico === false) {
             </div>
         <?php endif; ?>
     </div>
-
-    <div class="navegacao">
-        <a href="index.php">Voltar à página inicial</a>
-    </div>
 </div>
 
-<style>
-    /* Estilos básicos para a página */
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 20px;
-        background-color: #f8f8f8;
-    }
-    .container {
-        max-width: 800px;
-        margin: auto;
-        background: white;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    .historico {
-        display: flex;
-        flex-direction: column;
-    }
-    .CampoEscolhaCliente {
-        margin-bottom: 15px;
-    }
-    .CardBox {
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: #fff;
-        text-decoration: none;
-        color: inherit;
-    }
-    .imagem {
-        margin-right: 10px;
-    }
-    .imagem img {
-        width: 50px; /* Ajuste o tamanho conforme necessário */
-        height: 50px; /* Ajuste o tamanho conforme necessário */
-        border-radius: 50%;
-    }
-    .txtCliente h3 {
-        margin: 0;
-        font-size: 18px;
-    }
-    .txtCliente p {
-        margin: 0;
-        font-size: 14px;
-    }
-    .tituloDEnaoEncontrado {
-        color: #888;
-    }
-    .navegacao {
-        margin-top: 20px;
-    }
-    .navegacao a {
-        margin-right: 10px;
-        text-decoration: none;
-        color: #007bff;
-    }
-    .navegacao a:hover {
-        text-decoration: underline;
-    }
-</style>
+
+
+<script src="../../js/funcaoMenuLateral.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

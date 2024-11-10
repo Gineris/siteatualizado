@@ -19,10 +19,108 @@ $atualizacaoPendente = $result_edit->num_rows > 0;
 
 ?>
 <style>
-    nav.menuLateral{
-     width: 50px;
-     height: 300px;
-    }
+   
+    .BarraNav{
+    background-color: #FFF;
+    padding:15px 35px 5px 15px;
+    display: flex;
+    justify-content: space-between ;
+}
+.BarraNav >img{
+    width: 210px;
+    margin-top: -10px;
+}
+
+.BarraNav a{
+    text-decoration: none ;
+    color: #EC5C14;
+    font: 400 1.1rem "M PLUS 1p", sans-serif ;
+}
+.FotoPerfil{
+    width: 50px;
+    height: 50px;
+    border: solid 3px var(--corPrimaria-2);
+    border-radius: 50%;
+    padding: 1px;
+
+}
+.menuLateral .icon i {
+    font-size: 34px; /* Ajuste o valor de acordo com o tamanho desejado */
+
+}
+.menuLateral .icon i {
+    font-size: 34px; /* Ajuste o valor de acordo com o tamanho desejado */
+}
+nav.menuLateral{
+    width: 64px;
+     height: 430px;
+    background-color: #04074B;
+    padding: 30px 0 40px 1%;
+    box-shadow: 3px 0 0 #ED5C15;
+    border-radius: 0 20px 20px 0;
+    z-index: 100;
+
+    position: fixed;
+    top: 15%;
+    left: 0;
+    overflow: hidden; 
+    transition: .3s;
+}
+nav.menuLateral.expandir{
+    width: 300px;
+}
+.IconExpandir{
+    width: 100%;
+    padding-left: 7px;
+}
+.IconExpandir > i{
+    color: #ED5C15;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+ul{
+    height: 100%;
+    list-style-type: none;
+    padding-left: 3%;
+    
+}
+
+ul li.itemMenu a:hover{
+    background: #ED5C15;
+    color: #FFF;
+    border-radius: 9px 0px 0px 9px;
+}
+
+ul li.itemMenu a{
+    color: #ED5C15;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 10px 1%;
+    display: flex;
+    margin-bottom: 10px;
+    line-height: 30px;
+    transition: .4s;
+}
+ul li.ativo a{
+    background-color: #ED5C15;
+    color: #FFF;
+    border-radius: 9px 0px 0px 9px;
+}
+
+ul li.itemMenu a .txtLink{
+    margin-left: 70px;
+    transition: .6s;
+    opacity: 0;
+}
+nav.menuLateral.expandir .txtLink{
+    margin-left: 40px;
+    opacity: 1;
+}
+ul li.itemMenu a .icon > i{
+    font-size: 30px;
+    padding-left: 5px;
+}
 </style>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -31,8 +129,9 @@ $atualizacaoPendente = $result_edit->num_rows > 0;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JundTask - Editar Pefil</title>
     <link rel="stylesheet" href="../../css/styleEditarPerfil.css">
-    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap-grid.min.css">
-    <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
     <header>
@@ -49,51 +148,71 @@ $atualizacaoPendente = $result_edit->num_rows > 0;
     </header>
 
     <main class=""> 
-        <nav class="menuLateral">
-            <div class="IconExpandir">
-                <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
-            </div>
+    <nav class="menuLateral">
+    <div class="IconExpandir">
+        <!-- <ion-icon name="menu-outline" id="btn-exp"></ion-icon> -->
+        <i class="bi bi-list" id="btn-exp"></i>
+    </div>
 
-            <ul>
-                <li class="itemMenu">
-                    <a href="homeLogado.php">
-                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
-                        <span class="txtLink">Inicio</span>
-                    </a>
-                </li>
-                <li class="itemMenu">
-                    <a href="SeuPerfil.php">
-                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
-                        <span class="txtLink">Perfil</span>
-                    </a>
-                </li>
-                <li class="itemMenu">
-                    <a href="Categorias.php">
-                        <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
-                        <span class="txtLink">Pesquisar</span>
-                    </a>
-                </li>   
-                <li class="itemMenu ativo">
-                    <a href="EditarPerfil.php">
-                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-                        <span class="txtLink">Configurações</span>
-                    </a>
-                </li>
-                <li class="itemMenu">
-                    <a href="Logout.php">
-                        <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
-                        <span class="txtLink">Sair</span>
-                    </a>
-                </li>
-                
-            </ul>
+    <ul style="padding-left: 0rem;">
+        <li class="itemMenu ativo">
+            <a href="homeLogado.php">
+                <span class="icon">
+                    <!-- <ion-icon name="home-outline"></ion-icon> -->
+                    <i class="bi bi-house-door"></i>
+                </span>
+                <span class="txtLink">Início</span>
+            </a>
+        </li>
 
-        </nav>
-        <?php if ($atualizacaoPendente): ?>
-            <div class="MensagemAtualizacao">
-                <strong><p>Você já possui uma solicitação de atualização pendente, aguardando aprovação do administrador.</p></strong>
-            </div>
-        <?php endif; ?>
+        <li class="itemMenu">
+            <a href="SeuPerfil.php">
+        <span class="icon">
+            <i class="bi bi-person"></i> <!-- Ícone de perfil -->
+        </span>
+        <span class="txtLink">Meu Perfil</span>
+         </a>
+</li>
+        <li class="itemMenu">
+            <a href="EditarPerfil.php">
+                <span class="icon">
+                    <!-- <ion-icon name="settings-outline"></ion-icon> -->
+                    <i class="bi bi-gear"></i>
+                </span>
+                <span class="txtLink">Configurações</span>
+            </a>
+        </li>
+        <li class="itemMenu">
+            <a href="historico_conversas.php"> <!-- Novo item de menu para histórico de mensagens -->
+                <span class="icon">
+                    <!-- <ion-icon name="chatbubbles-outline"></ion-icon> -->
+                    <i class="bi bi-chat"></i>
+                </span>
+                <span class="txtLink">Mensagens</span>
+            </a>
+        </li>
+        <li class="itemMenu">
+            <a href="Logout.php">
+                <span class="icon">
+                    <!-- <ion-icon name="exit-outline"></ion-icon> -->
+                    <i class="bi bi-box-arrow-right"></i>
+                </span>
+                <span class="txtLink">Sair</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+<?php if ($atualizacaoPendente): ?>
+    <div class="MensagemAtualizacao">
+        <strong>
+            <p>
+                <img src="../../img/loading.gif" alt="Carregando" style="width: 70px; vertical-align: middle;">
+                Você já possui uma solicitação de atualização pendente, aguardando aprovação do administrador.
+            </p>
+        </strong>
+    </div>
+<?php endif; ?>
+
 
                 <div class="container">
                     <div class="row me-0 mb-5 topoPerfil">

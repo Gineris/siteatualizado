@@ -45,6 +45,9 @@ if (isset($_SESSION['id_trabalhador'])) {
     width: 64px;
     height: 430px;
     }
+    .menuLateral .icon i {
+    font-size: 34px; /* Ajuste o valor de acordo com o tamanho desejado */
+}
 </style>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -53,7 +56,9 @@ if (isset($_SESSION['id_trabalhador'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JundTask - Home Trabalhador</title>
     <link rel="stylesheet" href="../../css/styleHomeLogado.css">
-    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css">
 
     <link rel="shortcut icon" href="../../img/logo@2x.png" type="image/x-icon">
 </head>
@@ -71,56 +76,60 @@ if (isset($_SESSION['id_trabalhador'])) {
 
     <main class=""> 
         
-        <nav class="menuLateral">
-            <div class="IconExpandir">
-                <ion-icon name="menu-outline" id="btn-exp"></ion-icon>
-            </div>
+    <nav class="menuLateral">
+    <div class="IconExpandir">
+        <!-- <ion-icon name="menu-outline" id="btn-exp"></ion-icon> -->
+        <i class="bi bi-list" id="btn-exp"></i>
+    </div>
 
-            <ul style="padding-left: 0rem;">
-                <li class="itemMenu ativo">
-                    <a href="./homeLogado">
-                        <span class="icon">
-                            <!-- <ion-icon name="home-outline"></ion-icon> -->
-                            <i class="bi bi-0-circle"></i>
-                        </span>
-                        <span class="txtLink">Inicio</span>
-                    </a>
-                </li>
-                <li class="itemMenu">
-                    <a href="./SeuPerfil.php">
-                        <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
-                        <span class="txtLink">Perfil</span>
-                    </a>
-                </li>
-                <li class="itemMenu ">
-                    <a href="./Categorias.php">
-                        <span class="icon"><ion-icon name="search-outline"></ion-icon></ion-icon></span>
-                        <span class="txtLink">Pesquisar</span>
-                    </a>
-                </li>
-                <li class="itemMenu">
-                    <a href="./favoritotrabalhador.php">
-                        <span class="icon"><ion-icon name="heart-outline"></ion-icon></span>
-                        <span class="txtLink">Favoritos</span>
-                    </a>
-                </li>
-                <li class="itemMenu">
-                    <a href="./EditarPerfil.php">
-                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
-                        <span class="txtLink">Configurações</span>
-                    </a>
-                </li>
-                <li class="itemMenu">
-                    <a href="./Logout.php">
-                        <span class="icon"><ion-icon name="exit-outline"></ion-icon></span>
-                        <span class="txtLink">Sair</span>
-                    </a>
-                </li>
-                
-            </ul>
+    <ul style="padding-left: 0rem;">
+        <li class="itemMenu ativo">
+            <a href="homeLogado.php">
+                <span class="icon">
+                    <!-- <ion-icon name="home-outline"></ion-icon> -->
+                    <i class="bi bi-house-door"></i>
+                </span>
+                <span class="txtLink">Início</span>
+            </a>
+        </li>
 
-        </nav> 
-
+        <li class="itemMenu">
+            <a href="SeuPerfil.php">
+        <span class="icon">
+            <i class="bi bi-person"></i> <!-- Ícone de perfil -->
+        </span>
+        <span class="txtLink">Meu Perfil</span>
+         </a>
+</li>
+        <li class="itemMenu">
+            <a href="EditarPerfil.php">
+                <span class="icon">
+                    <!-- <ion-icon name="settings-outline"></ion-icon> -->
+                    <i class="bi bi-gear"></i>
+                </span>
+                <span class="txtLink">Configurações</span>
+            </a>
+        </li>
+        <li class="itemMenu">
+            <a href="historico_conversas.php"> <!-- Novo item de menu para histórico de mensagens -->
+                <span class="icon">
+                    <!-- <ion-icon name="chatbubbles-outline"></ion-icon> -->
+                    <i class="bi bi-chat"></i>
+                </span>
+                <span class="txtLink">Mensagens</span>
+            </a>
+        </li>
+        <li class="itemMenu">
+            <a href="Logout.php">
+                <span class="icon">
+                    <!-- <ion-icon name="exit-outline"></ion-icon> -->
+                    <i class="bi bi-box-arrow-right"></i>
+                </span>
+                <span class="txtLink">Sair</span>
+            </a>
+        </li>
+    </ul>
+</nav>
         <div class="row me-0 inicioPage d-flex justify-content-center BGblob">
             <div class="col d-flex justify-content-center flex-column ">
                 <h1>Seja Bem-vindo(a)! <br> <?php echo $row['nome']; ?></h1>

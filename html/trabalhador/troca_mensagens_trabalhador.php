@@ -57,7 +57,11 @@ if ($resultado_mensagens === false) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Troca de Mensagens</title>
-    <link rel="stylesheet" href="../../css/estilos.css"> <!-- Ajuste o caminho conforme necessário -->
+    <link rel="stylesheet" href="../../css/stylemensagem.css"> <!-- Ajuste o caminho conforme necessário -->
+    <link rel="stylesheet" href="../../css/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../bootstrap-5.3.3-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css">
+
     <script>
         function scrollToBottom() {
             var mensagensContainer = document.getElementById('mensagens');
@@ -68,7 +72,60 @@ if ($resultado_mensagens === false) {
     </script>
 </head>
 <body>
+<nav class="menuLateral">
+    <div class="IconExpandir">
+        <!-- <ion-icon name="menu-outline" id="btn-exp"></ion-icon> -->
+        <i class="bi bi-list" id="btn-exp"></i>
+    </div>
 
+    <ul style="padding-left: 0rem;">
+        <li class="itemMenu ativo">
+            <a href="homeLogado.php">
+                <span class="icon">
+                    <!-- <ion-icon name="home-outline"></ion-icon> -->
+                    <i class="bi bi-house-door"></i>
+                </span>
+                <span class="txtLink">Início</span>
+            </a>
+        </li>
+
+        <li class="itemMenu">
+            <a href="SeuPerfil.php">
+        <span class="icon">
+            <i class="bi bi-person"></i> <!-- Ícone de perfil -->
+        </span>
+        <span class="txtLink">Meu Perfil</span>
+         </a>
+</li>
+        <li class="itemMenu">
+            <a href="EditarPerfil.php">
+                <span class="icon">
+                    <!-- <ion-icon name="settings-outline"></ion-icon> -->
+                    <i class="bi bi-gear"></i>
+                </span>
+                <span class="txtLink">Configurações</span>
+            </a>
+        </li>
+        <li class="itemMenu">
+            <a href="historico_conversas.php"> <!-- Novo item de menu para histórico de mensagens -->
+                <span class="icon">
+                    <!-- <ion-icon name="chatbubbles-outline"></ion-icon> -->
+                    <i class="bi bi-chat"></i>
+                </span>
+                <span class="txtLink">Mensagens</span>
+            </a>
+        </li>
+        <li class="itemMenu">
+            <a href="Logout.php">
+                <span class="icon">
+                    <!-- <ion-icon name="exit-outline"></ion-icon> -->
+                    <i class="bi bi-box-arrow-right"></i>
+                </span>
+                <span class="txtLink">Sair</span>
+            </a>
+        </li>
+    </ul>
+</nav>
 <div class="container">
     <h2>Troca de Mensagens</h2>
     
@@ -94,84 +151,25 @@ if ($resultado_mensagens === false) {
             <button type="submit">Enviar</button>
         </form>
     </div>
-    
-    <div class="navegacao">
-        <a href="index.php">Voltar à página inicial</a>
-    </div>
 </div>
 
 <style>
     /* Estilos básicos para a página */
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 20px;
-        background-color: #f8f8f8;
+    nav.menuLateral{
+    width: 64px;
+    height: 430px;
     }
-    .container {
-        max-width: 800px;
-        margin: auto;
-        background: white;
-        padding: 20px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-    .mensagens {
-        max-height: 400px;
-        overflow-y: auto;
-        margin-bottom: 20px;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: #f9f9f9;
-    }
-    .mensagem {
-        margin-bottom: 10px;
-        padding: 10px;
-        border-radius: 5px;
-    }
-    .mensagem-cliente {
-        background-color: #d1e7dd;
-    }
-    .mensagem-trabalhador {
-        background-color: #f8d7da;
-    }
-    .data {
-        font-size: 0.8em;
-        color: #777;
-    }
-    .EnviarMensagem {
-        margin-top: 20px;
-    }
-    textarea {
-        width: 100%;
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-    }
-    button {
-        padding: 10px 15px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    button:hover {
-        background-color: #0056b3;
-    }
-    .navegacao {
-        margin-top: 20px;
-    }
-    .navegacao a {
-        margin-right: 10px;
-        text-decoration: none;
-        color: #007bff;
-    }
-    .navegacao a:hover {
-        text-decoration: underline;
-    }
+ 
+
 </style>
+
+<script src="../../js/funcaoMenuLateral.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="../../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+
 
 </body>
 </html>
+
+

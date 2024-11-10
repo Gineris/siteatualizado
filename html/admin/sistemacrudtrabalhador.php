@@ -292,7 +292,7 @@ $trabalhadores = $result->fetch_all(MYSQLI_ASSOC);
         <p>N</p>
         <p>Terms of Service</p>
         <p>Privacy Policy</p>
-        <p>@2022yanliudesign</p>
+        <p>@2024nerisdesign</p>
     </footer>
 </body>
 </html>
