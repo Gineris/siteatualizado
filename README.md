@@ -18,6 +18,6 @@
 </p>
 
 <p align="center">
-    <img src="../.github/logo.png" alt="Image Example" width="400px">
+    <img src=".github/logo.png" alt="Image Example" width="400px">
 </p>
 
