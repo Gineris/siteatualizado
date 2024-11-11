@@ -11,7 +11,7 @@
 
 <p align="center">
  <a href="#about">Sobre</a> • 
- <a href="#started">Inicializando o projeto</a> • 
+ <a href="#started">Preparação para a inicialização do projeto</a> • 
  <a href="#started">App Routes</a> • 
  <a href="#colab">Collaborators</a> •
  <a href="#started">Contribute</a>
@@ -25,7 +25,7 @@
  A plataforma desenvolvida tem como objetivo facilitar a conexão entre trabalhadores autônomos e clientes na área de Jundiaí, promovendo os serviços desses profissionais de maneira prática e acessível. A interface é projetada para ser intuitiva, permitindo que tanto trabalhadores quanto clientes naveguem facilmente e encontrem o que precisam, auxiliando numa experiência simplificada para ambos os tipos de usuário.
 
 
-<h2 id="started">🚀 Inicializando o projeto</h2>
+<h2 id="started">🚀 Preparação para a inicialização do projeto</h2>
 A inicialização do JundTask é simples, mas é importante garantir que você atenda aos requisitos mínimos para evitar erros. Certifique-se de que está utilizando uma versão igual ou superior às indicadas abaixo.
 
 <h3>Pré requisitos</h3>
@@ -48,3 +48,16 @@ A inicialização do JundTask é simples, mas é importante garantir que você a
   <td>8.1.25</td>
 </tr>
 </table>
+
+<h3>Clonando o projeto</h3>
+
+A clonagem do projeto pode ser feita apenas digitando a linha de código abaixou ou baixando o projeto.
+
+```
+git clone https://github.com/Gineris/siteatualizado.git
+```
+
+<h3>Inicializando o projeto</h3>
+
+Após clonar para inicia-lo precisará 
+
