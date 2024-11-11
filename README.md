@@ -10,14 +10,41 @@
 ![javascript][JAVASCRIPT__BADGE]
 
 <p align="center">
- <a href="#about">About</a> • 
- <a href="#started">Getting Started</a> • 
-  <a href="#started">App Routes</a> • 
-  <a href="#colab">Collaborators</a> •
- <a href="#contribute">Contribute</a>
+ <a href="#about">Sobre</a> • 
+ <a href="#started">Inicializando o projeto</a> • 
+ <a href="#started">App Routes</a> • 
+ <a href="#colab">Collaborators</a> •
+ <a href="#started">Contribute</a>
 </p>
 
 <p align="center">
-    <img src=".github/logo.png" alt="Image Example" width="400px">
+    <img src=".github/logo.png" alt="Image Example" width="700px">
 </p>
+<h2 id="about">📌 Sobre</h2>
 
+ A plataforma desenvolvida tem como objetivo facilitar a conexão entre trabalhadores autônomos e clientes na área de Jundiaí, promovendo os serviços desses profissionais de maneira prática e acessível. A interface é projetada para ser intuitiva, permitindo que tanto trabalhadores quanto clientes naveguem facilmente e encontrem o que precisam, auxiliando numa experiência simplificada para ambos os tipos de usuário.
+
+
+<h2 id="started">🚀 Inicializando o projeto</h2>
+A inicialização do JundTask é simples, mas é importante garantir que você atenda aos requisitos mínimos para evitar erros. Certifique-se de que está utilizando uma versão igual ou superior às indicadas abaixo.
+
+<h3>Pré requisitos</h3>
+
+<table>
+ <tr>
+  <td>HTML</td>
+  <td>CSS</td>
+  <td>Bootstrap</td>
+  <td>JavaScript</td>
+  <td>PHP</td>
+  <td>Xamp</td>
+ </tr>
+ <tr>
+  <td>HTML5</td>
+  <td>CSS3</td>
+  <td>5.3</td>
+  <td>1.8</td>
+  <td>8.1.25</td>
+  <td>8.1.25</td>
+</tr>
+</table>
