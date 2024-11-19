@@ -12,9 +12,10 @@
 <p align="center">
  <a href="#about">Sobre</a> • 
  <a href="#started">Preparação para a inicialização do projeto</a> • 
- <a href="#started">App Routes</a> • 
- <a href="#colab">Collaborators</a> •
- <a href="#started">Contribute</a>
+ <a href="#initializing">Inicializando o projeto</a> • 
+ <a href="#colab">Autores</a> •
+ <a href="#contribute">Como citar o projeto</a> •
+ <a href="#apendice">Apendice</a>
 </p>
 
 <p align="center">
@@ -135,6 +136,72 @@ Se você utilizar este projeto em sua pesquisa, artigo, ou trabalho, por favor, 
 
 CAMPOS, Guilherme; COSTA, Mateus; GOUVEIA, Giovana. <strong>Implementação de uma plataforma digital na divulgação de trabalhadores autonômos na região de Jundiaí</strong>. GitHub, ano. Disponível em: <https://github.com/Gineris/siteatualizado>. Acesso em: dia mês ano.
 
-<h2 id="apendice">📫 Apendice</h2>
+<h2 id="apendice">📫 Apendice - Pesquisa de campo para a implementação da plataforma</h2>
+
+## Seção: Informações Pessoais
+<form>
+    <p><strong>1. Qual é sua idade?</strong></p>
+    <label><input type="radio" name="idade" value="14-17"> 14 a 17</label><br>
+    <label><input type="radio" name="idade" value="18-20"> 18 a 20</label><br>
+    <label><input type="radio" name="idade" value="21-30"> 21 a 30</label><br>
+    <label><input type="radio" name="idade" value="31-40"> 31 a 40</label><br>
+    <label><input type="radio" name="idade" value="mais-40"> Mais de 40 anos</label><br>
+
+   <p><strong>2. Qual gênero você se identifica?</strong></p>
+    <label><input type="radio" name="genero" value="feminino"> Feminino</label><br>
+    <label><input type="radio" name="genero" value="masculino"> Masculino</label><br>
+    <label><input type="radio" name="genero" value="nao-binario"> Não-binário</label><br>
+    <label><input type="radio" name="genero" value="prefiro-nao-dizer"> Prefiro não dizer</label><br>
+    <label>Outro: <input type="text" name="genero-outro"></label><br>
+
+   <p><strong>3. Em qual cidade da região de Jundiaí você mora?</strong></p>
+    <label><input type="radio" name="cidade" value="campo-limpo-paulista"> Campo Limpo Paulista</label><br>
+    <label><input type="radio" name="cidade" value="varzea-paulista"> Várzea Paulista</label><br>
+    <label><input type="radio" name="cidade" value="jundiai"> Jundiaí</label><br>
+    <label><input type="radio" name="cidade" value="jarinu"> Jarinu</label><br>
+    <label>Outro: <input type="text" name="cidade-outro"></label><br>
+
+   <p><strong>4. Você faz ou já fez algum trabalho autônomo?</strong></p>
+    <label><input type="radio" name="trabalho-autonomo" value="sim"> Sim</label><br>
+    <label><input type="radio" name="trabalho-autonomo" value="nao"> Não (Pular para a seção Cliente)</label><br>
+</form>
+
+## Seção: Trabalhador Autônomo
+<form>
+    <p><strong>6. Escolha a categoria dos serviços que você realiza:</strong></p>
+    <label><input type="checkbox" name="categoria" value="servicos-domesticos"> Serviços Domésticos</label><br>
+    <label><input type="checkbox" name="categoria" value="reparos-manutencao"> Reparos e Manutenção</label><br>
+    <label><input type="checkbox" name="categoria" value="saude-beleza"> Saúde e Beleza</label><br>
+    <label><input type="checkbox" name="categoria" value="educacao-aulas"> Educação e Aulas Particulares</label><br>
+    <label><input type="checkbox" name="categoria" value="eventos-festas"> Serviços para Eventos e Festas</label><br>
+    <label><input type="checkbox" name="categoria" value="servicos-automotivos"> Serviços Automotivos</label><br>
+    <label><input type="checkbox" name="categoria" value="servicos-tecnologicos"> Serviços Tecnológicos</label><br>
+    <label><input type="checkbox" name="categoria" value="consultoria-assessoria"> Consultoria e Assessoria</label><br>
+    <label>Outro: <input type="text" name="categoria-outro"></label><br>
+
+   <p>
+    <strong>7. Você tem dificuldade de divulgar o seu serviço?</strong>
+   </p>
+    <label><input type="radio" name="dificuldade-divulgacao" value="sim"> Sim</label><br>
+    <label><input type="radio" name="dificuldade-divulgacao" value="as-vezes"> Às vezes</label><br>
+    <label><input type="radio" name="dificuldade-divulgacao" value="nao"> Não</label><br>
+
+   <p><strong>8. Com que frequência você tem dificuldade em encontrar clientes?</strong></p>
+    <label><input type="radio" name="frequencia-clientes" value="muito-frequente"> Muito frequente</label><br>
+    <label><input type="radio" name="frequencia-clientes" value="frequentemente"> Frequentemente</label><br>
+    <label><input type="radio" name="frequencia-clientes" value="eventualmente"> Eventualmente</label><br>
+    <label><input type="radio" name="frequencia-clientes" value="raramente"> Raramente</label><br>
+    <label><input type="radio" name="frequencia-clientes" value="nunca"> Nunca</label><br>
+
+   <p><strong>9. Quais plataformas você utiliza para comunicação e divulgação do seu trabalho?</strong></p>
+    <label><input type="checkbox" name="plataformas" value="instagram"> Instagram</label><br>
+    <label><input type="checkbox" name="plataformas" value="facebook"> Facebook</label><br>
+    <label><input type="checkbox" name="plataformas" value="whatsapp"> WhatsApp</label><br>
+    <label>Outro: <input type="text" name="plataformas-outro"></label><br>
+
+   <p><strong>10. Existe algum recurso ou funcionalidade específica que você gostaria de destacar ou solicitar em uma plataforma para trabalhadores autônomos?</strong></p>
+    [resposta em texto]
+</form>
+
 
 
