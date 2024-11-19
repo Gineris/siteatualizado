@@ -110,31 +110,31 @@ Estes são os autores, que fizeram a parte escrita e prática do projeto
 <table>
   <tr>
     <td align="center">
-      <a href="#">
         <img src=".github/fttelainicial.png" width="100px;" alt="Guilherme Campos Profile Picture"/><br>
         <sub>
           <b>Guilherme Campos</b>
         </sub>
-      </a>
     </td>
     <td align="center">
-      <a href="#">
-        <img src=".github/fttelainicial.png" width="100px;" alt="Mateus Andrade Profile Picture"/><br>
+        <img src=".github/fttelainicial.png" width="100px;" alt="Mateus Costa Profile Picture"/><br>
         <sub>
-          <b>Mateus Andrade</b>
+          <b>Mateus Costa</b>
         </sub>
-      </a>
     </td>
-    <td align="center">
-      <a href="#">
-        <img src=".github/fttelainicial.png" width="100px;" alt="Giovana Neris Profile Picture "/><br>
+    <td align="center">   
+        <img src=".github/fttelainicial.png" width="100px;" alt="Giovana Gouveia Profile Picture "/><br>
         <sub>
-          <b>Giovana Neris</b>
+          <b>Giovana Gouveia</b>
         </sub>
-      </a>
     </td>
   </tr>
 </table>
-<h2 id="contribute">📫 Contribute</h2>
+<h2 id="contribute">📫 Como citar o projeto</h2>
 
 Se você utilizar este projeto em sua pesquisa, artigo, ou trabalho, por favor, cite-o da seguinte forma:
+
+CAMPOS, Guilherme; COSTA, Mateus; GOUVEIA, Giovana. <strong>Implementação de uma plataforma digital na divulgação de trabalhadores autonômos na região de Jundiaí</strong>. GitHub, ano. Disponível em: <https://github.com/Gineris/siteatualizado>. Acesso em: dia mês ano.
+
+<h2 id="apendice">📫 Apendice</h2>
+
+
