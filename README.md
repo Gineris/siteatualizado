@@ -59,5 +59,7 @@ git clone https://github.com/Gineris/siteatualizado.git
 
 <h3>Inicializando o projeto</h3>
 
-Após clonar para inicia-lo precisará 
+Após clonar para começar precisará estar iniciar o XAMPP e importar o banco de dados que está no repositorio, ele é necessário para usar as funções do site, em seguida com o repositório na pasta "htdocs" é só colocar a url no seu navegador.
+Esta será sua tela inicial:
+
 
