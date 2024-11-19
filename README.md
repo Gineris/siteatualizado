@@ -57,9 +57,84 @@ A clonagem do projeto pode ser feita apenas digitando a linha de código abaixou
 git clone https://github.com/Gineris/siteatualizado.git
 ```
 
-<h3>Inicializando o projeto</h3>
+<h2 id="initializing">Inicializando o projeto</h2>
 
-Após clonar para começar precisará estar iniciar o XAMPP e importar o banco de dados que está no repositorio, ele é necessário para usar as funções do site, em seguida com o repositório na pasta "htdocs" é só colocar a url no seu navegador.
-Esta será sua tela inicial:
+<ol>
+  <li>
+    <strong>Inicie o XAMPP</strong> e ative o servidor Apache e o banco de dados MySQL.
+  </li>
+  <li>
+    <strong>Importe o banco de dados:</strong>
+    <ul>
+      <li>O arquivo do banco de dados está disponível no repositório.</li>
+      <li>Use o phpMyAdmin para importar o arquivo.</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Mova o repositório para a pasta <code>htdocs</code>:</strong>
+    <ul>
+      <li>Coloque a pasta clonada em <code>C:\xampp\htdocs</code>.</li>
+    </ul>
+  </li>
+  <li>
+    <strong>Abra o navegador e acesse o projeto:</strong>
+    <ul>
+      <li>Digite <code>http://localhost/siteatualizado</code> no navegador.</li>
+    </ul>
+  </li>
+</ol>
 
+<p>Você verá a seguinte tela inicial:</p>
 
+<p align="center">
+  <img src=".github/fttelainicial.png" alt="Tela Inicial" width="700px">
+</p>
+
+<h3>Criando uma conta</h3>
+<p>
+  Para usar todas as funcionalidades do site, você precisa estar logado. Caso ainda não tenha uma conta:
+</p>
+<ol>
+  <li>Clique no botão <strong>Login</strong>.</li>
+  <li>Escolha a opção <strong>Criar Conta</strong>.</li>
+  <li>Preencha os dados, é fácil e rápido!</li>
+</ol>
+<p>
+  Após o login, você terá acesso total às funcionalidades do site.
+</p>
+
+<h2 id="colab">🤝 Autores</h2>
+
+Estes são os autores, que fizeram a parte escrita e prática do projeto
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="#">
+        <img src=".github/fttelainicial.png" width="100px;" alt="Guilherme Campos Profile Picture"/><br>
+        <sub>
+          <b>Guilherme Campos</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#">
+        <img src=".github/fttelainicial.png" width="100px;" alt="Mateus Andrade Profile Picture"/><br>
+        <sub>
+          <b>Mateus Andrade</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#">
+        <img src=".github/fttelainicial.png" width="100px;" alt="Giovana Neris Profile Picture "/><br>
+        <sub>
+          <b>Giovana Neris</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
+<h2 id="contribute">📫 Contribute</h2>
+
+Se você utilizar este projeto em sua pesquisa, artigo, ou trabalho, por favor, cite-o da seguinte forma:
