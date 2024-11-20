@@ -1,6 +1,6 @@
 [JAVASCRIPT__BADGE]: https://img.shields.io/badge/Javascript-000?style=for-the-badge&logo=javascript
 
-<h1 align="center" style="font-weight: bold;">JundTask</h1>
+<h1 align="center" style="font-weight: bold;">Implementação de uma plataforma digital na divulgação de trabalhadores autonômos na região de Jundiaí</h1>
 
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
