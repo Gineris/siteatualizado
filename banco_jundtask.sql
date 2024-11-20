@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 22/10/2024 às 03:19
+-- Tempo de geração: 11/11/2024 às 21:25
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.0.30
 
@@ -94,6 +94,19 @@ CREATE TABLE `atualizacoes_pendentes` (
   `foto_banner` text DEFAULT NULL,
   `aprovado` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `atualizacoes_pendentes`
+--
+
+INSERT INTO `atualizacoes_pendentes` (`id_atualizacoes_pendentes`, `id_trabalhador`, `nome`, `email`, `senha`, `contato`, `data_nasc`, `descricao`, `id_area`, `id_categoria`, `foto_perfil`, `foto_trabalho1`, `foto_trabalho2`, `foto_trabalho3`, `foto_banner`, `aprovado`) VALUES
+(31, 61, 'Paola Carosella', 'paola@gmail.com', NULL, '11140028922', '1982-08-26', 'Fale sobre vokjanskdnanddpPDCOcê...', NULL, NULL, 'foto de perfil.png', 'pub3.jpg', 'TelaPredefinida.png', 'TelaPredefinidaTrabalhos3.png', 'foto do banner.png', -1),
+(32, 61, 'Paola Carosella', 'paola@gmail.com', NULL, '11140028922', '1982-08-26', 'Fale sobre vokjanskdnanddpPDCOcê...', NULL, NULL, 'foto de perfil.png', 'pub3.jpg', 'TelaPredefinida.png', 'TelaPredefinidaTrabalhos3.png', 'foto do banner.png', 1),
+(33, 61, 'Paola Carosella', 'paola@gmail.com', NULL, '11140028922', '1982-08-26', 'Fale sobre vokjanskdnanddpPDCOcê...', NULL, NULL, 'foto de perfil.png', 'pub3.jpg', 'TelaPredefinida.png', 'TelaPredefinidaTrabalhos3.png', 'foto do banner.png', 1),
+(34, 61, 'Paola Carosella', 'paola@gmail.com', NULL, '11140028922', '1982-08-26', 'Fale sobrhgvkvvouyvouyvuoe você...', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(35, 61, 'Paola Carosella', 'paola@gmail.com', NULL, '11140028922', '1982-08-26', 'Fale sobrhgvkvvouyvouyvuoe você...', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+(36, 61, 'Paola Carosella', 'paola@gmail.com', NULL, '11140028922', '1982-08-26', '', NULL, NULL, 'foto de perfil.png', NULL, NULL, NULL, NULL, 1),
+(37, 61, 'Paola Carosella', 'paola@gmail.com', NULL, '11140028922', '1982-08-26', 'Fale sobre você...juansanciasnckjsnjkcnakcnbkjabskj', NULL, NULL, NULL, NULL, NULL, NULL, NULL, -1);
 
 -- --------------------------------------------------------
 
@@ -224,15 +237,16 @@ CREATE TABLE `curtidas` (
 --
 
 INSERT INTO `curtidas` (`id_curtida`, `data_curtida`, `id_cliente`, `id_trabalhador`) VALUES
-(8, 0, 16, 20),
 (9, 0, 17, 24),
 (10, 0, 17, 43),
 (11, 0, 16, 23),
-(12, 0, 16, 24),
 (13, 0, 16, 27),
 (14, 0, 18, 23),
 (15, 0, 18, 24),
-(16, 0, 18, 27);
+(16, 0, 18, 27),
+(18, 0, 16, 43),
+(19, 0, 16, 50),
+(20, 0, 16, 24);
 
 -- --------------------------------------------------------
 
@@ -251,9 +265,10 @@ CREATE TABLE `favoritos` (
 --
 
 INSERT INTO `favoritos` (`id_favorito`, `id_trabalhador`, `id_cliente`) VALUES
-(6, 20, 16),
 (7, 24, 17),
-(8, 27, 16);
+(8, 27, 16),
+(11, 50, 16),
+(12, 24, 16);
 
 -- --------------------------------------------------------
 
@@ -286,7 +301,11 @@ INSERT INTO `mensagens` (`id_mensagem`, `id_cliente`, `id_trabalhador`, `mensage
 (9, 16, 24, 'oi\r\n', 'cliente', '2024-10-21 14:53:34'),
 (10, 16, 24, 'oi\r\n', 'cliente', '2024-10-21 14:55:30'),
 (11, 16, 24, 'oi', 'cliente', '2024-10-21 14:55:59'),
-(12, 16, 24, 'li\r\n', 'cliente', '2024-10-21 14:58:50');
+(12, 16, 24, 'li\r\n', 'cliente', '2024-10-21 14:58:50'),
+(13, 16, 24, 'oi quaanto custa seu serviço?', 'cliente', '2024-10-22 18:55:24'),
+(14, 16, 24, 'custa 100 reaias a limpeza\r\n', 'trabalhador', '2024-10-22 18:56:24'),
+(15, 16, 50, 'Olá ricardo, fiquei sabendo que vc faz encomenda para festa?', 'cliente', '2024-10-22 20:31:01'),
+(16, 16, 24, 'oi', 'cliente', '2024-11-05 23:51:32');
 
 -- --------------------------------------------------------
 
@@ -369,7 +388,6 @@ CREATE TABLE `trabalhador` (
 INSERT INTO `trabalhador` (`id_trabalhador`, `nome`, `email`, `senha`, `foto_perfil`, `foto_trabalho1`, `foto_trabalho2`, `foto_trabalho3`, `foto_banner`, `descricao`, `contato`, `data_nasc`, `media_avaliacao`, `tipo`, `status`, `id_categoria`, `id_area`, `permissao`, `curtidas`) VALUES
 (17, 'michele gomes', 'gui@gmail.com', '$2y$10$2GLOHF./f4ZZYWAFFRVt3OmUyBHSs5ZGrwcblOAY2PXOmwHTniWFy', '../uploads/download.jfif', '../uploads/fundo1.jpg', '../uploads/fundo2.jpg', '../uploads/testeFundo.jpeg', '../uploads/fundoPerfil.png', 'sou pobre', '12121212121', '2002-10-16', 0.00, '', '', 10, 2, 0, 0),
 (18, 'Maria', 'ma@gmail.com', '$2y$10$RRoK..jGqYKCBkwinAvE3eR9jnxdLJ6zL1ZGH47MniZ8KvrWD0c3a', '../uploads/download.jfif', '', '', '', '', '', '12121212121', '1923-07-05', 0.00, '', '', 10, 5, 0, 0),
-(19, 'Paula Pao', 'paula@gmail.com', '$2y$10$NF2UP6tmq3lCAfI2HTtsdufGRVLR0myk4uJx4dJXYTZPNzuokiRH6', '', '', '', '', '', 'Sou a paula teJANDO', '12121212121', '1987-09-25', 0.00, '', '', 11, 7, 0, 0),
 (20, 'memphis', 'depay@corinthians.com', '$2y$10$z3vcOAAGGkHLMfBdjHNx4Oh5smLczVUbyNhFsSPicSN.4NhuuWHrm', '../uploads/images.jfif', '', '', '', '', '', '11991829034', '1910-09-01', 0.00, '', '', 8, 4, 0, 0),
 (22, 'Pato Rog', 'patorogerio@gmail.com', '$2y$10$il6HsiBFAuVs.I3/OnGofu1YV6H8ywMYaSyqAWlwmw61de5zHw/H2', '../uploads/howardtheduck2.jpg', '', '', '', '', '', '11111111111', '1034-12-12', 0.00, '', '', 8, 4, 0, 0),
 (23, 'Maria da Silva', 'maria.silva@limpeza.com', '$2y$10$1uzoRY652Bq4w1DCMq1DLeM97R86MtQjHYApDpsYZtIPOHAsqQyiG', 'maria silva.png', 'faxina7.png', 'faxina4.png', 'faxina6.png', 'banner2.png', 'Eu sou a Maria da Silva, uma profissional com mais de 10 anos de experiência em serviços de limpeza. Minha abordagem é sempre focada na satisfação do cliente. Eu realizo uma limpeza profunda em cada cômodo da casa, cuidando dos detalhes que muitas vezes passam despercebidos, como cantos, rodapés e atrás dos móveis.', '11987654321', '1000-08-28', 0.00, '', '', 1, 1, 0, 0),
@@ -408,7 +426,9 @@ INSERT INTO `trabalhador` (`id_trabalhador`, `nome`, `email`, `senha`, `foto_per
 (56, 'André Pereira', 'andre.pereira@gmail.com', '$2y$10$mM0OgF36HvWrRq/H4lGqQeYB4.D0UxJJRbQ0Tr2dKYxzIoyp.BNPC', 'fotoH7.PNG', 'fotoTrabalho8.PNG', 'fotoTrabalho2.PNG', 'fotoTrabalho6.PNG', 'fotoBanner7.PNG', 'Meu nome é André e sou dono de uma lanchonete que serve comida nordestina. Adoro fazer pratos tradicionais e vejo isso como uma forma de representar minha cultura e minhas raízes.', '11998765432', '2000-02-22', 0.00, '', '', 4, 2, 0, 0),
 (57, 'Renata Alves', 'renata.alves@yahoo.com.br', '$2y$10$Sdj7sdOxu8jb0Ch8WvATpulgR/I2sYZe09/jFmB/9vyHNFApKbS0i', 'fotoM8.PNG', 'fotoTrabalho3.PNG', 'fotoTrabalho9.PNG', 'fotoTrabalho1.PNG', 'fotoBanner6.PNG', 'Oi, sou a Renata! Tenho um pequeno café onde faço doces e salgados caseiros. A satisfação dos meus clientes ao experimentar minhas receitas é o que me motiva a continuar.', '11934567890', '1999-05-05', 0.00, '', '', 4, 5, 0, 0),
 (58, 'Samuel Dias', 'samuel.dias@hotmail.com', '$2y$10$dF4OSCsguRr6vA5P3UoCXe//AdVz52k7bD.mjoTEHQBUnkHtVdwRa', 'fotoH8.PNG', 'fotoTrabalho4.PNG', 'fotoTrabalho5.PNG', 'fotoTrabalho8.PNG', 'fotoBanner7.PNG', 'Meu nome é Samuel, e sou chef em uma lanchonete de comida internacional. Adoro viajar e trazer novas influências para o meu cardápio, sempre buscando surpreender meus clientes', '11987651234', '2000-07-07', 0.00, '', '', 4, 6, 0, 0),
-(59, 'Thais Mello', 'thaismello@gmail.com', '$2y$10$7XIWYLX9bK9pNx90vWxmq.6UoQSWRi0cy4adu4R8Mt4bPjmuK7TaW', 'fotoM9.PNG', 'fotoTrabalho3.PNG', 'fotoTrabalho9.PNG', 'fotoTrabalho3.PNG', 'fotoBanner4.PNG', 'Sou a Thais e trabalho com um delivery de marmitas. Meu foco é oferecer opções saudáveis e práticas, sempre com ingredientes frescos. Ver a saúde dos meus clientes melhorando é gratificante.', '11998765432', '3333-04-04', 0.00, '', '', 4, 1, 0, 0);
+(59, 'Thais Mello', 'thaismello@gmail.com', '$2y$10$7XIWYLX9bK9pNx90vWxmq.6UoQSWRi0cy4adu4R8Mt4bPjmuK7TaW', 'fotoM9.PNG', 'fotoTrabalho3.PNG', 'fotoTrabalho9.PNG', 'fotoTrabalho3.PNG', 'fotoBanner4.PNG', 'Sou a Thais e trabalho com um delivery de marmitas. Meu foco é oferecer opções saudáveis e práticas, sempre com ingredientes frescos. Ver a saúde dos meus clientes melhorando é gratificante.', '11998765432', '3333-04-04', 0.00, '', '', 4, 1, 0, 0),
+(60, 'daniel', 'd@gmail.com', '$2y$10$hOdvC1GMw0kqlcmH24eeleG648hSSVP1I3oIgwJYelr9uyuPnKMoO', '../uploads/ana.png', '', '', '', '', '', '11986543210', '1982-04-07', 0.00, '', '', 11, 5, 0, 0),
+(61, 'Paola Carosella', 'paola@gmail.com', '$2y$10$w.rjzDQXIR3OoFmxuyRtXu1VCErf7wW5ZnwHB5nLflt1RvvAkqrEa', 'foto de perfil.png', '', '', '', '', '', '11140028922', '1982-08-26', 0.00, '', '', 4, 5, 0, 0);
 
 --
 -- Índices para tabelas despejadas
@@ -531,7 +551,7 @@ ALTER TABLE `area_atuação`
 -- AUTO_INCREMENT de tabela `atualizacoes_pendentes`
 --
 ALTER TABLE `atualizacoes_pendentes`
-  MODIFY `id_atualizacoes_pendentes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_atualizacoes_pendentes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de tabela `categorias`
@@ -561,19 +581,19 @@ ALTER TABLE `conversas`
 -- AUTO_INCREMENT de tabela `curtidas`
 --
 ALTER TABLE `curtidas`
-  MODIFY `id_curtida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_curtida` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de tabela `favoritos`
 --
 ALTER TABLE `favoritos`
-  MODIFY `id_favorito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_favorito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `mensagens`
 --
 ALTER TABLE `mensagens`
-  MODIFY `id_mensagem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_mensagem` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `reclamacao_cliente`
@@ -591,7 +611,7 @@ ALTER TABLE `reclamacao_trabalhador`
 -- AUTO_INCREMENT de tabela `trabalhador`
 --
 ALTER TABLE `trabalhador`
-  MODIFY `id_trabalhador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id_trabalhador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- Restrições para tabelas despejadas
