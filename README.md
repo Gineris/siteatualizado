@@ -88,7 +88,7 @@ git clone https://github.com/Gineris/siteatualizado.git
 <p>Você verá a seguinte tela inicial:</p>
 
 <p align="center">
-  <img src=".github/fttelainicial.png" alt="Tela Inicial" width="700px">
+  <img src=".github/fttelainicial.PNG" alt="Tela Inicial" width="700px">
 </p>
 
 <h3>Criando uma conta</h3>
