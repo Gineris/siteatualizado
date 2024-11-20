@@ -111,19 +111,19 @@ Estes são os autores, que fizeram a parte escrita e prática do projeto
 <table>
   <tr>
     <td align="center">
-        <img src=".github/fttelainicial.png" width="100px;" alt="Guilherme Campos Profile Picture"/><br>
+        <img src=".github/ftGuilherme.jpg" width="100px;" alt="Guilherme Campos Profile Picture"/><br>
         <sub>
           <b>Guilherme Campos</b>
         </sub>
     </td>
     <td align="center">
-        <img src=".github/fttelainicial.png" width="100px;" alt="Mateus Costa Profile Picture"/><br>
+        <img src=".github/ftMateus.jpg" width="100px;" alt="Mateus Costa Profile Picture"/><br>
         <sub>
           <b>Mateus Costa</b>
         </sub>
     </td>
     <td align="center">   
-        <img src=".github/fttelainicial.png" width="100px;" alt="Giovana Gouveia Profile Picture "/><br>
+        <img src=".github/ftGiovana.jpg" width="100px;" alt="Giovana Gouveia Profile Picture "/><br>
         <sub>
           <b>Giovana Gouveia</b>
         </sub>
